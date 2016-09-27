@@ -10,8 +10,19 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="org.blocorganization.blocapp.MainActivity">
 
-    <TextView
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/main_fragment_container"
+        android:layout_weight="1" />
+
+    <!-- Does the code below really create a frag my app doesnt use the NavBarFragment code -->
+    <fragment
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:layout_alignParentBottom="true"
+        android:id="@+id/navbar_container"
+        android:name="org.blocorganization.blocapp.NavBarFragment"
+        tools:layout="@layout/fragment_navbar" />
+
 </RelativeLayout>

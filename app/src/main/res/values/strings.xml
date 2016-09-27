@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Bloc App</string>
+    <string name="hello_bullhorn_fragment">Hello Bullhorn fragment</string>
+    <string name="hello_campaigns_fragment">Hello Campaigns fragment</string>
+    <string name="hello_accounts_fragment">Hello accounts fragment</string>
+    <string name="hello_bloc_fragment">Hello bloc fragment</string>
+    <string name="hello_messages_fragment">Hello messages fragment</string>
 </resources>

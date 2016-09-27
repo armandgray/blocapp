@@ -6,6 +6,10 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/background</item>
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:typeface">monospace</item>
+        <item name="android:icon">@drawable/bloc_logo_original</item>
     </style>
 
 </resources>
