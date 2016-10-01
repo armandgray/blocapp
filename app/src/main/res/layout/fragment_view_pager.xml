@@ -1,0 +1,49 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="org.blocorganization.blocapp.home.ViewPagerFragment">
+
+    <TextView
+        android:id="@+id/nameText"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Product name"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/priceText"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nameText"
+        android:gravity="center"
+        android:text="$28.00"
+        android:textSize="20sp" />
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/imageView"
+        android:layout_below="@+id/priceText"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/descriptionText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="about text"
+            android:textSize="16sp" />
+
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/jacket101" />
+
+</RelativeLayout>

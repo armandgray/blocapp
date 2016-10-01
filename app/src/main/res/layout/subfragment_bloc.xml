@@ -1,0 +1,139 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="org.blocorganization.blocapp.bloc.BlocSubFragment">
+
+    <ImageView
+        android:id="@+id/bloc_frag_main_logo"
+        android:layout_width="500dp"
+        android:layout_height="300dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        app:srcCompat="@drawable/bloc_logo_original_negative" />
+
+    <TextView
+        android:id="@+id/bloc_frag_strongmoves"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="250dp"
+        android:text="@string/bloc_frag_strongmoves"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/bloc_check_us_out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bloc_frag_strongmoves"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="125dp"
+        android:text="@string/bloc_check_us_out"
+        android:textColor="#BB0000"
+        android:textSize="20sp" />
+
+    <RelativeLayout
+        android:id="@+id/menu_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/menu_marginbottom">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/menu_bullet1"
+                android:layout_width="@dimen/menu_bullet_side"
+                android:layout_height="@dimen/menu_bullet_side"
+                android:layout_margin="@dimen/bloc_menu_bullet_margin"
+                android:contentDescription="@string/menu_bullet"
+                app:srcCompat="@drawable/menu_point" />
+
+            <ImageView
+                android:id="@+id/menu_bullet2"
+                android:layout_width="@dimen/menu_bullet_side"
+                android:layout_height="@dimen/menu_bullet_side"
+                android:layout_margin="@dimen/bloc_menu_bullet_margin"
+                android:contentDescription="@string/menu_bullet"
+                app:srcCompat="@drawable/menu_point" />
+
+            <!--<ImageView-->
+            <!--android:id="@+id/menu_selected_bullet"-->
+            <!--android:layout_width="@dimen/menu_selected_bullet_side"-->
+            <!--android:layout_height="@dimen/menu_selected_bullet_side"-->
+            <!--android:layout_margin="@dimen/bloc_menu_bullet_margin"-->
+            <!--android:contentDescription="@string/menu_bullet"-->
+            <!--app:srcCompat="@drawable/menu_selected_point" />-->
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="23dp"
+                android:layout_marginLeft="@dimen/menu_selected_bullet_side"
+                android:layout_marginRight="@dimen/menu_selected_bullet_side">
+                <TextView
+                    android:id="@+id/menu_selected_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="bloc"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+
+            <ImageView
+                android:id="@+id/menu_bullet4"
+                android:layout_width="@dimen/menu_bullet_side"
+                android:layout_height="@dimen/menu_bullet_side"
+                android:layout_margin="@dimen/bloc_menu_bullet_margin"
+                android:contentDescription="@string/menu_bullet"
+                app:srcCompat="@drawable/menu_point" />
+
+            <ImageView
+                android:id="@+id/menu_bullet5"
+                android:layout_width="@dimen/menu_bullet_side"
+                android:layout_height="@dimen/menu_bullet_side"
+                android:layout_margin="@dimen/bloc_menu_bullet_margin"
+                android:contentDescription="@string/menu_bullet"
+                app:srcCompat="@drawable/menu_point" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/Header1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:text="Brotherhood. Communtiy. Unity." />
+
+            <TextView
+                android:id="@+id/Text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Header1"
+                android:layout_centerHorizontal="true"
+                android:text="The World Is Our Campus" />
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

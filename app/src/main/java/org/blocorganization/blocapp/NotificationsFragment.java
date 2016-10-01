@@ -1,7 +1,6 @@
 package org.blocorganization.blocapp;
 
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -13,37 +12,37 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CampaignsFragment extends Fragment {
+public class NotificationsFragment extends Fragment {
 
-    public CampaignsFragment() {
+
+    public NotificationsFragment() {
         // Required empty public constructor
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_campaigns, container, false);
-
-        return rootView;
+        return inflater.inflate(R.layout.fragment_notifications, container, false);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        Log.i("FRAG", "Campaigns onResume");
+        Log.i("FRAG", "Notifications onResume");
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        Log.i("FRAG", "Campaigns onPause");
+        Log.i("FRAG", "Notifications onPause");
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.i("FRAG", "Campaigns onDestroy");
+        Log.i("FRAG", "Notifications onDestroy");
     }
 
 }

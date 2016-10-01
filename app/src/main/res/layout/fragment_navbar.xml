@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+    android:layout_width="fill_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/navbar_padding"
+    android:background="@drawable/navbar_border"
     android:orientation="horizontal">
 
 
@@ -21,8 +23,7 @@
         android:layout_height="@dimen/navbar_icon_size"
         android:layout_marginLeft="@dimen/navbar_margins"
         android:layout_marginRight="@dimen/navbar_margins"
-        app:srcCompat="@drawable/calendar_multiple"
-        android:onClick="onCalendarClick"/>
+        app:srcCompat="@drawable/calendar_multiple" />
 
     <ImageView
         android:id="@+id/emoticon"
@@ -30,8 +31,7 @@
         android:layout_height="@dimen/navbar_icon_size"
         android:layout_marginLeft="@dimen/navbar_margins"
         android:layout_marginRight="@dimen/navbar_margins"
-        app:srcCompat="@drawable/emoticon_cool"
-        android:onClick="onEmoticonClick"/>
+        app:srcCompat="@drawable/emoticon_cool" />
 
     <ImageView
         android:id="@+id/personal"
@@ -39,8 +39,7 @@
         android:layout_height="@dimen/navbar_icon_size"
         android:layout_marginLeft="@dimen/navbar_margins"
         android:layout_marginRight="@dimen/navbar_margins"
-        app:srcCompat="@drawable/odnoklassniki"
-        android:onClick="onPersonalClick"/>
+        app:srcCompat="@drawable/odnoklassniki" />
 
     <ImageView
         android:id="@+id/boldB"
@@ -48,6 +47,5 @@
         android:layout_height="@dimen/navbar_icon_size"
         android:layout_marginLeft="@dimen/navbar_margins"
         android:layout_marginRight="@dimen/navbar_margins"
-        app:srcCompat="@drawable/format_bold"
-        android:onClick="onBoldBClick"/>
+        app:srcCompat="@drawable/format_bold" />
 </LinearLayout>

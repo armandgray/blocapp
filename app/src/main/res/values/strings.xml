@@ -5,4 +5,11 @@
     <string name="hello_accounts_fragment">Hello accounts fragment</string>
     <string name="hello_bloc_fragment">Hello bloc fragment</string>
     <string name="hello_messages_fragment">Hello messages fragment</string>
+    <string name="bloc_frag_strongmoves">#StrongMoves</string>
+    <string name="bloc_check_us_out">Check Us Out</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello FROM HOME fragment</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="menu_bullet">menu bullet</string>
 </resources>
