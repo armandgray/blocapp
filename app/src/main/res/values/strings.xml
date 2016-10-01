@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Bloc App</string>
+    <string name="app_name">Bloc</string>
     <string name="hello_bullhorn_fragment">Hello Bullhorn fragment</string>
     <string name="hello_campaigns_fragment">Hello Campaigns fragment</string>
     <string name="hello_accounts_fragment">Hello accounts fragment</string>
@@ -12,4 +12,11 @@
     <string name="hello_blank_fragment">Hello FROM HOME fragment</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="menu_bullet">menu bullet</string>
+    <string name="bloc_members1516_desc">2014-2015 BLOC Members. Bridges Hall of Music. Pomona College</string>
+    <string name="header_5corg_text">A Claremont Colleges Organization</string>
+    <string name="header_whoarewe_text">Who Are We</string>
+    <string name="worldcampus_text">The World Is Our Campus</string>
+    <string name="header_brohood_text">Brotherhood. Community. Unity.</string>
+    <string name="whoarewe_text">BLOC is a crucial resource for self-identified marginalized—but in no way marginal—students. BLOC is a supportive extended family at the sometimes-alienating Claremont Colleges. BLOC is a tight-knit brotherhood; let this be most sacred. BLOC promotes academic achievement and celebrates members’ successes. The organization recognizes, takes on, and tries to mitigate hardship as exercises in collective compassion.\n\nBLOC members hone skills that will benefit them throughout their lives. Leadership opportunities prepare members for success in their chosen careers and, more importantly, as human beings. BLOC creates well-rounded programs and strives for excellence and quality in all its undertakings. Members, both individually and collectively, work toward the advancement of the campus community and broader communities. In doing so, BLOC contributes to the betterment of each member.\n\nBLOC harnesses its tight-knit brotherhood to collaborate with other people, groups, and communities. BLOC hopes to assess the local climate in order to gauge the needs of the underrepresented. BLOC fosters close partnerships within the 5C community to achieve common goals. By embarking on these endeavors together, BLOC seeks mediation, reconciliation, and understanding. Co-curricular activities can be as valuable as the classroom experience; hence, BLOC promotes involvement in all aspects of collegiate life.</string>
+    <string name="chevron">chevron_down</string>
 </resources>

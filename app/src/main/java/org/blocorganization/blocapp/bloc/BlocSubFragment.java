@@ -7,9 +7,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
 import org.blocorganization.blocapp.R;
+import org.w3c.dom.Text;
 
 
 /**
@@ -18,10 +25,9 @@ import org.blocorganization.blocapp.R;
 public class BlocSubFragment extends Fragment {
 
     public static final String BLOC_FRAG = "BLOC_FRAG";
+    LinearLayout menuContainer;
 
-    public BlocSubFragment() {
-        // Required empty public constructor
-    }
+    public BlocSubFragment() {}
 
     public static BlocSubFragment newInstance() {
 
@@ -32,23 +38,48 @@ public class BlocSubFragment extends Fragment {
         return fragment;
     }
 
-    ImageView chevronDown;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.subfragment_bloc, container, false);
 
-        // cannot get height of parent container
-//        RelativeLayout canvas = (RelativeLayout) view.findViewById(R.id.main_layout);
-        int targetY = 1700;
+        menuContainer = (LinearLayout) rootView.findViewById(R.id.menu_container);
+        final LinearLayout layout = (LinearLayout) rootView.findViewById(R.id.bloc_layout);
+        final ImageView chevron = (ImageView) rootView.findViewById(R.id.bloc_chevron_down);
+        final ViewGroup chevronParent = (ViewGroup) chevron.getParent();
+        chevronParent.removeView(chevron);
 
-//        chevronDown = (ImageView) rootView.findViewById(R.id.menu_bullet1);
-//
-//        ObjectAnimator animator = ObjectAnimator.ofFloat(chevronDown, "y", 1650, targetY).setDuration(700);
-//        animator.setInterpolator(new BounceInterpolator());
-//        animator.start();
+        final ScrollView scrollView = (ScrollView) rootView.findViewById(R.id.bloc_scrollview);
+        final TextView headerBroHood = (TextView) rootView.findViewById(R.id.header_brotherhood);
+        final TextView textWhoAreWe = (TextView) rootView.findViewById(R.id.text_whoarewe);
+        Button checkUsBtn = (Button) rootView.findViewById(R.id.bloc_checkus_btn);
+
+        checkUsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                scrollView.smoothScrollTo(0, headerBroHood.getTop());
+            }
+        });
+
+        scrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+            @Override
+            public void onScrollChanged() {
+                if (chevronParent.getChildAt(0) != chevron) {
+                    chevronParent.addView(chevron, 0);
+                }
+                if (scrollView.getScrollY() <= 100) chevronParent.removeView(chevron);
+
+                if (scrollView.getScrollY() == 0) {
+                    menuContainer.setVisibility(View.VISIBLE);
+                } else if (scrollView.getScrollY() >= textWhoAreWe.getBottom() - layout.getHeight()){
+                    menuContainer.setVisibility(View.INVISIBLE);
+                    chevron.setVisibility(View.INVISIBLE);
+                } else {
+                    menuContainer.setVisibility(View.INVISIBLE);
+                    chevron.setVisibility(View.VISIBLE);
+                }
+            }
+        });
 
         return rootView;
     }

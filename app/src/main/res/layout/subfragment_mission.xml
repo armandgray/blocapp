@@ -18,7 +18,6 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/menu_marginbottom">
-
         android:layout_marginTop="40dp">
 
         <LinearLayout

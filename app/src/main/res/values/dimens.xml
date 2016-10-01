@@ -9,5 +9,7 @@
     <dimen name="bloc_menu_bullet_margin">7dp</dimen>
     <dimen name="menu_bullet_side">10dp</dimen>
     <dimen name="menu_selected_bullet_side">12dp</dimen>
-    <dimen name="menu_marginbottom">5dp</dimen>
+    <dimen name="menu_marginbottom">10dp</dimen>
+    <dimen name="headers_size">30sp</dimen>
+    <dimen name="text_size">16sp</dimen>
 </resources>
