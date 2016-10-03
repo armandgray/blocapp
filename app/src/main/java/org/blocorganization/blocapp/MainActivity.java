@@ -9,13 +9,11 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
+import org.blocorganization.blocapp.home.HomeFragment;
+import org.blocorganization.blocapp.notifications.NotificationsFragment;
 import org.blocorganization.blocapp.bloc.BlocFragment;
-import org.blocorganization.blocapp.bloc.BlocSubFragment;
 import org.blocorganization.blocapp.campaigns.CampaignsFragment;
-import org.blocorganization.blocapp.home.ViewPagerFragment;
 import org.blocorganization.blocapp.messages.MessagesFragment;
-import org.blocorganization.blocapp.models.DataProvider;
-import org.blocorganization.blocapp.models.Product;
 import org.blocorganization.blocapp.utils.NavBarFragment;
 
 import java.util.List;
@@ -23,10 +21,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements NavBarFragment.NavBarFragmentListener {
 
     public static final String BULLHORN_TAG = "bullhorn_tag";
-
-    private final List<Product> products = DataProvider.productList;
-    private final int numPages = products.size();
-    private ViewPager mPager;
+    public static final String NOTI_FRAG = "NOTI_FRAG";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,35 +38,16 @@ public class MainActivity extends AppCompatActivity implements NavBarFragment.Na
 //                .addToBackStack(null)
 //                .commit();
 
-//        mPager = (ViewPager) findViewById(R.id.main_pager);
-//        PagerAdapter pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-//        mPager.setAdapter(pagerAdapter);
-
-    }
-
-    private class ViewPagerAdapter extends FragmentStatePagerAdapter {
-        public ViewPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return ViewPagerFragment.newInstance(products.get(position));
-        }
-
-        @Override
-        public int getCount() {
-            return numPages;
-        }
     }
 
     @Override
     public void onBullhornClick() {
         Toast.makeText(MainActivity.this, "News Feed Clicked", Toast.LENGTH_SHORT).show();
-        BullhornFragment bullFrag = new BullhornFragment();
+//        BullhornFragment bullFrag = new BullhornFragment();
+        HomeFragment homeFrag = new HomeFragment();
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.main_fragment_container, bullFrag)
+                .replace(R.id.main_fragment_container, homeFrag)
                 .addToBackStack(null)
                 .commit();
     }
@@ -100,10 +76,10 @@ public class MainActivity extends AppCompatActivity implements NavBarFragment.Na
     @Override
     public void onNotificationsClick() {
         Toast.makeText(MainActivity.this, "Accounts Clicked", Toast.LENGTH_SHORT).show();
-        NotificationsFragment accFrag = new NotificationsFragment();
+        NotificationsFragment notiFrag = new NotificationsFragment();
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.main_fragment_container, accFrag)
+                .replace(R.id.main_fragment_container, notiFrag, NOTI_FRAG)
                 .commit();
     }
 

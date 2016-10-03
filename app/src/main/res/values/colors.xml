@@ -5,4 +5,6 @@
     <color name="colorAccent">#BB0000</color>
     <color name="background">#000000</color>
     <color name="textColor">#FFFFFF</color>
+    <color name="constitutionTextColor">#BB0000</color>
+    <color name="constitutionHeadersColor">#BB0000</color>
 </resources>
