@@ -2,15 +2,30 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
     <dimen name="navbar_margins">21.675dp</dimen>
     <dimen name="navbar_icon_size">35dp</dimen>
     <dimen name="navbar_padding">10dp</dimen>
+
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="bloc_menu_bullet_margin">7dp</dimen>
     <dimen name="menu_bullet_side">10dp</dimen>
     <dimen name="menu_selected_bullet_side">12dp</dimen>
     <dimen name="menu_marginbottom">10dp</dimen>
+
     <dimen name="headers_size">30sp</dimen>
     <dimen name="article_size">24sp</dimen>
     <dimen name="text_size">16sp</dimen>
+
+    <dimen name="bloc_roles_textsize">20sp</dimen>
+    <dimen name="bloc_roles_detailsize">14sp</dimen>
+    <dimen name="bloc_roles_lowersize">10sp</dimen>
+    <dimen name="bloc_roles_innerpadding">15dp</dimen>
+    <dimen name="bloc_general_innerpadding">7dp</dimen>
+    <dimen name="roles_between_padding">15dp</dimen>
+    <dimen name="roles_border_size">1dp</dimen>
+    <dimen name="roles_underline_size">.5dp</dimen>
+    <dimen name="bloc_roles_corners">20dp</dimen>
+    <dimen name="bloc_roles_detail_border">5dp</dimen>
+
 </resources>

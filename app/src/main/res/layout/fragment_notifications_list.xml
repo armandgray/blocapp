@@ -10,6 +10,6 @@
         android:layout_height="match_parent"
         android:divider="@color/colorPrimary"
         android:dividerHeight="4px"
-        android:text="@string/hello_blank_fragment"></ListView>
+        android:text="@string/placeholder"></ListView>
 
 </FrameLayout>

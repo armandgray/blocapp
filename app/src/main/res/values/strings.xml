@@ -1,17 +1,14 @@
 <resources>
     <string name="app_name">Bloc</string>
+
     <string name="hello_bullhorn_fragment">Hello Bullhorn fragment</string>
     <string name="hello_campaigns_fragment">Hello Campaigns fragment</string>
     <string name="hello_accounts_fragment">Hello accounts fragment</string>
     <string name="hello_bloc_fragment">Hello bloc fragment</string>
     <string name="hello_messages_fragment">Hello messages fragment</string>
+
     <string name="bloc_frag_strongmoves">#StrongMoves</string>
     <string name="bloc_check_us_out">Check Us Out</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello FROM HOME fragment</string>
-    <string name="title_activity_main2">Main2Activity</string>
-    <string name="menu_bullet">menu bullet</string>
     <string name="bloc_members1516_desc">2014-2015 BLOC Members. Bridges Hall of Music. Pomona College</string>
     <string name="header_5corg_text">A Claremont Colleges Organization</string>
     <string name="header_whoarewe_text">Who Are We</string>
@@ -19,7 +16,11 @@
     <string name="header_brohood_text">Brotherhood. Community. Unity.</string>
     <string name="whoarewe_text">At its foundation, BLOC represents the formation of a community! In particular, the BLOC community is designed to be a locus for the support and promotion of the Black men at Pomona College. This community is active at Pomona College and is maintained by its members. These members include any and all men on campus actively in support of the unity, strength and voice of the marginalized men at the 5 C’s. The core values of the group have four direct points of impact: Social Unity, On-Campus Activism, Off-Campus Community Organization, and Academic Promotion. The first aspect of Social Unity represents the formation of the community through the induction of new members, the interactions at meetings, communication with alumni and presentation of BLOC produced events. On-Campus Activism reflects the ideology of the members of the organization in standing behind one another and behind the community of color at Pomona. Off-Campus Community Organization has been on going through collaborations with local high schools in the area and the specific community programs initiated by BLOC members. The last most important aspect of the core values, Academic Promotion, represents an emerging focus on the educational support and professional development of BLOC’s own members.These four points of emphasis focus the BLOC community towards a specific and achievable goal.</string>
     <string name="mission_text">BLOC is a crucial resource for self-identified marginalized—but in no way marginal—students. BLOC is a supportive extended family at the sometimes-alienating Claremont Colleges. BLOC is a tight-knit brotherhood; let this be most sacred. BLOC promotes academic achievement and celebrates members’ successes. The organization recognizes, takes on, and tries to mitigate hardship as exercises in collective compassion.\n\nBLOC members hone skills that will benefit them throughout their lives. Leadership opportunities prepare members for success in their chosen careers and, more importantly, as human beings. BLOC creates well-rounded programs and strives for excellence and quality in all its undertakings. Members, both individually and collectively, work toward the advancement of the campus community and broader communities. In doing so, BLOC contributes to the betterment of each member.\n\nBLOC harnesses its tight-knit brotherhood to collaborate with other people, groups, and communities. BLOC hopes to assess the local climate in order to gauge the needs of the underrepresented. BLOC fosters close partnerships within the 5C community to achieve common goals. By embarking on these endeavors together, BLOC seeks mediation, reconciliation, and understanding. Co-curricular activities can be as valuable as the classroom experience; hence, BLOC promotes involvement in all aspects of collegiate life.</string>
+
+    <!-- image descriptors -->
     <string name="chevron">chevron_down</string>
+    <string name="menu_bullet">menu bullet</string>
+
     <string name="header_mission">Mission</string>
     <string name="header_constitution_text">The Bloc Constitution</string>
     <string name="article1_header">Article I - Name</string>
@@ -44,9 +45,30 @@
     <string name="article9_text">BLOC does not discriminate on the basis on race, color, creed, national origin, sexual orientation, religion, age, disability or other legally protected status in admission to, access to, or operations of its programs, services, or activities. </string>
     <string name="article10_text">Section X.01 - Eligibility\n\t\t1. Any member, past or current, of BLOC is able to propose amendments to the BLOC Constitution.\n\nSection X.02 - Process\n\t\t1. A member wishing to make amendments to the BLOC Constitution must:\n\t\t\t\t A. Download the BLOC Constitution from the Google Drive and open it in Microsoft Word or open it on the Google Drive.\n\t\t\t\t B. Ensure that the track changes feature is enabled.\n\t\t\t\t C. Make any edits he wishes to make.\n\t\t\t\t D. Save and upload the document with a different file name (e.g. Draft) to the Constitution folder in the Google Drive.\n\t\t\t\t E. Inform the President that this process has been done.\n\nSection X.03 - Voting on Amendments\n\t\t1. The President shall schedule a vote within the next two general body meetings after he receives notice of amendments.\n\t\t2. The draft must be projected on screen for the members in attendance to see or printed out before hand for everyone to see.\n\t\t3. The track changes feature shall be used to approve or deny each change logged in either Microsoft Word or Google Docs.\n\t\t4. An amendment may not be approved if it has grammatical errors or does not logically make sense.\n\t\t5. A change may only be approved if during the vote, seventy percent of members vote in favor of approving the change; otherwise, the change must be denied.\n\t\t6. Voting is done by standard voting procedures.\n\t\t7. Voting may take place over several meetings if they cannot be finished within the setting of one meeting.\n\nSection X.04 - New Constitution\n\t\t1. If one or more amendments are passed after a single proposal, it becomes part of the new BLOC Constitution.\n\t\t2. The new BLOC Constitution must be uploaded or saved on the Google Drive in the appropriate folder alongside of all old versions of the Constitution.\n\t\t3. New amendments shall take effect seven days after they are ratified.\n\t\t4. The new BLOC Constitution must be printed out and given to each active BLOC member to ensure everyone has their own individual, physical, updated copy.</string>
     <string name="article11_text">Section XI.01 - Voting\n\t\t1. Seventy percent of active members must vote in favor of the Constitution for it to be ratified.\n\t\t2. The document must be spellchecked with no errors before being ratified.\n\nSection XI.02 - Effect\n\t\t1. This BLOC Constitution is a living document that must not only be available online to all BLOC members in the Google Drive, but also must be printed and handed out to each new BLOC member so that each member has his own individual copy.</string>
+
     <string name="placeholder">placeholder</string>
     <string name="lightning">Natural Lightning</string>
     <string name="color_baloons">Color Baloons</string>
     <string name="natural_wall">Natural Wall</string>
+
+    <string name="bloc_president">President</string>
+    <string name="bloc_copresident">Co-President</string>
+    <string name="bloc_historian">Historian</string>
+    <string name="bloc_communityambassador">Community\nAmbassador</string>
+    <string name="bloc_socialchair">Social Chair</string>
+    <string name="bloc_treasurer">Treasurer</string>
+    <string name="bloc_academicchair">Academic\nChair</string>
+    <string name="bloc_communicationschair">Communic-\nations Chair</string>
+    <string name="bloc_general_text">Leaders Building on Campus</string>
+
+    <string name="bloc_president_name">Olufela Koleoso</string>
+    <string name="bloc_copresident2_name">Zach Williams</string>
+    <string name="bloc_copresident1_name">Dylan Goodman</string>
+    <string name="bloc_socialchair_name">Triston Caviness</string>
+    <string name="bloc_communityambassador_name">Ellington\n&amp; Ivan</string>
+    <string name="bloc_academicchair_name">Christian,\nBen &amp; Aaron</string>
+    <string name="bloc_communicationschair_name">Tristan</string>
+    <string name="bloc_treasurer_name">Reuben Murray</string>
+    <string name="bloc_historian_name">Ivan Solomon</string>
 
 </resources>

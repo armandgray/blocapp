@@ -48,6 +48,7 @@ public class HomeFragment extends Fragment {
 
         /**
          *  Slideshow setup as ViewFlipper
+         *  Source: http://stacktips.com/tutorials/android/android-viewflipper-example
          *  gesture listener below
          */
         mContext = getActivity();

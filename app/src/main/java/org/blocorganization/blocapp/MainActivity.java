@@ -1,9 +1,5 @@
 package org.blocorganization.blocapp;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -16,12 +12,11 @@ import org.blocorganization.blocapp.campaigns.CampaignsFragment;
 import org.blocorganization.blocapp.messages.MessagesFragment;
 import org.blocorganization.blocapp.utils.NavBarFragment;
 
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity implements NavBarFragment.NavBarFragmentListener {
 
     public static final String BULLHORN_TAG = "bullhorn_tag";
     public static final String NOTI_FRAG = "NOTI_FRAG";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
