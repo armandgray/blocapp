@@ -9,4 +9,7 @@
     <color name="constitutionHeadersColor">#BB0000</color>
     <color name="blocRolesColor">#999999</color>
     <color name="blocRolesBorderColor">#FFFFFF</color>
+
+    <color name="blocFamilyGroups">#aaa</color>
+
 </resources>

@@ -1,27 +1,38 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="org.blocorganization.blocapp.bloc.FamilySubFragment">
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="org.blocorganization.blocapp.campaigns.ActionboardSubFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="This is the fam frag" />
+        android:textSize="14dp"
+        android:text="Select one of the current BLOC Campaings below" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="12sp"
+        android:text="Scroll for more options" />
+
+    <!-- Bottom Menu-->
     <RelativeLayout
         android:id="@+id/menu_container"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/menu_marginbottom">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/menu_marginbottom"
+        android:gravity="bottom">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:orientation="horizontal">
 
             <ImageView
@@ -33,18 +44,19 @@
                 app:srcCompat="@drawable/menu_point" />
 
             <!--<ImageView-->
-                <!--android:id="@+id/menu_selected_bullet"-->
-                <!--android:layout_width="@dimen/menu_selected_bullet_side"-->
-                <!--android:layout_height="@dimen/menu_selected_bullet_side"-->
-                <!--android:layout_margin="@dimen/bloc_menu_bullet_margin"-->
-                <!--android:contentDescription="@string/menu_bullet"-->
-                <!--app:srcCompat="@drawable/menu_selected_point" />-->
+            <!--android:id="@+id/menu_selected_bullet"-->
+            <!--android:layout_width="@dimen/menu_selected_bullet_side"-->
+            <!--android:layout_height="@dimen/menu_selected_bullet_side"-->
+            <!--android:layout_margin="@dimen/bloc_menu_bullet_margin"-->
+            <!--android:contentDescription="@string/menu_bullet"-->
+            <!--app:srcCompat="@drawable/menu_selected_point" />-->
 
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="23dp"
                 android:layout_marginLeft="@dimen/menu_selected_bullet_side"
                 android:layout_marginRight="@dimen/menu_selected_bullet_side">
+
                 <TextView
                     android:id="@+id/menu_selected_text"
                     android:layout_width="wrap_content"
@@ -78,9 +90,7 @@
                 android:layout_margin="@dimen/bloc_menu_bullet_margin"
                 android:contentDescription="@string/menu_bullet"
                 app:srcCompat="@drawable/menu_point" />
-
         </LinearLayout>
-
     </RelativeLayout>
 
-</RelativeLayout>
+</LinearLayout>

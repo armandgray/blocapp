@@ -1,0 +1,227 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="org.blocorganization.blocapp.campaigns.CreateSubFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="50dp"
+        android:gravity="center_horizontal"
+        android:text="What type of campaign would you like to begin?"
+        android:textSize="@dimen/headers_size" />
+
+    <LinearLayout
+        android:id="@+id/campaigns_set1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/social_image"
+                android:layout_width="@dimen/campaigns_image_side"
+                android:layout_height="@dimen/campaigns_image_side"
+                android:layout_margin="@dimen/campaigns_image_margin"
+                android:background="@drawable/campaigns_image_border"
+                android:contentDescription="@string/campaigns_image_desc"
+                app:srcCompat="@drawable/theme_bbq" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="Social" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/call_image"
+                android:layout_width="@dimen/campaigns_image_side"
+                android:layout_height="@dimen/campaigns_image_side"
+                android:layout_margin="@dimen/campaigns_image_margin"
+                android:background="@drawable/campaigns_image_border"
+                android:contentDescription="@string/campaigns_image_desc"
+                app:srcCompat="@drawable/theme_call2" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="Call to Action" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/consent_image"
+                android:layout_width="@dimen/campaigns_image_side"
+                android:layout_height="@dimen/campaigns_image_side"
+                android:layout_margin="@dimen/campaigns_image_margin"
+                android:background="@drawable/campaigns_image_border"
+                android:contentDescription="@string/campaigns_image_desc"
+                app:srcCompat="@drawable/theme_consent" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="Consent" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/campaigns_set2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/campaigns_image_side"
+                android:layout_height="@dimen/campaigns_image_side"
+                android:layout_margin="@dimen/campaigns_image_margin"
+                android:id="@+id/fundraiser_image"
+                android:background="@drawable/campaigns_image_border"
+                android:contentDescription="@string/campaigns_image_desc"
+                app:srcCompat="@drawable/theme_donate" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="Fundraiser" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/campaigns_image_side"
+                android:layout_height="@dimen/campaigns_image_side"
+                android:layout_margin="@dimen/campaigns_image_margin"
+                android:id="@+id/academic_image"
+                android:background="@drawable/campaigns_image_border"
+                android:contentDescription="@string/campaigns_image_desc"
+                app:srcCompat="@drawable/theme_mentoring" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="Academic" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/campaigns_image_side"
+                android:layout_height="@dimen/campaigns_image_side"
+                android:layout_margin="@dimen/campaigns_image_margin"
+                android:id="@+id/other_image"
+                android:background="@drawable/campaigns_image_border"
+                android:contentDescription="@string/campaigns_image_desc"
+                app:srcCompat="@drawable/theme_slopes" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="Other" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Bottom Menu-->
+    <RelativeLayout
+        android:id="@+id/menu_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/menu_marginbottom"
+        android:gravity="bottom">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/menu_bullet1"
+                android:layout_width="@dimen/menu_bullet_side"
+                android:layout_height="@dimen/menu_bullet_side"
+                android:layout_margin="@dimen/bloc_menu_bullet_margin"
+                android:contentDescription="@string/menu_bullet"
+                app:srcCompat="@drawable/menu_point" />
+
+            <ImageView
+                android:id="@+id/menu_bullet3"
+                android:layout_width="@dimen/menu_bullet_side"
+                android:layout_height="@dimen/menu_bullet_side"
+                android:layout_margin="@dimen/bloc_menu_bullet_margin"
+                android:contentDescription="@string/menu_bullet"
+                app:srcCompat="@drawable/menu_point" />
+
+            <ImageView
+                android:id="@+id/menu_bullet4"
+                android:layout_width="@dimen/menu_bullet_side"
+                android:layout_height="@dimen/menu_bullet_side"
+                android:layout_margin="@dimen/bloc_menu_bullet_margin"
+                android:contentDescription="@string/menu_bullet"
+                app:srcCompat="@drawable/menu_point" />
+
+            <ImageView
+                android:id="@+id/menu_selected_bullet"
+                android:layout_width="@dimen/menu_selected_bullet_side"
+                android:layout_height="@dimen/menu_selected_bullet_side"
+                android:layout_margin="@dimen/bloc_menu_bullet_margin"
+                android:contentDescription="@string/menu_bullet"
+                app:srcCompat="@drawable/menu_selected_point" />
+
+            <!--<RelativeLayout-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="23dp"-->
+            <!--android:layout_marginLeft="@dimen/menu_selected_bullet_side"-->
+            <!--android:layout_marginRight="@dimen/menu_selected_bullet_side">-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/menu_selected_text"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:text="Family"-->
+            <!--android:textColor="#FFFFFF"-->
+            <!--android:textSize="12sp" />-->
+            <!--</RelativeLayout>-->
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

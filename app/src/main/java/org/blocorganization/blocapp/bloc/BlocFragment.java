@@ -64,7 +64,7 @@ public class BlocFragment extends Fragment {
                 case 1:
                     return FamilySubFragment.newInstance();
                 case 2:
-                    return BlocSubFragment.newInstance();
+                    return HomeSubFragment.newInstance();
                 case 3:
                     return RolesSubFragment.newInstance();
                 case 4:

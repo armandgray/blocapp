@@ -1,4 +1,4 @@
-package org.blocorganization.blocapp.bloc;
+package org.blocorganization.blocapp.campaigns;
 
 
 import android.os.Bundle;
@@ -12,18 +12,18 @@ import org.blocorganization.blocapp.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RolesSubFragment extends Fragment {
+public class HomeSubFragment extends Fragment {
 
 
-    public RolesSubFragment() {
+    public HomeSubFragment() {
         // Required empty public constructor
     }
 
-    public static RolesSubFragment newInstance() {
+    public static HomeSubFragment newInstance() {
 
         Bundle args = new Bundle();
 
-        RolesSubFragment fragment = new RolesSubFragment();
+        HomeSubFragment fragment = new HomeSubFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -32,7 +32,7 @@ public class RolesSubFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.bloc_subfragment_roles, container, false);
+        return inflater.inflate(R.layout.campaigns_subfragment_home, container, false);
     }
 
 }

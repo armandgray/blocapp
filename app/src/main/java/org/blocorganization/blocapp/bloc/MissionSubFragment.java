@@ -33,7 +33,7 @@ public class MissionSubFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.subfragment_mission, container, false);
+        View rootView = inflater.inflate(R.layout.bloc_subfragment_mission, container, false);
 
         return rootView;
     }

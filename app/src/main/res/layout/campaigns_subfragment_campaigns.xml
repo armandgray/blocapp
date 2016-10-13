@@ -1,0 +1,329 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bloc_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_horizontal_margin"
+    tools:context="org.blocorganization.blocapp.campaigns.CampaignsSubFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="@string/bloc_campaigns_text"
+        android:textSize="@dimen/campaigns_header_size" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingBottom="15dp"
+        android:text="@string/bloc_campaigns_subtext"
+        android:textSize="12sp" />
+
+    <ScrollView
+        android:id="@+id/bloc_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="In Progress"
+                android:textSize="@dimen/campaigns_header_size" />
+
+            <LinearLayout
+                android:id="@+id/campaigns_set1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/campaigns_image_side"
+                    android:layout_height="@dimen/campaigns_image_side"
+                    android:layout_margin="@dimen/campaigns_image_margin"
+                    android:background="@drawable/campaigns_image_border"
+                    android:contentDescription="@string/campaigns_image_desc"
+                    app:srcCompat="@drawable/dinner_jmnuad" />
+
+                <ImageView
+                    android:layout_width="@dimen/campaigns_image_side"
+                    android:layout_height="@dimen/campaigns_image_side"
+                    android:layout_margin="@dimen/campaigns_image_margin"
+                    android:background="@drawable/campaigns_image_border"
+                    android:contentDescription="@string/campaigns_image_desc"
+                    app:srcCompat="@drawable/toys_for_tots" />
+
+                <ImageView
+                    android:layout_width="@dimen/campaigns_image_side"
+                    android:layout_height="@dimen/campaigns_image_side"
+                    android:layout_margin="@dimen/campaigns_image_margin"
+                    android:background="@drawable/campaigns_image_border"
+                    android:contentDescription="@string/campaigns_image_desc"
+                    app:srcCompat="@drawable/young_mens_circle" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/campaigns_set2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/campaigns_image_side"
+                    android:layout_height="@dimen/campaigns_image_side"
+                    android:layout_margin="@dimen/campaigns_image_margin"
+                    android:background="@drawable/campaigns_image_border"
+                    android:contentDescription="@string/campaigns_image_desc"
+                    app:srcCompat="@drawable/dinner_jmnuad" />
+
+                <ImageView
+                    android:layout_width="@dimen/campaigns_image_side"
+                    android:layout_height="@dimen/campaigns_image_side"
+                    android:layout_margin="@dimen/campaigns_image_margin"
+                    android:background="@drawable/campaigns_image_border"
+                    android:contentDescription="@string/campaigns_image_desc"
+                    app:srcCompat="@drawable/toys_for_tots" />
+
+                <ImageView
+                    android:layout_width="@dimen/campaigns_image_side"
+                    android:layout_height="@dimen/campaigns_image_side"
+                    android:layout_margin="@dimen/campaigns_image_margin"
+                    android:background="@drawable/campaigns_image_border"
+                    android:contentDescription="@string/campaigns_image_desc"
+                    app:srcCompat="@drawable/young_mens_circle" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/campaigns_set3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/campaigns_image_side"
+                    android:layout_height="@dimen/campaigns_image_side"
+                    android:layout_margin="@dimen/campaigns_image_margin"
+                    android:background="@drawable/campaigns_image_border"
+                    android:contentDescription="@string/campaigns_image_desc"
+                    app:srcCompat="@drawable/dinner_jmnuad" />
+
+                <ImageView
+                    android:layout_width="@dimen/campaigns_image_side"
+                    android:layout_height="@dimen/campaigns_image_side"
+                    android:layout_margin="@dimen/campaigns_image_margin"
+                    android:background="@drawable/campaigns_image_border"
+                    android:contentDescription="@string/campaigns_image_desc"
+                    app:srcCompat="@drawable/toys_for_tots" />
+
+                <ImageView
+                    android:layout_width="@dimen/campaigns_image_side"
+                    android:layout_height="@dimen/campaigns_image_side"
+                    android:layout_margin="@dimen/campaigns_image_margin"
+                    android:padding="25dp"
+                    android:background="@drawable/campaigns_addimage_border"
+                    android:contentDescription="@string/campaigns_image_desc"
+                    app:srcCompat="@drawable/ic_bookmark_plus_black_48dp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_margin="@dimen/campaigns_image_margin"
+                android:background="@android:color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Recurring"
+                android:textSize="@dimen/campaigns_header_size" />
+
+            <LinearLayout
+                android:id="@+id/campaigns_set4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/campaigns_image_side"
+                    android:layout_height="@dimen/campaigns_image_side"
+                    android:layout_margin="@dimen/campaigns_image_margin"
+                    android:background="@drawable/campaigns_image_border"
+                    android:contentDescription="@string/campaigns_image_desc"
+                    app:srcCompat="@drawable/dinner_jmnuad" />
+
+                <ImageView
+                    android:layout_width="@dimen/campaigns_image_side"
+                    android:layout_height="@dimen/campaigns_image_side"
+                    android:layout_margin="@dimen/campaigns_image_margin"
+                    android:background="@drawable/campaigns_image_border"
+                    android:contentDescription="@string/campaigns_image_desc"
+                    app:srcCompat="@drawable/toys_for_tots" />
+
+                <ImageView
+                    android:layout_width="@dimen/campaigns_image_side"
+                    android:layout_height="@dimen/campaigns_image_side"
+                    android:layout_margin="@dimen/campaigns_image_margin"
+                    android:background="@drawable/campaigns_image_border"
+                    android:contentDescription="@string/campaigns_image_desc"
+                    app:srcCompat="@drawable/young_mens_circle" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_margin="@dimen/campaigns_image_margin"
+                android:background="@android:color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Archived"
+                android:textSize="@dimen/campaigns_header_size" />
+
+            <LinearLayout
+                android:id="@+id/campaigns_set5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/campaigns_image_side"
+                    android:layout_height="@dimen/campaigns_image_side"
+                    android:layout_margin="@dimen/campaigns_image_margin"
+                    android:background="@drawable/campaigns_image_border"
+                    android:contentDescription="@string/campaigns_image_desc"
+                    app:srcCompat="@drawable/dinner_jmnuad" />
+
+                <ImageView
+                    android:layout_width="@dimen/campaigns_image_side"
+                    android:layout_height="@dimen/campaigns_image_side"
+                    android:layout_margin="@dimen/campaigns_image_margin"
+                    android:background="@drawable/campaigns_image_border"
+                    android:contentDescription="@string/campaigns_image_desc"
+                    app:srcCompat="@drawable/toys_for_tots" />
+
+                <ImageView
+                    android:layout_width="@dimen/campaigns_image_side"
+                    android:layout_height="@dimen/campaigns_image_side"
+                    android:layout_margin="@dimen/campaigns_image_margin"
+                    android:background="@drawable/campaigns_image_border"
+                    android:contentDescription="@string/campaigns_image_desc"
+                    app:srcCompat="@drawable/young_mens_circle" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/campaigns_set6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/campaigns_image_side"
+                    android:layout_height="@dimen/campaigns_image_side"
+                    android:layout_margin="@dimen/campaigns_image_margin"
+                    android:background="@drawable/campaigns_image_border"
+                    android:contentDescription="@string/campaigns_image_desc"
+                    app:srcCompat="@drawable/dinner_jmnuad" />
+
+                <ImageView
+                    android:layout_width="@dimen/campaigns_image_side"
+                    android:layout_height="@dimen/campaigns_image_side"
+                    android:layout_margin="@dimen/campaigns_image_margin"
+                    android:background="@drawable/campaigns_image_border"
+                    android:contentDescription="@string/campaigns_image_desc"
+                    app:srcCompat="@drawable/toys_for_tots" />
+
+                <ImageView
+                    android:layout_width="@dimen/campaigns_image_side"
+                    android:layout_height="@dimen/campaigns_image_side"
+                    android:layout_margin="@dimen/campaigns_image_margin"
+                    android:background="@drawable/campaigns_image_border"
+                    android:contentDescription="@string/campaigns_image_desc"
+                    app:srcCompat="@drawable/young_mens_circle" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/menu_marginbottom"
+        android:gravity="bottom">
+
+        <LinearLayout
+            android:id="@+id/menu_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/menu_bullet1"
+                android:layout_width="@dimen/menu_bullet_side"
+                android:layout_height="@dimen/menu_bullet_side"
+                android:layout_margin="@dimen/bloc_menu_bullet_margin"
+                android:contentDescription="@string/menu_bullet"
+                app:srcCompat="@drawable/menu_point" />
+
+            <ImageView
+                android:id="@+id/menu_bullet2"
+                android:layout_width="@dimen/menu_bullet_side"
+                android:layout_height="@dimen/menu_bullet_side"
+                android:layout_margin="@dimen/bloc_menu_bullet_margin"
+                android:contentDescription="@string/menu_bullet"
+                app:srcCompat="@drawable/menu_point" />
+
+            <ImageView
+                android:id="@+id/menu_selected_bullet"
+                android:layout_width="@dimen/menu_selected_bullet_side"
+                android:layout_height="@dimen/menu_selected_bullet_side"
+                android:layout_margin="@dimen/bloc_menu_bullet_margin"
+                android:contentDescription="@string/menu_bullet"
+                app:srcCompat="@drawable/menu_selected_point" />
+
+            <!--<RelativeLayout-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="23dp"-->
+            <!--android:layout_marginLeft="@dimen/menu_selected_bullet_side"-->
+            <!--android:layout_marginRight="@dimen/menu_selected_bullet_side">-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/menu_selected_text"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:text="bloc"-->
+            <!--android:textColor="#FFFFFF"-->
+            <!--android:textSize="12sp" />-->
+            <!--</RelativeLayout>-->
+
+
+            <ImageView
+                android:id="@+id/menu_bullet4"
+                android:layout_width="@dimen/menu_bullet_side"
+                android:layout_height="@dimen/menu_bullet_side"
+                android:layout_margin="@dimen/bloc_menu_bullet_margin"
+                android:contentDescription="@string/menu_bullet"
+                app:srcCompat="@drawable/menu_point" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

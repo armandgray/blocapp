@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="org.blocorganization.blocapp.bloc.BlocSubFragment">
+    tools:context="org.blocorganization.blocapp.bloc.HomeSubFragment">
 
     <ScrollView
         android:id="@+id/bloc_scrollview"

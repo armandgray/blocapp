@@ -1,0 +1,286 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="org.blocorganization.blocapp.bloc.FamilySubFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Me"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:textColor="@color/blocFamilyGroups" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/user_account_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:contentDescription="@string/user_account_image"
+            app:srcCompat="@drawable/ghost" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/contacts_text_padding"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/user_name"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/user_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/user_details"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/family_group_executiveboard"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:textColor="@android:color/black"
+        android:paddingBottom="@dimen/contacts_short_interpadding"
+        android:paddingTop="@dimen/contacts_long_interpadding"
+        android:background="@drawable/family_groups_border"/>
+
+    <!-- Executive Board Members -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/contacts_short_interpadding"
+        android:layout_marginBottom="@dimen/contacts_short_interpadding"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/bloc_member_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:contentDescription="@string/bloc_member_image"
+            app:srcCompat="@drawable/ghost" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/contacts_text_padding"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/bloc_member_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/bloc_member_name"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/bloc_member_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/user_details"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/family_group_supportstaff"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:textColor="@android:color/black"
+        android:paddingBottom="@dimen/contacts_short_interpadding"
+        android:paddingTop="@dimen/contacts_long_interpadding"
+        android:background="@drawable/family_groups_border"/>
+
+    <!-- Bloc Support Staff -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/contacts_short_interpadding"
+        android:layout_marginBottom="@dimen/contacts_short_interpadding"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/bloc_supportstaff_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:contentDescription="@string/bloc_supportstaff_image"
+            app:srcCompat="@drawable/ghost" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/contacts_text_padding"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/bloc_supportstaff_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/bloc_supportstaff_name"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/bloc_supportstaff_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/user_details"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/family_group_peoples"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:textColor="@android:color/black"
+        android:paddingBottom="@dimen/contacts_short_interpadding"
+        android:paddingTop="@dimen/contacts_long_interpadding"
+        android:background="@drawable/family_groups_border"/>
+
+    <!-- Our Peoples -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/contacts_short_interpadding"
+        android:layout_marginBottom="@dimen/contacts_short_interpadding"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/bloc_peoples_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:contentDescription="@string/bloc_peoples_image"
+            app:srcCompat="@drawable/ghost" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/contacts_text_padding"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/bloc_peoples_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/bloc_peoples_name"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/bloc_peoples_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/user_details"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Bottom Menu-->
+    <RelativeLayout
+        android:id="@+id/menu_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/menu_marginbottom"
+        android:gravity="bottom">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/menu_bullet1"
+                android:layout_width="@dimen/menu_bullet_side"
+                android:layout_height="@dimen/menu_bullet_side"
+                android:layout_margin="@dimen/bloc_menu_bullet_margin"
+                android:contentDescription="@string/menu_bullet"
+                app:srcCompat="@drawable/menu_point" />
+
+            <!--<ImageView-->
+            <!--android:id="@+id/menu_selected_bullet"-->
+            <!--android:layout_width="@dimen/menu_selected_bullet_side"-->
+            <!--android:layout_height="@dimen/menu_selected_bullet_side"-->
+            <!--android:layout_margin="@dimen/bloc_menu_bullet_margin"-->
+            <!--android:contentDescription="@string/menu_bullet"-->
+            <!--app:srcCompat="@drawable/menu_selected_point" />-->
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="23dp"
+                android:layout_marginLeft="@dimen/menu_selected_bullet_side"
+                android:layout_marginRight="@dimen/menu_selected_bullet_side">
+
+                <TextView
+                    android:id="@+id/menu_selected_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="Family"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/menu_bullet3"
+                android:layout_width="@dimen/menu_bullet_side"
+                android:layout_height="@dimen/menu_bullet_side"
+                android:layout_margin="@dimen/bloc_menu_bullet_margin"
+                android:contentDescription="@string/menu_bullet"
+                app:srcCompat="@drawable/menu_point" />
+
+            <ImageView
+                android:id="@+id/menu_bullet4"
+                android:layout_width="@dimen/menu_bullet_side"
+                android:layout_height="@dimen/menu_bullet_side"
+                android:layout_margin="@dimen/bloc_menu_bullet_margin"
+                android:contentDescription="@string/menu_bullet"
+                app:srcCompat="@drawable/menu_point" />
+
+            <ImageView
+                android:id="@+id/menu_bullet5"
+                android:layout_width="@dimen/menu_bullet_side"
+                android:layout_height="@dimen/menu_bullet_side"
+                android:layout_margin="@dimen/bloc_menu_bullet_margin"
+                android:contentDescription="@string/menu_bullet"
+                app:srcCompat="@drawable/menu_point" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

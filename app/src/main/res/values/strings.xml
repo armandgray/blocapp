@@ -71,4 +71,30 @@
     <string name="bloc_treasurer_name">Reuben Murray</string>
     <string name="bloc_historian_name">Ivan Solomon</string>
 
+    <string name="user_account_image">User Account Image</string>
+    <string name="user_name">Armand Gray</string>
+    <string name="user_details">Bloc Member - BlocApp Creator</string>
+    <string name="family_group_executiveboard">Bloc Brothers</string>
+    <string name="bloc_member_image">Bloc Member Image</string>
+    <string name="bloc_member_name">Member Name</string>
+    <string name="family_group_supportstaff">Aunties &amp; Uncles</string>
+    <string name="bloc_supportstaff_name">Maria Tucker</string>
+    <string name="bloc_supportstaff_image">Bloc Support Staff Image</string>
+    <string name="bloc_peoples_name">John Doe</string>
+    <string name="bloc_peoples_image">Bloc Peoples Image</string>
+    <string name="family_group_peoples">Peoples</string>
+
+    <string name="campaigns_upcoming">Upcoming</string>
+    <string name="campaigns_next_meeting">Next Meeting</string>
+    <string name="campaign_notes">Campaign Notes</string>
+    <string name="bloc_campaigns_text">Select one of the current BLOC Campaigns below</string>
+    <string name="bloc_campaigns_subtext">Scroll for more options</string>
+    <string name="campaigns_image_desc">campaigns image</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="campaigns">Campaigns</string>
+    <string name="soapbox">SoapBox</string>
+
+
 </resources>

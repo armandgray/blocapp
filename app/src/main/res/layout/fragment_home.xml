@@ -1,80 +1,196 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="org.blocorganization.blocapp.home.HomeFragment">
 
     <ViewFlipper
         android:id="@+id/view_flipper"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="175dp"
+        android:background="@drawable/viewflipper_border"
+        android:paddingBottom="1dp"
+        android:paddingTop="1dp">
 
         <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:padding="70dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bloc_logo_original_negative2" />
+
+            <!--<TextView-->
+            <!--style="@style/ImageTitle"-->
+            <!--android:text="@string/lightning" />-->
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <ImageView
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
-                android:src="@drawable/lightning" />
+                android:src="@drawable/blocbbq2016_ianwbx" />
 
-            <TextView
-                style="@style/ImageTitle"
-                android:text="@string/lightning" />
+            <!--<TextView-->
+            <!--style="@style/ImageTitle"-->
+            <!--android:text="@string/natural_wall" />-->
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+            android:layout_height="match_parent">
 
             <ImageView
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
-                android:src="@drawable/color_baloons" />
+                android:src="@drawable/theme_consent" />
 
-            <TextView
-                style="@style/ImageTitle"
-                android:text="@string/color_baloons" />
+            <!--<TextView-->
+            <!--style="@style/ImageTitle"-->
+            <!--android:text="@string/natural_wall" />-->
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+            android:layout_height="match_parent">
 
             <ImageView
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
-                android:src="@drawable/natural_wall" />
+                android:src="@drawable/dinner_jmnuad" />
 
-            <TextView
-                style="@style/ImageTitle"
-                android:text="@string/natural_wall" />
+            <!--<TextView-->
+            <!--style="@style/ImageTitle"-->
+            <!--android:text="@string/natural_wall" />-->
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/theme_donate" />
+
+            <!--<TextView-->
+            <!--style="@style/ImageTitle"-->
+            <!--android:text="@string/color_baloons" />-->
         </RelativeLayout>
     </ViewFlipper>
 
-    <ImageView
-        android:id="@+id/swipe_left"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:src="@drawable/swipe_left" />
+        android:text="@string/campaigns"
+        android:paddingTop="10dp"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:textSize="20sp" />
 
-    <ImageView
-        android:id="@+id/swipe_right"
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/campaigns_set1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/home_campaign_images_side"
+                android:layout_height="@dimen/home_campaign_images_side"
+                android:layout_margin="@dimen/home_campaign_images_margin"
+                android:background="@drawable/campaigns_image_border"
+                android:contentDescription="@string/campaigns_image_desc"
+                app:srcCompat="@drawable/dinner_jmnuad" />
+
+            <ImageView
+                android:layout_width="@dimen/home_campaign_images_side"
+                android:layout_height="@dimen/home_campaign_images_side"
+                android:layout_margin="@dimen/home_campaign_images_margin"
+                android:background="@drawable/campaigns_image_border"
+                android:contentDescription="@string/campaigns_image_desc"
+                app:srcCompat="@drawable/toys_for_tots" />
+
+            <ImageView
+                android:layout_width="@dimen/home_campaign_images_side"
+                android:layout_height="@dimen/home_campaign_images_side"
+                android:layout_margin="@dimen/home_campaign_images_margin"
+                android:background="@drawable/campaigns_image_border"
+                android:contentDescription="@string/campaigns_image_desc"
+                app:srcCompat="@drawable/young_mens_circle" />
+
+            <ImageView
+                android:layout_width="@dimen/home_campaign_images_side"
+                android:layout_height="@dimen/home_campaign_images_side"
+                android:layout_margin="@dimen/home_campaign_images_margin"
+                android:background="@drawable/campaigns_image_border"
+                android:contentDescription="@string/campaigns_image_desc"
+                app:srcCompat="@drawable/dinner_jmnuad" />
+
+            <ImageView
+                android:layout_width="@dimen/home_campaign_images_side"
+                android:layout_height="@dimen/home_campaign_images_side"
+                android:layout_margin="@dimen/home_campaign_images_margin"
+                android:background="@drawable/campaigns_image_border"
+                android:contentDescription="@string/campaigns_image_desc"
+                app:srcCompat="@drawable/toys_for_tots" />
+
+            <ImageView
+                android:layout_width="@dimen/home_campaign_images_side"
+                android:layout_height="@dimen/home_campaign_images_side"
+                android:layout_margin="@dimen/home_campaign_images_margin"
+                android:background="@drawable/campaigns_image_border"
+                android:contentDescription="@string/campaigns_image_desc"
+                app:srcCompat="@drawable/young_mens_circle" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/white"/>
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:src="@drawable/swipe_right" />
+        android:text="@string/soapbox"
+        android:paddingTop="10dp"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:textSize="20sp" />
 
-</RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Some messages loaded from Soap Box"
+        android:paddingTop="10dp"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:textSize="20sp" />
+
+</LinearLayout>

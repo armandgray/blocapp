@@ -11,29 +11,27 @@ import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 import org.blocorganization.blocapp.R;
-import org.w3c.dom.Text;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BlocSubFragment extends Fragment {
+public class HomeSubFragment extends Fragment {
 
     public static final String BLOC_FRAG = "BLOC_FRAG";
     LinearLayout menuContainer;
 
-    public BlocSubFragment() {}
+    public HomeSubFragment() {}
 
-    public static BlocSubFragment newInstance() {
+    public static HomeSubFragment newInstance() {
 
         Bundle args = new Bundle();
 
-        BlocSubFragment fragment = new BlocSubFragment();
+        HomeSubFragment fragment = new HomeSubFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -41,7 +39,7 @@ public class BlocSubFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.subfragment_bloc, container, false);
+        View rootView = inflater.inflate(R.layout.bloc_subfragment_home, container, false);
 
         menuContainer = (LinearLayout) rootView.findViewById(R.id.menu_container);
         final LinearLayout layout = (LinearLayout) rootView.findViewById(R.id.bloc_layout);

@@ -26,12 +26,12 @@ public class MainActivity extends AppCompatActivity implements NavBarFragment.Na
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        HomeFragment homeFrag = new HomeFragment();
-//        getSupportFragmentManager()
-//                .beginTransaction()
-//                .add(R.id.main_fragment_container, homeFrag)
-//                .addToBackStack(null)
-//                .commit();
+        HomeFragment homeFrag = new HomeFragment();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.main_fragment_container, homeFrag)
+                .addToBackStack(null)
+                .commit();
 
     }
 
@@ -39,11 +39,10 @@ public class MainActivity extends AppCompatActivity implements NavBarFragment.Na
     public void onBullhornClick() {
         Toast.makeText(MainActivity.this, "News Feed Clicked", Toast.LENGTH_SHORT).show();
 //        BullhornFragment bullFrag = new BullhornFragment();
-        HomeFragment homeFrag = new HomeFragment();
+        BullhornFragment homeFrag = new BullhornFragment();
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.main_fragment_container, homeFrag)
-                .addToBackStack(null)
                 .commit();
     }
 

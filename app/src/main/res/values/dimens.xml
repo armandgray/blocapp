@@ -3,6 +3,8 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <dimen name="contacts_text_padding">5dp</dimen>
+
     <dimen name="navbar_margins">21.675dp</dimen>
     <dimen name="navbar_icon_size">35dp</dimen>
     <dimen name="navbar_padding">10dp</dimen>
@@ -27,5 +29,12 @@
     <dimen name="roles_underline_size">.5dp</dimen>
     <dimen name="bloc_roles_corners">20dp</dimen>
     <dimen name="bloc_roles_detail_border">5dp</dimen>
+    <dimen name="contacts_short_interpadding">5dp</dimen>
+    <dimen name="contacts_long_interpadding">25dp</dimen>
+    <dimen name="campaigns_image_margin">15dp</dimen>
+    <dimen name="campaigns_image_side">100dp</dimen>
+    <dimen name="campaigns_header_size">14sp</dimen>
+    <dimen name="home_campaign_images_side">90dp</dimen>
+    <dimen name="home_campaign_images_margin">15dp</dimen>
 
 </resources>
