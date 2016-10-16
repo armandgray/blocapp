@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "756131017535",
+    "firebase_url": "https://blocapp-1295a.firebaseio.com",
+    "project_id": "blocapp-1295a",
+    "storage_bucket": "blocapp-1295a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:756131017535:android:2b2d7a36306d46da",
+        "android_client_info": {
+          "package_name": "org.blocorganization.blocapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "756131017535-cvsaik5nf07v7e0kv1oabb6heusbdj2k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.blocorganization.blocapp",
+            "certificate_hash": "4D69E09CD3834F4E86087BD0C92A431C7EDCB563"
+          }
+        },
+        {
+          "client_id": "756131017535-6hg5gtbo5bt86ujtkgsrkrqkl0varab8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMpJ72paDKuKnLqojuPQ275qDaoFmiDuk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "756131017535-6hg5gtbo5bt86ujtkgsrkrqkl0varab8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

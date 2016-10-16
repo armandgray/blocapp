@@ -1,30 +1,61 @@
 package org.blocorganization.blocapp;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.SpannableString;
 import android.text.style.TextAppearanceSpan;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ProgressBar;
 
-import org.blocorganization.blocapp.home.HomeFragment;
-import org.blocorganization.blocapp.notifications.NotificationsFragment;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import org.blocorganization.blocapp.bloc.BlocFragment;
 import org.blocorganization.blocapp.campaigns.CampaignsFragment;
+import org.blocorganization.blocapp.home.HomeFragment;
 import org.blocorganization.blocapp.messages.MessagesFragment;
+import org.blocorganization.blocapp.notifications.NotificationsFragment;
 import org.blocorganization.blocapp.utils.NavBarFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavBarFragment.NavBarFragmentListener,
-                NavigationView.OnNavigationItemSelectedListener {
+                NavigationView.OnNavigationItemSelectedListener
+//                GoogleApiClient.OnConnectionFailedListener
+    {
 
-    public static final String NOTI_FRAG = "NOTI_FRAG";
+    public static final String TAG = "MainActivity";
+    public static final String MESSAGES_CHILD = "messages";
+    private static final int REQUEST_INVITE = 1;
+    public static final int DEFAULT_MSG_LENGTH_LIMIT = 10;
+    public static final String ANONYMOUS = "anonymous";
+    private static final String MESSAGE_SENT_EVENT = "message_sent";
+    private String mUsername;
+    private String mPhotoUrl;
+    private SharedPreferences mSharedPreferences;
+    private GoogleApiClient mGoogleApiClient;
 
+    private Button mSendButton;
+    private RecyclerView mMessageRecyclerView;
+    private LinearLayoutManager mLinearLayoutManager;
+    private ProgressBar mProgressBar;
+    private EditText mMessageEditText;
+
+    // Firebase instance variables
+    private FirebaseAuth mFirebaseAuth;
+    private FirebaseUser mFirebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +80,21 @@ public class MainActivity extends AppCompatActivity
         tools.setTitle(s);
 
         navigationView.setNavigationItemSelectedListener(this);
+
+        // Initialize Firebase Auth
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+        if (mFirebaseUser == null) {
+            // Not signed in, launch the Sign In activity
+            startActivity(new Intent(this, SignInActivity.class));
+            finish();
+            return;
+        } else {
+            mUsername = mFirebaseUser.getDisplayName();
+            if (mFirebaseUser.getPhotoUrl() != null) {
+                mPhotoUrl = mFirebaseUser.getPhotoUrl().toString();
+            }
+        }
 
         HomeFragment homeFrag = new HomeFragment();
         getSupportFragmentManager()
@@ -91,7 +137,7 @@ public class MainActivity extends AppCompatActivity
         NotificationsFragment notiFrag = new NotificationsFragment();
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.main_fragment_container, notiFrag, NOTI_FRAG)
+                .replace(R.id.main_fragment_container, notiFrag, TAG)
                 .commit();
     }
 

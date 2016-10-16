@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import org.blocorganization.blocapp.R;
 import org.blocorganization.blocapp.models.Record;
 
-import static org.blocorganization.blocapp.MainActivity.NOTI_FRAG;
+import static org.blocorganization.blocapp.MainActivity.TAG;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,7 +32,7 @@ public class NotificationsFragment extends Fragment implements
         getChildFragmentManager()
                 .beginTransaction()
                 .add(R.id.notifications_list_container, listFrag)
-                .addToBackStack(NOTI_FRAG)
+                .addToBackStack(TAG)
                 .commit();
 
         return rootView;
@@ -45,7 +45,7 @@ public class NotificationsFragment extends Fragment implements
         getChildFragmentManager()
                 .beginTransaction()
                 .replace(R.id.notifications_list_container, detailFrag)
-                .addToBackStack(NOTI_FRAG)
+                .addToBackStack(TAG)
                 .commit();
     }
 }
