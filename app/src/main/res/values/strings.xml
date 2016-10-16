@@ -1,12 +1,32 @@
 <resources>
+    <!-- root -->
     <string name="app_name">Bloc</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="hello_bullhorn_fragment">Hello Bullhorn fragment</string>
-    <string name="hello_campaigns_fragment">Hello Campaigns fragment</string>
-    <string name="hello_accounts_fragment">Hello accounts fragment</string>
-    <string name="hello_bloc_fragment">Hello bloc fragment</string>
-    <string name="hello_messages_fragment">Hello messages fragment</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="placeholder">placeholder</string>
 
+    <!-- Firebase -->
+    <string name="welcome_msg">Welcome!</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="contacts_permission_rationale">Access to account information is required to sign in.</string>
+    <string name="invite_menu_label">Invite</string>
+    <string name="invitation_message">Please join me for a friendly chat</string>
+    <string name="invitation_cta">Call to action</string>
+    <string name="invitation_title">Friendly Chat Invite</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="fresh_config">Fresh Config</string>
+    <string name="cause_crash">Cause Crash</string>
+    <string name="banner_ad_unit_id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
+
+    <!-- app Headers -->
+    <string name="campaigns">Campaigns</string>
+    <string name="soapbox">SoapBox</string>
+
+    <!-- bloc frag home/setup -->
     <string name="bloc_frag_strongmoves">#StrongMoves</string>
     <string name="bloc_check_us_out">Check Us Out</string>
     <string name="bloc_members1516_desc">2014-2015 BLOC Members. Bridges Hall of Music. Pomona College</string>
@@ -21,6 +41,7 @@
     <string name="chevron">chevron_down</string>
     <string name="menu_bullet">menu bullet</string>
 
+    <!-- bloc frag constitution -->
     <string name="header_mission">Mission</string>
     <string name="header_constitution_text">The Bloc Constitution</string>
     <string name="article1_header">Article I - Name</string>
@@ -46,11 +67,7 @@
     <string name="article10_text">Section X.01 - Eligibility\n\t\t1. Any member, past or current, of BLOC is able to propose amendments to the BLOC Constitution.\n\nSection X.02 - Process\n\t\t1. A member wishing to make amendments to the BLOC Constitution must:\n\t\t\t\t A. Download the BLOC Constitution from the Google Drive and open it in Microsoft Word or open it on the Google Drive.\n\t\t\t\t B. Ensure that the track changes feature is enabled.\n\t\t\t\t C. Make any edits he wishes to make.\n\t\t\t\t D. Save and upload the document with a different file name (e.g. Draft) to the Constitution folder in the Google Drive.\n\t\t\t\t E. Inform the President that this process has been done.\n\nSection X.03 - Voting on Amendments\n\t\t1. The President shall schedule a vote within the next two general body meetings after he receives notice of amendments.\n\t\t2. The draft must be projected on screen for the members in attendance to see or printed out before hand for everyone to see.\n\t\t3. The track changes feature shall be used to approve or deny each change logged in either Microsoft Word or Google Docs.\n\t\t4. An amendment may not be approved if it has grammatical errors or does not logically make sense.\n\t\t5. A change may only be approved if during the vote, seventy percent of members vote in favor of approving the change; otherwise, the change must be denied.\n\t\t6. Voting is done by standard voting procedures.\n\t\t7. Voting may take place over several meetings if they cannot be finished within the setting of one meeting.\n\nSection X.04 - New Constitution\n\t\t1. If one or more amendments are passed after a single proposal, it becomes part of the new BLOC Constitution.\n\t\t2. The new BLOC Constitution must be uploaded or saved on the Google Drive in the appropriate folder alongside of all old versions of the Constitution.\n\t\t3. New amendments shall take effect seven days after they are ratified.\n\t\t4. The new BLOC Constitution must be printed out and given to each active BLOC member to ensure everyone has their own individual, physical, updated copy.</string>
     <string name="article11_text">Section XI.01 - Voting\n\t\t1. Seventy percent of active members must vote in favor of the Constitution for it to be ratified.\n\t\t2. The document must be spellchecked with no errors before being ratified.\n\nSection XI.02 - Effect\n\t\t1. This BLOC Constitution is a living document that must not only be available online to all BLOC members in the Google Drive, but also must be printed and handed out to each new BLOC member so that each member has his own individual copy.</string>
 
-    <string name="placeholder">placeholder</string>
-    <string name="lightning">Natural Lightning</string>
-    <string name="color_baloons">Color Baloons</string>
-    <string name="natural_wall">Natural Wall</string>
-
+    <!-- bloc frag roles -->
     <string name="bloc_president">President</string>
     <string name="bloc_copresident">Co-President</string>
     <string name="bloc_historian">Historian</string>
@@ -71,6 +88,7 @@
     <string name="bloc_treasurer_name">Reuben Murray</string>
     <string name="bloc_historian_name">Ivan Solomon</string>
 
+    <!-- bloc frag family -->
     <string name="user_account_image">User Account Image</string>
     <string name="user_name">Armand Gray</string>
     <string name="user_details">Bloc Member - BlocApp Creator</string>
@@ -90,11 +108,7 @@
     <string name="bloc_campaigns_text">Select one of the current BLOC Campaigns below</string>
     <string name="bloc_campaigns_subtext">Scroll for more options</string>
     <string name="campaigns_image_desc">campaigns image</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="campaigns">Campaigns</string>
-    <string name="soapbox">SoapBox</string>
-
+    <string name="creator_armand_gray">Creator: Armand Gray</string>
+    <string name="creator_email">armandgray@gmail.com</string>
 
 </resources>

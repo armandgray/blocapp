@@ -8,6 +8,12 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowBackground">@color/background</item>
         <item name="android:textColor">@color/textColor</item>
+        <item name="android:popupBackground">@color/background</item>
+        <item name="android:listDivider">@color/textColor</item>
+        <!--To change the text styling of options menu items</item>-->
+        <item name="android:itemTextAppearance">@style/MyActionBar.MenuTextStyle</item>
+        <!--To change the background of options menu-->
+        <item name="android:itemBackground">@color/background</item>
         <item name="android:typeface">sans</item>
         <item name="android:icon">@drawable/bloc_logo_original_negative</item>
     </style>
@@ -19,7 +25,10 @@
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:actionMenuTextColor">@color/background</item>
+        <item name="actionMenuTextColor">@color/background</item>
+    </style>
 
     <style name="AppTheme.NoActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
@@ -46,4 +55,26 @@
         <item name="android:gravity">center</item>
     </style>
 
+    <!-- nav titles -->
+    <style name="nav_titles">
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <!-- actionbar & overflow menu -->
+    <style name="MyActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="background">@android:color/holo_red_dark</item>
+        <item name="titleTextStyle">@style/MyActionBarTitle</item>
+    </style>
+
+    <style name="MyActionBarTitle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@android:color/holo_red_dark</item>
+    </style>
+
+    <style name="MyActionBar.MenuTextStyle"
+        parent="style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">14sp</item>
+    </style>
 </resources>
