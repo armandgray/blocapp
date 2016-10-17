@@ -74,70 +74,70 @@
                     app:srcCompat="@drawable/young_mens_circle" />
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/campaigns_set2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
+            <!--<LinearLayout-->
+                <!--android:id="@+id/campaigns_set2"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:gravity="center_horizontal"-->
+                <!--android:orientation="horizontal">-->
 
-                <ImageView
-                    android:layout_width="@dimen/campaigns_image_side"
-                    android:layout_height="@dimen/campaigns_image_side"
-                    android:layout_margin="@dimen/campaigns_image_margin"
-                    android:background="@drawable/campaigns_image_border"
-                    android:contentDescription="@string/campaigns_image_desc"
-                    app:srcCompat="@drawable/dinner_jmnuad" />
+                <!--<ImageView-->
+                    <!--android:layout_width="@dimen/campaigns_image_side"-->
+                    <!--android:layout_height="@dimen/campaigns_image_side"-->
+                    <!--android:layout_margin="@dimen/campaigns_image_margin"-->
+                    <!--android:background="@drawable/campaigns_image_border"-->
+                    <!--android:contentDescription="@string/campaigns_image_desc"-->
+                    <!--app:srcCompat="@drawable/dinner_jmnuad" />-->
 
-                <ImageView
-                    android:layout_width="@dimen/campaigns_image_side"
-                    android:layout_height="@dimen/campaigns_image_side"
-                    android:layout_margin="@dimen/campaigns_image_margin"
-                    android:background="@drawable/campaigns_image_border"
-                    android:contentDescription="@string/campaigns_image_desc"
-                    app:srcCompat="@drawable/toys_for_tots" />
+                <!--<ImageView-->
+                    <!--android:layout_width="@dimen/campaigns_image_side"-->
+                    <!--android:layout_height="@dimen/campaigns_image_side"-->
+                    <!--android:layout_margin="@dimen/campaigns_image_margin"-->
+                    <!--android:background="@drawable/campaigns_image_border"-->
+                    <!--android:contentDescription="@string/campaigns_image_desc"-->
+                    <!--app:srcCompat="@drawable/toys_for_tots" />-->
 
-                <ImageView
-                    android:layout_width="@dimen/campaigns_image_side"
-                    android:layout_height="@dimen/campaigns_image_side"
-                    android:layout_margin="@dimen/campaigns_image_margin"
-                    android:background="@drawable/campaigns_image_border"
-                    android:contentDescription="@string/campaigns_image_desc"
-                    app:srcCompat="@drawable/young_mens_circle" />
-            </LinearLayout>
+                <!--<ImageView-->
+                    <!--android:layout_width="@dimen/campaigns_image_side"-->
+                    <!--android:layout_height="@dimen/campaigns_image_side"-->
+                    <!--android:layout_margin="@dimen/campaigns_image_margin"-->
+                    <!--android:background="@drawable/campaigns_image_border"-->
+                    <!--android:contentDescription="@string/campaigns_image_desc"-->
+                    <!--app:srcCompat="@drawable/young_mens_circle" />-->
+            <!--</LinearLayout>-->
 
-            <LinearLayout
-                android:id="@+id/campaigns_set3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
+            <!--<LinearLayout-->
+                <!--android:id="@+id/campaigns_set3"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:gravity="center_horizontal"-->
+                <!--android:orientation="horizontal">-->
 
-                <ImageView
-                    android:layout_width="@dimen/campaigns_image_side"
-                    android:layout_height="@dimen/campaigns_image_side"
-                    android:layout_margin="@dimen/campaigns_image_margin"
-                    android:background="@drawable/campaigns_image_border"
-                    android:contentDescription="@string/campaigns_image_desc"
-                    app:srcCompat="@drawable/dinner_jmnuad" />
+                <!--<ImageView-->
+                    <!--android:layout_width="@dimen/campaigns_image_side"-->
+                    <!--android:layout_height="@dimen/campaigns_image_side"-->
+                    <!--android:layout_margin="@dimen/campaigns_image_margin"-->
+                    <!--android:background="@drawable/campaigns_image_border"-->
+                    <!--android:contentDescription="@string/campaigns_image_desc"-->
+                    <!--app:srcCompat="@drawable/dinner_jmnuad" />-->
 
-                <ImageView
-                    android:layout_width="@dimen/campaigns_image_side"
-                    android:layout_height="@dimen/campaigns_image_side"
-                    android:layout_margin="@dimen/campaigns_image_margin"
-                    android:background="@drawable/campaigns_image_border"
-                    android:contentDescription="@string/campaigns_image_desc"
-                    app:srcCompat="@drawable/toys_for_tots" />
+                <!--<ImageView-->
+                    <!--android:layout_width="@dimen/campaigns_image_side"-->
+                    <!--android:layout_height="@dimen/campaigns_image_side"-->
+                    <!--android:layout_margin="@dimen/campaigns_image_margin"-->
+                    <!--android:background="@drawable/campaigns_image_border"-->
+                    <!--android:contentDescription="@string/campaigns_image_desc"-->
+                    <!--app:srcCompat="@drawable/toys_for_tots" />-->
 
-                <ImageView
-                    android:layout_width="@dimen/campaigns_image_side"
-                    android:layout_height="@dimen/campaigns_image_side"
-                    android:layout_margin="@dimen/campaigns_image_margin"
-                    android:padding="25dp"
-                    android:background="@drawable/campaigns_addimage_border"
-                    android:contentDescription="@string/campaigns_image_desc"
-                    app:srcCompat="@drawable/ic_bookmark_plus_black_48dp" />
-            </LinearLayout>
+                <!--<ImageView-->
+                    <!--android:layout_width="@dimen/campaigns_image_side"-->
+                    <!--android:layout_height="@dimen/campaigns_image_side"-->
+                    <!--android:layout_margin="@dimen/campaigns_image_margin"-->
+                    <!--android:padding="25dp"-->
+                    <!--android:background="@drawable/campaigns_addimage_border"-->
+                    <!--android:contentDescription="@string/campaigns_image_desc"-->
+                    <!--app:srcCompat="@drawable/ic_bookmark_plus_black_48dp" />-->
+            <!--</LinearLayout>-->
 
             <View
                 android:layout_width="match_parent"
@@ -195,69 +195,69 @@
                 android:text="Archived"
                 android:textSize="@dimen/campaigns_header_size" />
 
-            <LinearLayout
-                android:id="@+id/campaigns_set5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
+            <!--<LinearLayout-->
+                <!--android:id="@+id/campaigns_set5"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:gravity="center_horizontal"-->
+                <!--android:orientation="horizontal">-->
 
-                <ImageView
-                    android:layout_width="@dimen/campaigns_image_side"
-                    android:layout_height="@dimen/campaigns_image_side"
-                    android:layout_margin="@dimen/campaigns_image_margin"
-                    android:background="@drawable/campaigns_image_border"
-                    android:contentDescription="@string/campaigns_image_desc"
-                    app:srcCompat="@drawable/dinner_jmnuad" />
+                <!--<ImageView-->
+                    <!--android:layout_width="@dimen/campaigns_image_side"-->
+                    <!--android:layout_height="@dimen/campaigns_image_side"-->
+                    <!--android:layout_margin="@dimen/campaigns_image_margin"-->
+                    <!--android:background="@drawable/campaigns_image_border"-->
+                    <!--android:contentDescription="@string/campaigns_image_desc"-->
+                    <!--app:srcCompat="@drawable/dinner_jmnuad" />-->
 
-                <ImageView
-                    android:layout_width="@dimen/campaigns_image_side"
-                    android:layout_height="@dimen/campaigns_image_side"
-                    android:layout_margin="@dimen/campaigns_image_margin"
-                    android:background="@drawable/campaigns_image_border"
-                    android:contentDescription="@string/campaigns_image_desc"
-                    app:srcCompat="@drawable/toys_for_tots" />
+                <!--<ImageView-->
+                    <!--android:layout_width="@dimen/campaigns_image_side"-->
+                    <!--android:layout_height="@dimen/campaigns_image_side"-->
+                    <!--android:layout_margin="@dimen/campaigns_image_margin"-->
+                    <!--android:background="@drawable/campaigns_image_border"-->
+                    <!--android:contentDescription="@string/campaigns_image_desc"-->
+                    <!--app:srcCompat="@drawable/toys_for_tots" />-->
 
-                <ImageView
-                    android:layout_width="@dimen/campaigns_image_side"
-                    android:layout_height="@dimen/campaigns_image_side"
-                    android:layout_margin="@dimen/campaigns_image_margin"
-                    android:background="@drawable/campaigns_image_border"
-                    android:contentDescription="@string/campaigns_image_desc"
-                    app:srcCompat="@drawable/young_mens_circle" />
-            </LinearLayout>
+                <!--<ImageView-->
+                    <!--android:layout_width="@dimen/campaigns_image_side"-->
+                    <!--android:layout_height="@dimen/campaigns_image_side"-->
+                    <!--android:layout_margin="@dimen/campaigns_image_margin"-->
+                    <!--android:background="@drawable/campaigns_image_border"-->
+                    <!--android:contentDescription="@string/campaigns_image_desc"-->
+                    <!--app:srcCompat="@drawable/young_mens_circle" />-->
+            <!--</LinearLayout>-->
 
-            <LinearLayout
-                android:id="@+id/campaigns_set6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
+            <!--<LinearLayout-->
+                <!--android:id="@+id/campaigns_set6"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:gravity="center_horizontal"-->
+                <!--android:orientation="horizontal">-->
 
-                <ImageView
-                    android:layout_width="@dimen/campaigns_image_side"
-                    android:layout_height="@dimen/campaigns_image_side"
-                    android:layout_margin="@dimen/campaigns_image_margin"
-                    android:background="@drawable/campaigns_image_border"
-                    android:contentDescription="@string/campaigns_image_desc"
-                    app:srcCompat="@drawable/dinner_jmnuad" />
+                <!--<ImageView-->
+                    <!--android:layout_width="@dimen/campaigns_image_side"-->
+                    <!--android:layout_height="@dimen/campaigns_image_side"-->
+                    <!--android:layout_margin="@dimen/campaigns_image_margin"-->
+                    <!--android:background="@drawable/campaigns_image_border"-->
+                    <!--android:contentDescription="@string/campaigns_image_desc"-->
+                    <!--app:srcCompat="@drawable/dinner_jmnuad" />-->
 
-                <ImageView
-                    android:layout_width="@dimen/campaigns_image_side"
-                    android:layout_height="@dimen/campaigns_image_side"
-                    android:layout_margin="@dimen/campaigns_image_margin"
-                    android:background="@drawable/campaigns_image_border"
-                    android:contentDescription="@string/campaigns_image_desc"
-                    app:srcCompat="@drawable/toys_for_tots" />
+                <!--<ImageView-->
+                    <!--android:layout_width="@dimen/campaigns_image_side"-->
+                    <!--android:layout_height="@dimen/campaigns_image_side"-->
+                    <!--android:layout_margin="@dimen/campaigns_image_margin"-->
+                    <!--android:background="@drawable/campaigns_image_border"-->
+                    <!--android:contentDescription="@string/campaigns_image_desc"-->
+                    <!--app:srcCompat="@drawable/toys_for_tots" />-->
 
-                <ImageView
-                    android:layout_width="@dimen/campaigns_image_side"
-                    android:layout_height="@dimen/campaigns_image_side"
-                    android:layout_margin="@dimen/campaigns_image_margin"
-                    android:background="@drawable/campaigns_image_border"
-                    android:contentDescription="@string/campaigns_image_desc"
-                    app:srcCompat="@drawable/young_mens_circle" />
-            </LinearLayout>
+                <!--<ImageView-->
+                    <!--android:layout_width="@dimen/campaigns_image_side"-->
+                    <!--android:layout_height="@dimen/campaigns_image_side"-->
+                    <!--android:layout_margin="@dimen/campaigns_image_margin"-->
+                    <!--android:background="@drawable/campaigns_image_border"-->
+                    <!--android:contentDescription="@string/campaigns_image_desc"-->
+                    <!--app:srcCompat="@drawable/young_mens_circle" />-->
+            <!--</LinearLayout>-->
         </LinearLayout>
     </ScrollView>
 
