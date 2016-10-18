@@ -17,11 +17,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.google.android.gms.appinvite.AppInviteInvitation;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.crash.FirebaseCrash;
 
 import org.blocorganization.blocapp.bloc.BlocFragment;
 import org.blocorganization.blocapp.campaigns.CampaignsFragment;
@@ -37,15 +40,19 @@ public class MainActivity extends AppCompatActivity
 
     public static final String TAG = "MainActivity";
     public static final String ANONYMOUS = "anonymous";
+    public static final String MESS_TAG = "MESS_TAG";
+    private static final int REQUEST_INVITE = 1;
 
     public static String mUsername;
     public static String mPhotoUrl;
+    public static boolean signedIn = false;
     private SharedPreferences mSharedPreferences;
     private GoogleApiClient mGoogleApiClient;
 
     // Firebase instance variables
-    private FirebaseAuth mFirebaseAuth;
-    private FirebaseUser mFirebaseUser;
+    public static FirebaseAuth mFirebaseAuth;
+    public static FirebaseUser mFirebaseUser;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +86,10 @@ public class MainActivity extends AppCompatActivity
                 .addApi(Auth.GOOGLE_SIGN_IN_API)
                 .build();
 
+        // Initialize Firebase Analytics
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
+
         // Initialize Firebase Auth
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
@@ -102,66 +113,43 @@ public class MainActivity extends AppCompatActivity
                 .commit();
     }
 
-    @Override
-    public void onBullhornClick() {
-        BullhornFragment homeFrag = new BullhornFragment();
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.main_fragment_container, homeFrag)
-                .commit();
+    public interface MainActivityListener {
+        void fetchConfig();
+    }
+
+    private void sendInvitation() {
+        Intent intent = new AppInviteInvitation.IntentBuilder(getString(R.string.invitation_title))
+                .setMessage(getString(R.string.invitation_message))
+                .setCallToActionText(getString(R.string.invitation_cta))
+                .build();
+        startActivityForResult(intent, REQUEST_INVITE);
     }
 
     @Override
-    public void onCampaignsClick() {
-        CampaignsFragment campFrag = new CampaignsFragment();
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.main_fragment_container, campFrag)
-                .commit();
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d(TAG, "onActivityResult: requestCode=" + requestCode +
+                ", resultCode=" + resultCode);
 
-    }
-
-    @Override
-    public void onMessagesClick() {
-        MessagesFragment messFrag = new MessagesFragment();
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.main_fragment_container, messFrag)
-                .commit();
-    }
-
-    @Override
-    public void onNotificationsClick() {
-        NotificationsFragment notiFrag = new NotificationsFragment();
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.main_fragment_container, notiFrag, TAG)
-                .commit();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in.
-        // TODO: Add code to check if user is signed in.
-    }
-
-    @Override
-    public void onBlocClick() {
-        BlocFragment blocFrag = new BlocFragment();
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.main_fragment_container, blocFrag)
-                .commit();
-    }
-
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
+        if (requestCode == REQUEST_INVITE) {
+            if (resultCode == RESULT_OK) {
+                Bundle payload = new Bundle();
+                payload.putString(FirebaseAnalytics.Param.VALUE, "sent");
+                mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SHARE,
+                        payload);
+                // Check how many invitations were sent.
+                String[] ids = AppInviteInvitation
+                        .getInvitationIds(resultCode, data);
+                Log.d(TAG, "Invitations sent: " + ids.length);
+            } else {
+                Bundle payload = new Bundle();
+                payload.putString(FirebaseAnalytics.Param.VALUE, "not sent");
+                mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SHARE,
+                        payload);
+                // Sending failed or it was canceled, show failure message to
+                // the user
+                Log.d(TAG, "Failed to send invitation.");
+            }
         }
     }
 
@@ -173,6 +161,10 @@ public class MainActivity extends AppCompatActivity
         Toast.makeText(this, "Google Play Services error.", Toast.LENGTH_SHORT).show();
     }
 
+    private void causeCrash() {
+        throw new NullPointerException("Fake null pointer exception");
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -182,9 +174,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
             case R.id.sign_out_menu:
                 mFirebaseAuth.signOut();
@@ -192,8 +181,31 @@ public class MainActivity extends AppCompatActivity
                 mUsername = ANONYMOUS;
                 startActivity(new Intent(this, SignInActivity.class));
                 return true;
+            case R.id.fresh_config_menu:
+                MessagesFragment fragment = (MessagesFragment) getSupportFragmentManager()
+                        .findFragmentByTag(MESS_TAG);
+                assert fragment instanceof MainActivityListener;
+                fragment.fetchConfig();
+                return true;
+            case R.id.invite_menu:
+                sendInvitation();
+                return true;
+            case R.id.crash_menu:
+                FirebaseCrash.logcat(Log.ERROR, TAG, "crash caused");
+                causeCrash();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
         }
     }
 
@@ -221,5 +233,52 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    @Override
+    public void onBullhornClick() {
+        BullhornFragment homeFrag = new BullhornFragment();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.main_fragment_container, homeFrag)
+                .commit();
+    }
+
+    @Override
+    public void onCampaignsClick() {
+        CampaignsFragment campFrag = new CampaignsFragment();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.main_fragment_container, campFrag)
+                .commit();
+
+    }
+
+    @Override
+    public void onMessagesClick() {
+        MessagesFragment messFrag = new MessagesFragment();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.main_fragment_container, messFrag, MESS_TAG)
+                .commit();
+    }
+
+    @Override
+    public void onNotificationsClick() {
+        NotificationsFragment notiFrag = new NotificationsFragment();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.main_fragment_container, notiFrag, TAG)
+                .commit();
+    }
+
+    @Override
+    public void onBlocClick() {
+        BlocFragment blocFrag = new BlocFragment();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.main_fragment_container, blocFrag)
+                .commit();
+    }
+
 
 }

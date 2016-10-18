@@ -76,7 +76,6 @@ public class SignInActivity extends AppCompatActivity implements
     // presents the user with the Google Sign In UI
     private void signIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-        Toast.makeText(this, "Starting Intent: Google Sign in", Toast.LENGTH_SHORT).show();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
@@ -87,11 +86,9 @@ public class SignInActivity extends AppCompatActivity implements
 
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
-            Toast.makeText(this, "Checking Request Code", Toast.LENGTH_SHORT).show();
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             if (result.isSuccess()) {
                 // Google Sign In was successful, authenticate with Firebase
-                Toast.makeText(this, "Google Sign In SUCCESS.", Toast.LENGTH_SHORT).show();
                 GoogleSignInAccount account = result.getSignInAccount();
                 firebaseAuthWithGoogle(account);
             } else {
@@ -132,5 +129,11 @@ public class SignInActivity extends AppCompatActivity implements
         // be available.
         Log.d(TAG, "onConnectionFailed:" + connectionResult);
         Toast.makeText(this, "Google Play Services error.", Toast.LENGTH_SHORT).show();
+    }
+
+    public void onGuestClick(View view) {
+        mFirebaseAuth.signInAnonymously();
+        startActivity(new Intent(SignInActivity.this, MainActivity.class));
+        finish();
     }
 }

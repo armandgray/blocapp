@@ -23,4 +23,12 @@
         android:visibility="visible"
         android:layout_gravity="center"/>
 
+    <TextView
+        android:text="Continue as Guest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:id="@+id/guest_signin"
+        android:onClick="onGuestClick"/>
+
 </FrameLayout>
