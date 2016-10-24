@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/campaigns_set1"
+    android:layout_width="@dimen/campaigns_item_width"
+    android:layout_height="@dimen/campaigns_item_height"
+    android:layout_marginTop="@dimen/campaigns_image_margin"
+    android:background="@drawable/background_square_shadow"
+    android:orientation="vertical"
+    tools:showIn="@layout/campaigns_subfragment_campaigns">
+
+    <ImageView
+        android:id="@+id/campaign_image"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/campaigns_image_height"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/campaigns_image_margin"
+        android:adjustViewBounds="false"
+        android:contentDescription="@string/campaigns_image_desc"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/toys_for_tots" />
+
+    <View
+        android:id="@+id/campaign_item_border"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/campaign_image"
+        android:layout_marginBottom="@dimen/campaigns_image_margin"
+        android:background="#FF5A00" />
+
+    <TextView
+        android:id="@+id/campaign_item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/campaign_item_border"
+        android:paddingLeft="5dp"
+        android:text="Toys for Tots"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/campaigns_header_size" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/campaign_item_title"
+        android:paddingBottom="5dp"
+        android:paddingLeft="5dp">
+
+        <!--<ImageView-->
+            <!--android:layout_width="@dimen/campaign_detail_icon_side"-->
+            <!--android:layout_height="@dimen/campaign_detail_icon_side"-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:layout_marginRight="@dimen/campaigns_image_margin"-->
+            <!--android:contentDescription="@string/placeholder"-->
+            <!--app:srcCompat="@drawable/ic_earth_grey600_48dp" />-->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/campaigns_image_margin"
+            android:textAllCaps="true"
+            android:text="December 12th, Last Year\nby Jaureese Gaines"
+            android:textColor="#333333"
+            android:textSize="@dimen/campaign_detail_text_size" />
+    </LinearLayout>
+</RelativeLayout>

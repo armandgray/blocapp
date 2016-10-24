@@ -3,19 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/navbar_padding"
+    android:gravity="center"
     android:background="@drawable/navbar_border"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:padding="@dimen/navbar_padding">
 
 
     <ImageView
-        android:id="@+id/bullhorn"
+        android:id="@+id/home"
         android:layout_width="@dimen/navbar_icon_size"
         android:layout_height="@dimen/navbar_icon_size"
         android:layout_marginLeft="@dimen/navbar_margins"
         android:layout_marginRight="@dimen/navbar_margins"
-        app:srcCompat="@drawable/bullhorn"
-        android:onClick="onBullhornClick"/>
+        app:srcCompat="@drawable/ic_home_white_48dp" />
 
     <ImageView
         android:id="@+id/calendar"
@@ -23,29 +23,29 @@
         android:layout_height="@dimen/navbar_icon_size"
         android:layout_marginLeft="@dimen/navbar_margins"
         android:layout_marginRight="@dimen/navbar_margins"
-        app:srcCompat="@drawable/calendar_multiple" />
+        app:srcCompat="@drawable/ic_calendar_today_white_48dp" />
 
     <ImageView
-        android:id="@+id/emoticon"
+        android:id="@+id/messages"
         android:layout_width="@dimen/navbar_icon_size"
         android:layout_height="@dimen/navbar_icon_size"
         android:layout_marginLeft="@dimen/navbar_margins"
         android:layout_marginRight="@dimen/navbar_margins"
-        app:srcCompat="@drawable/emoticon_cool" />
+        app:srcCompat="@drawable/ic_message_bulleted_white_48dp" />
 
     <ImageView
-        android:id="@+id/personal"
+        android:id="@+id/blinds"
         android:layout_width="@dimen/navbar_icon_size"
         android:layout_height="@dimen/navbar_icon_size"
         android:layout_marginLeft="@dimen/navbar_margins"
         android:layout_marginRight="@dimen/navbar_margins"
-        app:srcCompat="@drawable/odnoklassniki" />
+        app:srcCompat="@drawable/ic_blinds_white_48dp" />
 
     <ImageView
-        android:id="@+id/boldB"
+        android:id="@+id/ic_bloc"
         android:layout_width="@dimen/navbar_icon_size"
         android:layout_height="@dimen/navbar_icon_size"
         android:layout_marginLeft="@dimen/navbar_margins"
         android:layout_marginRight="@dimen/navbar_margins"
-        app:srcCompat="@drawable/format_bold" />
+        app:srcCompat="@drawable/ic_bloc_positive" />
 </LinearLayout>

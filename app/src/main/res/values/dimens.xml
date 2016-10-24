@@ -8,18 +8,25 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <dimen name="contacts_text_padding">5dp</dimen>
-
-    <dimen name="navbar_margins">21.675dp</dimen>
-    <dimen name="navbar_icon_size">35dp</dimen>
+    <!-- navbar-->
+    <dimen name="navbar_margins">23dp</dimen>
+    <dimen name="navbar_icon_size">30dp</dimen>
     <dimen name="navbar_padding">10dp</dimen>
 
-    <dimen name="fab_margin">16dp</dimen>
+    <!-- full width button -->
+    <dimen name="btn_side">30dp</dimen>
+    <dimen name="btn_padding">10dp</dimen>
+    <dimen name="btn_margin">10dp</dimen>
+    <dimen name="btn_gradient_radius">200dp</dimen>
+    <dimen name="btn_text">22sp</dimen>
+
+    <!-- bottom menu -->
     <dimen name="bloc_menu_bullet_margin">7dp</dimen>
     <dimen name="menu_bullet_side">10dp</dimen>
     <dimen name="menu_selected_bullet_side">12dp</dimen>
     <dimen name="menu_marginbottom">10dp</dimen>
 
+    <!-- bloc frag-->
     <dimen name="headers_size">30sp</dimen>
     <dimen name="article_size">24sp</dimen>
     <dimen name="text_size">16sp</dimen>
@@ -34,12 +41,22 @@
     <dimen name="roles_underline_size">.5dp</dimen>
     <dimen name="bloc_roles_corners">20dp</dimen>
     <dimen name="bloc_roles_detail_border">5dp</dimen>
+
     <dimen name="contacts_short_interpadding">5dp</dimen>
     <dimen name="contacts_long_interpadding">25dp</dimen>
-    <dimen name="campaigns_image_margin">15dp</dimen>
-    <dimen name="campaigns_image_side">100dp</dimen>
+    <dimen name="contacts_text_padding">5dp</dimen>
+
+    <!-- campaigns frag -->
+    <dimen name="campaigns_image_margin">2.5dp</dimen>
     <dimen name="campaigns_header_size">14sp</dimen>
+    <dimen name="campaigns_image_side">100dp</dimen>
     <dimen name="home_campaign_images_side">90dp</dimen>
-    <dimen name="home_campaign_images_margin">15dp</dimen>
+    <dimen name="home_campaign_images_margin">10dp</dimen>
+    <dimen name="campaign_detail_icon_side">15dp</dimen>
+    <dimen name="campaign_detail_text_size">8sp</dimen>
+    <dimen name="campaigns_image_height">122dp</dimen>
+    <dimen name="campaigns_item_width">180dp</dimen>
+    <dimen name="campaigns_item_height">200dp</dimen>
+
 
 </resources>

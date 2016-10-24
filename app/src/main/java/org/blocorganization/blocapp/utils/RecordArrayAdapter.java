@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.blocorganization.blocapp.R;
@@ -17,10 +16,10 @@ import java.util.List;
 public class RecordArrayAdapter extends ArrayAdapter<Record> {
 
 	private Context context;
-	private List<Record> objects;
+	private List<? extends Record> objects;
 	
-	public RecordArrayAdapter(Context context, int resource, List<Record> objects) {
-		super(context, resource, objects);
+	public RecordArrayAdapter(Context context, int resource, List<? extends Record> objects) {
+		super(context, resource, (List<Record>) objects);
 		this.context = context;
 		this.objects = objects;
 	}
@@ -33,8 +32,8 @@ public class RecordArrayAdapter extends ArrayAdapter<Record> {
 				(LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
 		View view = inflater.inflate(R.layout.record_listitem, null);
 		
-		ImageView image = (ImageView) view.findViewById(R.id.ivRecordImage);
-		image.setImageResource(record.getImageResource());
+//		ImageView image = (ImageView) view.findViewById(R.id.ivRecordImage);
+//		image.setImageResource(record.getImageResource());
 
 		TextView tvDesc = (TextView) view.findViewById(R.id.tvRecordDescription);
 		TextView tvDetails = (TextView) view.findViewById(R.id.tvDetails);

@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import org.blocorganization.blocapp.R;
-import org.blocorganization.blocapp.models.Record;
+import org.blocorganization.blocapp.models.Campaign;
 import org.blocorganization.blocapp.models.RecordData;
 import org.blocorganization.blocapp.utils.RecordArrayAdapter;
 
@@ -23,7 +23,7 @@ import java.util.List;
  */
 public class NotificationsListFragment extends ListFragment {
 
-    List<Record> records = new RecordData().getRecords();
+    List<Campaign> campaigns = new RecordData().getCampaigns();
     private NotificationsListFragmentListener mParentListener;
 
     public NotificationsListFragment() {
@@ -34,7 +34,7 @@ public class NotificationsListFragment extends ListFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        RecordArrayAdapter adapter = new RecordArrayAdapter(getActivity(), R.layout.record_listitem, records);
+        RecordArrayAdapter adapter = new RecordArrayAdapter(getActivity(), R.layout.record_listitem, campaigns);
         setListAdapter(adapter);
     }
 
@@ -50,21 +50,13 @@ public class NotificationsListFragment extends ListFragment {
     }
 
     public interface NotificationsListFragmentListener {
-        void onItemSelected(Record record);
+        void onItemSelected(Campaign campaigns);
     }
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        Record record = records.get(position);
-        mParentListener.onItemSelected(record);
+        Campaign campaign = campaigns.get(position);
+        mParentListener.onItemSelected(campaign);
     }
-
-    //    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        if (item.getItemId() == android.R.id.home) {
-//            finish();
-//        }
-//        return true;
-//    }
 
 }

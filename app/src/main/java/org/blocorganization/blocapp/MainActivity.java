@@ -28,7 +28,6 @@ import com.google.firebase.crash.FirebaseCrash;
 
 import org.blocorganization.blocapp.bloc.BlocFragment;
 import org.blocorganization.blocapp.campaigns.CampaignsFragment;
-import org.blocorganization.blocapp.home.HomeFragment;
 import org.blocorganization.blocapp.messages.MessagesFragment;
 import org.blocorganization.blocapp.notifications.NotificationsFragment;
 import org.blocorganization.blocapp.utils.NavBarFragment;
@@ -235,8 +234,8 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onBullhornClick() {
-        BullhornFragment homeFrag = new BullhornFragment();
+    public void onHomeClick() {
+        HomeFragment homeFrag = new HomeFragment();
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.main_fragment_container, homeFrag)

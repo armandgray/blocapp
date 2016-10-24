@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- lower rectangle (shadow color) -->
+    <item>
+        <shape
+            android:shape="rectangle">
+            <gradient
+                android:angle="270"
+                android:centerColor="#1AFFFFFF"
+                android:endColor="#000000"
+                android:startColor="#A6FFFFFF"
+                android:type="linear" />
+        </shape>
+    </item>
+
+    <!-- upper rectangle (background color) -->
+    <item
+        android:bottom="100dp"
+        android:left="100dp"
+        android:right="0dp"
+        android:top="0dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/campaign_border_color" />
+
+            <!-- The radius makes the corners rounded -->
+            <corners android:radius="4dp"></corners>
+        </shape>
+    </item>
+</layer-list>

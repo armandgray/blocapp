@@ -2,50 +2,58 @@ package org.blocorganization.blocapp.models;
 
 import android.os.Bundle;
 
-public class Record {
+public abstract class Record {
 
     //	constants for field references
-    public static final RecordType RECORD_TYPE = RecordType.DEFAULT;
-    public static final String ADMIN = "admin";
-    public static final String IMAGE_RESOURCE = "imageResource";
-    public static final String DESCRIPTION = "description";
-    public static final String TIMESTAMP = "timestamp";
+    public static final String RECORD_TYPE_KEY = "RECORD_TYPE_KEY";
+    public static final String ADMIN_KEY = "ADMIN_KEY";
+    public static final String DESCRIPTION_KEY = "DESCRIPTION_KEY";
+    public static final String TITLE_KEY = "TITLE_KEY";
+    public static final String EXTRAS_KEY = "EXTRAS_KEY";
+    public static final String ICON_KEY = "ICON_KEY";
 
     //	private fields
     private String recordType;
-    private int imageResource;
     private String admin;
     private String timestamp;
+    private String title;
     private String description;
+    private String extras;
+    private int icon;
 
     //	Constructor used when creating the data object
-    public Record(RecordType type, String admin, int imageResource, String description, String timestamp) {
+    public Record(RecordType type, String admin, String extras, String description, String title, int icon) {
         this.recordType = type.toString();
-        this.imageResource = imageResource;
-        this.timestamp = timestamp;
+        this.extras = extras;
         this.admin = admin;
+        this.title = title;
         this.description = description;
+        this.icon = icon;
+
+        Long tsLong = System.currentTimeMillis()/1000;
+        this.timestamp = tsLong.toString();
     }
 
     //	Create from a bundle
     public Record(Bundle b) {
         if (b != null) {
-            this.recordType = b.getString(RECORD_TYPE.toString());
-            this.imageResource = b.getInt(IMAGE_RESOURCE);
-            this.timestamp = b.getString(TIMESTAMP);
-            this.admin = b.getString(ADMIN);
-            this.description = b.getString(DESCRIPTION);
+            this.recordType = b.getString(RECORD_TYPE_KEY);
+            this.extras = b.getString(EXTRAS_KEY);
+            this.admin = b.getString(ADMIN_KEY);
+            this.title = b.getString(TITLE_KEY);
+            this.description = b.getString(DESCRIPTION_KEY);
+            this.icon = b.getInt(ICON_KEY);
         }
     }
 
     //	Package data for transfer between activities
-    public Bundle toBundle() {
-        Bundle b = new Bundle();
-        b.putString(RECORD_TYPE.toString(), this.recordType);
-        b.putInt(IMAGE_RESOURCE, this.imageResource);
-        b.putString(TIMESTAMP, this.timestamp);
-        b.putString(ADMIN, this.admin);
-        b.putString(DESCRIPTION, this.description);
+    public Bundle toBundle(Bundle b) {
+        b.putString(RECORD_TYPE_KEY, this.recordType);
+        b.putString(DESCRIPTION_KEY, this.description);
+        b.putString(ADMIN_KEY, this.admin);
+        b.putString(TITLE_KEY, this.title);
+        b.putString(EXTRAS_KEY, this.extras);
+        b.putInt(ICON_KEY, this.icon);
         return b;
     }
 
@@ -64,14 +72,6 @@ public class Record {
         this.recordType = recordType.toString();
     }
 
-    public int getImageResource() {
-        return imageResource;
-    }
-
-    public void setImageResource(int imageResource) {
-        this.imageResource = imageResource;
-    }
-
     public String getAdmin() {
         return admin;
     }
@@ -88,9 +88,23 @@ public class Record {
         return timestamp;
     }
 
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
+    public String getExtras() { return extras; }
+
+    public void setExtras(String extras) { this.extras = extras; }
+
+    public String getTitle() {
+        return title;
     }
 
-}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
+    public int getIcon() {
+        return icon;
+    }
+
+    public void setIcon(int icon) {
+        this.icon = icon;
+    }
+}

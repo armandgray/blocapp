@@ -8,10 +8,9 @@
     </item>
 
     <!-- upper rectangle (background color) -->
-    <item android:top="0.4dp"
-        android:bottom=".5dp">
+    <item android:bottom=".5dp">
         <shape android:shape="rectangle">
-            <solid android:color="@color/colorPrimary" />
+            <solid android:color="@color/ToolBarColor" />
         </shape>
     </item>
 </layer-list>

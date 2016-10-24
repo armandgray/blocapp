@@ -112,5 +112,9 @@
     <string name="campaigns_image_desc">campaigns image</string>
     <string name="creator_armand_gray">Creator: Armand Gray</string>
     <string name="creator_email">armandgray@gmail.com</string>
+    <string name="ic_binoculars">ic_binoculars</string>
+    <string name="logo_negative">logo_negative</string>
+    <string name="create_new_campaign">Create New Campaign</string>
+    <string name="ic_packageup">ic_packageup</string>
 
 </resources>

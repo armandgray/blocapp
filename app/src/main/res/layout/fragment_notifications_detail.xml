@@ -22,7 +22,7 @@
         android:layout_height="200dp"
         android:layout_marginBottom="20dp"
         android:contentDescription="@string/placeholder"
-        android:src="@drawable/bloc_logo_original_positive" />
+        android:src="@drawable/logo_positive" />
 
     <TextView
         android:id="@+id/tvInstructions"

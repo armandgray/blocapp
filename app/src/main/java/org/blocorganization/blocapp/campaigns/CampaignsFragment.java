@@ -6,22 +6,23 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.LinearLayout;
 
 import org.blocorganization.blocapp.R;
-
-import static org.blocorganization.blocapp.campaigns.CreateGeneralSubFragment.CREATE_KEY;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CampaignsFragment extends Fragment {
+public class CampaignsFragment extends Fragment
+        implements ActionboardSubFragment.ActionboardFragListener,
+                HomeSubFragment.HomeFragListener {
 
     FragmentPagerAdapter adapterViewPager;
+    LinearLayout menu;
+    View selectedBullet;
 
     private static FragmentManager mFragmentManager;
     private static Fragment createSubFrag;
@@ -44,12 +45,28 @@ public class CampaignsFragment extends Fragment {
         ViewPager vpPager = (ViewPager) rootView.findViewById(R.id.campaigns_vpager);
         adapterViewPager = new MyPagerAdapter(getChildFragmentManager());
         vpPager.setAdapter(adapterViewPager);
+
+        menu = (LinearLayout) rootView.findViewById(R.id.menu_container);
+        selectedBullet = menu.getChildAt(4);
+        menu.removeView(menu.getChildAt(3));
+        menu.removeView(menu.getChildAt(3));
+        menu.addView(selectedBullet, 1);
+
         vpPager.setCurrentItem(1);
 
         return rootView;
     }
 
-    public static class MyPagerAdapter extends FragmentPagerAdapter {
+    @Override
+    public void onActionboardCreated() {
+    }
+
+    @Override
+    public void onHomeCreated() {
+
+    }
+
+    public class MyPagerAdapter extends FragmentPagerAdapter {
         private static final int NUM_PAGES = 4;
 
         public MyPagerAdapter(FragmentManager fragmentManager) {

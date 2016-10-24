@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/nav_header_height"
-    android:background="@drawable/side_nav_bar"
+    android:background="@drawable/side_nav_bar_gradient"
     android:gravity="bottom"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -15,7 +15,7 @@
         android:id="@+id/imageView"
         android:layout_width="@dimen/nav_image_side"
         android:layout_height="@dimen/nav_image_side"
-        android:src="@drawable/bloc_logo_original_positive" />
+        android:src="@drawable/logo_positive" />
 
     <TextView
         android:layout_width="match_parent"

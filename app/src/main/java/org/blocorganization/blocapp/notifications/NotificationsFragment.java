@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.blocorganization.blocapp.R;
-import org.blocorganization.blocapp.models.Record;
+import org.blocorganization.blocapp.models.Campaign;
 
 import static org.blocorganization.blocapp.MainActivity.TAG;
 
@@ -39,13 +39,14 @@ public class NotificationsFragment extends Fragment implements
     }
 
     @Override
-    public void onItemSelected(Record record) {
+    public void onItemSelected(Campaign campaign) {
         NotificationsDetailFragment detailFrag = NotificationsDetailFragment
-                .newInstance(record);
+                .newInstance(campaign);
         getChildFragmentManager()
                 .beginTransaction()
                 .replace(R.id.notifications_list_container, detailFrag)
                 .addToBackStack(TAG)
                 .commit();
     }
+
 }

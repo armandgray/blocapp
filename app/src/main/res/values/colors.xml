@@ -8,8 +8,10 @@
     <color name="constitutionTextColor">#BB0000</color>
     <color name="constitutionHeadersColor">#BB0000</color>
     <color name="blocRolesColor">#999999</color>
-    <color name="blocRolesBorderColor">#FFFFFF</color>
-
+    <color name="blocRolesBorderColor">#cccccc</color>
+    <color name="aboveToolBarColor">#FF0000</color>
+    <color name="ToolBarColor">#FF2A00</color>
+    <color name="campaign_border_color">#cccccc</color>
     <color name="blocFamilyGroups">#aaa</color>
 
 </resources>

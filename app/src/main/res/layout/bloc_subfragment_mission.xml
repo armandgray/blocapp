@@ -345,7 +345,7 @@
                 app:srcCompat="@drawable/menu_point" />
 
             <ImageView
-                android:id="@+id/menu_bullet3"
+                android:id="@+id/menu_bullet1"
                 android:layout_width="@dimen/menu_bullet_side"
                 android:layout_height="@dimen/menu_bullet_side"
                 android:layout_margin="@dimen/bloc_menu_bullet_margin"
@@ -353,7 +353,7 @@
                 app:srcCompat="@drawable/menu_point" />
 
             <ImageView
-                android:id="@+id/menu_bullet4"
+                android:id="@+id/menu_bullet2"
                 android:layout_width="@dimen/menu_bullet_side"
                 android:layout_height="@dimen/menu_bullet_side"
                 android:layout_margin="@dimen/bloc_menu_bullet_margin"

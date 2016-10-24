@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import org.blocorganization.blocapp.R;
 
@@ -37,11 +36,11 @@ public class NavBarFragment extends Fragment {
         Log.i("FRAG", "Fragment Created");
         View rootView = inflater.inflate(R.layout.fragment_navbar, container, false);
         // onClick calls to mListener for each icon
-        ImageView bullhorn = (ImageView) rootView.findViewById(R.id.bullhorn);
-        bullhorn.setOnClickListener(new View.OnClickListener() {
+        ImageView home = (ImageView) rootView.findViewById(R.id.home);
+        home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mListener.onBullhornClick();
+                mListener.onHomeClick();
             }
         });
 
@@ -53,22 +52,22 @@ public class NavBarFragment extends Fragment {
             }
         });
 
-        ImageView emoticon = (ImageView) rootView.findViewById(R.id.emoticon);
-        emoticon.setOnClickListener(new View.OnClickListener() {
+        ImageView messages = (ImageView) rootView.findViewById(R.id.messages);
+        messages.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mListener.onMessagesClick();
             }
         });
 
-        ImageView personal = (ImageView) rootView.findViewById(R.id.personal);
-        personal.setOnClickListener(new View.OnClickListener() {
+        ImageView blinds = (ImageView) rootView.findViewById(R.id.blinds);
+        blinds.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {mListener.onNotificationsClick();
             }
         });
 
-        ImageView bloc = (ImageView) rootView.findViewById(R.id.boldB);
+        ImageView bloc = (ImageView) rootView.findViewById(R.id.ic_bloc);
         bloc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,7 +79,7 @@ public class NavBarFragment extends Fragment {
     }
 
     public interface NavBarFragmentListener {
-        void onBullhornClick();
+        void onHomeClick();
         void onCampaignsClick();
         void onMessagesClick();
         void onBlocClick();

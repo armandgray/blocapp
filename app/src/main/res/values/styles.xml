@@ -3,10 +3,10 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/aboveToolBarColor</item>
+        <item name="colorPrimaryDark">@color/aboveToolBarColor</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowBackground">@color/background</item>
+        <item name="android:windowBackground">@drawable/background_gradient_radial</item>
         <item name="android:textColor">@color/textColor</item>
         <item name="android:popupBackground">@color/background</item>
         <item name="android:listDivider">@color/textColor</item>
@@ -15,7 +15,7 @@
         <!--To change the background of options menu-->
         <item name="android:itemBackground">@color/background</item>
         <item name="android:typeface">sans</item>
-        <item name="android:icon">@drawable/bloc_logo_original_negative</item>
+        <item name="android:icon">@drawable/ic_bloc_negative</item>
     </style>
 
     <style name="AppTheme.NoActionBar">

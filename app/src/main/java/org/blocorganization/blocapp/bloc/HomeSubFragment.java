@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -41,6 +40,11 @@ public class HomeSubFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.bloc_subfragment_home, container, false);
 
+        ImageView btnImage = (ImageView) rootView.findViewById(R.id.ivBtn);
+        btnImage.setImageResource(R.drawable.ic_binoculars_white_48dp);
+        TextView btnText = (TextView) rootView.findViewById(R.id.tvBtn);
+        btnText.setText("Check Us Out");
+
         menuContainer = (LinearLayout) rootView.findViewById(R.id.menu_container);
         final LinearLayout layout = (LinearLayout) rootView.findViewById(R.id.bloc_layout);
         final ImageView chevron = (ImageView) rootView.findViewById(R.id.bloc_chevron_down);
@@ -50,7 +54,7 @@ public class HomeSubFragment extends Fragment {
         final ScrollView scrollView = (ScrollView) rootView.findViewById(R.id.bloc_scrollview);
         final TextView headerBroHood = (TextView) rootView.findViewById(R.id.header_brotherhood);
         final TextView textWhoAreWe = (TextView) rootView.findViewById(R.id.text_whoarewe);
-        Button checkUsBtn = (Button) rootView.findViewById(R.id.bloc_checkus_btn);
+        LinearLayout checkUsBtn = (LinearLayout) rootView.findViewById(R.id.btn_container);
 
         checkUsBtn.setOnClickListener(new View.OnClickListener() {
             @Override

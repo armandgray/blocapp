@@ -137,7 +137,7 @@ public class MessagesFragment extends Fragment implements MainActivity.MainActiv
                     viewHolder.messengerImageView
                             .setImageDrawable(ContextCompat
                                     .getDrawable(getContext(),
-                                            R.drawable.ic_ghost_white_36dp));
+                                            R.drawable.ic_ghost_white_48dp));
                 } else {
                     Glide.with(getContext())
                             .load(friendlyMessage.getPhotoUrl())

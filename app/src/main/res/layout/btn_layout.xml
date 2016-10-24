@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/btn_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/button_gradient"
+    android:gravity="center"
+    android:layout_marginTop="@dimen/btn_margin"
+    android:layout_marginBottom="@dimen/btn_margin"
+    android:orientation="horizontal"
+    android:padding="@dimen/btn_padding">
+
+    <ImageView
+        android:id="@+id/ivBtn"
+        android:layout_width="@dimen/btn_side"
+        android:layout_height="@dimen/btn_side"
+        android:layout_marginRight="@dimen/btn_padding"
+        android:contentDescription="@string/ic_packageup"/>
+
+    <TextView
+        android:id="@+id/tvBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/btn_text" />
+</LinearLayout>
