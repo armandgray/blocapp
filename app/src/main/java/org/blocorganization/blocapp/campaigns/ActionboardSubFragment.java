@@ -1,7 +1,6 @@
 package org.blocorganization.blocapp.campaigns;
 
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -15,17 +14,8 @@ import org.blocorganization.blocapp.R;
  */
 public class ActionboardSubFragment extends Fragment {
 
-    ActionboardFragListener mListener;
-
     public ActionboardSubFragment() {
         // Required empty public constructor
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        assert getParentFragment() instanceof ActionboardFragListener;
-        mListener = (ActionboardFragListener) getParentFragment();
     }
 
     public static ActionboardSubFragment newInstance() {
@@ -43,12 +33,7 @@ public class ActionboardSubFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.campaigns_subfragment_actionboard, container, false);
 
-        mListener.onActionboardCreated();
-
         return rootView;
     }
 
-    public interface ActionboardFragListener {
-        void onActionboardCreated();
-    }
 }

@@ -1,7 +1,6 @@
 package org.blocorganization.blocapp.campaigns;
 
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,17 +11,8 @@ import org.blocorganization.blocapp.R;
 
 public class HomeSubFragment extends Fragment {
 
-    HomeFragListener mListener;
-
     public HomeSubFragment() {
         // Required empty public constructor
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        assert getParentFragment() instanceof HomeFragListener;
-        mListener = (HomeFragListener) getParentFragment();
     }
 
     public static HomeSubFragment newInstance() {
@@ -41,10 +31,6 @@ public class HomeSubFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.campaigns_subfragment_home, container, false);
 
         return rootView;
-    }
-
-    public interface HomeFragListener {
-        void onHomeCreated();
     }
 
 }

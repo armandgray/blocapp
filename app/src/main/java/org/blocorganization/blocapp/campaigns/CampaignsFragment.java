@@ -6,23 +6,27 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import org.blocorganization.blocapp.R;
+import org.blocorganization.blocapp.utils.GestureListener;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CampaignsFragment extends Fragment
-        implements ActionboardSubFragment.ActionboardFragListener,
-                HomeSubFragment.HomeFragListener {
+public class CampaignsFragment extends Fragment {
 
     FragmentPagerAdapter adapterViewPager;
-    LinearLayout menu;
-    View selectedBullet;
+    static LinearLayout menu;
+    static View selectedBullet;
+
+    // Swipe Gesture Fields
+    private GestureDetector gestureDetector;
 
     private static FragmentManager mFragmentManager;
     private static Fragment createSubFrag;
@@ -43,6 +47,15 @@ public class CampaignsFragment extends Fragment
          *  https://guides.codepath.com/android/ViewPager-with-FragmentPagerAdapter
          */
         ViewPager vpPager = (ViewPager) rootView.findViewById(R.id.campaigns_vpager);
+        gestureDetector = new GestureDetector(getActivity(), new GestureListener(rootView, R.id.menu_container, R.id.menu_selected_bullet));
+        vpPager.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                gestureDetector.onTouchEvent(motionEvent);
+                return false;
+            }
+        });
+
         adapterViewPager = new MyPagerAdapter(getChildFragmentManager());
         vpPager.setAdapter(adapterViewPager);
 
@@ -55,15 +68,6 @@ public class CampaignsFragment extends Fragment
         vpPager.setCurrentItem(1);
 
         return rootView;
-    }
-
-    @Override
-    public void onActionboardCreated() {
-    }
-
-    @Override
-    public void onHomeCreated() {
-
     }
 
     public class MyPagerAdapter extends FragmentPagerAdapter {

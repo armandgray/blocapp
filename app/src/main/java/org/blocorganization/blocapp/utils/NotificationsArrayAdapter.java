@@ -13,12 +13,12 @@ import org.blocorganization.blocapp.models.Record;
 
 import java.util.List;
 
-public class RecordArrayAdapter extends ArrayAdapter<Record> {
+public class NotificationsArrayAdapter extends ArrayAdapter<Record> {
 
 	private Context context;
 	private List<? extends Record> objects;
 	
-	public RecordArrayAdapter(Context context, int resource, List<? extends Record> objects) {
+	public NotificationsArrayAdapter(Context context, int resource, List<? extends Record> objects) {
 		super(context, resource, (List<Record>) objects);
 		this.context = context;
 		this.objects = objects;

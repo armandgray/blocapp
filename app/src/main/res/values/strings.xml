@@ -116,5 +116,7 @@
     <string name="logo_negative">logo_negative</string>
     <string name="create_new_campaign">Create New Campaign</string>
     <string name="ic_packageup">ic_packageup</string>
+    <string name="campaign_admin_image">Campaign Admin Image</string>
+    <string name="chevron_text">More</string>
 
 </resources>

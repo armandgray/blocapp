@@ -13,7 +13,7 @@ import android.widget.ListView;
 import org.blocorganization.blocapp.R;
 import org.blocorganization.blocapp.models.Campaign;
 import org.blocorganization.blocapp.models.RecordData;
-import org.blocorganization.blocapp.utils.RecordArrayAdapter;
+import org.blocorganization.blocapp.utils.NotificationsArrayAdapter;
 
 import java.util.List;
 
@@ -34,7 +34,7 @@ public class NotificationsListFragment extends ListFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        RecordArrayAdapter adapter = new RecordArrayAdapter(getActivity(), R.layout.record_listitem, campaigns);
+        NotificationsArrayAdapter adapter = new NotificationsArrayAdapter(getActivity(), R.layout.record_listitem, campaigns);
         setListAdapter(adapter);
     }
 

@@ -44,7 +44,12 @@
 
             <include layout="@layout/campaign_frag_listitem" />
 
-            <include layout="@layout/btn_layout" />
+            <!--<android.support.v7.widget.RecyclerView-->
+                <!--android:id="@+id/rvCampaigns"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content" />-->
+
+            <include layout="@layout/btn_layout_red" />
 
             <View
                 android:layout_width="match_parent"
