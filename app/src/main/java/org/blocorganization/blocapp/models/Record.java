@@ -13,22 +13,22 @@ public abstract class Record {
     public static final String ICON_KEY = "ICON_KEY";
 
     //	private fields
-    private String recordType;
-    private String admin;
-    private String timestamp;
-    private String title;
-    private String description;
-    private String extras;
-    private int icon;
+    public String recordType;
+    public String admin;
+    public String timestamp;
+    public String title;
+    public String description;
+    public String extras;
+    public int icon;
 
     //	Constructor used when creating the data object
-    public Record(RecordType type, String admin, String extras, String description, String title, int icon) {
-        this.recordType = type.toString();
-        this.extras = extras;
-        this.admin = admin;
-        this.title = title;
-        this.description = description;
-        this.icon = icon;
+    public Record() {
+        this.recordType = null;
+        this.extras = null;
+        this.admin = null;
+        this.title = null;
+        this.description = null;
+        this.icon = 0;
 
         Long tsLong = System.currentTimeMillis()/1000;
         this.timestamp = tsLong.toString();
@@ -68,8 +68,8 @@ public abstract class Record {
         return recordType;
     }
 
-    public void setRecordType(RecordType recordType) {
-        this.recordType = recordType.toString();
+    public void setRecordType(String recordType) {
+        this.recordType = recordType;
     }
 
     public String getAdmin() {

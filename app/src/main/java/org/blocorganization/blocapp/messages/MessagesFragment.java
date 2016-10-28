@@ -55,7 +55,6 @@ public class MessagesFragment extends Fragment implements MainActivity.MainActiv
     private ProgressBar mProgressBar;
     private EditText mMessageEditText;
 
-    // Firebase instance variables
     private DatabaseReference mFirebaseDatabaseReference;
     private FirebaseRecyclerAdapter<FriendlyMessage, MessageViewHolder> mFirebaseAdapter;
     private FirebaseRemoteConfig mFirebaseRemoteConfig;

@@ -2,19 +2,31 @@ package org.blocorganization.blocapp;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
-import android.widget.LinearLayout;
 import android.widget.ViewFlipper;
 
-import org.blocorganization.blocapp.campaigns.CampaignDetailActivity;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import org.blocorganization.blocapp.models.Campaign;
+import org.blocorganization.blocapp.utils.CampaignsItemAdapter;
+
+import java.util.ArrayList;
+import java.util.Map;
+
+import static org.blocorganization.blocapp.campaigns.CampaignsSubFragment.CAMPAIGNS_CHILD;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,6 +41,10 @@ public class HomeFragment extends Fragment {
     private ViewFlipper mViewFlipper;
     private Context mContext;
     private final GestureDetector detector = new GestureDetector(new SwipeGestureDetector());
+    private DatabaseReference mCampaignsDatabaseReference;
+    private CampaignsItemAdapter adapter;
+
+    ArrayList<Campaign> campaigns;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -56,15 +72,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        LinearLayout campaignBtn = (LinearLayout) rootView.findViewById(R.id.campaignItemContainer);
-        campaignBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), CampaignDetailActivity.class);
-                startActivity(intent);
-            }
-        });
-
         // Begin Slideshow; Stops auto flip on swipe below.
         mViewFlipper.setAutoStart(true);
         mViewFlipper.setFlipInterval(7000);
@@ -72,6 +79,15 @@ public class HomeFragment extends Fragment {
 
         // add animation listener to viewflipper
 //        mViewFlipper.getInAnimation().setAnimationListener(mAnimationListener);
+
+        final RecyclerView rvCampaigns = (RecyclerView) rootView.findViewById(R.id.rvCampaigns);
+        campaigns = new ArrayList<>();
+        mCampaignsDatabaseReference = FirebaseDatabase.getInstance().getReference().child(CAMPAIGNS_CHILD);
+
+        adapter = new CampaignsItemAdapter(getActivity(), campaigns);
+        rvCampaigns.setAdapter(adapter);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        rvCampaigns.setLayoutManager(layoutManager);
 
         return rootView;
     }
@@ -104,6 +120,39 @@ public class HomeFragment extends Fragment {
 
             return false;
         }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // Add child event listener to the campaigns
+        mCampaignsDatabaseReference.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Map<String, String> campaignsSnapshot = (Map) dataSnapshot.getValue();
+                Campaign campaign = new Campaign();
+                campaign.setCampaignPhoto(R.drawable.theme_slopes);
+                campaigns.add(0, campaign);
+                adapter.notifyItemInserted(0);
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
     }
 
     //animation listener

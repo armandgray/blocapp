@@ -62,7 +62,8 @@
     <dimen name="campaign_detail_text_size">8sp</dimen>
     <dimen name="campaigns_image_height">122dp</dimen>
     <dimen name="campaigns_item_width">180dp</dimen>
-    <dimen name="campaigns_item_height">200dp</dimen>
+    <dimen name="campaigns_item_height">190dp</dimen>
     <dimen name="campaign_detail_header">300dp</dimen>
+    <dimen name="campaigns_recycler_margin">20dp</dimen>
 
 </resources>

@@ -1,88 +1,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="org.blocorganization.blocapp.HomeFragment">
 
-    <ViewFlipper
-        android:id="@+id/view_flipper"
-        android:layout_width="fill_parent"
-        android:layout_height="175dp"
-        android:background="@drawable/viewflipper_border"
-        android:paddingBottom="1dp"
-        android:paddingTop="1dp">
-
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center"
-                android:adjustViewBounds="true"
-                android:padding="70dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/logo_negative" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:layout_width="fill_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:adjustViewBounds="true"
-                android:scaleType="centerCrop"
-                android:src="@drawable/blocbbq2016_ianwbx" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:layout_width="fill_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:adjustViewBounds="true"
-                android:scaleType="centerCrop"
-                android:src="@drawable/theme_consent" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:layout_width="fill_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:adjustViewBounds="true"
-                android:scaleType="centerCrop"
-                android:src="@drawable/dinner_jmnuad" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/white">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center"
-                android:adjustViewBounds="true"
-                android:scaleType="centerCrop"
-                android:src="@drawable/theme_donate" />
-        </RelativeLayout>
-    </ViewFlipper>
+    <include layout="@layout/home_viewflipper" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -92,37 +15,11 @@
         android:text="@string/campaigns"
         android:textSize="20sp" />
 
-    <HorizontalScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvCampaigns"
+        android:layout_width="match_parent"
         android:layout_margin="@dimen/activity_horizontal_margin"
-        android:background="@drawable/background_square_shadow">
-        <!-- background shadow: http://inloop.github.io/shadow4android/ -->
-
-        <LinearLayout
-            android:id="@+id/campaignItemContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="@dimen/home_campaign_images_side"
-                android:layout_height="@dimen/home_campaign_images_side"
-                android:layout_margin="@dimen/home_campaign_images_margin"
-                android:background="@drawable/campaigns_image_bottom_border"
-                android:contentDescription="@string/campaigns_image_desc"
-                app:srcCompat="@drawable/dinner_jmnuad" />
-
-            <ImageView
-                android:layout_width="@dimen/home_campaign_images_side"
-                android:layout_height="@dimen/home_campaign_images_side"
-                android:layout_margin="@dimen/home_campaign_images_margin"
-                android:background="@drawable/campaigns_image_bottom_border"
-                android:contentDescription="@string/campaigns_image_desc"
-                app:srcCompat="@drawable/toys_for_tots" />
-
-        </LinearLayout>
-    </HorizontalScrollView>
+        android:layout_height="wrap_content" />
 
     <View
         android:layout_width="match_parent"
