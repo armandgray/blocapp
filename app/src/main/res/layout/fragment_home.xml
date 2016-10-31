@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingTop="10dp"
+        android:id="@+id/campaigns_header"
         android:text="@string/campaigns"
         android:textSize="20sp" />
 

@@ -118,5 +118,15 @@
     <string name="ic_packageup">ic_packageup</string>
     <string name="campaign_admin_image">Campaign Admin Image</string>
     <string name="chevron_text">More</string>
+    <string name="ic_edit">ic edit</string>
+    <string name="campaign_save_dialog_text">Are you sure you want to save your changes? You will not be able to undo this step</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="do_not_ask_me_again">Do not ask me again!</string>
+    <string name="checkbox">checkbox</string>
+    <string name="next">Next</string>
+    <string name="tvEditDateText">Checkbox To Edit Date</string>
+    <string name="finish">Finish</string>
+    <string name="enter_title">Enter Title</string>
 
 </resources>

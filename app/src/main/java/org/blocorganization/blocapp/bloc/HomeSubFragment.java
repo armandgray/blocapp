@@ -32,7 +32,12 @@ public class HomeSubFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        assert getParentFragment() instanceof HomeScrollListener;
+        try {
+            mListener = (HomeScrollListener) getParentFragment();
+        } catch (ClassCastException e) {
+            throw new ClassCastException(getParentFragment().toString()
+                    + " must implement HomeScrollListener");
+        }
         mListener = (HomeScrollListener) getParentFragment();
     }
 

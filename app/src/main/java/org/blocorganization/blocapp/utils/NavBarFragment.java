@@ -35,7 +35,7 @@ public class NavBarFragment extends Fragment {
                              Bundle savedInstanceState) {
         Log.i("FRAG", "Fragment Created");
         View rootView = inflater.inflate(R.layout.fragment_navbar, container, false);
-        // onClick calls to mListener for each icon
+        // onClick calls to mListener for each theme
         ImageView home = (ImageView) rootView.findViewById(R.id.home);
         home.setOnClickListener(new View.OnClickListener() {
             @Override

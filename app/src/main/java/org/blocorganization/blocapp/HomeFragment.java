@@ -2,6 +2,7 @@ package org.blocorganization.blocapp;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -20,8 +21,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.blocorganization.blocapp.campaigns.CampaignDetailActivity;
 import org.blocorganization.blocapp.models.Campaign;
 import org.blocorganization.blocapp.utils.CampaignsItemAdapter;
+import org.blocorganization.blocapp.utils.RecyclerItemClickListener;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -82,12 +85,22 @@ public class HomeFragment extends Fragment {
 
         final RecyclerView rvCampaigns = (RecyclerView) rootView.findViewById(R.id.rvCampaigns);
         campaigns = new ArrayList<>();
-        mCampaignsDatabaseReference = FirebaseDatabase.getInstance().getReference().child(CAMPAIGNS_CHILD);
+        mCampaignsDatabaseReference = FirebaseDatabase.getInstance().getReference(CAMPAIGNS_CHILD);
 
         adapter = new CampaignsItemAdapter(getActivity(), campaigns);
         rvCampaigns.setAdapter(adapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         rvCampaigns.setLayoutManager(layoutManager);
+        
+        rvCampaigns.addOnItemTouchListener(new RecyclerItemClickListener(getContext(),
+                new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        Intent intent = new Intent(getActivity(), CampaignDetailActivity.class);
+                        intent.putExtras(campaigns.get(position).toBundle());
+                        startActivity(intent);
+                    }
+                })
+        );
 
         return rootView;
     }
@@ -132,7 +145,7 @@ public class HomeFragment extends Fragment {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Map<String, String> campaignsSnapshot = (Map) dataSnapshot.getValue();
                 Campaign campaign = new Campaign();
-                campaign.setCampaignPhoto(R.drawable.theme_slopes);
+                campaign.setCampaignPhoto(campaignsSnapshot.get("campaignPhoto"));
                 campaigns.add(0, campaign);
                 adapter.notifyItemInserted(0);
             }

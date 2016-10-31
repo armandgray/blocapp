@@ -4,6 +4,9 @@
     <dimen name="chevron_margin_left">8dp</dimen>
     <dimen name="chevron_margin_bottom">5dp</dimen>
 
+    <dimen name="circle_checkbox_side">18dp</dimen>
+
+
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="nav_header_vertical_spacing">16dp</dimen>
     <dimen name="nav_header_height">180dp</dimen>
@@ -55,7 +58,7 @@
     <!-- campaigns frag -->
     <dimen name="campaigns_image_margin">2.5dp</dimen>
     <dimen name="campaigns_header_size">14sp</dimen>
-    <dimen name="campaigns_image_side">100dp</dimen>
+    <dimen name="campaigns_image_side">200dp</dimen>
     <dimen name="home_campaign_images_side">90dp</dimen>
     <dimen name="home_campaign_images_margin">10dp</dimen>
     <dimen name="campaign_detail_icon_side">15dp</dimen>
@@ -65,5 +68,9 @@
     <dimen name="campaigns_item_height">190dp</dimen>
     <dimen name="campaign_detail_header">300dp</dimen>
     <dimen name="campaigns_recycler_margin">20dp</dimen>
+    <dimen name="campaign_detail_edit_side">40dp</dimen>
+    <dimen name="campaign_details_between_margin">10dp</dimen>
+    <dimen name="dialog_title_size">24sp</dimen>
+    <dimen name="dialog_text_size">18sp</dimen>
 
 </resources>

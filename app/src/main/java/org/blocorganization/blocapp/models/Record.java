@@ -2,7 +2,7 @@ package org.blocorganization.blocapp.models;
 
 import android.os.Bundle;
 
-public abstract class Record {
+public class Record {
 
     //	constants for field references
     public static final String RECORD_TYPE_KEY = "RECORD_TYPE_KEY";
@@ -11,6 +11,7 @@ public abstract class Record {
     public static final String TITLE_KEY = "TITLE_KEY";
     public static final String EXTRAS_KEY = "EXTRAS_KEY";
     public static final String ICON_KEY = "ICON_KEY";
+    public static final String TIMESTAMP_KEY = "TIMESTAMP_KEY";
 
     //	private fields
     public String recordType;
@@ -19,7 +20,7 @@ public abstract class Record {
     public String title;
     public String description;
     public String extras;
-    public int icon;
+    public String campaignTheme;
 
     //	Constructor used when creating the data object
     public Record() {
@@ -28,7 +29,7 @@ public abstract class Record {
         this.admin = null;
         this.title = null;
         this.description = null;
-        this.icon = 0;
+        this.campaignTheme = null;
 
         Long tsLong = System.currentTimeMillis()/1000;
         this.timestamp = tsLong.toString();
@@ -42,18 +43,21 @@ public abstract class Record {
             this.admin = b.getString(ADMIN_KEY);
             this.title = b.getString(TITLE_KEY);
             this.description = b.getString(DESCRIPTION_KEY);
-            this.icon = b.getInt(ICON_KEY);
+            this.campaignTheme = b.getString(ICON_KEY);
+            this.timestamp = b.getString(TIMESTAMP_KEY);
         }
     }
 
     //	Package data for transfer between activities
-    public Bundle toBundle(Bundle b) {
+    public Bundle toBundle() {
+        Bundle b = new Bundle();
         b.putString(RECORD_TYPE_KEY, this.recordType);
         b.putString(DESCRIPTION_KEY, this.description);
         b.putString(ADMIN_KEY, this.admin);
         b.putString(TITLE_KEY, this.title);
         b.putString(EXTRAS_KEY, this.extras);
-        b.putInt(ICON_KEY, this.icon);
+        b.putString(ICON_KEY, this.campaignTheme);
+        b.putString(TIMESTAMP_KEY, this.timestamp);
         return b;
     }
 
@@ -100,11 +104,11 @@ public abstract class Record {
         this.title = title;
     }
 
-    public int getIcon() {
-        return icon;
+    public String getCampaignTheme() {
+        return campaignTheme;
     }
 
-    public void setIcon(int icon) {
-        this.icon = icon;
+    public void setCampaignTheme(String campaignTheme) {
+        this.campaignTheme = campaignTheme;
     }
 }

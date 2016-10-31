@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.blocorganization.blocapp">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -9,7 +12,7 @@
         android:logo="@drawable/ic_bloc_negative"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
         <activity
             android:name=".SignInActivity"
             android:label="@string/sign_in_title"
@@ -43,7 +46,7 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".campaigns.CampaignDetailActivity"></activity>
+        <activity android:name=".campaigns.CampaignDetailActivity" />
     </application>
 
 </manifest>

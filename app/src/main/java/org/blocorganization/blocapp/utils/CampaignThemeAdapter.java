@@ -11,8 +11,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-
 import org.blocorganization.blocapp.R;
 import org.blocorganization.blocapp.models.Campaign;
 
@@ -20,15 +18,14 @@ import java.util.List;
 
 import static org.blocorganization.blocapp.campaigns.CampaignDetailActivity.getDPI;
 
-public class CampaignsItemAdapter extends
-        RecyclerView.Adapter<CampaignsItemAdapter.ViewHolder> {
+public class CampaignThemeAdapter extends
+        RecyclerView.Adapter<CampaignThemeAdapter.ViewHolder> {
 
     private List<Campaign> mCampaigns;
     private Activity mActivity;
-    private Context mContext;
 
     // Pass in the contact array into the constructor
-    public CampaignsItemAdapter(Activity activity, List<Campaign> campaigns) {
+    public CampaignThemeAdapter(Activity activity, List<Campaign> campaigns) {
         mCampaigns = campaigns;
         mActivity = activity;
     }
@@ -36,8 +33,8 @@ public class CampaignsItemAdapter extends
     // Usually involves inflating a layout from XML and returning the holder
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        mContext = parent.getContext();
-        LayoutInflater inflater = LayoutInflater.from(mContext);
+        Context context = parent.getContext();
+        LayoutInflater inflater = LayoutInflater.from(context);
 
         // Inflate the custom layout
         View contactView = inflater.inflate(R.layout.campaign_listitem, parent, false);
@@ -49,7 +46,7 @@ public class CampaignsItemAdapter extends
 
     // Involves populating data into the item through holder
     @Override
-    public void onBindViewHolder(CampaignsItemAdapter.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(CampaignThemeAdapter.ViewHolder viewHolder, int position) {
         // Get the data model based on position
         Campaign campaign = mCampaigns.get(position);
         DisplayMetrics metrics = new DisplayMetrics();
@@ -63,8 +60,7 @@ public class CampaignsItemAdapter extends
         TextView tvCampaignDetails = viewHolder.tvCampaignDetails;
         TextView tvCampaignTitle = viewHolder.tvCampaignTitle;
 
-
-        Picasso.with(mActivity).load(campaign.getCampaignPhoto()).into(ivCampaignImage);
+//        ivCampaignImage.setImageResource(campaign.getCampaignPhoto());
         tvCampaignDetails.setText(campaign.getDate() + ",\n by " + campaign.getAdmin());
 
         if (campaign.getTitle() != null) {

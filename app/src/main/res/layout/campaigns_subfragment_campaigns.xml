@@ -92,6 +92,7 @@
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:id="@+id/ivTemporary"
                     android:layout_width="@dimen/campaigns_image_side"
                     android:layout_height="@dimen/campaigns_image_side"
                     android:layout_margin="@dimen/campaigns_image_margin"

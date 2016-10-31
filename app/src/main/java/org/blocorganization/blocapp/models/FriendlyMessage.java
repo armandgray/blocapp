@@ -15,8 +15,13 @@
  */
 package org.blocorganization.blocapp.models;
 
+import android.os.Bundle;
+
 public class FriendlyMessage {
 
+    public static final String TEXT = "TEXT";
+    public static final String NAME = "NAME";
+    public static final String PHOTO = "PHOTO";
     private String text;
     private String name;
     private String photoUrl;
@@ -30,7 +35,24 @@ public class FriendlyMessage {
         this.photoUrl = photoUrl;
     }
 
-    public String getText() {
+    public FriendlyMessage(Bundle b) {
+        if (b != null) {
+            this.text = b.getString(TEXT);
+            this.name = b.getString(NAME);
+            this.photoUrl = b.getString(PHOTO);
+        }
+    }
+
+    public Bundle toBundle() {
+        Bundle b = new Bundle();
+        b.putString(TEXT, this.text);
+        b.putString(NAME, this.name);
+        b.putString(PHOTO, this.photoUrl);
+
+        return b;
+    }
+
+        public String getText() {
         return text;
     }
 

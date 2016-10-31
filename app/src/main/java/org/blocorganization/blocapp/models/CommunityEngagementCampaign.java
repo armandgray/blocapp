@@ -1,45 +1,19 @@
 package org.blocorganization.blocapp.models;
 
-import android.os.Bundle;
-
-import org.blocorganization.blocapp.R;
-
 public class CommunityEngagementCampaign extends Campaign {
 
-    //	private fields
-    public String abbreviation;
-    public String benefits;
-    public String ambition;
-    public int campaignPhoto;
-    public String planOfExecution;
-    public String itemizedBudget;
-    public String venue;
-    public String month;
-    public String date;
-    public String time;
-
-    // From Record
-    public String recordType;
-    public String admin;
-    public String timestamp;
-    public String title;
-    public String description;
-    public String extras;
-    public int icon;
-
     public CommunityEngagementCampaign() {
-        setRecordType(RecordType.COMMUNITY_ENGAGEMENT.toString());
-        setIcon(R.drawable.ic_earth_grey600_48dp);
         this.abbreviation = null;
         this.benefits = null;
         this.ambition = null;
-        this.campaignPhoto = 0;
+        this.campaignPhoto = null;
         this.planOfExecution = null;
         this.itemizedBudget = null;
         this.venue = null;
         this.month = null;
         this.date = null;
         this.time = null;
+        this.campaignTheme = null;
 
         // From Record
         this.recordType = null;
@@ -47,14 +21,9 @@ public class CommunityEngagementCampaign extends Campaign {
         this.admin = null;
         this.title = null;
         this.description = null;
-        this.icon = 0;
 
         Long tsLong = System.currentTimeMillis()/1000;
         this.timestamp = tsLong.toString();
-    }
-
-    public CommunityEngagementCampaign(Bundle b) {
-        super(b);
     }
 
     @Override
@@ -87,13 +56,11 @@ public class CommunityEngagementCampaign extends Campaign {
         this.ambition = ambition;
     }
 
-    @Override
-    public int getCampaignPhoto() {
+    public String getCampaignPhoto() {
         return campaignPhoto;
     }
 
-    @Override
-    public void setCampaignPhoto(int campaignPhoto) {
+    public void setCampaignPhoto(String campaignPhoto) {
         this.campaignPhoto = campaignPhoto;
     }
 
@@ -216,13 +183,11 @@ public class CommunityEngagementCampaign extends Campaign {
         this.extras = extras;
     }
 
-    @Override
-    public int getIcon() {
-        return icon;
+    public String getCampaignTheme() {
+        return campaignTheme;
     }
 
-    @Override
-    public void setIcon(int icon) {
-        this.icon = icon;
+    public void setCampaignTheme(String campaignTheme) {
+        this.campaignTheme = campaignTheme;
     }
 }

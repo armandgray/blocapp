@@ -9,6 +9,7 @@ public class Campaign extends Record {
     public static final String BENEFITS_KEY = "BENEFITS_KEY";
     public static final String AMBITION_KEY = "AMBITION_KEY";
     public static final String CAMPAIGN_PHOTO_KEY = "CAMPAIGN_PHOTO_KEY";
+    public static final String CAMPAIGN_THEME_KEY = "CAMPAIGN_THEME_KEY";
     public static final String PLAN_OF_EXECUTION_KEY = "PLAN_OF_EXECUTION_KEY";
     public static final String ITEMIZED_BUDGET_KEY = "ITEMIZED_BUDGET_KEY";
     public static final String VENUE_KEY = "VENUE_KEY";
@@ -20,19 +21,21 @@ public class Campaign extends Record {
     public String abbreviation;
     public String benefits;
     public String ambition;
-    public int campaignPhoto;
+    public String campaignPhoto;
     public String planOfExecution;
     public String itemizedBudget;
     public String venue;
     public String month;
     public String date;
     public String time;
+    public String campaignTheme;
 
     public Campaign() {
         this.abbreviation = null;
         this.benefits = null;
         this.ambition = null;
-        this.campaignPhoto = 0;
+        this.campaignPhoto = null;
+        this.campaignTheme = null;
         this.planOfExecution = null;
         this.itemizedBudget = null;
         this.venue = null;
@@ -48,14 +51,14 @@ public class Campaign extends Record {
             this.abbreviation = b.getString(ABBREVIATION_KEY);
             this.benefits = b.getString(BENEFITS_KEY);
             this.ambition = b.getString(AMBITION_KEY);
-            this.campaignPhoto = b.getInt(CAMPAIGN_PHOTO_KEY);
+            this.campaignPhoto = b.getString(CAMPAIGN_PHOTO_KEY);
+            this.campaignTheme = b.getString(CAMPAIGN_THEME_KEY);
             this.planOfExecution = b.getString(PLAN_OF_EXECUTION_KEY);
             this.itemizedBudget = b.getString(ITEMIZED_BUDGET_KEY);
             this.venue = b.getString(VENUE_KEY);
             this.month = b.getString(MONTH_KEY);
             this.date = b.getString(DATE_KEY);
             this.time = b.getString(TIME_KEY);
-
         }
     }
 
@@ -66,16 +69,16 @@ public class Campaign extends Record {
      * @return
      */
     public Bundle toBundle() {
-        Bundle b = new Bundle();
-        b = super.toBundle(b); // careful about copy vs. pointer; maybe b = is not necessary
+        Bundle b = super.toBundle(); // careful about copy vs. pointer; maybe b = is not necessary
         b.putString(ABBREVIATION_KEY, this.abbreviation);
         b.putString(BENEFITS_KEY, this.benefits);
         b.putString(AMBITION_KEY, this.ambition);
-        b.putInt(CAMPAIGN_PHOTO_KEY, this.campaignPhoto);
+        b.putString(CAMPAIGN_PHOTO_KEY, this.campaignPhoto);
+        b.putString(CAMPAIGN_THEME_KEY, this.campaignTheme);
         b.putString(PLAN_OF_EXECUTION_KEY, this.planOfExecution);
         b.putString(ITEMIZED_BUDGET_KEY, this.itemizedBudget);
         b.putString(VENUE_KEY, this.venue);
-        b.putString(DATE_KEY, this.month);
+        b.putString(MONTH_KEY, this.month);
         b.putString(DATE_KEY, this.date);
         b.putString(TIME_KEY, this.time);
 
@@ -99,11 +102,11 @@ public class Campaign extends Record {
         this.ambition = ambition;
     }
 
-    public int getCampaignPhoto() {
+    public String getCampaignPhoto() {
         return campaignPhoto;
     }
 
-    public void setCampaignPhoto(int campaignPhoto) {
+    public void setCampaignPhoto(String campaignPhoto) {
         this.campaignPhoto = campaignPhoto;
     }
 
@@ -162,4 +165,13 @@ public class Campaign extends Record {
     public void setMonth(String month) {
         this.month = month;
     }
+
+    public String getCampaignTheme() {
+        return campaignTheme;
+    }
+
+    public void setCampaignTheme(String campaignTheme) {
+        this.campaignTheme = campaignTheme;
+    }
+
 }

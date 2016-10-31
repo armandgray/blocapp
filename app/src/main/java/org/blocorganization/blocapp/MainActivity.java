@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity
 
         MenuItem tools= menu.findItem(R.id.drawer_title);
         SpannableString s = new SpannableString(tools.getTitle());
-        s.setSpan(new TextAppearanceSpan(this, R.style.nav_titles), 0, s.length(), 0);
+        s.setSpan(new TextAppearanceSpan(this, R.style.NavTitles), 0, s.length(), 0);
         tools.setTitle(s);
 
         navigationView.setNavigationItemSelectedListener(this);
