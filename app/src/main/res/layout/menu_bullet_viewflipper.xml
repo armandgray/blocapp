@@ -46,11 +46,11 @@
             app:srcCompat="@drawable/menu_point" />
 
         <ImageView
-            android:id="@+id/menu_selected_bullet"
-            android:layout_width="@dimen/menu_selected_bullet_side"
-            android:layout_height="@dimen/menu_selected_bullet_side"
+            android:id="@+id/menu_bullet4"
+            android:layout_width="@dimen/menu_bullet_side"
+            android:layout_height="@dimen/menu_bullet_side"
             android:layout_margin="@dimen/bloc_menu_bullet_margin"
             android:contentDescription="@string/menu_bullet"
-            app:srcCompat="@drawable/menu_selected_point" />
+            app:srcCompat="@drawable/menu_point" />
     </LinearLayout>
 </RelativeLayout>

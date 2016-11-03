@@ -8,13 +8,12 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import org.blocorganization.blocapp.R;
-import org.blocorganization.blocapp.utils.GestureListener;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,8 +21,13 @@ import org.blocorganization.blocapp.utils.GestureListener;
 public class BlocFragment extends Fragment implements HomeSubFragment.HomeScrollListener {
 
     FragmentPagerAdapter adapterViewPager;
-    static LinearLayout menu;
-    static View selectedBullet;
+    private LinearLayout menu;
+    private View selectedBullet;
+    private ImageView menuBullet0;
+    private ImageView menuBullet1;
+    private ImageView menuBullet2;
+    private ImageView menuBullet3;
+    private ImageView menuBullet4;
 
     // Swipe Gesture Fields
     private GestureDetector gestureDetector;
@@ -47,24 +51,57 @@ public class BlocFragment extends Fragment implements HomeSubFragment.HomeScroll
          *  https://guides.codepath.com/android/ViewPager-with-FragmentPagerAdapter
          */
         ViewPager vpPager = (ViewPager) rootView.findViewById(R.id.bloc_vpager);
-        gestureDetector = new GestureDetector(getActivity(), new GestureListener(rootView, R.id.menu_container, R.id.menu_selected_bullet));
-        vpPager.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                gestureDetector.onTouchEvent(motionEvent);
-                return false;
-            }
-        });
-
         adapterViewPager = new MyPagerAdapter(getChildFragmentManager());
         vpPager.setAdapter(adapterViewPager);
+        vpPager.setCurrentItem(2);
 
         menu = (LinearLayout) rootView.findViewById(R.id.menu_container);
-        selectedBullet = menu.getChildAt(4);
-        menu.removeView(menu.getChildAt(4));
-        menu.addView(selectedBullet, 2);
+        menuBullet0 = (ImageView) menu.getChildAt(0);
+        menuBullet1 = (ImageView) menu.getChildAt(1);
+        menuBullet2 = (ImageView) menu.getChildAt(2);
+        menuBullet3 = (ImageView) menu.getChildAt(3);
+        menuBullet4 = (ImageView) menu.getChildAt(4);
+        menuBullet2.setImageResource(R.drawable.menu_selected_point);
 
-        vpPager.setCurrentItem(2);
+        vpPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                switch (position) {
+                    case 0:
+                        menuBullet1.setImageResource(R.drawable.menu_point);
+                        menuBullet0.setImageResource(R.drawable.menu_selected_point);
+                        return;
+                    case 1:
+                        menuBullet0.setImageResource(R.drawable.menu_point);
+                        menuBullet2.setImageResource(R.drawable.menu_point);
+                        menuBullet1.setImageResource(R.drawable.menu_selected_point);
+                        return;
+                    case 2:
+                        menuBullet1.setImageResource(R.drawable.menu_point);
+                        menuBullet3.setImageResource(R.drawable.menu_point);
+                        menuBullet2.setImageResource(R.drawable.menu_selected_point);
+                        return;
+                    case 3:
+                        menuBullet2.setImageResource(R.drawable.menu_point);
+                        menuBullet4.setImageResource(R.drawable.menu_point);
+                        menuBullet3.setImageResource(R.drawable.menu_selected_point);
+                        return;
+                    case 4:
+                        menuBullet3.setImageResource(R.drawable.menu_point);
+                        menuBullet4.setImageResource(R.drawable.menu_selected_point);
+                        return;
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
         return rootView;
     }

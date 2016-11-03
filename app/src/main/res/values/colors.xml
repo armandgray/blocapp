@@ -13,5 +13,6 @@
     <color name="ToolBarColor">#FF2A00</color>
     <color name="campaign_border_color">#cccccc</color>
     <color name="blocFamilyGroups">#aaa</color>
+    <color name="viewLightGrayBackground">#E8E8E8</color>
 
 </resources>

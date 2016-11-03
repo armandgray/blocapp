@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -78,7 +77,6 @@ public class CampaignDetailActivity extends AppCompatActivity
 
         if (getIntent().getExtras() != null) {
             Campaign campaign = new Campaign(getIntent().getExtras());
-            Toast.makeText(this, campaign.getCampaignTheme(), Toast.LENGTH_SHORT).show();
             Picasso.with(this).load(campaign.getCampaignPhoto()).into(ivCampaignImage);
             Picasso.with(this).load(campaign.getCampaignTheme()).into(ivTheme);
             tvTitle.setText(campaign.getTitle());
@@ -89,27 +87,6 @@ public class CampaignDetailActivity extends AppCompatActivity
             tvBenefits.setText(campaign.getBenefits());
             tvPlan.setText(campaign.getPlanOfExecution());
             tvBudget.setText(campaign.getItemizedBudget());
-        }
-
-        final ImageView cbInfo = (ImageView) findViewById(R.id.cbInfo);
-        final ImageView cbAdmin = (ImageView) findViewById(R.id.cbAdmin);
-        final ImageView cbDesc = (ImageView) findViewById(R.id.cbDesc);
-        final ImageView cbAmbition = (ImageView) findViewById(R.id.cbAmbition);
-        final ImageView cbBenefits = (ImageView) findViewById(R.id.cbBenefits);
-        final ImageView cbPlan = (ImageView) findViewById(R.id.cbPlan);
-        final ImageView cbBudget = (ImageView) findViewById(R.id.cbBudget);
-
-        final List<ImageView> checkboxes = new ArrayList<>();
-        checkboxes.add(cbInfo);
-        checkboxes.add(cbAdmin);
-        checkboxes.add(cbDesc);
-        checkboxes.add(cbAmbition);
-        checkboxes.add(cbBenefits);
-        checkboxes.add(cbPlan);
-        checkboxes.add(cbBudget);
-
-        for (ImageView cb : checkboxes) {
-            cb.setVisibility(View.GONE);
         }
 
         metrics = new DisplayMetrics();
@@ -123,83 +100,17 @@ public class CampaignDetailActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 if (clicked) {
-                    editBtn.setImageResource(R.drawable.ic_pencil_box_outline_white_48dp);
-
-                    for (View v : views) { v.animate().translationXBy(-translationX); }
-                    for (ImageView cb : checkboxes) { cb.setVisibility(View.GONE); }
                     if (campaignEdited) {
                         new SaveChangesDialogFragment()
                                 .show(getSupportFragmentManager(), DIALOG);
-                        for (ImageView cb : checkboxes) { cb.setImageResource(R.drawable.circle_checkbox); }
                         campaignEdited = false;
                     }
                     clicked = !clicked;
                 } else {
-                    editBtn.setImageResource(R.drawable.ic_check_white_48dp);
-
-                    for (View v : views) { v.animate().translationXBy(translationX); }
-                    for (ImageView cb : checkboxes) { cb.setVisibility(View.VISIBLE); }
-
+                    new CreateInfoDialog()
+                            .show(getSupportFragmentManager(), DIALOG);
                     clicked = !clicked;
                 }
-            }
-        });
-
-        cbInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cbInfo.setImageResource(R.drawable.circle_checkbox_checked);
-                new CreateInfoDialog()
-                        .show(getSupportFragmentManager(), DIALOG);
-                campaignEdited = true;
-            }
-        });
-
-        cbAdmin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cbAdmin.setImageResource(R.drawable.circle_checkbox_checked);
-                campaignEdited = true;
-            }
-        });
-
-        cbDesc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cbDesc.setImageResource(R.drawable.circle_checkbox_checked);
-                campaignEdited = true;
-            }
-        });
-
-        cbAmbition.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cbAmbition.setImageResource(R.drawable.circle_checkbox_checked);
-                campaignEdited = true;
-            }
-        });
-
-        cbBenefits.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cbBenefits.setImageResource(R.drawable.circle_checkbox_checked);
-                campaignEdited = true;
-            }
-        });
-
-        cbPlan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cbPlan.setImageResource(R.drawable.circle_checkbox_checked);
-                campaignEdited = true;
-            }
-        });
-
-        cbBudget.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cbBudget.setImageResource(R.drawable.circle_checkbox_checked);
-                campaignEdited = true;
             }
         });
 

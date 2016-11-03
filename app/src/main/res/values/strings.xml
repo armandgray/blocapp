@@ -115,7 +115,7 @@
     <string name="ic_binoculars">ic_binoculars</string>
     <string name="logo_negative">logo_negative</string>
     <string name="create_new_campaign">Create New Campaign</string>
-    <string name="ic_packageup">ic_packageup</string>
+    <string name="icon">icon</string>
     <string name="campaign_admin_image">Campaign Admin Image</string>
     <string name="chevron_text">More</string>
     <string name="ic_edit">ic edit</string>
@@ -128,5 +128,11 @@
     <string name="tvEditDateText">Checkbox To Edit Date</string>
     <string name="finish">Finish</string>
     <string name="enter_title">Enter Title</string>
+    <string name="calendar_image">calendar_image</string>
+    <string name="upcoming_for_you">Upcoming For You:</string>
+    <string name="feed">Feed</string>
+    <string name="in_progress">In Progress</string>
+    <string name="archived">Archived</string>
+    <string name="recurring">Recurring</string>
 
 </resources>

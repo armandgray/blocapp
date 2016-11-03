@@ -141,9 +141,58 @@ public class CampaignsSubFragment extends Fragment {
         // Add campaigns to FirebaseDatabase child("campaigns")
         mCampaignsDatabaseReference = FirebaseDatabase.getInstance().getReference(CAMPAIGNS_CHILD);
         mCampaignsDatabaseReference.setValue(campaigns);
+        mCampaignsDatabaseReference.addChildEventListener(new ChildEventListener() {
+
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Map<String, String> campaignsSnapshot = (Map) dataSnapshot.getValue();
+                final CommunityEngagementCampaign campaign = new CommunityEngagementCampaign();
+
+                campaign.setAbbreviation(campaignsSnapshot.get("abbreviation"));
+                campaign.setTitle(campaignsSnapshot.get("title"));
+                campaign.setAdmin(campaignsSnapshot.get("admin"));
+                campaign.setDescription(campaignsSnapshot.get("description"));
+                campaign.setBenefits(campaignsSnapshot.get("benefits"));
+                campaign.setAmbition(campaignsSnapshot.get("admin"));
+                campaign.setPlanOfExecution(campaignsSnapshot.get("planOfExecution"));
+                campaign.setItemizedBudget(campaignsSnapshot.get("itemizedBudget"));
+                campaign.setVenue(campaignsSnapshot.get("venue"));
+                campaign.setDate(campaignsSnapshot.get("date"));
+                campaign.setTime(campaignsSnapshot.get("time"));
+                campaign.setRecordType(campaignsSnapshot.get("recordType"));
+                campaign.setExtras(campaignsSnapshot.get("extras"));
+                campaign.setMonth(campaignsSnapshot.get("month"));
+                campaign.setCampaignPhoto(campaignsSnapshot.get("campaignPhoto"));
+                campaign.setCampaignTheme(campaignsSnapshot.get("campaignTheme"));
+
+                campaigns.add(0, campaign);
+                adapter.notifyItemInserted(0);
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+//                HashMap<String, String> campaign = dataSnapshot.getValue(HashMap.class);
+//                Log.v("E_CHILD_CHANGED", campaign.toString());
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+//                HashMap<String, String> campaign = dataSnapshot.getValue(HashMap.class);
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         final RecyclerView rvCampaigns = (RecyclerView) rootView.findViewById(R.id.rvCampaigns);
-        adapter = new CampaignsItemAdapter(getActivity(), campaigns);
+        adapter = new CampaignsItemAdapter(getActivity(), true, campaigns);
         rvCampaigns.setAdapter(adapter);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2);
         rvCampaigns.setLayoutManager(gridLayoutManager);
@@ -152,7 +201,7 @@ public class CampaignsSubFragment extends Fragment {
                 new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
                         Intent intent = new Intent(getActivity(), CampaignDetailActivity.class);
-                        intent.putExtras(campaigns.get(0).toBundle());
+                        intent.putExtras(campaigns.get(position).toBundle());
                         startActivity(intent);
                     }
                 })
@@ -210,62 +259,6 @@ public class CampaignsSubFragment extends Fragment {
                 }
             });
         }
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        // Add child event listener to the campaigns
-        mCampaignsDatabaseReference.addChildEventListener(new ChildEventListener() {
-
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Map<String, String> campaignsSnapshot = (Map) dataSnapshot.getValue();
-                final CommunityEngagementCampaign campaign = new CommunityEngagementCampaign();
-
-                campaign.setAbbreviation(campaignsSnapshot.get("abbreviation"));
-                campaign.setTitle(campaignsSnapshot.get("title"));
-                campaign.setAdmin(campaignsSnapshot.get("admin"));
-                campaign.setDescription(campaignsSnapshot.get("description"));
-                campaign.setBenefits(campaignsSnapshot.get("benefits"));
-                campaign.setAmbition(campaignsSnapshot.get("admin"));
-                campaign.setPlanOfExecution(campaignsSnapshot.get("planOfExecution"));
-                campaign.setItemizedBudget(campaignsSnapshot.get("itemizedBudget"));
-                campaign.setVenue(campaignsSnapshot.get("venue"));
-                campaign.setDate(campaignsSnapshot.get("date"));
-                campaign.setTime(campaignsSnapshot.get("time"));
-                campaign.setRecordType(campaignsSnapshot.get("recordType"));
-                campaign.setExtras(campaignsSnapshot.get("extras"));
-                campaign.setMonth(campaignsSnapshot.get("month"));
-                campaign.setCampaignPhoto(campaignsSnapshot.get("campaignPhoto"));
-                campaign.setCampaignTheme(campaignsSnapshot.get("campaignTheme"));
-
-                campaigns.add(0, campaign);
-                adapter.notifyItemInserted(0);
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-//                HashMap<String, String> campaign = dataSnapshot.getValue(HashMap.class);
-//                Log.v("E_CHILD_CHANGED", campaign.toString());
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-//                HashMap<String, String> campaign = dataSnapshot.getValue(HashMap.class);
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
     }
 
 }

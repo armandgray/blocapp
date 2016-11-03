@@ -7,40 +7,68 @@
 
     <include layout="@layout/home_viewflipper" />
 
-    <TextView
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingTop="10dp"
-        android:id="@+id/campaigns_header"
-        android:text="@string/campaigns"
-        android:textSize="20sp" />
+        android:background="@drawable/small_header_background"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/small_header_pad_bottom"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/small_header_pad_top">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:text="@string/campaigns"
+            android:textAllCaps="true"
+            android:textColor="@color/ToolBarColor"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <include
+            layout="@layout/chevron_down_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvCampaigns"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="5dp"
         android:layout_width="match_parent"
-        android:layout_margin="@dimen/activity_horizontal_margin"
         android:layout_height="wrap_content" />
 
-    <View
+    <!--<android.support.v7.widget.RecyclerView-->
+    <!--android:id="@+id/rvNewsFeed"-->
+    <!--android:background="@color/viewLightGrayBackground"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:padding="5dp"-->
+    <!--android:layout_height="wrap_content" />-->
+
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/white" />
+        android:layout_height="wrap_content"
+        android:background="@drawable/small_header_background"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/small_header_pad_top"
+        android:paddingBottom="@dimen/small_header_pad_bottom"
+        android:text="@string/feed"
+        android:textAllCaps="true"
+        android:textColor="@color/ToolBarColor"
+        android:textSize="12sp"
+        android:textStyle="bold" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingTop="10dp"
-        android:text="@string/soapbox"
-        android:textSize="20sp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingTop="10dp"
-        android:text="Some messages loaded from Soap Box"
-        android:textSize="20sp" />
+        android:id="@+id/header_brotherhood"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gray_item_background"
+        android:gravity="center"
+        android:text="@string/header_brohood_text"
+        android:textColor="#000000"
+        android:textSize="@dimen/headers_size" />
 
 </LinearLayout>

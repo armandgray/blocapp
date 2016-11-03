@@ -16,7 +16,7 @@
         android:layout_width="@dimen/btn_side"
         android:layout_height="@dimen/btn_side"
         android:layout_marginRight="@dimen/btn_padding"
-        android:contentDescription="@string/ic_packageup"/>
+        android:contentDescription="@string/icon"/>
 
     <TextView
         android:layout_width="wrap_content"

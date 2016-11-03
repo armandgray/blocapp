@@ -13,6 +13,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import com.google.firebase.database.ChildEventListener;
@@ -23,6 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import org.blocorganization.blocapp.campaigns.CampaignDetailActivity;
 import org.blocorganization.blocapp.models.Campaign;
+import org.blocorganization.blocapp.models.CommunityEngagementCampaign;
 import org.blocorganization.blocapp.utils.CampaignsItemAdapter;
 import org.blocorganization.blocapp.utils.RecyclerItemClickListener;
 
@@ -60,6 +64,12 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
+        TextView tvMore = (TextView) rootView.findViewById(R.id.tvMore);
+        tvMore.setTextColor(getResources().getColor(R.color.ToolBarColor));
+        ImageView ivChevron = (ImageView) rootView.findViewById(R.id.ivChevron);
+        ivChevron.setColorFilter(getResources().getColor(R.color.ToolBarColor));
+        ivChevron.setRotation(270);
+
         /**
          *  Slideshow setup as ViewFlipper
          *  Source: http://stacktips.com/tutorials/android/android-viewflipper-example
@@ -85,9 +95,60 @@ public class HomeFragment extends Fragment {
 
         final RecyclerView rvCampaigns = (RecyclerView) rootView.findViewById(R.id.rvCampaigns);
         campaigns = new ArrayList<>();
-        mCampaignsDatabaseReference = FirebaseDatabase.getInstance().getReference(CAMPAIGNS_CHILD);
 
-        adapter = new CampaignsItemAdapter(getActivity(), campaigns);
+        LinearLayout moreContainer = (LinearLayout) rootView.findViewById(R.id.more_container);
+        moreContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rvCampaigns.scrollToPosition(rvCampaigns.getChildCount() - 1);
+            }
+        });
+
+        mCampaignsDatabaseReference = FirebaseDatabase.getInstance().getReference(CAMPAIGNS_CHILD);
+        mCampaignsDatabaseReference.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Map<String, String> campaignsSnapshot = (Map) dataSnapshot.getValue();
+                final CommunityEngagementCampaign campaign = new CommunityEngagementCampaign();
+
+                campaign.setAbbreviation(campaignsSnapshot.get("abbreviation"));
+                campaign.setTitle(campaignsSnapshot.get("title"));
+                campaign.setAdmin(campaignsSnapshot.get("admin"));
+                campaign.setDescription(campaignsSnapshot.get("description"));
+                campaign.setBenefits(campaignsSnapshot.get("benefits"));
+                campaign.setAmbition(campaignsSnapshot.get("admin"));
+                campaign.setPlanOfExecution(campaignsSnapshot.get("planOfExecution"));
+                campaign.setItemizedBudget(campaignsSnapshot.get("itemizedBudget"));
+                campaign.setVenue(campaignsSnapshot.get("venue"));
+                campaign.setDate(campaignsSnapshot.get("date"));
+                campaign.setTime(campaignsSnapshot.get("time"));
+                campaign.setRecordType(campaignsSnapshot.get("recordType"));
+                campaign.setExtras(campaignsSnapshot.get("extras"));
+                campaign.setMonth(campaignsSnapshot.get("month"));
+                campaign.setCampaignPhoto(campaignsSnapshot.get("campaignPhoto"));
+                campaign.setCampaignTheme(campaignsSnapshot.get("campaignTheme"));
+
+                campaigns.add(0, campaign);
+                adapter.notifyItemInserted(0);
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+        adapter = new CampaignsItemAdapter(getActivity(), false, campaigns);
         rvCampaigns.setAdapter(adapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         rvCampaigns.setLayoutManager(layoutManager);
@@ -133,39 +194,6 @@ public class HomeFragment extends Fragment {
 
             return false;
         }
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        // Add child event listener to the campaigns
-        mCampaignsDatabaseReference.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Map<String, String> campaignsSnapshot = (Map) dataSnapshot.getValue();
-                Campaign campaign = new Campaign();
-                campaign.setCampaignPhoto(campaignsSnapshot.get("campaignPhoto"));
-                campaigns.add(0, campaign);
-                adapter.notifyItemInserted(0);
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
     }
 
     //animation listener

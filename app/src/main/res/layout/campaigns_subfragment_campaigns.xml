@@ -26,7 +26,6 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:layout_margin="@dimen/campaigns_image_margin"
         android:background="@android:color/white" />
 
     <ScrollView
@@ -41,19 +40,18 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:text="In Progress"
-                android:textSize="@dimen/campaigns_header_size" />
-
-            <View
                 android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_marginTop="8dp"
-                android:background="@android:color/white" />
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/small_header_background"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/small_header_pad_top"
+                android:paddingBottom="@dimen/small_header_pad_bottom"
+                android:text="@string/in_progress"
+                android:textAllCaps="true"
+                android:textColor="@color/ToolBarColor"
+                android:textSize="12sp"
+                android:textStyle="bold" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rvCampaigns"
@@ -70,19 +68,19 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/btn_margin" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_margin="@dimen/campaigns_image_margin"
-                android:background="@android:color/white" />
-
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/small_header_background"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:text="Recurring"
-                android:textSize="@dimen/campaigns_header_size" />
+                android:paddingTop="@dimen/small_header_pad_top"
+                android:paddingBottom="@dimen/small_header_pad_bottom"
+                android:text="@string/recurring"
+                android:textAllCaps="true"
+                android:textColor="@color/ToolBarColor"
+                android:textSize="12sp"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:id="@+id/campaigns_set4"
@@ -102,17 +100,19 @@
 
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_margin="@dimen/campaigns_image_margin"
-                android:background="@android:color/white" />
-
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Archived"
-                android:textSize="@dimen/campaigns_header_size" />
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/small_header_background"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/small_header_pad_top"
+                android:paddingBottom="@dimen/small_header_pad_bottom"
+                android:text="@string/archived"
+                android:textAllCaps="true"
+                android:textColor="@color/ToolBarColor"
+                android:textSize="12sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
     </ScrollView>

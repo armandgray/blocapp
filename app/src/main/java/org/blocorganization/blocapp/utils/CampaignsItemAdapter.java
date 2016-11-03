@@ -26,11 +26,13 @@ public class CampaignsItemAdapter extends
     private List<Campaign> mCampaigns;
     private Activity mActivity;
     private Context mContext;
+    private Boolean fullItem;
 
     // Pass in the contact array into the constructor
-    public CampaignsItemAdapter(Activity activity, List<Campaign> campaigns) {
+    public CampaignsItemAdapter(Activity activity, Boolean bool, List<Campaign> campaigns) {
         mCampaigns = campaigns;
         mActivity = activity;
+        fullItem = bool;
     }
 
     // Usually involves inflating a layout from XML and returning the holder
@@ -63,11 +65,10 @@ public class CampaignsItemAdapter extends
         TextView tvCampaignDetails = viewHolder.tvCampaignDetails;
         TextView tvCampaignTitle = viewHolder.tvCampaignTitle;
 
-
         Picasso.with(mActivity).load(campaign.getCampaignPhoto()).into(ivCampaignImage);
         tvCampaignDetails.setText(campaign.getDate() + ",\n by " + campaign.getAdmin());
 
-        if (campaign.getTitle() != null) {
+        if (fullItem) {
             tvCampaignTitle.setText(campaign.getTitle());
         } else {
             campaignItemContainer.removeView(campaignItemContainer.getChildAt(1));
