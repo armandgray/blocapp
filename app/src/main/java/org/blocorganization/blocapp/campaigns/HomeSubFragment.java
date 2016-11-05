@@ -51,20 +51,18 @@ public class HomeSubFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.campaigns_subfragment_home, container, false);
 
-        ImageView chMeeting = (ImageView) rootView.findViewById(R.id.chMeeting);
-        chMeeting.setColorFilter(getResources().getColor(R.color.colorPrimary));
-        chMeeting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
+//        ImageView chMeeting = (ImageView) rootView.findViewById(R.id.chMeeting);
+//        chMeeting.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                // call parent to set vpager
+//                // call actionboard frag to open meeting details
+//            }
+//        });
 
         ImageView chNotes = (ImageView) rootView.findViewById(R.id.chNotes);
-        chNotes.setColorFilter(getResources().getColor(R.color.colorPrimary));
 
         ImageView chSupporters = (ImageView) rootView.findViewById(R.id.chSupporters);
-        chSupporters.setColorFilter(getResources().getColor(R.color.colorPrimary));
 
         ImageView ivCampaignToday = (ImageView) rootView.findViewById(R.id.ivCampaignToday);
         Picasso.with(getContext()).load(

@@ -52,6 +52,7 @@ public class CampaignsSubFragment extends Fragment {
     public static final int CAMERA_REQUEST_CODE = 1;
     public static final String PHOTOS = "photos";
     public static final String DOWNLOAD_FAILED = "DOWNLOAD_FAILED";
+    public static final String NEW_CAMPAIGN_TAG = "NEW_CAMPAIGN";
     Boolean initLoad = true;
 
     private StorageReference mStorage;
@@ -211,7 +212,9 @@ public class CampaignsSubFragment extends Fragment {
         createBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                boolean isNewCampaign = true;
                 Intent intent = new Intent(getContext(), CampaignDetailActivity.class);
+                intent.putExtra(NEW_CAMPAIGN_TAG, isNewCampaign);
                 startActivity(intent);
             }
         });

@@ -155,7 +155,8 @@ public class HomeFragment extends Fragment {
         
         rvCampaigns.addOnItemTouchListener(new RecyclerItemClickListener(getContext(),
                 new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override public void onItemClick(View view, int position) {
+                    @Override
+                    public void onItemClick(View view, int position) {
                         Intent intent = new Intent(getActivity(), CampaignDetailActivity.class);
                         intent.putExtras(campaigns.get(position).toBundle());
                         startActivity(intent);

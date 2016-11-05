@@ -8,44 +8,109 @@
     android:orientation="horizontal"
     android:padding="@dimen/navbar_padding">
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="36dp">
 
-    <ImageView
-        android:id="@+id/home"
-        android:layout_width="@dimen/navbar_icon_size"
-        android:layout_height="@dimen/navbar_icon_size"
-        android:layout_marginLeft="@dimen/navbar_margins"
-        android:layout_marginRight="@dimen/navbar_margins"
-        app:srcCompat="@drawable/ic_home_white_48dp" />
+        <ImageView
+            android:id="@+id/home"
+            android:layout_width="@dimen/navbar_icon_size"
+            android:layout_height="@dimen/navbar_icon_size"
+            android:layout_marginLeft="@dimen/navbar_margins"
+            android:layout_marginRight="@dimen/navbar_margins"
+            app:srcCompat="@drawable/ic_home_white_48dp" />
 
-    <ImageView
-        android:id="@+id/calendar"
-        android:layout_width="@dimen/navbar_icon_size"
-        android:layout_height="@dimen/navbar_icon_size"
-        android:layout_marginLeft="@dimen/navbar_margins"
-        android:layout_marginRight="@dimen/navbar_margins"
-        app:srcCompat="@drawable/ic_calendar_today_white_48dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/home"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:layout_centerHorizontal="true"
+            android:text="Home"/>
+    </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/messages"
-        android:layout_width="@dimen/navbar_icon_size"
-        android:layout_height="@dimen/navbar_icon_size"
-        android:layout_marginLeft="@dimen/navbar_margins"
-        android:layout_marginRight="@dimen/navbar_margins"
-        app:srcCompat="@drawable/ic_message_bulleted_white_48dp" />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="36dp">
 
-    <ImageView
-        android:id="@+id/blinds"
-        android:layout_width="@dimen/navbar_icon_size"
-        android:layout_height="@dimen/navbar_icon_size"
-        android:layout_marginLeft="@dimen/navbar_margins"
-        android:layout_marginRight="@dimen/navbar_margins"
-        app:srcCompat="@drawable/ic_blinds_white_48dp" />
+        <ImageView
+            android:id="@+id/calendar"
+            android:layout_width="@dimen/navbar_icon_size"
+            android:layout_height="@dimen/navbar_icon_size"
+            android:layout_marginLeft="@dimen/navbar_margins"
+            android:layout_marginRight="@dimen/navbar_margins"
+            app:srcCompat="@drawable/ic_calendar_today_white_48dp" />
 
-    <ImageView
-        android:id="@+id/ic_bloc"
-        android:layout_width="@dimen/navbar_icon_size"
-        android:layout_height="@dimen/navbar_icon_size"
-        android:layout_marginLeft="@dimen/navbar_margins"
-        android:layout_marginRight="@dimen/navbar_margins"
-        app:srcCompat="@drawable/ic_bloc_positive" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/calendar"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:layout_centerHorizontal="true"
+            android:text="Cal"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="36dp">
+
+        <ImageView
+            android:id="@+id/messages"
+            android:layout_width="@dimen/navbar_icon_size"
+            android:layout_height="@dimen/navbar_icon_size"
+            android:layout_marginLeft="@dimen/navbar_margins"
+            android:layout_marginRight="@dimen/navbar_margins"
+            app:srcCompat="@drawable/ic_message_bulleted_white_48dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/messages"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:layout_centerHorizontal="true"
+            android:text="Chat"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="36dp">
+
+        <ImageView
+            android:id="@+id/blinds"
+            android:layout_width="@dimen/navbar_icon_size"
+            android:layout_height="@dimen/navbar_icon_size"
+            android:layout_marginLeft="@dimen/navbar_margins"
+            android:layout_marginRight="@dimen/navbar_margins"
+            app:srcCompat="@drawable/ic_blinds_white_48dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/blinds"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:layout_centerHorizontal="true"
+            android:text="Not"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="36dp">
+
+        <ImageView
+            android:id="@+id/ic_bloc"
+            android:layout_width="@dimen/navbar_icon_size"
+            android:layout_height="@dimen/navbar_icon_size"
+            android:layout_marginLeft="@dimen/navbar_margins"
+            android:layout_marginRight="@dimen/navbar_margins"
+            app:srcCompat="@drawable/ic_bloc_positive" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/ic_bloc"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:layout_centerHorizontal="true"
+            android:text="Bloc"/>
+    </RelativeLayout>
+
 </LinearLayout>

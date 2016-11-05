@@ -1,12 +1,14 @@
 package org.blocorganization.blocapp.campaigns;
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -16,6 +18,8 @@ import org.blocorganization.blocapp.utils.SaveChangesDialogFragment;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.blocorganization.blocapp.campaigns.CampaignsSubFragment.NEW_CAMPAIGN_TAG;
 
 public class CampaignDetailActivity extends AppCompatActivity
         implements CreateInfoDialog.DialogEndedListener {
@@ -76,17 +80,27 @@ public class CampaignDetailActivity extends AppCompatActivity
         views.add(tvBudget);
 
         if (getIntent().getExtras() != null) {
-            Campaign campaign = new Campaign(getIntent().getExtras());
-            Picasso.with(this).load(campaign.getCampaignPhoto()).into(ivCampaignImage);
-            Picasso.with(this).load(campaign.getCampaignTheme()).into(ivTheme);
-            tvTitle.setText(campaign.getTitle());
-            tvType.setText(campaign.getRecordType());
-            tvDate.setText(campaign.getDate());
-            tvDesc.setText(campaign.getDescription());
-            tvAmbition.setText(campaign.getAmbition());
-            tvBenefits.setText(campaign.getBenefits());
-            tvPlan.setText(campaign.getPlanOfExecution());
-            tvBudget.setText(campaign.getItemizedBudget());
+            if (getIntent().getBooleanExtra(NEW_CAMPAIGN_TAG, false)) {
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .add(android.R.id.content, new CreateInfoDialog())
+                        .addToBackStack(null)
+                        .commit();
+                Toast.makeText(this, "NEW CAMPAIGN", Toast.LENGTH_SHORT).show();
+            } else {
+                Campaign campaign = new Campaign(getIntent().getExtras());
+                Picasso.with(this).load(campaign.getCampaignPhoto()).into(ivCampaignImage);
+                Picasso.with(this).load(campaign.getCampaignTheme()).into(ivTheme);
+                tvTitle.setText(campaign.getTitle());
+                tvType.setText(campaign.getRecordType());
+                tvDate.setText(campaign.getDate());
+                tvDesc.setText(campaign.getDescription());
+                tvAmbition.setText(campaign.getAmbition());
+                tvBenefits.setText(campaign.getBenefits());
+                tvPlan.setText(campaign.getPlanOfExecution());
+                tvBudget.setText(campaign.getItemizedBudget());
+            }
         }
 
         metrics = new DisplayMetrics();
@@ -107,9 +121,12 @@ public class CampaignDetailActivity extends AppCompatActivity
                     }
                     clicked = !clicked;
                 } else {
-                    new CreateInfoDialog()
-                            .show(getSupportFragmentManager(), DIALOG);
-                    clicked = !clicked;
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                            .add(android.R.id.content, new CreateInfoDialog())
+                            .addToBackStack(null)
+                            .commit();
                 }
             }
         });
