@@ -76,5 +76,6 @@
     <dimen name="campaign_home_header_margin">10dp</dimen>
     <dimen name="small_header_pad_top">10dp</dimen>
     <dimen name="small_header_pad_bottom">18dp</dimen>
+    <dimen name="ivcancel_side">35dp</dimen>
 
 </resources>

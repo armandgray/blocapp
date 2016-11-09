@@ -42,7 +42,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="@drawable/small_header_background"
+        android:background="@drawable/white_dividers_background"
         android:orientation="horizontal"
         android:paddingBottom="0.2dp"
         android:paddingTop="0.2dp">

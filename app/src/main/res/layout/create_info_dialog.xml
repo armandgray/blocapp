@@ -4,223 +4,344 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_create_info_dialog"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="fill_parent"
     android:background="@drawable/background_gradient_radial"
     android:orientation="vertical"
     tools:context="org.blocorganization.blocapp.campaigns.CreateInfoDialog">
 
-
     <RelativeLayout
+        android:id="@+id/dialogHeader"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="#121212"
-        android:orientation="horizontal"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin">
+        android:layout_height="wrap_content"
+        android:background="#121212">
 
-        <LinearLayout
-            android:layout_width="230dp"
-            android:paddingLeft="10dp"
+        <ImageView
+            android:id="@+id/ivCancel"
+            android:layout_width="@dimen/ivcancel_side"
+            android:layout_height="@dimen/ivcancel_side"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_height="wrap_content"
             android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="@dimen/btn_padding"
+            android:contentDescription="@string/icon"
+            android:tint="@color/ToolBarColor"
+            app:srcCompat="@drawable/ic_close_white_48dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create a new campaign"
+            android:textSize="14sp"
+            android:layout_centerInParent="true"
+            android:textAllCaps="true"/>
+
+        <ImageView
+            android:id="@+id/ivSubmit"
+            android:layout_width="@dimen/ivcancel_side"
+            android:layout_height="@dimen/ivcancel_side"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="@dimen/btn_padding"
+            android:contentDescription="@string/icon"
+            app:srcCompat="@drawable/ic_check_white_48dp" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height=".5dp"
+        android:background="@color/ToolBarColor"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="#121212"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin">
+
+                <LinearLayout
+                    android:layout_width="230dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Yes, update my network"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:lines="2"
+                        android:text="Your connections may see this change in their feed or email"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <Switch
+                    android:id="@+id/mySwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="40dp"
+                    android:scaleX="1.5"
+                    android:scaleY="1.5"
+                    android:track="@drawable/switch_track" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/ToolBarColor"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Yes, update my network"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/ToolBarColor"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:lines="2"
-                android:text="Your connections may see this change in their feed or email"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingTop="5dp"
+                android:text="Select A Theme"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvThemes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp" />
+
+            <EditText
+                android:id="@+id/etTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:background="@drawable/red_dividers_background"
+                android:ems="15"
+                android:hint="Title"
+                android:inputType="textShortMessage"
+                android:paddingBottom="10dp"
+                android:paddingTop="30dp"
+                android:textColor="@color/textColor"
+                android:textColorHint="#999999"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/etAdmin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:background="@drawable/red_dividers_background"
+                android:ems="15"
+                android:hint="Admin"
+                android:inputType="textShortMessage"
+                android:paddingBottom="10dp"
+                android:paddingTop="30dp"
+                android:textColor="@color/textColor"
+                android:textColorHint="#999999"
                 android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/etVenue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:background="@drawable/red_dividers_background"
+                android:ems="15"
+                android:hint="Venue"
+                android:inputType="textShortMessage"
+                android:paddingBottom="10dp"
+                android:paddingTop="30dp"
+                android:textColor="@color/textColor"
+                android:textColorHint="#999999"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/etCampaignPhoto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:background="@drawable/red_dividers_background"
+                android:text="etCampaignPhoto"
+                android:textColor="@color/textColor"
+                android:textColorHint="#999999"
+                android:textSize="14sp" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:background="@drawable/dark_gradient_item_background"
+                android:orientation="horizontal"
+
+                android:paddingBottom="5dp"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="5dp">
+
+                <ImageView
+                    android:id="@+id/ivTypeIcon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/btn_padding"
+                    android:contentDescription="@string/icon"
+                    android:tint="@color/ToolBarColor"
+                    app:srcCompat="@drawable/ic_apps_white_48dp" />
+
+                <ImageView
+                    android:layout_width="@dimen/navbar_icon_size"
+                    android:layout_height="@dimen/navbar_icon_size"
+                    android:layout_gravity="center_vertical|end"
+                    android:layout_marginRight="15dp"
+                    app:srcCompat="@drawable/ic_menu_down_white_48dp" />
+
+                <Spinner
+                    android:id="@+id/spType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="@android:color/transparent"
+                    android:paddingLeft="40dp"
+                    android:popupBackground="#333333" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:background="@drawable/dark_gradient_item_background"
+                android:orientation="horizontal"
+                android:paddingBottom="5dp"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="5dp">
+
+                <ImageView
+                    android:id="@+id/ivVenueIcon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/btn_padding"
+                    android:contentDescription="@string/icon"
+                    android:tint="@color/ToolBarColor"
+                    app:srcCompat="@drawable/ic_map_marker_white_48dp" />
+
+                <ImageView
+                    android:layout_width="@dimen/navbar_icon_size"
+                    android:layout_height="@dimen/navbar_icon_size"
+                    android:layout_gravity="center_vertical|end"
+                    android:layout_marginRight="15dp"
+                    app:srcCompat="@drawable/ic_menu_down_white_48dp" />
+
+                <Spinner
+                    android:id="@+id/spVenue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="@android:color/transparent"
+                    android:paddingLeft="40dp"
+                    android:popupBackground="#333333" />
+            </FrameLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editDateLayout"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:background="@drawable/dark_gradient_item_background"
+                android:orientation="horizontal"
+                android:paddingBottom="5dp"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="5dp">
+
+                <ImageView
+                    android:id="@+id/ivCalVariIcon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@string/icon"
+                    android:tint="@color/ToolBarColor"
+                    app:srcCompat="@drawable/ic_calendar_variant" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:text="Date"
+                    android:layout_toRightOf="@+id/ivCalVariIcon"
+                    android:layout_toEndOf="@+id/ivCalVariIcon"
+                    android:layout_centerVertical="true"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="@dimen/navbar_icon_size"
+                    android:layout_height="@dimen/navbar_icon_size"
+                    android:layout_gravity="center_vertical|end"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:rotation="270"
+                    app:srcCompat="@drawable/ic_menu_down_white_48dp" />
+            </RelativeLayout>
         </LinearLayout>
-
-        <Switch
-            android:id="@+id/mySwitch"
-            android:layout_centerVertical="true"
-            android:layout_width="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginRight="40dp"
-            android:layout_height="wrap_content"
-            android:scaleX="1.5"
-            android:scaleY="1.5"
-            android:track="@drawable/switch_track" />
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:background="@color/ToolBarColor" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <!--<android.support.v4.view.ViewPager-->
-        <!--android:id="@+id/vpCreate"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content" />-->
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:background="@color/ToolBarColor" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:lines="2"
-        android:paddingTop="5dp"
-        android:textStyle="bold"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:text="Select A Theme"
-        android:textSize="14sp" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvThemes"
-        android:layout_marginLeft="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:background="@color/ToolBarColor" />
-
-    <EditText
-        android:id="@+id/etTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="15"
-        android:hint="Title"
-        android:inputType="textShortMessage"
-        android:layout_marginTop="20dp"
-        android:textSize="16sp"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:textColor="@color/textColor"
-        android:textColorHint="#999999" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:background="@color/ToolBarColor" />
-
-    <EditText
-        android:id="@+id/etAdmin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="15"
-        android:hint="Admin"
-        android:inputType="textShortMessage"
-        android:layout_marginTop="20dp"
-        android:textSize="14sp"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:textColor="@color/textColor"
-        android:textColorHint="#999999" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:background="@color/ToolBarColor" />
-
-    <EditText
-        android:id="@+id/etCampaignType"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="15"
-        android:hint="Type"
-        android:inputType="textShortMessage"
-        android:layout_marginTop="20dp"
-        android:textSize="14sp"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:textColor="@color/textColor"
-        android:textColorHint="#999999" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:background="@color/ToolBarColor" />
-
-    <EditText
-        android:id="@+id/etVenue"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="15"
-        android:hint="Venue"
-        android:inputType="textShortMessage"
-        android:layout_marginTop="20dp"
-        android:textSize="14sp"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:textColor="@color/textColor"
-        android:textColorHint="#999999" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:background="@color/ToolBarColor" />
-
-    <EditText
-        android:id="@+id/etCampaignPhoto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="15"
-        android:hint="etCampaignPhoto"
-        android:inputType="textShortMessage"
-        android:layout_marginTop="20dp"
-        android:textSize="14sp"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:textColor="@color/textColor"
-        android:textColorHint="#999999" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:background="@color/ToolBarColor" />
-
-    <Spinner
-        android:id="@+id/planets_spinner"
-        android:layout_width="fill_parent"
-        android:background="@android:color/black"
-        android:layout_height="wrap_content" />
+    </ScrollView>
 
 </LinearLayout>

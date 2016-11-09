@@ -13,7 +13,6 @@
         android:background="@android:color/white"
         android:contentDescription="@string/campaigns_image_desc"
         android:layout_margin="50dp"
-        android:scaleType="centerCrop"
         app:srcCompat="@drawable/theme_donate" />
 
 </LinearLayout>

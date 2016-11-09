@@ -14,7 +14,6 @@ import com.squareup.picasso.Picasso;
 
 import org.blocorganization.blocapp.R;
 import org.blocorganization.blocapp.models.Campaign;
-import org.blocorganization.blocapp.utils.SaveChangesDialogFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +22,6 @@ import static org.blocorganization.blocapp.campaigns.CampaignsSubFragment.NEW_CA
 
 public class CampaignDetailActivity extends AppCompatActivity
         implements CreateInfoDialog.DialogEndedListener {
-
-    public static final String DIALOG = "DIALOG";
 
     DisplayMetrics metrics;
     Boolean campaignEdited = false;
@@ -109,25 +106,15 @@ public class CampaignDetailActivity extends AppCompatActivity
         final ImageView editBtn = (ImageView) findViewById(R.id.ivCampaignEdit);
         editBtn.setOnClickListener(new View.OnClickListener() {
             boolean clicked;
-            int translationX = 100;
 
             @Override
             public void onClick(View view) {
-                if (clicked) {
-                    if (campaignEdited) {
-                        new SaveChangesDialogFragment()
-                                .show(getSupportFragmentManager(), DIALOG);
-                        campaignEdited = false;
-                    }
-                    clicked = !clicked;
-                } else {
                     getSupportFragmentManager()
                             .beginTransaction()
                             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                             .add(android.R.id.content, new CreateInfoDialog())
                             .addToBackStack(null)
                             .commit();
-                }
             }
         });
 
