@@ -3,7 +3,6 @@ package org.blocorganization.blocapp.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +16,6 @@ import org.blocorganization.blocapp.R;
 import org.blocorganization.blocapp.models.Campaign;
 
 import java.util.List;
-
-import static org.blocorganization.blocapp.campaigns.CampaignDetailActivity.getDPI;
 
 public class CampaignsItemAdapter extends
         RecyclerView.Adapter<CampaignsItemAdapter.ViewHolder> {
@@ -54,9 +51,7 @@ public class CampaignsItemAdapter extends
     public void onBindViewHolder(CampaignsItemAdapter.ViewHolder viewHolder, int position) {
         // Get the data model based on position
         Campaign campaign = mCampaigns.get(position);
-        DisplayMetrics metrics = new DisplayMetrics();
-        mActivity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        int containerDimens = getDPI(120, metrics);
+        int containerDimens = GetDpMeasurement.getDPI(mActivity, 120);
 
         LinearLayout campaignItemContainer = viewHolder.campaignItemContainer;
         ImageView ivCampaignImage = viewHolder.ivCampaignImage;
@@ -66,7 +61,7 @@ public class CampaignsItemAdapter extends
         TextView tvCampaignTitle = viewHolder.tvCampaignTitle;
 
         Picasso.with(mActivity).load(campaign.getCampaignPhoto()).into(ivCampaignImage);
-        tvCampaignDetails.setText(campaign.getDate() + ",\n by " + campaign.getAdmin());
+        tvCampaignDetails.setText(campaign.getFromDate() + ",\n by " + campaign.getAdmin());
 
         if (fullItem) {
             tvCampaignTitle.setText(campaign.getTitle());
@@ -77,7 +72,7 @@ public class CampaignsItemAdapter extends
         }
         if (campaign.getMonth() != null) {
             tvCampaignMonth.setText(campaign.getMonth());
-            tvCampaignDate.setText(campaign.getDate());
+            tvCampaignDate.setText(campaign.getFromDate());
         } else {
             tvCampaignMonth.setVisibility(View.GONE);
         }

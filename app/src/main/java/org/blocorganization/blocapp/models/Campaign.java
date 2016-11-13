@@ -14,7 +14,8 @@ public class Campaign extends Record {
     public static final String ITEMIZED_BUDGET_KEY = "ITEMIZED_BUDGET_KEY";
     public static final String VENUE_KEY = "VENUE_KEY";
     public static final String MONTH_KEY = "MONTH_KEY";
-    public static final String DATE_KEY = "DATE_KEY";
+    public static final String FROM_DATE_KEY = "FROM_DATE_KEY";
+    public static final String TO_DATE_KEY = "TO_DATE_KEY";
     public static final String TIME_KEY = "TIME_KEY";
 
     //	private fields
@@ -26,7 +27,8 @@ public class Campaign extends Record {
     public String itemizedBudget;
     public String venue;
     public String month;
-    public String date;
+    public String fromDate;
+    public String toDate;
     public String time;
     public String campaignTheme;
 
@@ -40,7 +42,8 @@ public class Campaign extends Record {
         this.itemizedBudget = null;
         this.venue = null;
         this.month = null;
-        this.date = null;
+        this.fromDate = null;
+        this.toDate = null;
         this.time = null;
     }
 
@@ -57,12 +60,21 @@ public class Campaign extends Record {
             this.itemizedBudget = b.getString(ITEMIZED_BUDGET_KEY);
             this.venue = b.getString(VENUE_KEY);
             this.month = b.getString(MONTH_KEY);
-            this.date = b.getString(DATE_KEY);
+            this.fromDate = b.getString(FROM_DATE_KEY);
+            this.toDate = b.getString(TO_DATE_KEY);
             this.time = b.getString(TIME_KEY);
         }
     }
 
     //	Package data for transfer between activities
+
+    public String getToDate() {
+        return toDate;
+    }
+
+    public void setToDate(String toDate) {
+        this.toDate = toDate;
+    }
 
     /**
      *  Should this be at override???????
@@ -79,7 +91,8 @@ public class Campaign extends Record {
         b.putString(ITEMIZED_BUDGET_KEY, this.itemizedBudget);
         b.putString(VENUE_KEY, this.venue);
         b.putString(MONTH_KEY, this.month);
-        b.putString(DATE_KEY, this.date);
+        b.putString(FROM_DATE_KEY, this.fromDate);
+        b.putString(TO_DATE_KEY, this.toDate);
         b.putString(TIME_KEY, this.time);
 
         return b;
@@ -134,12 +147,12 @@ public class Campaign extends Record {
         this.venue = venue;
     }
 
-    public String getDate() {
-        return date;
+    public String getFromDate() {
+        return fromDate;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setFromDate(String fromDate) {
+        this.fromDate = fromDate;
     }
 
     public String getTime() {

@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -18,13 +17,9 @@ import org.blocorganization.blocapp.models.Campaign;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.blocorganization.blocapp.campaigns.CampaignsSubFragment.NEW_CAMPAIGN_TAG;
-
-public class CampaignDetailActivity extends AppCompatActivity
-        implements CreateInfoDialog.DialogEndedListener {
+public class CampaignDetailActivity extends AppCompatActivity {
 
     DisplayMetrics metrics;
-    Boolean campaignEdited = false;
     ImageView ivCampaignImage;
     ImageView ivTheme;
     TextView tvTitle;
@@ -41,6 +36,7 @@ public class CampaignDetailActivity extends AppCompatActivity
     TextView tvBenefits;
     TextView tvPlan;
     TextView tvBudget;
+    private Campaign campaign;
 
 
     @Override
@@ -77,27 +73,17 @@ public class CampaignDetailActivity extends AppCompatActivity
         views.add(tvBudget);
 
         if (getIntent().getExtras() != null) {
-            if (getIntent().getBooleanExtra(NEW_CAMPAIGN_TAG, false)) {
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .add(android.R.id.content, new CreateInfoDialog())
-                        .addToBackStack(null)
-                        .commit();
-                Toast.makeText(this, "NEW CAMPAIGN", Toast.LENGTH_SHORT).show();
-            } else {
-                Campaign campaign = new Campaign(getIntent().getExtras());
-                Picasso.with(this).load(campaign.getCampaignPhoto()).into(ivCampaignImage);
-                Picasso.with(this).load(campaign.getCampaignTheme()).into(ivTheme);
-                tvTitle.setText(campaign.getTitle());
-                tvType.setText(campaign.getRecordType());
-                tvDate.setText(campaign.getDate());
-                tvDesc.setText(campaign.getDescription());
-                tvAmbition.setText(campaign.getAmbition());
-                tvBenefits.setText(campaign.getBenefits());
-                tvPlan.setText(campaign.getPlanOfExecution());
-                tvBudget.setText(campaign.getItemizedBudget());
-            }
+            campaign = new Campaign(getIntent().getExtras());
+            Picasso.with(this).load(campaign.getCampaignPhoto()).into(ivCampaignImage);
+            Picasso.with(this).load(campaign.getCampaignTheme()).into(ivTheme);
+            tvTitle.setText(campaign.getTitle());
+            tvType.setText(campaign.getRecordType());
+            tvDate.setText(campaign.getFromDate());
+            tvDesc.setText(campaign.getDescription());
+            tvAmbition.setText(campaign.getAmbition());
+            tvBenefits.setText(campaign.getBenefits());
+            tvPlan.setText(campaign.getPlanOfExecution());
+            tvBudget.setText(campaign.getItemizedBudget());
         }
 
         metrics = new DisplayMetrics();
@@ -105,16 +91,16 @@ public class CampaignDetailActivity extends AppCompatActivity
 
         final ImageView editBtn = (ImageView) findViewById(R.id.ivCampaignEdit);
         editBtn.setOnClickListener(new View.OnClickListener() {
-            boolean clicked;
-
             @Override
             public void onClick(View view) {
+                if (campaign != null) {
                     getSupportFragmentManager()
                             .beginTransaction()
                             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                            .add(android.R.id.content, new CreateInfoDialog())
+                            .add(android.R.id.content, CreateInfoDialog.withCampaign(campaign))
                             .addToBackStack(null)
                             .commit();
+                }
             }
         });
 
@@ -177,12 +163,4 @@ public class CampaignDetailActivity extends AppCompatActivity
         });
     }
 
-    public static int getDPI(int size, DisplayMetrics metrics){
-        return (size * metrics.densityDpi) / DisplayMetrics.DENSITY_DEFAULT;
-    }
-
-    @Override
-    public void onDialogEnded(String title) {
-        tvTitle.setText(title);
-    }
 }

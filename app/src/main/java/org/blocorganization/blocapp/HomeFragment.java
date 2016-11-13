@@ -120,7 +120,7 @@ public class HomeFragment extends Fragment {
                 campaign.setPlanOfExecution(campaignsSnapshot.get("planOfExecution"));
                 campaign.setItemizedBudget(campaignsSnapshot.get("itemizedBudget"));
                 campaign.setVenue(campaignsSnapshot.get("venue"));
-                campaign.setDate(campaignsSnapshot.get("date"));
+                campaign.setFromDate(campaignsSnapshot.get("fromDate"));
                 campaign.setTime(campaignsSnapshot.get("time"));
                 campaign.setRecordType(campaignsSnapshot.get("recordType"));
                 campaign.setExtras(campaignsSnapshot.get("extras"));

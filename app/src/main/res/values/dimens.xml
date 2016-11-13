@@ -77,5 +77,7 @@
     <dimen name="small_header_pad_top">10dp</dimen>
     <dimen name="small_header_pad_bottom">18dp</dimen>
     <dimen name="ivcancel_side">35dp</dimen>
+    <dimen name="menu_text_padding">40dp</dimen>
+    <dimen name="menu_icon_size">20dp</dimen>
 
 </resources>

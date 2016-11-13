@@ -24,7 +24,7 @@
                 android:contentDescription="@string/campaigns_image_desc"
                 android:scaleType="centerCrop"
                 android:tint="#A6333333"
-                app:srcCompat="@drawable/toys_for_tots" />
+                app:srcCompat="@drawable/ic_bloc_negative" />
 
             <ImageView
                 android:id="@+id/ivCampaignEdit"

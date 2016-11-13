@@ -11,7 +11,7 @@ public class CommunityEngagementCampaign extends Campaign {
         this.itemizedBudget = null;
         this.venue = null;
         this.month = null;
-        this.date = null;
+        this.fromDate = null;
         this.time = null;
         this.campaignTheme = null;
 
@@ -105,13 +105,13 @@ public class CommunityEngagementCampaign extends Campaign {
     }
 
     @Override
-    public String getDate() {
-        return date;
+    public String getFromDate() {
+        return fromDate;
     }
 
     @Override
-    public void setDate(String date) {
-        this.date = date;
+    public void setFromDate(String fromDate) {
+        this.fromDate = fromDate;
     }
 
     @Override

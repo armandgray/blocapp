@@ -97,10 +97,10 @@ public class CampaignsSubFragment extends Fragment {
         toysForTots.setAmbition("With this initiative it was BLOCs aim to brighten the holiday season for families in Pomona, Covina, Upland, and Montclair.");
         toysForTots.setCampaignPhoto("https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/photos%2F65?alt=media&token=38e367dd-9ae1-44e0-b5ba-cecad10278ad");
         toysForTots.setCampaignTheme("https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/themes%2Ftheme_donate.jpg?alt=media&token=84597e3f-5a37-4527-bb78-996094a95819");
-        toysForTots.setPlanOfExecution("During the month of November, members of BLOC sit in dining halls around campus and ask for donations. To date, BLOC has collected upwards of $2500 in toys and funds. All donations have gone to the Citrus Valley Health Partners pediatric unit and in the future, BLOC will be expanding its donations to various women and children’s shelters in the area.");
+        toysForTots.setPlanOfExecution("During the month of November, members of BLOC sit in dining halls around campus and ask for donations. To fromDate, BLOC has collected upwards of $2500 in toys and funds. All donations have gone to the Citrus Valley Health Partners pediatric unit and in the future, BLOC will be expanding its donations to various women and children’s shelters in the area.");
         toysForTots.setVenue("5C Dining Halls");
         toysForTots.setMonth("Apr");
-        toysForTots.setDate("27");
+        toysForTots.setFromDate("27");
         toysForTots.setExtras("R.drawable.toy_drive_donations_sheet");
 
         final CommunityEngagementCampaign askCampaign = new CommunityEngagementCampaign();
@@ -111,10 +111,10 @@ public class CampaignsSubFragment extends Fragment {
         askCampaign.setAmbition("With this initiative it was BLOCs aim to brighten the holiday season for families in Pomona, Covina, Upland, and Montclair.");
         askCampaign.setCampaignPhoto("https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/photos%2FAsk%20Flyer.jpg?alt=media&token=a9e14f66-7999-46d0-b0ec-aa10dd4f1e6c");
         askCampaign.setCampaignTheme("https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/themes%2Ftheme_consent.jpg?alt=media&token=b56d1ec4-ebfc-420a-8bb1-adf75d47b004");
-        askCampaign.setPlanOfExecution("During the month of November, members of BLOC sit in dining halls around campus and ask for donations. To date, BLOC has collected upwards of $2500 in toys and funds. All donations have gone to the Citrus Valley Health Partners pediatric unit and in the future, BLOC will be expanding its donations to various women and children’s shelters in the area.");
+        askCampaign.setPlanOfExecution("During the month of November, members of BLOC sit in dining halls around campus and ask for donations. To fromDate, BLOC has collected upwards of $2500 in toys and funds. All donations have gone to the Citrus Valley Health Partners pediatric unit and in the future, BLOC will be expanding its donations to various women and children’s shelters in the area.");
         askCampaign.setVenue("5C Dining Halls");
         askCampaign.setMonth("Dec");
-        askCampaign.setDate("23");
+        askCampaign.setFromDate("23");
         askCampaign.setExtras("R.drawable.toy_drive_donations_sheet");
 
         final CommunityEngagementCampaign ymc = new CommunityEngagementCampaign();
@@ -124,10 +124,10 @@ public class CampaignsSubFragment extends Fragment {
         ymc.setAmbition("With this initiative it was BLOCs aim to brighten the holiday season for families in Pomona, Covina, Upland, and Montclair.");
         ymc.setCampaignPhoto("https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/photos%2Fyoung_mens_circle%202.png?alt=media&token=fdfbd39a-e86b-48a8-a290-b868db72b04b");
         ymc.setCampaignTheme("https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/themes%2Ftheme_mentoring2.png?alt=media&token=b5139116-5567-4fd2-a579-8592ef06ba9c");
-        ymc.setPlanOfExecution("During the month of November, members of BLOC sit in dining halls around campus and ask for donations. To date, BLOC has collected upwards of $2500 in toys and funds. All donations have gone to the Citrus Valley Health Partners pediatric unit and in the future, BLOC will be expanding its donations to various women and children’s shelters in the area.");
+        ymc.setPlanOfExecution("During the month of November, members of BLOC sit in dining halls around campus and ask for donations. To fromDate, BLOC has collected upwards of $2500 in toys and funds. All donations have gone to the Citrus Valley Health Partners pediatric unit and in the future, BLOC will be expanding its donations to various women and children’s shelters in the area.");
         ymc.setVenue("5C Dining Halls");
         ymc.setMonth("Dec");
-        ymc.setDate("1");
+        ymc.setFromDate("1");
         ymc.setRecordType(String.valueOf(RecordType.COMMUNITY_ENGAGEMENT));
         ymc.setExtras("R.drawable.toy_drive_donations_sheet");
 
@@ -158,7 +158,7 @@ public class CampaignsSubFragment extends Fragment {
                 campaign.setPlanOfExecution(campaignsSnapshot.get("planOfExecution"));
                 campaign.setItemizedBudget(campaignsSnapshot.get("itemizedBudget"));
                 campaign.setVenue(campaignsSnapshot.get("venue"));
-                campaign.setDate(campaignsSnapshot.get("date"));
+                campaign.setFromDate(campaignsSnapshot.get("fromDate"));
                 campaign.setTime(campaignsSnapshot.get("time"));
                 campaign.setRecordType(campaignsSnapshot.get("recordType"));
                 campaign.setExtras(campaignsSnapshot.get("extras"));
@@ -232,9 +232,7 @@ public class CampaignsSubFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
 //        https://www.youtube.com/watch?v=Zy2DKo0v-OY&index=14&list=PLGCjwl1RrtcTXrWuRTa59RyRmQ4OedWrt
 //        if (position % 2 == 0) {
-//                            Intent intent = new Intent(Intent.ACTION_PICK);
-//                            intent.setType("image/*");
-//                            startActivityForResult(intent, GALLERY_INTENT);
+//
 //                        } else {
 //                            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 //                            startActivityForResult(intent, CAMERA_REQUEST_CODE);

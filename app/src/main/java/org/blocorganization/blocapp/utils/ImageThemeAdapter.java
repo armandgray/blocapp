@@ -1,8 +1,8 @@
 package org.blocorganization.blocapp.utils;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,20 +15,20 @@ import org.blocorganization.blocapp.R;
 
 import java.util.List;
 
-import static org.blocorganization.blocapp.campaigns.CampaignDetailActivity.getDPI;
-
 public class ImageThemeAdapter extends
         RecyclerView.Adapter<ImageThemeAdapter.ViewHolder> {
 
     private List<String> mThemes;
     private Activity mActivity;
     private int mLayoutParams;
+    private String setTheme;
 
-    // Pass in the contact array into the constructor
-    public ImageThemeAdapter(Activity activity, List<String> themes, int layoutParams) {
+    // Pass in the themes List & getCampaignTheme into the constructor
+    public ImageThemeAdapter(Activity activity, List<String> themes, int layoutParams, String theme) {
         mThemes = themes;
         mActivity = activity;
         mLayoutParams = layoutParams;
+        setTheme = theme;
     }
 
     @Override
@@ -42,13 +42,23 @@ public class ImageThemeAdapter extends
     public void onBindViewHolder(ImageThemeAdapter.ViewHolder viewHolder, int position) {
         // Get the data model based on position
         String theme = mThemes.get(position);
-        DisplayMetrics metrics = new DisplayMetrics();
-        mActivity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        int layoutParams = getDPI(mLayoutParams, metrics);
+        int layoutParams = GetDpMeasurement.getDPI(mActivity, mLayoutParams);
 
         ImageView ivCampaignTheme = viewHolder.ivCampaignTheme;
         ivCampaignTheme.setLayoutParams(new LinearLayout.LayoutParams(layoutParams, layoutParams));
         Picasso.with(mActivity).load(theme).into(ivCampaignTheme);
+
+        // when loadCampaignData in CreateInfoDialog set selected theme to getCampaignTheme
+        if (setTheme != null) {
+            if (setTheme.equals(mThemes.get(position))) {
+                // get Viewholder for row and change background
+                LinearLayout setLayout = (LinearLayout) viewHolder.itemView;
+                setLayout.setBackgroundResource(R.drawable.background_square_selected_shadow);
+                ImageView setImg = (ImageView) setLayout.getChildAt(0);
+                setImg.setColorFilter(Color.parseColor("#00000000"));
+                setImg.setBackgroundColor(Color.parseColor("#00000000"));
+            }
+        }
     }
 
     @Override
@@ -57,10 +67,9 @@ public class ImageThemeAdapter extends
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
+        ImageView ivCampaignTheme;
 
-        public ImageView ivCampaignTheme;
-
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
             ivCampaignTheme = (ImageView) itemView.findViewById(R.id.ivCampaignTheme);
         }

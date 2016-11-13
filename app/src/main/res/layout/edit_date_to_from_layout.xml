@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/editDateLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:layout_marginRight="@dimen/activity_horizontal_margin"
+    android:background="@drawable/dark_gradient_item_background"
+    android:orientation="horizontal"
+    android:paddingBottom="5dp"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="5dp"
+    tools:showIn="@layout/create_info_dialog">
+
+    <ImageView
+        android:id="@+id/ivCalVariIcon"
+        android:layout_width="@dimen/menu_icon_size"
+        android:layout_height="@dimen/menu_icon_size"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/icon"
+        android:tint="@color/ToolBarColor"
+        app:srcCompat="@drawable/ic_calendar_variant" />
+
+    <RelativeLayout
+        android:id="@+id/editDateFromLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_toEndOf="@+id/ivCalVariIcon"
+        android:layout_toRightOf="@+id/ivCalVariIcon"
+        android:longClickable="true"
+        android:paddingLeft="10dp">
+
+        <TextView
+            android:id="@+id/tvFromDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/ivCalVariIcon"
+            android:layout_toRightOf="@+id/ivCalVariIcon"
+            android:text="Date"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="@dimen/navbar_icon_size"
+            android:layout_height="@dimen/navbar_icon_size"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginRight="15dp"
+            android:rotation="270"
+            app:srcCompat="@drawable/ic_menu_down_white_48dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/editDateEndLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editDateFromLayout"
+        android:layout_marginLeft="10dp"
+        android:layout_toEndOf="@+id/ivCalVariIcon"
+        android:layout_toRightOf="@+id/ivCalVariIcon"
+        android:longClickable="true"
+        android:paddingLeft="10dp">
+
+        <TextView
+            android:id="@+id/tvToDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:text="End"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/ivMenuArrow"
+            android:layout_width="@dimen/navbar_icon_size"
+            android:layout_height="@dimen/navbar_icon_size"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginRight="15dp"
+            android:rotation="270"
+            app:srcCompat="@drawable/ic_menu_down_white_48dp" />
+    </RelativeLayout>
+</RelativeLayout>

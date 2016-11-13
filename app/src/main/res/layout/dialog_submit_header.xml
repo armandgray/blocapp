@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dialogSubmitHeader"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_header_background"
+    tools:showIn="@layout/create_info_dialog">
+
+    <ImageView
+        android:id="@+id/ivCancel"
+        android:layout_width="@dimen/ivcancel_side"
+        android:layout_height="@dimen/ivcancel_side"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center_vertical"
+        android:layout_margin="@dimen/btn_padding"
+        android:contentDescription="@string/icon"
+        android:tint="@color/ToolBarColor"
+        app:srcCompat="@drawable/ic_close_white_48dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Create a new campaign"
+        android:textAllCaps="true"
+        android:textSize="14sp" />
+
+    <ImageView
+        android:id="@+id/ivSubmit"
+        android:layout_width="@dimen/ivcancel_side"
+        android:layout_height="@dimen/ivcancel_side"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center_vertical"
+        android:layout_margin="@dimen/btn_padding"
+        android:contentDescription="@string/icon"
+        app:srcCompat="@drawable/ic_check_white_48dp" />
+</RelativeLayout>
