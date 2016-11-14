@@ -26,7 +26,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import org.blocorganization.blocapp.campaigns.CampaignDetailActivity;
 import org.blocorganization.blocapp.models.Campaign;
-import org.blocorganization.blocapp.models.CommunityEngagementCampaign;
 import org.blocorganization.blocapp.utils.CampaignsItemAdapter;
 import org.blocorganization.blocapp.utils.RecyclerItemClickListener;
 
@@ -108,25 +107,25 @@ public class HomeFragment extends Fragment {
         mCampaignsDatabaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Map<String, String> campaignsSnapshot = (Map) dataSnapshot.getValue();
-                final CommunityEngagementCampaign campaign = new CommunityEngagementCampaign();
+                Map<String, Object> campaignsSnapshot = (Map) dataSnapshot.getValue();
+                final Campaign campaign = new Campaign();
 
-                campaign.setAbbreviation(campaignsSnapshot.get("abbreviation"));
-                campaign.setTitle(campaignsSnapshot.get("title"));
-                campaign.setAdmin(campaignsSnapshot.get("admin"));
-                campaign.setDescription(campaignsSnapshot.get("description"));
-                campaign.setBenefits(campaignsSnapshot.get("benefits"));
-                campaign.setAmbition(campaignsSnapshot.get("admin"));
-                campaign.setPlanOfExecution(campaignsSnapshot.get("planOfExecution"));
-                campaign.setItemizedBudget(campaignsSnapshot.get("itemizedBudget"));
-                campaign.setVenue(campaignsSnapshot.get("venue"));
-                campaign.setFromDate(campaignsSnapshot.get("fromDate"));
-                campaign.setTime(campaignsSnapshot.get("time"));
-                campaign.setRecordType(campaignsSnapshot.get("recordType"));
-                campaign.setExtras(campaignsSnapshot.get("extras"));
-                campaign.setMonth(campaignsSnapshot.get("month"));
-                campaign.setCampaignPhoto(campaignsSnapshot.get("campaignPhoto"));
-                campaign.setCampaignTheme(campaignsSnapshot.get("campaignTheme"));
+                campaign.setAbbreviation((String) campaignsSnapshot.get("abbreviation"));
+                campaign.setTitle((String) campaignsSnapshot.get("title"));
+                campaign.setAdmin((String) campaignsSnapshot.get("admin"));
+                campaign.setDescription((String) campaignsSnapshot.get("description"));
+                campaign.setBenefits((String) campaignsSnapshot.get("benefits"));
+                campaign.setAmbition((String) campaignsSnapshot.get("admin"));
+                campaign.setPlanOfExecution((String) campaignsSnapshot.get("planOfExecution"));
+                campaign.setItemizedBudget((String) campaignsSnapshot.get("itemizedBudget"));
+                campaign.setVenue((String) campaignsSnapshot.get("venue"));
+                campaign.setFromDate((ArrayList<Integer>) campaignsSnapshot.get("fromDate"));
+                campaign.setTime((String) campaignsSnapshot.get("time"));
+                campaign.setRecordType((String) campaignsSnapshot.get("recordType"));
+                campaign.setExtras((String) campaignsSnapshot.get("extras"));
+                campaign.setToDate((ArrayList<Integer>) campaignsSnapshot.get("toDate"));
+                campaign.setCampaignPhoto((String) campaignsSnapshot.get("campaignPhoto"));
+                campaign.setCampaignTheme((String) campaignsSnapshot.get("campaignTheme"));
 
                 campaigns.add(0, campaign);
                 adapter.notifyItemInserted(0);

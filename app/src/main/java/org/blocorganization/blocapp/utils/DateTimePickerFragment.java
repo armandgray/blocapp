@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
 
-import java.util.Calendar;
+import org.joda.time.DateTime;
 
 public class DateTimePickerFragment extends DialogFragment
         implements TimePickerDialog.OnTimeSetListener,
@@ -50,9 +50,9 @@ public class DateTimePickerFragment extends DialogFragment
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the current time as the default values for the picker
-        final Calendar c = Calendar.getInstance();
-        int hour = c.get(Calendar.HOUR_OF_DAY);
-        int minute = c.get(Calendar.MINUTE);
+        DateTime dt = new DateTime();
+        int hour = dt.getHourOfDay();
+        int minute = dt.getMinuteOfHour();
 
         // Create a new instance of TimePickerDialog and return it
         return new TimePickerDialog(getActivity(), this, hour, minute,

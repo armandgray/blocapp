@@ -78,7 +78,7 @@ public class CampaignDetailActivity extends AppCompatActivity {
             Picasso.with(this).load(campaign.getCampaignTheme()).into(ivTheme);
             tvTitle.setText(campaign.getTitle());
             tvType.setText(campaign.getRecordType());
-            tvDate.setText(campaign.getFromDate());
+//            tvDate.setText(campaign.getFromDate());
             tvDesc.setText(campaign.getDescription());
             tvAmbition.setText(campaign.getAmbition());
             tvBenefits.setText(campaign.getBenefits());

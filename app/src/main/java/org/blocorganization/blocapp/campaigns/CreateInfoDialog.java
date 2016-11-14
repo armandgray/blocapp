@@ -34,6 +34,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import org.blocorganization.blocapp.BlocApp;
 import org.blocorganization.blocapp.R;
 import org.blocorganization.blocapp.models.Campaign;
 import org.blocorganization.blocapp.utils.ConfirmChangesDialogFragment;
@@ -42,6 +43,7 @@ import org.blocorganization.blocapp.utils.GetDpMeasurement;
 import org.blocorganization.blocapp.utils.ImageThemeAdapter;
 import org.blocorganization.blocapp.utils.RecyclerItemClickListener;
 import org.blocorganization.blocapp.utils.SpinnerAdapter;
+import org.joda.time.DateTime;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,6 +74,7 @@ public class CreateInfoDialog extends DialogFragment
     public static final String TYPE = "Type";
     public static final String DATE = "Date";
     public static final String END = "End";
+    public static final String CAMPAIGNS = "campaigns";
 
     private Campaign campaign;
 
@@ -122,7 +125,6 @@ public class CreateInfoDialog extends DialogFragment
                              Bundle savedInstanceState) {
         // Inflate the layout to use as dialog or embedded fragment
         final View rootView = inflater.inflate(R.layout.create_info_dialog, container, false);
-
 
         campaign = new Campaign(getArguments());
 
@@ -256,14 +258,9 @@ public class CreateInfoDialog extends DialogFragment
                     allClear = false;
                     Toast.makeText(getActivity(), "Venue is required", Toast.LENGTH_SHORT).show();
                 }
-                if (!tvFromDate.getText().toString().equals("") && tvFromDate.getText() != null && !tvFromDate.getText().toString().equals(DATE)) {
-                    campaign.setFromDate(tvFromDate.getText().toString());
-                } else {
+                if (tvFromDate.getText().toString().equals("") || tvFromDate.getText() == null || tvFromDate.getText().toString().equals(DATE)) {
                     allClear = false;
                     Toast.makeText(getActivity(), "Date is required", Toast.LENGTH_SHORT).show();
-                }
-                if (!tvToDate.getText().toString().equals("") && tvToDate.getText() != null && !tvToDate.getText().toString().equals(END)) {
-                    campaign.setToDate(tvToDate.getText().toString());
                 }
                 if (!etTitle.getText().toString().equals("") && etTitle.getText() != null) {
                     campaign.setTitle(etTitle.getText().toString());
@@ -430,10 +427,10 @@ public class CreateInfoDialog extends DialogFragment
                 }
             }
             if (campaign.getFromDate() != null && !campaign.getFromDate().equals("")) {
-                tvFromDate.setText(campaign.getFromDate());
+//                tvFromDate.setText(campaign.getFromDate());
             }
             if (campaign.getToDate() != null && !campaign.getToDate().equals("")) {
-                tvToDate.setText(campaign.getToDate());
+//                tvToDate.setText(campaign.getToDate());
                 isRange = true;
                 showEndDateView();
             }
@@ -472,10 +469,14 @@ public class CreateInfoDialog extends DialogFragment
     @Override
     public void onEventDateTimeSet(int year, int month, int day, int hourOfDay, String minute) {
         // Date formatting fields
-        String dateHeader = "On: ";
-        if (isRange != null && isRange) {
-            dateHeader = "Start: ";
-        }
+        ArrayList<Integer> date = new ArrayList<>();
+        date.add(year);
+        date.add(month);
+        date.add(day);
+        date.add(hourOfDay);
+        date.add(Integer.valueOf(minute));
+
+        DateTime dt = new DateTime();
         String ampmDesignator = "am";
         if (hourOfDay >= 12) {
             ampmDesignator = "pm";
@@ -483,20 +484,22 @@ public class CreateInfoDialog extends DialogFragment
         if (hourOfDay != 12) {
             hourOfDay = hourOfDay % 12;
         }
+        dt.withDate(year, month, day);
 
         // initial state is null; afterwards editEndDate is true if user selects 2nd fromDate field
         if (isRange == null) {
             editDateFromLayout.setBackgroundResource(R.drawable.date_divider_background);
             editDateFromLayout.setPadding(GetDpMeasurement.getDPI(getActivity(), 10), 0, 0, GetDpMeasurement.getDPI(getActivity(), 5));
-            tvFromDate.setText(dateHeader + month + "/" + day + "/" + year + ", " + hourOfDay + ":" + minute + " " + ampmDesignator);
-
+            tvFromDate.setText("On: " + dt.monthOfYear().getAsText() + " " + day + ", " + year + ", " + hourOfDay + ":" + minute + " " + ampmDesignator);
+            campaign.setFromDate(date);
             showEndDateView();
             ivToDateMenuArrow.setImageResource(R.drawable.ic_close_white_48dp);
         } else if (editEndDate && isRange) {
-            tvToDate.setText("End: " + month + "/" + day + "/" + year + ", " + hourOfDay + ":" + minute + " " + ampmDesignator);
+            tvToDate.setText("End: " + dt.monthOfYear().getAsText() + " " + day + ", " + year + ", " + hourOfDay + ":" + minute + " " + ampmDesignator);
+            campaign.setToDate(date);
             editEndDate = false;
         } else {
-            tvFromDate.setText(dateHeader + month + "/" + day + "/" + year + ", " + hourOfDay + ":" + minute + " " + ampmDesignator);
+            tvFromDate.setText("On: " + dt.monthOfYear().getAsText() + " " + day + ", " + year + ", " + hourOfDay + ":" + minute + " " + ampmDesignator);
         }
     }
 
@@ -518,8 +521,12 @@ public class CreateInfoDialog extends DialogFragment
     @Override
     public void onConfirmSave() {
         /**
-         *  Add/ Update Campaign in Firebase using position in Array
+         *  Add/ Update Campaign in Firebase using position in List
          */
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child(CAMPAIGNS);
+        mDatabase.child(String.valueOf(
+                BlocApp.getInstance().getCampaignPosition(new Campaign(getArguments()))))
+                .setValue(campaign);
 
         getActivity().onBackPressed();
         Intent intent = new Intent(getActivity(), CampaignDetailActivity.class);

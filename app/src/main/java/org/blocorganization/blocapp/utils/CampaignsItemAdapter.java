@@ -14,6 +14,7 @@ import com.squareup.picasso.Picasso;
 
 import org.blocorganization.blocapp.R;
 import org.blocorganization.blocapp.models.Campaign;
+import org.joda.time.DateTime;
 
 import java.util.List;
 
@@ -70,9 +71,13 @@ public class CampaignsItemAdapter extends
             campaignItemContainer.removeView(campaignItemContainer.getChildAt(2));
             campaignItemContainer.setLayoutParams(new LinearLayout.LayoutParams(containerDimens, containerDimens));
         }
-        if (campaign.getMonth() != null) {
-            tvCampaignMonth.setText(campaign.getMonth());
-            tvCampaignDate.setText(campaign.getFromDate());
+        if (campaign.getFromDate() != null && !campaign.getFromDate().equals("")) {
+            DateTime dt = new DateTime();
+//            StringBuffer buffer = new StringBuffer(campaign.getFromDate());
+//            Log.i("BUFFER", buffer.substring(header.length(), 3));
+//            dt.withDate();
+//            tvCampaignMonth.setText(campaign.getMonth());
+//            tvCampaignDate.setText(campaign.getFromDate());
         } else {
             tvCampaignMonth.setVisibility(View.GONE);
         }

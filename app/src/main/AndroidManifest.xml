@@ -11,6 +11,7 @@
         android:label="@string/app_name"
         android:logo="@drawable/ic_bloc_negative"
         android:supportsRtl="true"
+        android:name=".BlocApp"
         android:theme="@style/AppTheme.NoActionBar">
         <activity android:name=".MainActivity" />
         <activity

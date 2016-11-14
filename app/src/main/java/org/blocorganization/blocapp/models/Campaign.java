@@ -2,6 +2,8 @@ package org.blocorganization.blocapp.models;
 
 import android.os.Bundle;
 
+import java.util.ArrayList;
+
 public class Campaign extends Record {
 
     //	constants for field references
@@ -13,7 +15,6 @@ public class Campaign extends Record {
     public static final String PLAN_OF_EXECUTION_KEY = "PLAN_OF_EXECUTION_KEY";
     public static final String ITEMIZED_BUDGET_KEY = "ITEMIZED_BUDGET_KEY";
     public static final String VENUE_KEY = "VENUE_KEY";
-    public static final String MONTH_KEY = "MONTH_KEY";
     public static final String FROM_DATE_KEY = "FROM_DATE_KEY";
     public static final String TO_DATE_KEY = "TO_DATE_KEY";
     public static final String TIME_KEY = "TIME_KEY";
@@ -26,9 +27,8 @@ public class Campaign extends Record {
     public String planOfExecution;
     public String itemizedBudget;
     public String venue;
-    public String month;
-    public String fromDate;
-    public String toDate;
+    public ArrayList<Integer> fromDate;
+    public ArrayList<Integer> toDate;
     public String time;
     public String campaignTheme;
 
@@ -41,7 +41,6 @@ public class Campaign extends Record {
         this.planOfExecution = null;
         this.itemizedBudget = null;
         this.venue = null;
-        this.month = null;
         this.fromDate = null;
         this.toDate = null;
         this.time = null;
@@ -59,20 +58,19 @@ public class Campaign extends Record {
             this.planOfExecution = b.getString(PLAN_OF_EXECUTION_KEY);
             this.itemizedBudget = b.getString(ITEMIZED_BUDGET_KEY);
             this.venue = b.getString(VENUE_KEY);
-            this.month = b.getString(MONTH_KEY);
-            this.fromDate = b.getString(FROM_DATE_KEY);
-            this.toDate = b.getString(TO_DATE_KEY);
+            this.fromDate = b.getIntegerArrayList(FROM_DATE_KEY);
+            this.toDate = b.getIntegerArrayList(TO_DATE_KEY);
             this.time = b.getString(TIME_KEY);
         }
     }
 
     //	Package data for transfer between activities
 
-    public String getToDate() {
+    public ArrayList<Integer> getToDate() {
         return toDate;
     }
 
-    public void setToDate(String toDate) {
+    public void setToDate(ArrayList<Integer> toDate) {
         this.toDate = toDate;
     }
 
@@ -90,9 +88,8 @@ public class Campaign extends Record {
         b.putString(PLAN_OF_EXECUTION_KEY, this.planOfExecution);
         b.putString(ITEMIZED_BUDGET_KEY, this.itemizedBudget);
         b.putString(VENUE_KEY, this.venue);
-        b.putString(MONTH_KEY, this.month);
-        b.putString(FROM_DATE_KEY, this.fromDate);
-        b.putString(TO_DATE_KEY, this.toDate);
+        b.putIntegerArrayList(FROM_DATE_KEY, this.fromDate);
+        b.putIntegerArrayList(TO_DATE_KEY, this.toDate);
         b.putString(TIME_KEY, this.time);
 
         return b;
@@ -147,11 +144,11 @@ public class Campaign extends Record {
         this.venue = venue;
     }
 
-    public String getFromDate() {
+    public ArrayList<Integer> getFromDate() {
         return fromDate;
     }
 
-    public void setFromDate(String fromDate) {
+    public void setFromDate(ArrayList<Integer> fromDate) {
         this.fromDate = fromDate;
     }
 
@@ -169,14 +166,6 @@ public class Campaign extends Record {
 
     public void setAbbreviation(String abbreviation) {
         this.abbreviation = abbreviation;
-    }
-
-    public String getMonth() {
-        return month;
-    }
-
-    public void setMonth(String month) {
-        this.month = month;
     }
 
     public String getCampaignTheme() {
