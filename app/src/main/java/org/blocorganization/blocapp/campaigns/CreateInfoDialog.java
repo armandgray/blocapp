@@ -372,7 +372,7 @@ public class CreateInfoDialog extends DialogFragment
         mProgressDialog = new ProgressDialog(getActivity());
 
         setupUploadButton(rootView);
-
+        addUploadButtonClickListener();
 
         etTitle = (EditText) rootView.findViewById(R.id.etTitle);
         etAbbreviation = (EditText) rootView.findViewById(R.id.etAbbreviation);
@@ -385,14 +385,30 @@ public class CreateInfoDialog extends DialogFragment
         return rootView;
     }
 
-    private SetupButtonIncluder setupUploadButton(View rootView) {
+    private void setupUploadButton(View rootView) {
         SetupButtonIncluder buttonIncluder = new SetupButtonIncluder(rootView, R.id.btn_container_red);
+        setButtonAttributesFrom(rootView, buttonIncluder);
+        addUploadButtonClickListener(buttonIncluder);
+    }
+
+    @NonNull
+    private SetupButtonIncluder setButtonAttributesFrom(View rootView, SetupButtonIncluder buttonIncluder) {
         buttonIncluder.setButtonIconVisibility(SetupButtonIncluder.GONE);
         buttonIncluder.setButtonTextSizeInSp(UPLOAD_BUTTON_TEXT_SIZE);
         buttonIncluder.setButtonText(UPLOAD_BUTTON_TEXT);
         Activity parentActivity = getActivity();
         buttonIncluder.setButtonPaddingWithin(parentActivity, 5);
         return buttonIncluder;
+    }
+
+    private void addUploadButtonClickListener(SetupButtonIncluder buttonIncluder) {
+        LinearLayout uploadButton = buttonIncluder.getUploadButton();
+        uploadButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
+            }
+        });
     }
 
     private void getPassedCampaign() {
