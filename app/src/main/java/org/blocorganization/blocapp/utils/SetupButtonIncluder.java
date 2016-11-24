@@ -1,7 +1,7 @@
 package org.blocorganization.blocapp.utils;
 
 import android.app.Activity;
-import android.opengl.Visibility;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -23,14 +23,16 @@ public class SetupButtonIncluder {
         this.tvButtonText = (TextView) buttonLayoutReference.getChildAt(1);
     }
 
-//    public void setupButtonWithPaddingWithin(Activity activity) {
-//        ivBtnIcon.setVisibility(View.GONE);
-//        TextView tvBtnText = (TextView) btnUpload.getChildAt(1);
-//        tvBtnText.setText("Upload");
-//        tvBtnText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
-//    }
+    private void setButtonText(String text) {
+        this.tvButtonText.setText(text);
+    }
 
-    private setButtonIconAs(int drawableReferenceId) {
+    private void setButtonTextSizeInSp (int textSize) {
+        this.tvButtonText.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
+    }
+
+    private void setButtonIconAs(int drawableReferenceId) {
+        this.ivButtonIcon.setImageResource(drawableReferenceId);
     }
 
     /**
