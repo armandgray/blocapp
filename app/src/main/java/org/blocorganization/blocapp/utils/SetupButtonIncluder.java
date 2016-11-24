@@ -1,28 +1,33 @@
 package org.blocorganization.blocapp.utils;
 
+import android.app.Activity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 public class SetupButtonIncluder {
 
+    private ImageView ivButtonIcon;
     private LinearLayout buttonLayoutReference;
-    private View view;
 
-    public SetupButtonIncluder(View view, int buttonLayoutId) {
-        this.view = view;
-        buttonLayoutReference = (LinearLayout) view.findViewById(buttonLayoutId);
+    public SetupButtonIncluder(View rootView, int buttonLayoutId) {
+        buttonLayoutReference = (LinearLayout) rootView.findViewById(buttonLayoutId);
     }
 
-//    public static void setupUploadButtonWithPaddingFrom(View view, Activity activity) {
-//        getButtonReference(view);
-//        new SetupButtonIncluder();
-//        final int padding = GetDpMeasurement.getDPI(activity, 5);
-//        btnUpload.setPadding(padding, padding, padding, padding);
-//        ImageView ivBtnIcon = (ImageView) btnUpload.getChildAt(0);
-//        ivBtnIcon.setVisibility(View.GONE);
-//        TextView tvBtnText = (TextView) btnUpload.getChildAt(1);
-//        tvBtnText.setText("Upload");
-//        tvBtnText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
-//    }
+    public void setupButtonWithPaddingWithin(Activity activity) {
+        ivBtnIcon.setVisibility(View.GONE);
+        TextView tvBtnText = (TextView) btnUpload.getChildAt(1);
+        tvBtnText.setText("Upload");
+        tvBtnText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
+    }
+
+    private setButtonIconAs(int drawableReferenceId) {
+        this.ivButtonIcon = (ImageView) buttonLayoutReference.getChildAt(0);
+    }
+
+    private void setButtonPaddingWithin(Activity activity, int padding) {
+        final int pad = GetDpMeasurement.getDPI(activity, padding);
+        buttonLayoutReference.setPadding(pad, pad, pad, pad);
+    }
 
 }

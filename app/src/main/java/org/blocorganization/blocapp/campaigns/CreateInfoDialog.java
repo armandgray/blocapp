@@ -372,7 +372,7 @@ public class CreateInfoDialog extends DialogFragment
         SetupButtonIncluder buttonIncluder = new SetupButtonIncluder(rootView, R.id.btn_container_red);
 
         ivUpload = (ImageView) rootView.findViewById(R.id.ivUpload);
-        ivUpload.setVisibility(View.GONE);
+        ivUpload.setVisibility(100);
 //        btnUpload.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
