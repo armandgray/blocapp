@@ -1,5 +1,6 @@
 package org.blocorganization.blocapp.campaigns;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -76,6 +77,8 @@ public class CreateInfoDialog extends DialogFragment
     public static final String DATE = "Date";
     public static final String END = "End";
     public static final String CAMPAIGNS = "campaigns";
+    public static final String UPLOAD_BUTTON_TEXT = "Upload";
+    public static final int UPLOAD_BUTTON_TEXT_SIZE = 12;
 
     private Campaign campaign;
 
@@ -368,19 +371,8 @@ public class CreateInfoDialog extends DialogFragment
         mStorage = FirebaseStorage.getInstance().getReference();
         mProgressDialog = new ProgressDialog(getActivity());
 
-        // upload btn setup
-        SetupButtonIncluder buttonIncluder = new SetupButtonIncluder(rootView, R.id.btn_container_red);
+        setupUploadButton(rootView);
 
-        ivUpload = (ImageView) rootView.findViewById(R.id.ivUpload);
-        ivUpload.setVisibility(100);
-//        btnUpload.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(Intent.ACTION_PICK);
-//                intent.setType("image/*");
-//                startActivityForResult(intent, GALLERY_INTENT);
-//            }
-//        });
 
         etTitle = (EditText) rootView.findViewById(R.id.etTitle);
         etAbbreviation = (EditText) rootView.findViewById(R.id.etAbbreviation);
@@ -391,6 +383,16 @@ public class CreateInfoDialog extends DialogFragment
         etBenefits = (EditText) rootView.findViewById(R.id.etBenefits);
 
         return rootView;
+    }
+
+    private SetupButtonIncluder setupUploadButton(View rootView) {
+        SetupButtonIncluder buttonIncluder = new SetupButtonIncluder(rootView, R.id.btn_container_red);
+        buttonIncluder.setButtonIconVisibility(SetupButtonIncluder.GONE);
+        buttonIncluder.setButtonTextSizeInSp(UPLOAD_BUTTON_TEXT_SIZE);
+        buttonIncluder.setButtonText(UPLOAD_BUTTON_TEXT);
+        Activity parentActivity = getActivity();
+        buttonIncluder.setButtonPaddingWithin(parentActivity, 5);
+        return buttonIncluder;
     }
 
     private void getPassedCampaign() {

@@ -23,28 +23,32 @@ public class SetupButtonIncluder {
         this.tvButtonText = (TextView) buttonLayoutReference.getChildAt(1);
     }
 
-    private void setButtonText(String text) {
+    public void setButtonText(String text) {
         this.tvButtonText.setText(text);
     }
 
-    private void setButtonTextSizeInSp (int textSize) {
+    public void setButtonTextSizeInSp (int textSize) {
         this.tvButtonText.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
     }
 
-    private void setButtonIconAs(int drawableReferenceId) {
+    public void setButtonIconAs(int drawableReferenceId) {
         this.ivButtonIcon.setImageResource(drawableReferenceId);
     }
 
     /**
      *  @param visibility One of {@link #VISIBLE}, {@link #INVISIBLE}, or {@link #GONE}.
      */
-    private void setButtonIconVisibility(int visibility) {
+    public void setButtonIconVisibility(int visibility) {
         this.ivButtonIcon.setVisibility(visibility);
     }
 
-    private void setButtonPaddingWithin(Activity activity, int padding) {
+    public void setButtonPaddingWithin(Activity activity, int padding) {
         final int pad = GetDpMeasurement.getDPI(activity, padding);
         buttonLayoutReference.setPadding(pad, pad, pad, pad);
+    }
+
+    public LinearLayout getUploadButton() {
+        return buttonLayoutReference;
     }
 
 }
