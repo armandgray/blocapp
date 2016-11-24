@@ -43,12 +43,13 @@ import org.blocorganization.blocapp.utils.DateTimePickerFragment;
 import org.blocorganization.blocapp.utils.GetDpMeasurement;
 import org.blocorganization.blocapp.utils.ImageThemeAdapter;
 import org.blocorganization.blocapp.utils.RecyclerItemClickListener;
-import org.blocorganization.blocapp.utils.SetupButtonIncluder;
 import org.blocorganization.blocapp.utils.SpinnerAdapter;
 import org.joda.time.DateTime;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.blocorganization.blocapp.campaigns.UploadButtonUtilities.setupUploadButtonFrom;
 
 public class CreateInfoDialog extends DialogFragment
         implements DateTimePickerFragment.DateTimeSetListener,
@@ -77,8 +78,7 @@ public class CreateInfoDialog extends DialogFragment
     public static final String DATE = "Date";
     public static final String END = "End";
     public static final String CAMPAIGNS = "campaigns";
-    public static final String UPLOAD_BUTTON_TEXT = "Upload";
-    public static final int UPLOAD_BUTTON_TEXT_SIZE = 12;
+
 
     private Campaign campaign;
 
@@ -371,8 +371,10 @@ public class CreateInfoDialog extends DialogFragment
         mStorage = FirebaseStorage.getInstance().getReference();
         mProgressDialog = new ProgressDialog(getActivity());
 
-        setupUploadButton(rootView);
-        addUploadButtonClickListener();
+        Activity parentActivity = getActivity();
+        setupUploadButtonFrom(rootView, parentActivity);
+
+        ivUpload = (ImageView) rootView.findViewById(R.id.ivUpload);
 
         etTitle = (EditText) rootView.findViewById(R.id.etTitle);
         etAbbreviation = (EditText) rootView.findViewById(R.id.etAbbreviation);
@@ -383,32 +385,6 @@ public class CreateInfoDialog extends DialogFragment
         etBenefits = (EditText) rootView.findViewById(R.id.etBenefits);
 
         return rootView;
-    }
-
-    private void setupUploadButton(View rootView) {
-        SetupButtonIncluder buttonIncluder = new SetupButtonIncluder(rootView, R.id.btn_container_red);
-        setButtonAttributesFrom(rootView, buttonIncluder);
-        addUploadButtonClickListener(buttonIncluder);
-    }
-
-    @NonNull
-    private SetupButtonIncluder setButtonAttributesFrom(View rootView, SetupButtonIncluder buttonIncluder) {
-        buttonIncluder.setButtonIconVisibility(SetupButtonIncluder.GONE);
-        buttonIncluder.setButtonTextSizeInSp(UPLOAD_BUTTON_TEXT_SIZE);
-        buttonIncluder.setButtonText(UPLOAD_BUTTON_TEXT);
-        Activity parentActivity = getActivity();
-        buttonIncluder.setButtonPaddingWithin(parentActivity, 5);
-        return buttonIncluder;
-    }
-
-    private void addUploadButtonClickListener(SetupButtonIncluder buttonIncluder) {
-        LinearLayout uploadButton = buttonIncluder.getUploadButton();
-        uploadButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                
-            }
-        });
     }
 
     private void getPassedCampaign() {
