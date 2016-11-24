@@ -49,6 +49,8 @@ import org.joda.time.DateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.blocorganization.blocapp.campaigns.CreateInfoDialogSetupUtilities.setupUploadButtonWith;
+
 public class CreateInfoDialog extends DialogFragment
         implements DateTimePickerFragment.DateTimeSetListener,
         ConfirmChangesDialogFragment.ConfirmChangesListener {
@@ -369,6 +371,8 @@ public class CreateInfoDialog extends DialogFragment
         mProgressDialog = new ProgressDialog(getActivity());
 
         // upload btn setup
+        setupUploadButtonWith(rootView);
+
         LinearLayout btnUpload = (LinearLayout) rootView.findViewById(R.id.btn_container_red);
         final int padding = GetDpMeasurement.getDPI(getActivity(), 5);
         btnUpload.setPadding(padding, padding, padding, padding);
