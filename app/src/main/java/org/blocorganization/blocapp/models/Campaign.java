@@ -2,6 +2,8 @@ package org.blocorganization.blocapp.models;
 
 import android.os.Bundle;
 
+import org.joda.time.DateTime;
+
 import java.util.ArrayList;
 
 public class Campaign extends Record {
@@ -17,7 +19,7 @@ public class Campaign extends Record {
     public static final String VENUE_KEY = "VENUE_KEY";
     public static final String FROM_DATE_KEY = "FROM_DATE_KEY";
     public static final String TO_DATE_KEY = "TO_DATE_KEY";
-    public static final String TIME_KEY = "TIME_KEY";
+    public static final String TIMESTAMP_KEY = "TIMESTAMP_KEY";
 
     //	private fields
     public String abbreviation;
@@ -29,7 +31,7 @@ public class Campaign extends Record {
     public String venue;
     public ArrayList<Integer> fromDate;
     public ArrayList<Integer> toDate;
-    public String time;
+    public String timestamp;
     public String campaignTheme;
 
     public Campaign() {
@@ -43,7 +45,7 @@ public class Campaign extends Record {
         this.venue = null;
         this.fromDate = null;
         this.toDate = null;
-        this.time = null;
+        this.timestamp = null;
     }
 
     //	Create from a bundle
@@ -60,7 +62,7 @@ public class Campaign extends Record {
             this.venue = b.getString(VENUE_KEY);
             this.fromDate = b.getIntegerArrayList(FROM_DATE_KEY);
             this.toDate = b.getIntegerArrayList(TO_DATE_KEY);
-            this.time = b.getString(TIME_KEY);
+            this.timestamp = b.getString(TIMESTAMP_KEY);
         }
     }
 
@@ -74,10 +76,6 @@ public class Campaign extends Record {
         this.toDate = toDate;
     }
 
-    /**
-     *  Should this be at override???????
-     * @return
-     */
     public Bundle toBundle() {
         Bundle b = super.toBundle(); // careful about copy vs. pointer; maybe b = is not necessary
         b.putString(ABBREVIATION_KEY, this.abbreviation);
@@ -90,7 +88,7 @@ public class Campaign extends Record {
         b.putString(VENUE_KEY, this.venue);
         b.putIntegerArrayList(FROM_DATE_KEY, this.fromDate);
         b.putIntegerArrayList(TO_DATE_KEY, this.toDate);
-        b.putString(TIME_KEY, this.time);
+        b.putString(TIMESTAMP_KEY, this.timestamp);
 
         return b;
     }
@@ -152,12 +150,19 @@ public class Campaign extends Record {
         this.fromDate = fromDate;
     }
 
-    public String getTime() {
-        return time;
+    public String getTimestamp() {
+        return timestamp;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setTimestamp() {
+        DateTime timestamp = new DateTime();
+        this.timestamp = String.valueOf(timestamp.getYear())
+                + timestamp.getMonthOfYear()
+                + timestamp.getDayOfMonth()
+                + timestamp.getHourOfDay()
+                + timestamp.getMinuteOfHour()
+                + timestamp.getSecondOfMinute()
+                + timestamp.getMillisOfSecond();
     }
 
     public String getAbbreviation() {

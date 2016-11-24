@@ -2,6 +2,8 @@ package org.blocorganization.blocapp.models;
 
 import android.os.Bundle;
 
+import org.joda.time.DateTime;
+
 public class Record {
 
     //	constants for field references
@@ -30,9 +32,7 @@ public class Record {
         this.title = null;
         this.description = null;
         this.campaignTheme = null;
-
-        Long tsLong = System.currentTimeMillis()/1000;
-        this.timestamp = tsLong.toString();
+        this.timestamp = null;
     }
 
     //	Create from a bundle
@@ -88,9 +88,22 @@ public class Record {
 
     public void setDescription(String description) { this.description = description; }
 
+    public void setTimestamp() {
+        DateTime timestamp = new DateTime();
+        this.timestamp = String.valueOf(timestamp.getYear())
+                + timestamp.getMonthOfYear()
+                + timestamp.getDayOfMonth()
+                + timestamp.getHourOfDay()
+                + timestamp.getMinuteOfHour()
+                + timestamp.getSecondOfMinute()
+                + timestamp.getMillisOfSecond();
+    }
+
     public String getTimestamp() {
         return timestamp;
     }
+
+    public void setTimestamp(String timestamp) { this.timestamp = timestamp; }
 
     public String getExtras() { return extras; }
 

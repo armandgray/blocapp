@@ -55,7 +55,7 @@ public class NotificationsDetailFragment extends Fragment {
             tvInstructions.setText(campaign.getAdmin());
 
             TextView tvPrice = (TextView) rootView.findViewById(R.id.tvPrice);
-            tvPrice.setText(campaign.getTimestamp());
+//            tvPrice.setText(campaign.getTimestamp());
 
 //            ImageView ivPicture = (ImageView) rootView.findViewById(R.id.ivRecordImage);
 //            ivPicture.setImageResource(campaign.getImageResource());

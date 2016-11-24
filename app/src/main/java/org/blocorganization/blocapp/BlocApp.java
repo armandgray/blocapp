@@ -62,7 +62,7 @@ public class BlocApp extends Application {
                 campaign.setItemizedBudget((String) campaignsSnapshot.get("itemizedBudget"));
                 campaign.setVenue((String) campaignsSnapshot.get("venue"));
                 campaign.setFromDate((ArrayList<Integer>) campaignsSnapshot.get("fromDate"));
-                campaign.setTime((String) campaignsSnapshot.get("time"));
+                campaign.setTimestamp((String) campaignsSnapshot.get("timestamp"));
                 campaign.setRecordType((String) campaignsSnapshot.get("recordType"));
                 campaign.setExtras((String) campaignsSnapshot.get("extras"));
                 campaign.setToDate((ArrayList<Integer>) campaignsSnapshot.get("toDate"));

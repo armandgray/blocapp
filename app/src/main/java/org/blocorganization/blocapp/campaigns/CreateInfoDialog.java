@@ -10,6 +10,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.InputFilter;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -113,10 +114,9 @@ public class CreateInfoDialog extends DialogFragment
     private Spinner spVenue;
     private RecyclerView rvThemes;
 
-    public static CreateInfoDialog withCampaign(Campaign campaign) {
-
+    public static CreateInfoDialog withCampaign(Campaign passedCampaign) {
         CreateInfoDialog fragment = new CreateInfoDialog();
-        fragment.setArguments(campaign.toBundle());
+        fragment.setArguments(passedCampaign.toBundle());
         return fragment;
     }
 
@@ -126,7 +126,7 @@ public class CreateInfoDialog extends DialogFragment
         // Inflate the layout to use as dialog or embedded fragment
         final View rootView = inflater.inflate(R.layout.create_info_dialog, container, false);
 
-        campaign = new Campaign(getArguments());
+        getPassedCampaign();
 
         DatabaseReference mDatabaseResources = FirebaseDatabase.getInstance().getReference().child(RES);
         DatabaseReference dbThemes = mDatabaseResources.child(IMAGEURLS).child(THEMES);
@@ -391,13 +391,20 @@ public class CreateInfoDialog extends DialogFragment
 
         etTitle = (EditText) rootView.findViewById(R.id.etTitle);
         etAbbreviation = (EditText) rootView.findViewById(R.id.etAbbreviation);
-        etAbbreviation.setFilters(new InputFilter[] {new InputFilter.AllCaps(), new InputFilter.LengthFilter(3)});
+        etAbbreviation.setFilters(new InputFilter[]{new InputFilter.AllCaps(), new InputFilter.LengthFilter(3)});
         etAdmin = (EditText) rootView.findViewById(R.id.etAdmin);
         etDescription = (EditText) rootView.findViewById(R.id.etDescription);
         etAmbition = (EditText) rootView.findViewById(R.id.etAmbition);
         etBenefits = (EditText) rootView.findViewById(R.id.etBenefits);
 
         return rootView;
+    }
+
+    private void getPassedCampaign() {
+        campaign = new Campaign(getArguments());
+        if (getArguments() == null) {
+            campaign.setTimestamp();
+        }
     }
 
     private void loadCampaignData() {
@@ -408,7 +415,9 @@ public class CreateInfoDialog extends DialogFragment
                     if (campaign.getCampaignTheme().equals(themes.get(i))) {
                         // get Viewholder for row and change background
                         themePosition = i;
-                        if (i > 3) { rvThemes.scrollToPosition(i-1); }
+                        if (i > 3) {
+                            rvThemes.scrollToPosition(i - 1);
+                        }
                     }
                 }
             }
@@ -427,10 +436,35 @@ public class CreateInfoDialog extends DialogFragment
                 }
             }
             if (campaign.getFromDate() != null && !campaign.getFromDate().equals("")) {
-//                tvFromDate.setText(campaign.getFromDate());
+                DateTime dt = new DateTime();
+                // java.lang.ClassCastException: java.lang.Long cannot be cast to java.lang.Integer
+                // Possible that firebase saves the getFromDate as an ArrayList<Long> and the cast is unckecked in dbCallbacks and is really Long not Integer.
+//                dt.withDate(campaign.getToDate().get(0), campaign.getToDate().get(1), campaign.getToDate().get(2));
+//                dt.withTime(campaign.getFromDate().get(3), campaign.getFromDate().get(4), 0, 0);
+                String ampmDesignator = "am";
+                if (dt.getHourOfDay() >= 12) {
+                    ampmDesignator = "pm";
+                }
+                int hourOfDay = dt.getHourOfDay();
+                if (hourOfDay != 12) {
+                    hourOfDay = hourOfDay % 12;
+                }
+                tvFromDate.setText("On: " + dt.monthOfYear().getAsText() + " " + dt.getDayOfMonth() + ", " + dt.year() + ", " + hourOfDay + ":" + dt.getMinuteOfHour() + " " + ampmDesignator);
             }
             if (campaign.getToDate() != null && !campaign.getToDate().equals("")) {
-//                tvToDate.setText(campaign.getToDate());
+                DateTime dt = new DateTime();
+//                dt.withDate(campaign.getToDate().get(0).intValue(), 0, 0);
+//                , campaign.getToDate().get(1), campaign.getToDate().get(2));
+//                dt.withTime(campaign.getToDate().get(3), campaign.getToDate().get(4), 0, 0);
+                String ampmDesignator = "am";
+                if (dt.getHourOfDay() >= 12) {
+                    ampmDesignator = "pm";
+                }
+                int hourOfDay = dt.getHourOfDay();
+                if (hourOfDay != 12) {
+                    hourOfDay = hourOfDay % 12;
+                }
+                tvToDate.setText("On: " + dt.monthOfYear().getAsText() + " " + dt.getDayOfMonth() + ", " + dt.year() + ", " + hourOfDay + ":" + dt.getMinuteOfHour() + " " + ampmDesignator);
                 isRange = true;
                 showEndDateView();
             }
@@ -523,11 +557,14 @@ public class CreateInfoDialog extends DialogFragment
         /**
          *  Add/ Update Campaign in Firebase using position in List
          */
+        Log.i("CAMP_DATE", String.valueOf(campaign.getFromDate().get(0)) + campaign.getFromDate().get(1) + campaign.getFromDate().get(2));
+        Log.i("CAMP_POS", String.valueOf(BlocApp.getInstance().getCampaignPosition(new Campaign(getArguments()))));
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child(CAMPAIGNS);
         mDatabase.child(String.valueOf(
                 BlocApp.getInstance().getCampaignPosition(new Campaign(getArguments()))))
                 .setValue(campaign);
 
+        getActivity().onBackPressed();
         getActivity().onBackPressed();
         Intent intent = new Intent(getActivity(), CampaignDetailActivity.class);
         intent.putExtras(campaign.toBundle());
