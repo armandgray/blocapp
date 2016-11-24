@@ -25,7 +25,20 @@ class UploadActivityListener {
 
     private Activity activity;
 
-    static void onActivityResult(final Activity activity, int requestCode, int resultCode, Intent data) {
+    private static UploadActivityListener singleton;
+
+    private UploadActivityListener(Activity activity){
+        this.activity = activity;
+    }
+
+    static UploadActivityListener getInstanceWithActivity(Activity activity){
+        if (singleton == null) {
+            singleton = new UploadActivityListener(activity);
+        }
+        return singleton;
+    }
+
+    void onActivityResult(final Activity activity, int requestCode, int resultCode, Intent data) {
 
         if (requestCode == GALLERY_INTENT && resultCode == RESULT_OK) {
             final ProgressDialog progressDialog = new ProgressDialog(activity);
@@ -36,13 +49,13 @@ class UploadActivityListener {
     }
 
     @NonNull
-    private static ProgressDialog startProgressDialog(ProgressDialog progressDialog) {
+    private ProgressDialog startProgressDialog(ProgressDialog progressDialog) {
         progressDialog.setMessage(UPLOADING);
         progressDialog.show();
         return progressDialog;
     }
 
-    private static void putFileAtPathFrom(Intent data, final Activity activity) {
+    private void putFileAtPathFrom(Intent data, final Activity activity) {
         Uri imageUri = data.getData();
         StorageReference photosStorageReference = FirebaseStorage.getInstance().getReference().child(PHOTOS);
         StorageReference newImgFilepath = photosStorageReference.child(imageUri.getLastPathSegment());
@@ -66,7 +79,7 @@ class UploadActivityListener {
         });
     }
 
-    private static void dismissProgressDialog(ProgressDialog progressDialog) {
+    private void dismissProgressDialog(ProgressDialog progressDialog) {
         progressDialog.dismiss();
     }
 
