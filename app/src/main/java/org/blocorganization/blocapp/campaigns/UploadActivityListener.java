@@ -25,33 +25,42 @@ class UploadActivityListener {
 
     static void onActivityResult(final Activity activity, int requestCode, int resultCode, Intent data) {
         StorageReference photosStorageReference = FirebaseStorage.getInstance().getReference().child(PHOTOS);
-        final ProgressDialog progressDialog = new ProgressDialog(activity);
 
         if (requestCode == GALLERY_INTENT && resultCode == RESULT_OK) {
-            progressDialog.setMessage(UPLOADING);
-            progressDialog.show();
+            startProgressDialog(activity);
 
             Uri imageUri = data.getData();
             StorageReference newImgFilepath = photosStorageReference.child(imageUri.getLastPathSegment());
-            newImgFilepath.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    progressDialog.dismiss();
-                    Uri newImgDownloadUri = taskSnapshot.getDownloadUrl();
-                    Toast.makeText(activity, UPLOAD_DONE, Toast.LENGTH_LONG).show();
-                    Toast.makeText(activity, newImgDownloadUri.toString(), Toast.LENGTH_LONG).show();
+            putFileAtPath(activity, imageUri, newImgFilepath);
+        }
+    }
+
+    @NonNull
+    private static ProgressDialog startProgressDialog(Activity activity) {
+        final ProgressDialog progressDialog = new ProgressDialog(activity);
+        progressDialog.setMessage(UPLOADING);
+        progressDialog.show();
+        return progressDialog;
+    }
+
+    private static void putFileAtPath(final Activity activity, Uri imageUri, StorageReference newImgFilepath) {
+        newImgFilepath.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Uri newImgDownloadUri = taskSnapshot.getDownloadUrl();
+                Toast.makeText(activity, UPLOAD_DONE, Toast.LENGTH_LONG).show();
+                Toast.makeText(activity, newImgDownloadUri.toString(), Toast.LENGTH_LONG).show();
 //                    campaign.setCampaignPhoto(downloadUri.toString());
 //                    ivUpload.setVisibility(View.VISIBLE);
 //                    Picasso.with(getActivity()).load(campaign.getCampaignPhoto()).into(ivUpload);
 
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(activity, UPLOAD_FAILED, Toast.LENGTH_LONG).show();
-                }
-            });
-        }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(activity, UPLOAD_FAILED, Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
 }
