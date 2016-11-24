@@ -23,33 +23,36 @@ class UploadActivityListener {
     private static final String UPLOAD_DONE = "UPLOAD_DONE";
     private static final String UPLOAD_FAILED = "UPLOAD_FAILED";
 
+    private Activity activity;
+
     static void onActivityResult(final Activity activity, int requestCode, int resultCode, Intent data) {
-        StorageReference photosStorageReference = FirebaseStorage.getInstance().getReference().child(PHOTOS);
 
         if (requestCode == GALLERY_INTENT && resultCode == RESULT_OK) {
-            startProgressDialog(activity);
-
-            Uri imageUri = data.getData();
-            StorageReference newImgFilepath = photosStorageReference.child(imageUri.getLastPathSegment());
-            putFileAtPath(activity, imageUri, newImgFilepath);
+            final ProgressDialog progressDialog = new ProgressDialog(activity);
+            startProgressDialog(progressDialog);
+            putFileAtPathFrom(data, activity);
+            dismissProgressDialog(progressDialog);
         }
     }
 
     @NonNull
-    private static ProgressDialog startProgressDialog(Activity activity) {
-        final ProgressDialog progressDialog = new ProgressDialog(activity);
+    private static ProgressDialog startProgressDialog(ProgressDialog progressDialog) {
         progressDialog.setMessage(UPLOADING);
         progressDialog.show();
         return progressDialog;
     }
 
-    private static void putFileAtPath(final Activity activity, Uri imageUri, StorageReference newImgFilepath) {
+    private static void putFileAtPathFrom(Intent data, final Activity activity) {
+        Uri imageUri = data.getData();
+        StorageReference photosStorageReference = FirebaseStorage.getInstance().getReference().child(PHOTOS);
+        StorageReference newImgFilepath = photosStorageReference.child(imageUri.getLastPathSegment());
+
         newImgFilepath.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 Uri newImgDownloadUri = taskSnapshot.getDownloadUrl();
-                Toast.makeText(activity, UPLOAD_DONE, Toast.LENGTH_LONG).show();
-                Toast.makeText(activity, newImgDownloadUri.toString(), Toast.LENGTH_LONG).show();
+//                Toast.makeText(activity, UPLOAD_DONE, Toast.LENGTH_LONG).show();
+//                Toast.makeText(activity, newImgDownloadUri.toString(), Toast.LENGTH_LONG).show();
 //                    campaign.setCampaignPhoto(downloadUri.toString());
 //                    ivUpload.setVisibility(View.VISIBLE);
 //                    Picasso.with(getActivity()).load(campaign.getCampaignPhoto()).into(ivUpload);
@@ -61,6 +64,10 @@ class UploadActivityListener {
                 Toast.makeText(activity, UPLOAD_FAILED, Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    private static void dismissProgressDialog(ProgressDialog progressDialog) {
+        progressDialog.dismiss();
     }
 
 }
