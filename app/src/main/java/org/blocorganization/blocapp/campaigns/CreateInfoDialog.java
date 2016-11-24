@@ -11,7 +11,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.InputFilter;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,13 +42,12 @@ import org.blocorganization.blocapp.utils.DateTimePickerFragment;
 import org.blocorganization.blocapp.utils.GetDpMeasurement;
 import org.blocorganization.blocapp.utils.ImageThemeAdapter;
 import org.blocorganization.blocapp.utils.RecyclerItemClickListener;
+import org.blocorganization.blocapp.utils.SetupButtonIncluder;
 import org.blocorganization.blocapp.utils.SpinnerAdapter;
 import org.joda.time.DateTime;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.blocorganization.blocapp.campaigns.CreateInfoDialogSetupUtilities.setupUploadButtonWith;
 
 public class CreateInfoDialog extends DialogFragment
         implements DateTimePickerFragment.DateTimeSetListener,
@@ -371,27 +369,18 @@ public class CreateInfoDialog extends DialogFragment
         mProgressDialog = new ProgressDialog(getActivity());
 
         // upload btn setup
-        setupUploadButtonWith(rootView);
-
-        LinearLayout btnUpload = (LinearLayout) rootView.findViewById(R.id.btn_container_red);
-        final int padding = GetDpMeasurement.getDPI(getActivity(), 5);
-        btnUpload.setPadding(padding, padding, padding, padding);
-        ImageView ivBtnIcon = (ImageView) btnUpload.getChildAt(0);
-        ivBtnIcon.setVisibility(View.GONE);
-        TextView tvBtnText = (TextView) btnUpload.getChildAt(1);
-        tvBtnText.setText("Upload");
-        tvBtnText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
+        SetupButtonIncluder buttonIncluder = new SetupButtonIncluder(rootView, R.id.btn_container_red);
 
         ivUpload = (ImageView) rootView.findViewById(R.id.ivUpload);
         ivUpload.setVisibility(View.GONE);
-        btnUpload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setType("image/*");
-                startActivityForResult(intent, GALLERY_INTENT);
-            }
-        });
+//        btnUpload.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(Intent.ACTION_PICK);
+//                intent.setType("image/*");
+//                startActivityForResult(intent, GALLERY_INTENT);
+//            }
+//        });
 
         etTitle = (EditText) rootView.findViewById(R.id.etTitle);
         etAbbreviation = (EditText) rootView.findViewById(R.id.etAbbreviation);
