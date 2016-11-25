@@ -24,26 +24,17 @@ class UploadActivityListener {
     private static final String UPLOAD_FAILED = "UPLOAD_FAILED";
 
     private Activity activity;
+    private ProgressDialog progressDialog;
 
-    private static UploadActivityListener singleton;
-
-    private UploadActivityListener(Activity activity){
+    UploadActivityListener(Activity activity) {
         this.activity = activity;
+        this.progressDialog = new ProgressDialog(activity);
     }
 
-    static UploadActivityListener getInstanceWithActivity(Activity activity){
-        if (singleton == null) {
-            singleton = new UploadActivityListener(activity);
-        }
-        return singleton;
-    }
-
-    void onActivityResult(final Activity activity, int requestCode, int resultCode, Intent data) {
-
+    void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == GALLERY_INTENT && resultCode == RESULT_OK) {
-            final ProgressDialog progressDialog = new ProgressDialog(activity);
             startProgressDialog(progressDialog);
-            putFileAtPathFrom(data, activity);
+            putFileAtPathFrom(data);
             dismissProgressDialog(progressDialog);
         }
     }
@@ -55,7 +46,7 @@ class UploadActivityListener {
         return progressDialog;
     }
 
-    private void putFileAtPathFrom(Intent data, final Activity activity) {
+    private void putFileAtPathFrom(Intent data) {
         Uri imageUri = data.getData();
         StorageReference photosStorageReference = FirebaseStorage.getInstance().getReference().child(PHOTOS);
         StorageReference newImgFilepath = photosStorageReference.child(imageUri.getLastPathSegment());
@@ -63,13 +54,7 @@ class UploadActivityListener {
         newImgFilepath.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Uri newImgDownloadUri = taskSnapshot.getDownloadUrl();
-//                Toast.makeText(activity, UPLOAD_DONE, Toast.LENGTH_LONG).show();
-//                Toast.makeText(activity, newImgDownloadUri.toString(), Toast.LENGTH_LONG).show();
-//                    campaign.setCampaignPhoto(downloadUri.toString());
-//                    ivUpload.setVisibility(View.VISIBLE);
-//                    Picasso.with(getActivity()).load(campaign.getCampaignPhoto()).into(ivUpload);
-
+                saveUriFrom(taskSnapshot);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -79,8 +64,19 @@ class UploadActivityListener {
         });
     }
 
+    private void saveUriFrom(UploadTask.TaskSnapshot taskSnapshot) {
+        Uri newImgDownloadUri = taskSnapshot.getDownloadUrl();
+        Toast.makeText(activity, UPLOAD_DONE, Toast.LENGTH_LONG).show();
+//        campaign.setCampaignPhoto(downloadUri.toString());
+//        ivUpload.setVisibility(View.VISIBLE);
+//        Picasso.with(getActivity()).load(campaign.getCampaignPhoto()).into(ivUpload);
+    }
+
     private void dismissProgressDialog(ProgressDialog progressDialog) {
         progressDialog.dismiss();
     }
 
+    ProgressDialog getProgressDialog() {
+        return progressDialog;
+    }
 }

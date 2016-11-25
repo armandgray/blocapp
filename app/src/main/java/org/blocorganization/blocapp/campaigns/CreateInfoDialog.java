@@ -555,33 +555,7 @@ public class CreateInfoDialog extends DialogFragment
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        UploadActivityListener.onActivityResult(getActivity(), requestCode, resultCode, data);
-
-//        if (requestCode == GALLERY_INTENT && resultCode == getActivity().RESULT_OK) {
-//            mProgressDialog.setMessage("Uploading...");
-//            mProgressDialog.show();
-//
-//            Uri uri = data.getData();
-//            // Create dir photos and subfile
-//            filepath = mStorage.child(PHOTOS).child(uri.getLastPathSegment());
-//            filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//                @Override
-//                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//                    Toast.makeText(getActivity(), UPLOAD_DONE, Toast.LENGTH_LONG).show();
-//                    mProgressDialog.dismiss();
-//                    Uri downloadUri = taskSnapshot.getDownloadUrl();
-//                    campaign.setCampaignPhoto(downloadUri.toString());
-//                    ivUpload.setVisibility(View.VISIBLE);
-//                    Picasso.with(getActivity()).load(campaign.getCampaignPhoto()).into(ivUpload);
-//
-//                }
-//            }).addOnFailureListener(new OnFailureListener() {
-//                @Override
-//                public void onFailure(@NonNull Exception e) {
-//                    Toast.makeText(getActivity(), UPLOAD_FAILED, Toast.LENGTH_LONG).show();
-//                }
-//            });
-//        }
+        new UploadActivityListener(getActivity()).onActivityResult(requestCode, resultCode, data);
     }
 
 }
