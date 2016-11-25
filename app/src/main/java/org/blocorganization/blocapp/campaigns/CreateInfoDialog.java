@@ -398,26 +398,26 @@ public class CreateInfoDialog extends DialogFragment
                 }
             }
             if (campaign.getFromDate() != null && !campaign.getFromDate().equals("")) {
-                DateTime dt = new DateTime();
-                // java.lang.ClassCastException: java.lang.Long cannot be cast to java.lang.Integer
-                // Possible that firebase saves the getFromDate as an ArrayList<Long> and the cast is unckecked in dbCallbacks and is really Long not Integer.
-//                dt.withDate(campaign.getToDate().get(0), campaign.getToDate().get(1), campaign.getToDate().get(2));
-//                dt.withTime(campaign.getFromDate().get(3), campaign.getFromDate().get(4), 0, 0);
+                Integer year = campaign.getFromDate().get(0);
+                Integer month = campaign.getFromDate().get(1);
+                Integer day = campaign.getFromDate().get(2);
+                Integer hour = campaign.getFromDate().get(3);
+                Integer minute = campaign.getFromDate().get(4);
+                DateTime dateTimeReference = new DateTime(year, month, day, hour, minute, 0, 0);
+
                 String ampmDesignator = "am";
-                if (dt.getHourOfDay() >= 12) {
+                if (dateTimeReference.getHourOfDay() >= 12) {
                     ampmDesignator = "pm";
                 }
-                int hourOfDay = dt.getHourOfDay();
+                int hourOfDay = dateTimeReference.getHourOfDay();
                 if (hourOfDay != 12) {
                     hourOfDay = hourOfDay % 12;
                 }
-                tvFromDate.setText("On: " + dt.monthOfYear().getAsText() + " " + dt.getDayOfMonth() + ", " + dt.year() + ", " + hourOfDay + ":" + dt.getMinuteOfHour() + " " + ampmDesignator);
+                tvFromDate.setText("On: " + dateTimeReference.monthOfYear().getAsText() + " " + dateTimeReference.getDayOfMonth() + ", " + dateTimeReference.getYear() + " - " + hourOfDay + ":" + dateTimeReference.getMinuteOfHour() + " " + ampmDesignator);
             }
             if (campaign.getToDate() != null && !campaign.getToDate().equals("")) {
                 DateTime dt = new DateTime();
-//                dt.withDate(campaign.getToDate().get(0).intValue(), 0, 0);
-//                , campaign.getToDate().get(1), campaign.getToDate().get(2));
-//                dt.withTime(campaign.getToDate().get(3), campaign.getToDate().get(4), 0, 0);
+                dt.withDate(campaign.getToDate().get(0), campaign.getToDate().get(1), campaign.getToDate().get(2));
                 String ampmDesignator = "am";
                 if (dt.getHourOfDay() >= 12) {
                     ampmDesignator = "pm";
