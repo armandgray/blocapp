@@ -119,13 +119,35 @@ public class HomeFragment extends Fragment {
                 campaign.setPlanOfExecution((String) campaignsSnapshot.get("planOfExecution"));
                 campaign.setItemizedBudget((String) campaignsSnapshot.get("itemizedBudget"));
                 campaign.setVenue((String) campaignsSnapshot.get("venue"));
-                campaign.setFromDate((ArrayList<Integer>) campaignsSnapshot.get("fromDate"));
                 campaign.setTimestamp((String) campaignsSnapshot.get("timestamp"));
                 campaign.setRecordType((String) campaignsSnapshot.get("recordType"));
                 campaign.setExtras((String) campaignsSnapshot.get("extras"));
-                campaign.setToDate((ArrayList<Integer>) campaignsSnapshot.get("toDate"));
                 campaign.setPhotoUrl((String) campaignsSnapshot.get("campaignPhoto"));
                 campaign.setThemeImageUrl((String) campaignsSnapshot.get("campaignTheme"));
+
+                ArrayList<Long> fromDateAsListLong = (ArrayList<Long>) campaignsSnapshot.get("fromDate");
+                if (fromDateAsListLong != null) {
+                    ArrayList<Integer> fromDateList = new ArrayList<>();
+                    for (Long dateElement : fromDateAsListLong) {
+                        Integer elementAsInteger = dateElement != null ? dateElement.intValue() : null;
+                        fromDateList.add(elementAsInteger);
+                    }
+                    campaign.setFromDate(fromDateList);
+                } else {
+                    campaign.setFromDate(null);
+                }
+
+                ArrayList<Long> toDateAsListLong = (ArrayList<Long>) campaignsSnapshot.get("toDateList");
+                if (toDateAsListLong != null) {
+                    ArrayList<Integer> toDateList = new ArrayList<>();
+                    for (Long dateElement : toDateAsListLong) {
+                        Integer elementAsInteger = dateElement != null ? dateElement.intValue() : null;
+                        toDateList.add(elementAsInteger);
+                    }
+                    campaign.setToDate(toDateList);
+                } else {
+                    campaign.setToDate(null);
+                }
 
                 campaigns.add(0, campaign);
                 adapter.notifyItemInserted(0);
