@@ -46,8 +46,7 @@ import static org.blocorganization.blocapp.campaigns.FieldUtilities.loadUrlIntoI
 import static org.blocorganization.blocapp.campaigns.FieldUtilities.setTextForEditTextAndAppend;
 import static org.blocorganization.blocapp.campaigns.FieldUtilities.setTextForEditTextWith;
 import static org.blocorganization.blocapp.campaigns.UploadButtonIncluder.setupUploadButtonFrom;
-import static org.blocorganization.blocapp.utils.DateTimeHandler.designateAmPmFrom;
-import static org.blocorganization.blocapp.utils.DateTimeHandler.getDateTimeReferenceFrom;
+import static org.blocorganization.blocapp.utils.DateTimeHandler.setTextForDateWith;
 
 public class CreateInfoDialog extends DialogFragment
         implements DateTimePickerFragment.DateTimeSetListener,
@@ -399,28 +398,15 @@ public class CreateInfoDialog extends DialogFragment
                     }
                 }
             }
-            if (campaign.getFromDate() != null && !campaign.getFromDate().equals("")) {
-                DateTime dateTimeReference = getDateTimeReferenceFrom(campaign.getFromDate());
 
-                String ampmDesignator = designateAmPmFrom(dateTimeReference.getHourOfDay());
-
-                tvFromDate.setText("On: " + dateTimeReference.monthOfYear().getAsText() + " " + dateTimeReference.getDayOfMonth() + ", " + dateTimeReference.getYear() + " - " + dateTimeReference.getHourOfDay() + ":" + dateTimeReference.getMinuteOfHour() + " " + ampmDesignator);
-            }
-            if (campaign.getToDate() != null && !campaign.getToDate().equals("")) {
-                DateTime dt = new DateTime();
-                dt.withDate(campaign.getToDate().get(0), campaign.getToDate().get(1), campaign.getToDate().get(2));
-                String ampmDesignator = "am";
-                if (dt.getHourOfDay() >= 12) {
-                    ampmDesignator = "pm";
-                }
-                int hourOfDay = dt.getHourOfDay();
-                if (hourOfDay != 12) {
-                    hourOfDay = hourOfDay % 12;
-                }
-                tvToDate.setText("On: " + dt.monthOfYear().getAsText() + " " + dt.getDayOfMonth() + ", " + dt.year() + ", " + hourOfDay + ":" + dt.getMinuteOfHour() + " " + ampmDesignator);
-                isRange = true;
+            boolean isStartDate = true;
+            setTextForDateWith(campaign.getFromDate(), tvFromDate, isStartDate);
+            if (campaign.getToDate() != null) {
+                isStartDate = false;
+                setTextForDateWith(campaign.getToDate(), tvToDate, isStartDate);
                 showEndDateView();
             }
+
             setTextForEditTextWith(campaign.getTitle(), etTitle);
             setTextForEditTextWith(campaign.getAbbreviation(), etAbbreviation);
             setTextForEditTextWith(campaign.getAdmin(), etAdmin);

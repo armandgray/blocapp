@@ -1,19 +1,40 @@
 package org.blocorganization.blocapp.utils;
 
+import android.widget.TextView;
+
 import org.joda.time.DateTime;
 
 import java.util.ArrayList;
 
 public class DateTimeHandler {
 
-    public static final int SECONDS_ZERO = 0;
-    public static final int YEAR = 0;
-    public static final int MONTH = 1;
-    public static final int DAY = 2;
-    public static final int HOUR = 3;
-    public static final int MINUTE = 4;
+    private static final int SECONDS_ZERO = 0;
+    private static final int YEAR = 0;
+    private static final int MONTH = 1;
+    private static final int DAY = 2;
+    private static final int HOUR = 3;
+    private static final int MINUTE = 4;
+    public static final String ON = "On";
+    public static final String END = "End";
 
-    public static DateTime getDateTimeReferenceFrom(ArrayList<Integer> dateElementsList) {
+
+    public static void setTextForDateWith(ArrayList<Integer> dateElementsList, TextView tvReference, boolean isStartDate) {
+        if (dateElementsList != null && dateElementsList.get(0) != 0 && dateElementsList.get(0) != 1) {
+            DateTime date = getDateTimeReferenceFrom(dateElementsList);
+            String onEnd = isStartDate ? ON : END;
+            String amPm = designateAmPmFrom(dateElementsList.get(HOUR));
+            String dateText = onEnd + ": "
+                    + date.monthOfYear().getAsText() + " "
+                    + date.getDayOfMonth() + ", "
+                    + date.getYear() + " - "
+                    + date.getHourOfDay() + ":"
+                    + date.getMinuteOfHour() + " "
+                    + amPm;
+            tvReference.setText(dateText);
+        }
+    }
+
+    private static DateTime getDateTimeReferenceFrom(ArrayList<Integer> dateElementsList) {
         Integer year = getValueIfExistsFrom(dateElementsList.get(YEAR));
         Integer month = getValueIfExistsFrom(dateElementsList.get(MONTH));
         Integer day = getValueIfExistsFrom(dateElementsList.get(DAY));
@@ -37,7 +58,7 @@ public class DateTimeHandler {
         return 12;
     }
 
-    public static String designateAmPmFrom(Integer hour) {
+    private static String designateAmPmFrom(Integer hour) {
         if (hour >= 12) {
             return "pm";
         }
