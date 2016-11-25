@@ -46,6 +46,7 @@ import static org.blocorganization.blocapp.campaigns.FieldUtilities.loadUrlIntoI
 import static org.blocorganization.blocapp.campaigns.FieldUtilities.setTextForEditTextAndAppend;
 import static org.blocorganization.blocapp.campaigns.FieldUtilities.setTextForEditTextWith;
 import static org.blocorganization.blocapp.campaigns.UploadButtonIncluder.setupUploadButtonFrom;
+import static org.blocorganization.blocapp.utils.DateTimeHandler.getDateTimeReferenceFrom;
 
 public class CreateInfoDialog extends DialogFragment
         implements DateTimePickerFragment.DateTimeSetListener,
@@ -398,12 +399,7 @@ public class CreateInfoDialog extends DialogFragment
                 }
             }
             if (campaign.getFromDate() != null && !campaign.getFromDate().equals("")) {
-                Integer year = campaign.getFromDate().get(0);
-                Integer month = campaign.getFromDate().get(1);
-                Integer day = campaign.getFromDate().get(2);
-                Integer hour = campaign.getFromDate().get(3);
-                Integer minute = campaign.getFromDate().get(4);
-                DateTime dateTimeReference = new DateTime(year, month, day, hour, minute, 0, 0);
+                DateTime dateTimeReference = getDateTimeReferenceFrom(campaign.getFromDate());
 
                 String ampmDesignator = "am";
                 if (dateTimeReference.getHourOfDay() >= 12) {
