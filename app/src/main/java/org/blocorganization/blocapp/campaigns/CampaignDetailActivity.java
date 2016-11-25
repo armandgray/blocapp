@@ -74,8 +74,8 @@ public class CampaignDetailActivity extends AppCompatActivity {
 
         if (getIntent().getExtras() != null) {
             campaign = new Campaign(getIntent().getExtras());
-            Picasso.with(this).load(campaign.getCampaignPhoto()).into(ivCampaignImage);
-            Picasso.with(this).load(campaign.getCampaignTheme()).into(ivTheme);
+            Picasso.with(this).load(campaign.getPhotoUrl()).into(ivCampaignImage);
+            Picasso.with(this).load(campaign.getThemeImageUrl()).into(ivTheme);
             tvTitle.setText(campaign.getTitle());
             tvType.setText(campaign.getRecordType());
 //            tvDate.setText(campaign.getFromDate());

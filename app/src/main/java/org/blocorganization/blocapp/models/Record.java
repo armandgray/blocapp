@@ -117,11 +117,11 @@ public class Record {
         this.title = title;
     }
 
-    public String getCampaignTheme() {
+    public String getThemeImageUrl() {
         return campaignTheme;
     }
 
-    public void setCampaignTheme(String campaignTheme) {
+    public void setThemeImageUrl(String campaignTheme) {
         this.campaignTheme = campaignTheme;
     }
 }

@@ -110,11 +110,11 @@ public class Campaign extends Record {
         this.ambition = ambition;
     }
 
-    public String getCampaignPhoto() {
+    public String getPhotoUrl() {
         return campaignPhoto;
     }
 
-    public void setCampaignPhoto(String campaignPhoto) {
+    public void setPhotoUrl(String campaignPhoto) {
         this.campaignPhoto = campaignPhoto;
     }
 
@@ -173,11 +173,11 @@ public class Campaign extends Record {
         this.abbreviation = abbreviation;
     }
 
-    public String getCampaignTheme() {
+    public String getThemeImageUrl() {
         return campaignTheme;
     }
 
-    public void setCampaignTheme(String campaignTheme) {
+    public void setThemeImageUrl(String campaignTheme) {
         this.campaignTheme = campaignTheme;
     }
 

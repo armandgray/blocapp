@@ -93,8 +93,8 @@ public class CampaignsSubFragment extends Fragment {
 //        toysForTots.setDescription("The Toys for Tots program is a winter toy drive hosted by BLOC that gives the students of the Claremont Colleges the opportunity to donate toys and cash to organizations in the community.");
 //        toysForTots.setBenefits("The members of BLOC are very aware of the economic distinction between the students of the Claremont Colleges and the surrounding community. While most of the students are fairly well-to-do, families in the surrounding community struggle to makes ends meet. With this in mind, BLOC created its Toys for Tots program.");
 //        toysForTots.setAmbition("With this initiative it was BLOCs aim to brighten the holiday season for families in Pomona, Covina, Upland, and Montclair.");
-//        toysForTots.setCampaignPhoto("https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/photos%2F65?alt=media&token=38e367dd-9ae1-44e0-b5ba-cecad10278ad");
-//        toysForTots.setCampaignTheme("https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/themes%2Ftheme_donate.jpg?alt=media&token=84597e3f-5a37-4527-bb78-996094a95819");
+//        toysForTots.setPhotoUrl("https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/photos%2F65?alt=media&token=38e367dd-9ae1-44e0-b5ba-cecad10278ad");
+//        toysForTots.setThemeImageUrl("https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/themes%2Ftheme_donate.jpg?alt=media&token=84597e3f-5a37-4527-bb78-996094a95819");
 //        toysForTots.setPlanOfExecution("During the month of November, members of BLOC sit in dining halls around campus and ask for donations. To fromDate, BLOC has collected upwards of $2500 in toys and funds. All donations have gone to the Citrus Valley Health Partners pediatric unit and in the future, BLOC will be expanding its donations to various women and children’s shelters in the area.");
 //        toysForTots.setVenue("5C Dining Halls");
 //        toysForTots.setMonth("Apr");
@@ -107,8 +107,8 @@ public class CampaignsSubFragment extends Fragment {
 //        askCampaign.setDescription("The Toys for Tots program is a winter toy drive hosted by BLOC that gives the students of the Claremont Colleges the opportunity to donate toys and cash to organizations in the community.");
 //        askCampaign.setBenefits("The members of BLOC are very aware of the economic distinction between the students of the Claremont Colleges and the surrounding community. While most of the students are fairly well-to-do, families in the surrounding community struggle to makes ends meet. With this in mind, BLOC created its Toys for Tots program. ");
 //        askCampaign.setAmbition("With this initiative it was BLOCs aim to brighten the holiday season for families in Pomona, Covina, Upland, and Montclair.");
-//        askCampaign.setCampaignPhoto("https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/photos%2FAsk%20Flyer.jpg?alt=media&token=a9e14f66-7999-46d0-b0ec-aa10dd4f1e6c");
-//        askCampaign.setCampaignTheme("https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/themes%2Ftheme_consent.jpg?alt=media&token=b56d1ec4-ebfc-420a-8bb1-adf75d47b004");
+//        askCampaign.setPhotoUrl("https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/photos%2FAsk%20Flyer.jpg?alt=media&token=a9e14f66-7999-46d0-b0ec-aa10dd4f1e6c");
+//        askCampaign.setThemeImageUrl("https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/themes%2Ftheme_consent.jpg?alt=media&token=b56d1ec4-ebfc-420a-8bb1-adf75d47b004");
 //        askCampaign.setPlanOfExecution("During the month of November, members of BLOC sit in dining halls around campus and ask for donations. To fromDate, BLOC has collected upwards of $2500 in toys and funds. All donations have gone to the Citrus Valley Health Partners pediatric unit and in the future, BLOC will be expanding its donations to various women and children’s shelters in the area.");
 //        askCampaign.setVenue("5C Dining Halls");
 //        askCampaign.setMonth("Dec");
@@ -120,8 +120,8 @@ public class CampaignsSubFragment extends Fragment {
 //        ymc.setAdmin("Martin Barrera");
 //        ymc.setBenefits("The members of BLOC are very aware of the economic distinction between the students of the Claremont Colleges and the surrounding community. While most of the students are fairly well-to-do, families in the surrounding community struggle to makes ends meet. With this in mind, BLOC created its Toys for Tots program. ");
 //        ymc.setAmbition("With this initiative it was BLOCs aim to brighten the holiday season for families in Pomona, Covina, Upland, and Montclair.");
-//        ymc.setCampaignPhoto("https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/photos%2Fyoung_mens_circle%202.png?alt=media&token=fdfbd39a-e86b-48a8-a290-b868db72b04b");
-//        ymc.setCampaignTheme("https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/themes%2Ftheme_mentoring2.png?alt=media&token=b5139116-5567-4fd2-a579-8592ef06ba9c");
+//        ymc.setPhotoUrl("https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/photos%2Fyoung_mens_circle%202.png?alt=media&token=fdfbd39a-e86b-48a8-a290-b868db72b04b");
+//        ymc.setThemeImageUrl("https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/themes%2Ftheme_mentoring2.png?alt=media&token=b5139116-5567-4fd2-a579-8592ef06ba9c");
 //        ymc.setPlanOfExecution("During the month of November, members of BLOC sit in dining halls around campus and ask for donations. To fromDate, BLOC has collected upwards of $2500 in toys and funds. All donations have gone to the Citrus Valley Health Partners pediatric unit and in the future, BLOC will be expanding its donations to various women and children’s shelters in the area.");
 //        ymc.setVenue("5C Dining Halls");
 //        ymc.setMonth("Dec");
@@ -152,8 +152,8 @@ public class CampaignsSubFragment extends Fragment {
                 campaign.setRecordType((String) campaignsSnapshot.get("recordType"));
                 campaign.setExtras((String) campaignsSnapshot.get("extras"));
                 campaign.setToDate((ArrayList<Integer>) campaignsSnapshot.get("toDate"));
-                campaign.setCampaignPhoto((String) campaignsSnapshot.get("campaignPhoto"));
-                campaign.setCampaignTheme((String) campaignsSnapshot.get("campaignTheme"));
+                campaign.setPhotoUrl((String) campaignsSnapshot.get("campaignPhoto"));
+                campaign.setThemeImageUrl((String) campaignsSnapshot.get("campaignTheme"));
 
                 campaigns.add(0, campaign);
                 adapter.notifyItemInserted(0);

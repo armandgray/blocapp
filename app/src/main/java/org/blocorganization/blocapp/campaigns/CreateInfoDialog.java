@@ -24,7 +24,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
 import org.blocorganization.blocapp.BlocApp;
 import org.blocorganization.blocapp.R;
@@ -40,6 +39,12 @@ import org.joda.time.DateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.blocorganization.blocapp.campaigns.FieldUtils.AMBITION;
+import static org.blocorganization.blocapp.campaigns.FieldUtils.BENEFITS_TO_THE_COLLEGE;
+import static org.blocorganization.blocapp.campaigns.FieldUtils.DESCRIPTION;
+import static org.blocorganization.blocapp.campaigns.FieldUtils.loadUrlIntoImageViewWithActivity;
+import static org.blocorganization.blocapp.campaigns.FieldUtils.setTextForEditTextAndAppend;
+import static org.blocorganization.blocapp.campaigns.FieldUtils.setTextForEditTextAs;
 import static org.blocorganization.blocapp.campaigns.UploadButtonIncluder.setupUploadButtonFrom;
 
 public class CreateInfoDialog extends DialogFragment
@@ -55,9 +60,6 @@ public class CreateInfoDialog extends DialogFragment
     public static final String DIALOG = "DIALOG";
     public static final String DATE_TIME_PICKER = "dateTimePicker";
 
-    public static final String DESCRIPTION = "Description\n\n\t\t";
-    public static final String AMBITION = "Ambition\n\n\t\t";
-    public static final String BENEFITS_TO_THE_COLLEGE = "Benefits to the College\n\n\t\t";
     public static final String DATE = "Date";
     public static final String END = "End";
     public static final String CAMPAIGNS = "campaigns";
@@ -142,9 +144,9 @@ public class CreateInfoDialog extends DialogFragment
             public void onDataChange(DataSnapshot dataSnapshot) {
                 themes = (List) dataSnapshot.getValue();
                 if (rvThemes.getAdapter() == null) {
-                    if (campaign.getCampaignTheme() != null && !campaign.getCampaignTheme().equals("")) {
+                    if (campaign.getThemeImageUrl() != null && !campaign.getThemeImageUrl().equals("")) {
                         adapter = new ImageThemeAdapter(getActivity(),
-                                themes, THEME_LAYOUT_PARAMS, campaign.getCampaignTheme());
+                                themes, THEME_LAYOUT_PARAMS, campaign.getThemeImageUrl());
                     } else {
                         adapter = new ImageThemeAdapter(getActivity(),
                                 themes, THEME_LAYOUT_PARAMS, null);
@@ -221,7 +223,7 @@ public class CreateInfoDialog extends DialogFragment
             private boolean fieldVerification() {
                 boolean allClear = true;
                 if (themePosition != null) {
-                    campaign.setCampaignTheme(themes.get(themePosition));
+                    campaign.setThemeImageUrl(themes.get(themePosition));
                 } else {
                     allClear = false;
                     Toast.makeText(getActivity(), "Theme is required", Toast.LENGTH_SHORT).show();
@@ -370,9 +372,9 @@ public class CreateInfoDialog extends DialogFragment
         // load current campaign data into fields.
 
         if (getArguments() != null) {
-            if (campaign.getCampaignTheme() != null && !campaign.getCampaignTheme().equals("")) {
+            if (campaign.getThemeImageUrl() != null && !campaign.getThemeImageUrl().equals("")) {
                 for (int i = 0; i < themes.size() - 1; i++) {
-                    if (campaign.getCampaignTheme().equals(themes.get(i))) {
+                    if (campaign.getThemeImageUrl().equals(themes.get(i))) {
                         // get Viewholder for row and change background
                         themePosition = i;
                         if (i > 3) {
@@ -428,28 +430,13 @@ public class CreateInfoDialog extends DialogFragment
                 isRange = true;
                 showEndDateView();
             }
-            if (campaign.getTitle() != null && !campaign.getTitle().equals("")) {
-                etTitle.setText(campaign.getTitle());
-            }
-            if (campaign.getAbbreviation() != null && !campaign.getAbbreviation().equals("")) {
-                etAbbreviation.setText(campaign.getAbbreviation());
-            }
-            if (campaign.getAdmin() != null && !campaign.getAdmin().equals("")) {
-                etAdmin.setText(campaign.getAdmin());
-            }
-            if (campaign.getDescription() != null && !campaign.getTitle().equals("")) {
-                etDescription.setText(DESCRIPTION + campaign.getBenefits());
-            }
-            if (campaign.getAmbition() != null && !campaign.getTitle().equals("")) {
-                etAmbition.setText(AMBITION + campaign.getBenefits());
-            }
-            if (campaign.getBenefits() != null && !campaign.getTitle().equals("")) {
-                etBenefits.setText(BENEFITS_TO_THE_COLLEGE + campaign.getBenefits());
-            }
-            if (campaign.getCampaignPhoto() != null && !campaign.getCampaignPhoto().equals("")) {
-                Picasso.with(getActivity()).load(campaign.getCampaignPhoto()).into(ivUpload);
-                ivUpload.setVisibility(View.VISIBLE);
-            }
+            setTextForEditTextAs(campaign.getTitle(), etTitle);
+            setTextForEditTextAs(campaign.getAbbreviation(), etAbbreviation);
+            setTextForEditTextAs(campaign.getAdmin(), etAdmin);
+            setTextForEditTextAndAppend(DESCRIPTION, campaign.getDescription(), etDescription);
+            setTextForEditTextAndAppend(AMBITION, campaign.getAmbition(), etAmbition);
+            setTextForEditTextAndAppend(BENEFITS_TO_THE_COLLEGE, campaign.getBenefits(), etBenefits);
+            loadUrlIntoImageViewWithActivity(campaign.getPhotoUrl(), ivUpload, getActivity());
         }
     }
 
@@ -537,9 +524,9 @@ public class CreateInfoDialog extends DialogFragment
 
         UploadActivityListener resultListener = new UploadActivityListener(getActivity());
         resultListener.onActivityResult(requestCode, resultCode, data);
-//        campaign.setCampaignPhoto(downloadUri.toString());
+//        campaign.setPhotoUrl(downloadUri.toString());
 //        ivUpload.setVisibility(View.VISIBLE);
-//        Picasso.with(getActivity()).load(campaign.getCampaignPhoto()).into(ivUpload);
+//        Picasso.with(getActivity()).load(campaign.getPhotoUrl()).into(ivUpload);
     }
 
 }

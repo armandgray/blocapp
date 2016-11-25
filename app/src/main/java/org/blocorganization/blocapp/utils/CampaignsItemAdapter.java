@@ -61,7 +61,7 @@ public class CampaignsItemAdapter extends
         TextView tvCampaignDetails = viewHolder.tvCampaignDetails;
         TextView tvCampaignTitle = viewHolder.tvCampaignTitle;
 
-        Picasso.with(mActivity).load(campaign.getCampaignPhoto()).into(ivCampaignImage);
+        Picasso.with(mActivity).load(campaign.getPhotoUrl()).into(ivCampaignImage);
         tvCampaignDetails.setText(campaign.getFromDate() + ",\n by " + campaign.getAdmin());
 
         if (fullItem) {

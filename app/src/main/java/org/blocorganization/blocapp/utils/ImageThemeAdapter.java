@@ -23,7 +23,7 @@ public class ImageThemeAdapter extends
     private int mLayoutParams;
     private String setTheme;
 
-    // Pass in the themes List & getCampaignTheme into the constructor
+    // Pass in the themes List & getThemeImageUrl into the constructor
     public ImageThemeAdapter(Activity activity, List<String> themes, int layoutParams, String theme) {
         mThemes = themes;
         mActivity = activity;
@@ -48,7 +48,7 @@ public class ImageThemeAdapter extends
         ivCampaignTheme.setLayoutParams(new LinearLayout.LayoutParams(layoutParams, layoutParams));
         Picasso.with(mActivity).load(theme).into(ivCampaignTheme);
 
-        // when loadCampaignData in CreateInfoDialog set selected theme to getCampaignTheme
+        // when loadCampaignData in CreateInfoDialog set selected theme to getThemeImageUrl
         if (setTheme != null) {
             if (setTheme.equals(mThemes.get(position))) {
                 // get Viewholder for row and change background
