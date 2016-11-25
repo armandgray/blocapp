@@ -46,6 +46,7 @@ import static org.blocorganization.blocapp.campaigns.FieldUtilities.loadUrlIntoI
 import static org.blocorganization.blocapp.campaigns.FieldUtilities.setTextForEditTextAndAppend;
 import static org.blocorganization.blocapp.campaigns.FieldUtilities.setTextForEditTextWith;
 import static org.blocorganization.blocapp.campaigns.UploadButtonIncluder.setupUploadButtonFrom;
+import static org.blocorganization.blocapp.utils.DateTimeHandler.designateAmPmFrom;
 import static org.blocorganization.blocapp.utils.DateTimeHandler.getDateTimeReferenceFrom;
 
 public class CreateInfoDialog extends DialogFragment
@@ -401,10 +402,8 @@ public class CreateInfoDialog extends DialogFragment
             if (campaign.getFromDate() != null && !campaign.getFromDate().equals("")) {
                 DateTime dateTimeReference = getDateTimeReferenceFrom(campaign.getFromDate());
 
-                String ampmDesignator = "am";
-                if (dateTimeReference.getHourOfDay() >= 12) {
-                    ampmDesignator = "pm";
-                }
+                String ampmDesignator = designateAmPmFrom(dateTimeReference.getHourOfDay());
+                
                 int hourOfDay = dateTimeReference.getHourOfDay();
                 if (hourOfDay != 12) {
                     hourOfDay = hourOfDay % 12;

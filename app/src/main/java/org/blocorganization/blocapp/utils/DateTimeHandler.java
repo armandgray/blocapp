@@ -25,9 +25,15 @@ public class DateTimeHandler {
     private static Integer getValueIfExistsFrom(Integer dateElement) {
         if (dateElement != null && dateElement != 0) {
             return dateElement;
-        } else {
-            return 1;
         }
+        return 1;
+    }
+
+    public static String designateAmPmFrom(Integer hour) {
+        if (hour >= 12) {
+            return "pm";
+        }
+        return "am";
     }
 
 }
