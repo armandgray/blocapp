@@ -1,6 +1,5 @@
 package org.blocorganization.blocapp.campaigns;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -25,8 +24,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import org.blocorganization.blocapp.BlocApp;
@@ -43,7 +40,7 @@ import org.joda.time.DateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.blocorganization.blocapp.campaigns.UploadButtonUtilities.setupUploadButtonFrom;
+import static org.blocorganization.blocapp.campaigns.UploadButtonIncluder.setupUploadButtonFrom;
 
 public class CreateInfoDialog extends DialogFragment
         implements DateTimePickerFragment.DateTimeSetListener,
@@ -58,21 +55,12 @@ public class CreateInfoDialog extends DialogFragment
     public static final String DIALOG = "DIALOG";
     public static final String DATE_TIME_PICKER = "dateTimePicker";
 
-    public static final int GALLERY_INTENT = 2;
-    public static final String UPLOAD_DONE = "UPLOAD_DONE";
-    public static final String UPLOAD_FAILED = "UPLOAD_FAILED";
-    public static final int CAMERA_REQUEST_CODE = 1;
-    public static final String PHOTOS = "photos";
-    public static final String DOWNLOAD_FAILED = "DOWNLOAD_FAILED";
     public static final String DESCRIPTION = "Description\n\n\t\t";
     public static final String AMBITION = "Ambition\n\n\t\t";
     public static final String BENEFITS_TO_THE_COLLEGE = "Benefits to the College\n\n\t\t";
-    public static final String VENUE = "Venue";
-    public static final String TYPE = "Type";
     public static final String DATE = "Date";
     public static final String END = "End";
     public static final String CAMPAIGNS = "campaigns";
-
 
     private Campaign campaign;
 
@@ -92,15 +80,10 @@ public class CreateInfoDialog extends DialogFragment
     private ImageView ivToDateMenuArrow;
 
     // upload media fields
-    private StorageReference mStorage;
-    private StorageReference filepath;
-    private DatabaseReference mCampaignsDatabaseReference;
-    private ProgressDialog mProgressDialog;
     private ImageView ivUpload;
 
     // fields references
     private Integer themePosition;
-    public static RecyclerView.ViewHolder mViewHolder;
     private EditText etTitle;
     private EditText etAbbreviation;
     private EditText etAdmin;
@@ -361,10 +344,6 @@ public class CreateInfoDialog extends DialogFragment
             }
         });
 
-        // upload references
-        mStorage = FirebaseStorage.getInstance().getReference();
-        mProgressDialog = new ProgressDialog(getActivity());
-
         setupUploadButtonFrom(rootView, this);
 
         ivUpload = (ImageView) rootView.findViewById(R.id.ivUpload);
@@ -555,7 +534,11 @@ public class CreateInfoDialog extends DialogFragment
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        new UploadActivityListener(getActivity()).onActivityResult(requestCode, resultCode, data);
+        UploadActivityListener resultListener = new UploadActivityListener(getActivity());
+        resultListener.onActivityResult(requestCode, resultCode, data);
+//        campaign.setCampaignPhoto(downloadUri.toString());
+//        ivUpload.setVisibility(View.VISIBLE);
+//        Picasso.with(getActivity()).load(campaign.getCampaignPhoto()).into(ivUpload);
     }
 
 }

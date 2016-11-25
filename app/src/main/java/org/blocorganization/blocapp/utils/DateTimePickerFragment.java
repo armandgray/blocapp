@@ -30,7 +30,6 @@ public class DateTimePickerFragment extends DialogFragment
         try {
             mListener = (DateTimeSetListener) getParentFragment();
         } catch (ClassCastException e) {
-            // The activity doesn't implement the interface, throw exception
             throw new ClassCastException(getParentFragment().toString()
                     + " must implement DateTimeSetListener");
         }

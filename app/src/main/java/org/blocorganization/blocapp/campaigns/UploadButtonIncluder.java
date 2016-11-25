@@ -8,7 +8,7 @@ import android.widget.LinearLayout;
 import org.blocorganization.blocapp.R;
 import org.blocorganization.blocapp.utils.SetupButtonIncluder;
 
-class UploadButtonUtilities {
+class UploadButtonIncluder {
 
     public static final int GALLERY_INTENT = 2;
 
