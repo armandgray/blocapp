@@ -368,6 +368,7 @@ public class CreateInfoDialog extends DialogFragment
 
     private void loadCampaignData() {
         // load current campaign data into fields.
+
         if (getArguments() != null) {
             if (campaign.getCampaignTheme() != null && !campaign.getCampaignTheme().equals("")) {
                 for (int i = 0; i < themes.size() - 1; i++) {
