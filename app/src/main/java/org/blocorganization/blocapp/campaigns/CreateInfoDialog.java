@@ -39,12 +39,12 @@ import org.joda.time.DateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.blocorganization.blocapp.campaigns.FieldUtils.AMBITION;
-import static org.blocorganization.blocapp.campaigns.FieldUtils.BENEFITS_TO_THE_COLLEGE;
-import static org.blocorganization.blocapp.campaigns.FieldUtils.DESCRIPTION;
-import static org.blocorganization.blocapp.campaigns.FieldUtils.loadUrlIntoImageViewWithActivity;
-import static org.blocorganization.blocapp.campaigns.FieldUtils.setTextForEditTextAndAppend;
-import static org.blocorganization.blocapp.campaigns.FieldUtils.setTextForEditTextAs;
+import static org.blocorganization.blocapp.campaigns.FieldUtilities.AMBITION;
+import static org.blocorganization.blocapp.campaigns.FieldUtilities.BENEFITS_TO_THE_COLLEGE;
+import static org.blocorganization.blocapp.campaigns.FieldUtilities.DESCRIPTION;
+import static org.blocorganization.blocapp.campaigns.FieldUtilities.loadUrlIntoImageViewWithActivity;
+import static org.blocorganization.blocapp.campaigns.FieldUtilities.setTextForEditTextAndAppend;
+import static org.blocorganization.blocapp.campaigns.FieldUtilities.setTextForEditTextWith;
 import static org.blocorganization.blocapp.campaigns.UploadButtonIncluder.setupUploadButtonFrom;
 
 public class CreateInfoDialog extends DialogFragment
@@ -430,9 +430,9 @@ public class CreateInfoDialog extends DialogFragment
                 isRange = true;
                 showEndDateView();
             }
-            setTextForEditTextAs(campaign.getTitle(), etTitle);
-            setTextForEditTextAs(campaign.getAbbreviation(), etAbbreviation);
-            setTextForEditTextAs(campaign.getAdmin(), etAdmin);
+            setTextForEditTextWith(campaign.getTitle(), etTitle);
+            setTextForEditTextWith(campaign.getAbbreviation(), etAbbreviation);
+            setTextForEditTextWith(campaign.getAdmin(), etAdmin);
             setTextForEditTextAndAppend(DESCRIPTION, campaign.getDescription(), etDescription);
             setTextForEditTextAndAppend(AMBITION, campaign.getAmbition(), etAmbition);
             setTextForEditTextAndAppend(BENEFITS_TO_THE_COLLEGE, campaign.getBenefits(), etBenefits);

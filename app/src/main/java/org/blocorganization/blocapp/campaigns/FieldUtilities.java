@@ -7,13 +7,13 @@ import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
-class FieldUtils {
+class FieldUtilities {
 
     public static final String DESCRIPTION = "Description\n\n\t\t";
     public static final String AMBITION = "Ambition\n\n\t\t";
     public static final String BENEFITS_TO_THE_COLLEGE = "Benefits to the College\n\n\t\t";
 
-    static void setTextForEditTextAs(String text, EditText etReference) {
+    static void setTextForEditTextWith(String text, EditText etReference) {
         if (text != null && !text.equals("")) {
             etReference.setText(text);
         }
