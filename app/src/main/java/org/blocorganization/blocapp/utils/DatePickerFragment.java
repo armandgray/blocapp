@@ -42,7 +42,7 @@ public class DatePickerFragment extends DialogFragment
     @Override
     public void onCancel(DialogInterface dialog) {
         super.onCancel(dialog);
-        mListener.onUserCancel();
+        mListener.onDatePickerCancel();
     }
 
     public void onDateSet(DatePicker view, int year, int month, int day) {
@@ -51,6 +51,6 @@ public class DatePickerFragment extends DialogFragment
 
     public interface DateSetListener {
         void onEventDateSet(DatePicker view, int year, int month, int day);
-        void onUserCancel();
+        void onDatePickerCancel();
     }
 }

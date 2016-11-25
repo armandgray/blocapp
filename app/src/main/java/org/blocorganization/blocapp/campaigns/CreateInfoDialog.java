@@ -43,7 +43,8 @@ import static org.blocorganization.blocapp.campaigns.FieldUtilities.AMBITION;
 import static org.blocorganization.blocapp.campaigns.FieldUtilities.BENEFITS_TO_THE_COLLEGE;
 import static org.blocorganization.blocapp.campaigns.FieldUtilities.DESCRIPTION;
 import static org.blocorganization.blocapp.campaigns.FieldUtilities.loadUrlIntoImageViewWithActivity;
-import static org.blocorganization.blocapp.campaigns.FieldUtilities.setTextForEditTextAndAppend;
+import static org.blocorganization.blocapp.campaigns.FieldUtilities.setSelectionForSpinnerFromList;
+import static org.blocorganization.blocapp.campaigns.FieldUtilities.setTextForEditTextAndPrepend;
 import static org.blocorganization.blocapp.campaigns.FieldUtilities.setTextForEditTextWith;
 import static org.blocorganization.blocapp.campaigns.UploadButtonIncluder.setupUploadButtonFrom;
 import static org.blocorganization.blocapp.utils.DateTimeHandler.setTextForDateWith;
@@ -391,13 +392,8 @@ public class CreateInfoDialog extends DialogFragment
                     }
                 }
             }
-            if (campaign.getVenue() != null && !campaign.getVenue().equals("")) {
-                for (int i = 0; i < venues.size() - 1; i++) {
-                    if (campaign.getVenue().equals(venues.get(i))) {
-                        spVenue.setSelection(i);
-                    }
-                }
-            }
+
+            setSelectionForSpinnerFromList(venues, campaign.getVenue(), spVenue);
 
             boolean isStartDate = true;
             setTextForDateWith(campaign.getFromDate(), tvFromDate, isStartDate);
@@ -410,15 +406,15 @@ public class CreateInfoDialog extends DialogFragment
             setTextForEditTextWith(campaign.getTitle(), etTitle);
             setTextForEditTextWith(campaign.getAbbreviation(), etAbbreviation);
             setTextForEditTextWith(campaign.getAdmin(), etAdmin);
-            setTextForEditTextAndAppend(DESCRIPTION, campaign.getDescription(), etDescription);
-            setTextForEditTextAndAppend(AMBITION, campaign.getAmbition(), etAmbition);
-            setTextForEditTextAndAppend(BENEFITS_TO_THE_COLLEGE, campaign.getBenefits(), etBenefits);
+            setTextForEditTextAndPrepend(DESCRIPTION, campaign.getDescription(), etDescription);
+            setTextForEditTextAndPrepend(AMBITION, campaign.getAmbition(), etAmbition);
+            setTextForEditTextAndPrepend(BENEFITS_TO_THE_COLLEGE, campaign.getBenefits(), etBenefits);
             loadUrlIntoImageViewWithActivity(campaign.getPhotoUrl(), ivUpload, getActivity());
         }
     }
 
     @Override
-    public void onUserCancel() {
+    public void onDatePickerCancel() {
         DialogFragment dialog = (DialogFragment) getChildFragmentManager()
                 .findFragmentByTag(DATE_TIME_PICKER);
         dialog.dismiss();

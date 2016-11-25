@@ -71,13 +71,13 @@ public class DateTimePickerFragment extends DialogFragment
     }
 
     @Override
-    public void onUserCancel() {
-        mListener.onUserCancel();
+    public void onDatePickerCancel() {
+        mListener.onDatePickerCancel();
     }
 
     public interface DateTimeSetListener {
         void onEventDateTimeSet(int year, int month, int day, int hourOfDay, String minute);
-        void onUserCancel();
+        void onDatePickerCancel();
     }
 }
 
