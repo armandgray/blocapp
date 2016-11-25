@@ -63,7 +63,6 @@ public class CreateInfoDialog extends DialogFragment
     public static final String DATE_TIME_PICKER = "dateTimePicker";
 
     public static final String DATE = "Date";
-    public static final String END = "End";
     public static final String CAMPAIGNS = "campaigns";
 
     private Campaign campaign;
@@ -371,38 +370,10 @@ public class CreateInfoDialog extends DialogFragment
     }
 
     private void loadCampaignData() {
-        // load current campaign data into fields.
-
         if (getArguments() != null) {
-            if (campaign.getThemeImageUrl() != null && !campaign.getThemeImageUrl().equals("")) {
-                for (int i = 0; i < themes.size() - 1; i++) {
-                    if (campaign.getThemeImageUrl().equals(themes.get(i))) {
-                        // get Viewholder for row and change background
-                        themePosition = i;
-                        if (i > 3) {
-                            rvThemes.scrollToPosition(i - 1);
-                        }
-                    }
-                }
-            }
-            if (campaign.getRecordType() != null && !campaign.getTitle().equals("")) {
-                for (int i = 0; i < types.size() - 1; i++) {
-                    if (campaign.getRecordType().equals(types.get(i))) {
-                        spType.setSelection(i);
-                    }
-                }
-            }
-
+            setSelectionForSpinnerFromList(types, campaign.getRecordType(), spType);
             setSelectionForSpinnerFromList(venues, campaign.getVenue(), spVenue);
-
-            boolean isStartDate = true;
-            setTextForDateWith(campaign.getFromDate(), tvFromDate, isStartDate);
-            if (campaign.getToDate() != null) {
-                isStartDate = false;
-                setTextForDateWith(campaign.getToDate(), tvToDate, isStartDate);
-                showEndDateView();
-            }
-
+            loadDateFields();
             setTextForEditTextWith(campaign.getTitle(), etTitle);
             setTextForEditTextWith(campaign.getAbbreviation(), etAbbreviation);
             setTextForEditTextWith(campaign.getAdmin(), etAdmin);
@@ -410,6 +381,14 @@ public class CreateInfoDialog extends DialogFragment
             setTextForEditTextAndPrepend(AMBITION, campaign.getAmbition(), etAmbition);
             setTextForEditTextAndPrepend(BENEFITS_TO_THE_COLLEGE, campaign.getBenefits(), etBenefits);
             loadUrlIntoImageViewWithActivity(campaign.getPhotoUrl(), ivUpload, getActivity());
+        }
+    }
+
+    private void loadDateFields() {
+        setTextForDateWith(campaign.getFromDate(), tvFromDate, true);
+        if (campaign.getToDate() != null) {
+            setTextForDateWith(campaign.getToDate(), tvToDate, false);
+            showEndDateView();
         }
     }
 
@@ -497,9 +476,7 @@ public class CreateInfoDialog extends DialogFragment
 
         UploadActivityListener resultListener = new UploadActivityListener(getActivity());
         resultListener.onActivityResult(requestCode, resultCode, data);
-//        campaign.setPhotoUrl(downloadUri.toString());
-//        ivUpload.setVisibility(View.VISIBLE);
-//        Picasso.with(getActivity()).load(campaign.getPhotoUrl()).into(ivUpload);
+        // TODO fix code to load image into ivUpload when selected by user
     }
 
 }

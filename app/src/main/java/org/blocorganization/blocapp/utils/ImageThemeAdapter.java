@@ -49,7 +49,7 @@ public class ImageThemeAdapter extends
         Picasso.with(mActivity).load(theme).into(ivCampaignTheme);
 
         // when loadCampaignData in CreateInfoDialog set selected theme to getThemeImageUrl
-        if (setTheme != null) {
+        if (setTheme != null && !setTheme.equals("")) {
             if (setTheme.equals(mThemes.get(position))) {
                 // get Viewholder for row and change background
                 LinearLayout setLayout = (LinearLayout) viewHolder.itemView;
@@ -57,8 +57,11 @@ public class ImageThemeAdapter extends
                 ImageView setImg = (ImageView) setLayout.getChildAt(0);
                 setImg.setColorFilter(Color.parseColor("#00000000"));
                 setImg.setBackgroundColor(Color.parseColor("#00000000"));
+
+                // TODO Add code to cause auto-scroll to position and selected-state
             }
         }
+
     }
 
     @Override
@@ -66,7 +69,7 @@ public class ImageThemeAdapter extends
         return mThemes.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView ivCampaignTheme;
 
         ViewHolder(View itemView) {
