@@ -403,12 +403,8 @@ public class CreateInfoDialog extends DialogFragment
                 DateTime dateTimeReference = getDateTimeReferenceFrom(campaign.getFromDate());
 
                 String ampmDesignator = designateAmPmFrom(dateTimeReference.getHourOfDay());
-                
-                int hourOfDay = dateTimeReference.getHourOfDay();
-                if (hourOfDay != 12) {
-                    hourOfDay = hourOfDay % 12;
-                }
-                tvFromDate.setText("On: " + dateTimeReference.monthOfYear().getAsText() + " " + dateTimeReference.getDayOfMonth() + ", " + dateTimeReference.getYear() + " - " + hourOfDay + ":" + dateTimeReference.getMinuteOfHour() + " " + ampmDesignator);
+
+                tvFromDate.setText("On: " + dateTimeReference.monthOfYear().getAsText() + " " + dateTimeReference.getDayOfMonth() + ", " + dateTimeReference.getYear() + " - " + dateTimeReference.getHourOfDay() + ":" + dateTimeReference.getMinuteOfHour() + " " + ampmDesignator);
             }
             if (campaign.getToDate() != null && !campaign.getToDate().equals("")) {
                 DateTime dt = new DateTime();

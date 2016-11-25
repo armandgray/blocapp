@@ -17,7 +17,8 @@ public class DateTimeHandler {
         Integer year = getValueIfExistsFrom(dateElementsList.get(YEAR));
         Integer month = getValueIfExistsFrom(dateElementsList.get(MONTH));
         Integer day = getValueIfExistsFrom(dateElementsList.get(DAY));
-        Integer hour = getValueIfExistsFrom(dateElementsList.get(HOUR));
+        Integer hourListElement = get12HourFormatFrom(dateElementsList.get(HOUR));
+        Integer hour = getValueIfExistsFrom(hourListElement);
         Integer minute = getValueIfExistsFrom(dateElementsList.get(MINUTE));
         return new DateTime(year, month, day, hour, minute, SECONDS_ZERO, SECONDS_ZERO);
     }
@@ -27,6 +28,13 @@ public class DateTimeHandler {
             return dateElement;
         }
         return 1;
+    }
+
+    private static Integer get12HourFormatFrom(Integer hour) {
+        if (hour != 12) {
+            return hour = hour % 12;
+        }
+        return 12;
     }
 
     public static String designateAmPmFrom(Integer hour) {
