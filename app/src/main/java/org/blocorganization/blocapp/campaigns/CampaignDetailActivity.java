@@ -17,6 +17,8 @@ import org.blocorganization.blocapp.models.Campaign;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.blocorganization.blocapp.utils.DateTimeHandler.setTextForDateWith;
+
 public class CampaignDetailActivity extends AppCompatActivity {
 
     DisplayMetrics metrics;
@@ -78,7 +80,7 @@ public class CampaignDetailActivity extends AppCompatActivity {
             Picasso.with(this).load(campaign.getThemeImageUrl()).into(ivTheme);
             tvTitle.setText(campaign.getTitle());
             tvType.setText(campaign.getRecordType());
-//            tvDate.setText(campaign.getFromDate());
+            setTextForDateWith(campaign.getFromDate(), tvDate, true);
             tvDesc.setText(campaign.getDescription());
             tvAmbition.setText(campaign.getAmbition());
             tvBenefits.setText(campaign.getBenefits());
