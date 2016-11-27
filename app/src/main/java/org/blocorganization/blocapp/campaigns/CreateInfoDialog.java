@@ -7,7 +7,6 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.InputFilter;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +24,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.blocorganization.blocapp.BlocApp;
 import org.blocorganization.blocapp.R;
 import org.blocorganization.blocapp.models.Campaign;
 import org.blocorganization.blocapp.utils.ConfirmChangesDialogFragment;
@@ -43,6 +41,7 @@ import static org.blocorganization.blocapp.campaigns.FieldUtilities.AMBITION;
 import static org.blocorganization.blocapp.campaigns.FieldUtilities.BENEFITS_TO_THE_COLLEGE;
 import static org.blocorganization.blocapp.campaigns.FieldUtilities.DESCRIPTION;
 import static org.blocorganization.blocapp.campaigns.FieldUtilities.loadUrlIntoImageViewWithActivity;
+import static org.blocorganization.blocapp.campaigns.FieldUtilities.saveCampaignToDatabaseWith;
 import static org.blocorganization.blocapp.campaigns.FieldUtilities.setSelectionForSpinnerFromList;
 import static org.blocorganization.blocapp.campaigns.FieldUtilities.setTextForEditTextAndPrepend;
 import static org.blocorganization.blocapp.campaigns.FieldUtilities.setTextForEditTextWith;
@@ -63,7 +62,6 @@ public class CreateInfoDialog extends DialogFragment
     public static final String DATE_TIME_PICKER = "dateTimePicker";
 
     public static final String DATE = "Date";
-    public static final String CAMPAIGNS = "campaigns";
 
     private Campaign campaign;
 
@@ -453,21 +451,7 @@ public class CreateInfoDialog extends DialogFragment
 
     @Override
     public void onConfirmSave() {
-        /**
-         *  Add/ Update Campaign in Firebase using position in List
-         */
-        Log.i("CAMP_DATE", String.valueOf(campaign.getFromDate().get(0)) + campaign.getFromDate().get(1) + campaign.getFromDate().get(2));
-        Log.i("CAMP_POS", String.valueOf(BlocApp.getInstance().getCampaignPosition(new Campaign(getArguments()))));
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child(CAMPAIGNS);
-        mDatabase.child(String.valueOf(
-                BlocApp.getInstance().getCampaignPosition(new Campaign(getArguments()))))
-                .setValue(campaign);
-
-        getActivity().onBackPressed();
-        getActivity().onBackPressed();
-        Intent intent = new Intent(getActivity(), CampaignDetailActivity.class);
-        intent.putExtras(campaign.toBundle());
-        startActivity(intent);
+        saveCampaignToDatabaseWith(getActivity(), campaign);
     }
 
     @Override
