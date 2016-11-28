@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -12,6 +13,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask.TaskSnapshot;
+import com.squareup.picasso.Picasso;
 
 import org.blocorganization.blocapp.models.Campaign;
 
@@ -29,6 +31,8 @@ class UploadActivityListener {
 
     private Activity activity;
     private ProgressDialog progressDialog;
+    private Campaign campaign;
+    private ImageView ivUpload;
 
     UploadActivityListener(Activity activity) {
         this.activity = activity;
@@ -36,10 +40,12 @@ class UploadActivityListener {
         this.imgDownloadUri = "";
     }
 
-    void onActivityResult(int requestCode, int resultCode, Intent data, Campaign campaign) {
+    void onActivityResult(int requestCode, int resultCode, Intent data, Campaign campaign, ImageView ivUpload) {
         if (requestCode == GALLERY_INTENT && resultCode == RESULT_OK) {
+            this.campaign = campaign;
+            this.ivUpload = ivUpload;
             startProgressDialog(progressDialog);
-            setupFileForPathFrom(data, campaign);
+            setupFileForPathFrom(data);
         }
     }
 
@@ -51,10 +57,10 @@ class UploadActivityListener {
         return progressDialog;
     }
 
-    private void setupFileForPathFrom(Intent data, Campaign campaign) {
+    private void setupFileForPathFrom(Intent data) {
         Uri imageUri = data.getData();
         StorageReference imgFilepath = getNewImageFilepath(imageUri);
-        putFileAtPathFrom(imageUri, imgFilepath, campaign);
+        putFileAtPathFrom(imageUri, imgFilepath);
     }
 
     @NonNull
@@ -63,11 +69,11 @@ class UploadActivityListener {
         return photosStorageReference.child(imageUri.getLastPathSegment());
     }
 
-    private void putFileAtPathFrom(Uri imageUri, StorageReference imgFilepath, final Campaign campaign) {
+    private void putFileAtPathFrom(Uri imageUri, StorageReference imgFilepath) {
         imgFilepath.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<TaskSnapshot>() {
             @Override
             public void onSuccess(TaskSnapshot taskSnapshot) {
-                saveUriToCampaignFrom(taskSnapshot, campaign);
+                saveUriToCampaignFrom(taskSnapshot);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -77,10 +83,11 @@ class UploadActivityListener {
         });
     }
 
-    private void saveUriToCampaignFrom(TaskSnapshot taskSnapshot, Campaign campaign) {
+    private void saveUriToCampaignFrom(TaskSnapshot taskSnapshot) {
         progressDialog.dismiss();
         imgDownloadUri = taskSnapshot.getDownloadUrl().toString();
         campaign.setPhotoUrl(imgDownloadUri);
+        Picasso.with(activity).load(imgDownloadUri).into(ivUpload);
         Toast.makeText(activity, UPLOAD_DONE, Toast.LENGTH_LONG).show();
     }
 

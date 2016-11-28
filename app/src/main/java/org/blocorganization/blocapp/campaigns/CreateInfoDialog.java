@@ -461,7 +461,7 @@ public class CreateInfoDialog extends DialogFragment
         super.onActivityResult(requestCode, resultCode, data);
 
         resultListener = new UploadActivityListener(getActivity());
-        resultListener.onActivityResult(requestCode, resultCode, data, campaign);
+        resultListener.onActivityResult(requestCode, resultCode, data, campaign, ivUpload);
     }
 
 }
