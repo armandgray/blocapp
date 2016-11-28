@@ -13,33 +13,33 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask.TaskSnapshot;
 
+import org.blocorganization.blocapp.models.Campaign;
+
 import static org.blocorganization.blocapp.campaigns.UploadButtonIncluder.GALLERY_INTENT;
 
 class UploadActivityListener {
 
-    public static final int TIMER_DELAY = 1000;
     private static final String PHOTOS = "photos";
     private static final int RESULT_OK = -1;
     private static final String UPLOADING = "Uploading...";
     private static final String UPLOAD_DONE = "UPLOAD_DONE";
     private static final String UPLOAD_FAILED = "UPLOAD_FAILED";
-    public static final int WAIT_TIME = 10;
-    public static final int TIMER_PERIOD = 10000;
+
+    private String imgDownloadUri;
 
     private Activity activity;
     private ProgressDialog progressDialog;
-    private boolean progressDialogIsShowing;
-    private String imgDownloadUri = "";
 
     UploadActivityListener(Activity activity) {
         this.activity = activity;
         this.progressDialog = new ProgressDialog(activity);
+        this.imgDownloadUri = "";
     }
 
-    void onActivityResult(int requestCode, int resultCode, Intent data) {
+    void onActivityResult(int requestCode, int resultCode, Intent data, Campaign campaign) {
         if (requestCode == GALLERY_INTENT && resultCode == RESULT_OK) {
             startProgressDialog(progressDialog);
-            setupFileForPathFrom(data);
+            setupFileForPathFrom(data, campaign);
         }
     }
 
@@ -47,15 +47,14 @@ class UploadActivityListener {
     private ProgressDialog startProgressDialog(ProgressDialog progressDialog) {
         progressDialog.setMessage(UPLOADING);
         progressDialog.show();
-        progressDialogIsShowing = true;
 
         return progressDialog;
     }
 
-    private void setupFileForPathFrom(Intent data) {
+    private void setupFileForPathFrom(Intent data, Campaign campaign) {
         Uri imageUri = data.getData();
         StorageReference imgFilepath = getNewImageFilepath(imageUri);
-        putFileAtPathFrom(imageUri, imgFilepath);
+        putFileAtPathFrom(imageUri, imgFilepath, campaign);
     }
 
     @NonNull
@@ -64,11 +63,11 @@ class UploadActivityListener {
         return photosStorageReference.child(imageUri.getLastPathSegment());
     }
 
-    private void putFileAtPathFrom(Uri imageUri, StorageReference imgFilepath) {
+    private void putFileAtPathFrom(Uri imageUri, StorageReference imgFilepath, final Campaign campaign) {
         imgFilepath.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<TaskSnapshot>() {
             @Override
             public void onSuccess(TaskSnapshot taskSnapshot) {
-                saveUriFrom(taskSnapshot);
+                saveUriToCampaignFrom(taskSnapshot, campaign);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -78,15 +77,11 @@ class UploadActivityListener {
         });
     }
 
-    private void saveUriFrom(TaskSnapshot taskSnapshot) {
-        this.imgDownloadUri = taskSnapshot.getDownloadUrl().toString();
-        Toast.makeText(activity, UPLOAD_DONE, Toast.LENGTH_LONG).show();
-        dismissProgressDialog();
-    }
-
-    private void dismissProgressDialog() {
+    private void saveUriToCampaignFrom(TaskSnapshot taskSnapshot, Campaign campaign) {
         progressDialog.dismiss();
-        progressDialogIsShowing = false;
+        imgDownloadUri = taskSnapshot.getDownloadUrl().toString();
+        campaign.setPhotoUrl(imgDownloadUri);
+        Toast.makeText(activity, UPLOAD_DONE, Toast.LENGTH_LONG).show();
     }
 
 }
