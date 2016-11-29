@@ -20,12 +20,10 @@
         android:id="@+id/main_pager"
         android:layout_height="match_parent" />
 
-    <fragment
+    <FrameLayout
         android:id="@+id/navbar_container"
-        android:name="org.blocorganization.blocapp.utils.NavBarFragment"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        tools:layout="@layout/fragment_navbar" />
+        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>

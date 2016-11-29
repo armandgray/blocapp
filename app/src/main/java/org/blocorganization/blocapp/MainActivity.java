@@ -1,7 +1,6 @@
 package org.blocorganization.blocapp;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -40,24 +39,59 @@ public class MainActivity extends AppCompatActivity
     public static final String TAG = "MainActivity";
     public static final String ANONYMOUS = "anonymous";
     public static final String MESS_TAG = "MESS_TAG";
+
     private static final int REQUEST_INVITE = 1;
 
     public static String mUsername;
     public static String mPhotoUrl;
-    public static boolean signedIn = false;
-    private SharedPreferences mSharedPreferences;
-    private GoogleApiClient mGoogleApiClient;
-
-    // Firebase instance variables
     public static FirebaseAuth mFirebaseAuth;
     public static FirebaseUser mFirebaseUser;
+
     private FirebaseAnalytics mFirebaseAnalytics;
+    private GoogleApiClient mGoogleApiClient;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setupActivityComponents();
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.navbar_container, new NavBarFragment())
+                .commit();
+
+        mUsername = ANONYMOUS;
+
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
+                .addApi(Auth.GOOGLE_SIGN_IN_API)
+                .build();
+
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+        if (mFirebaseUser == null) {
+            // Not signed in, launch the Sign In activity
+            startActivity(new Intent(this, SignInActivity.class));
+            finish();
+            return;
+        } else {
+            mUsername = mFirebaseUser.getDisplayName();
+            if (mFirebaseUser.getPhotoUrl() != null) {
+                mPhotoUrl = mFirebaseUser.getPhotoUrl().toString();
+            }
+        }
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.main_fragment_container, new HomeFragment())
+                .commit();
+    }
+
+    private void setupActivityComponents() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -76,40 +110,6 @@ public class MainActivity extends AppCompatActivity
         tools.setTitle(s);
 
         navigationView.setNavigationItemSelectedListener(this);
-
-        // Set default username is anonymous.
-        mUsername = ANONYMOUS;
-
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
-                .addApi(Auth.GOOGLE_SIGN_IN_API)
-                .build();
-
-        // Initialize Firebase Analytics
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-
-
-        // Initialize Firebase Auth
-        mFirebaseAuth = FirebaseAuth.getInstance();
-        mFirebaseUser = mFirebaseAuth.getCurrentUser();
-        if (mFirebaseUser == null) {
-            // Not signed in, launch the Sign In activity
-            startActivity(new Intent(this, SignInActivity.class));
-            finish();
-            return;
-        } else {
-            mUsername = mFirebaseUser.getDisplayName();
-            if (mFirebaseUser.getPhotoUrl() != null) {
-                mPhotoUrl = mFirebaseUser.getPhotoUrl().toString();
-            }
-        }
-
-        HomeFragment homeFrag = new HomeFragment();
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.main_fragment_container, homeFrag)
-                .addToBackStack(null)
-                .commit();
     }
 
     public interface MainActivityListener {
@@ -235,47 +235,42 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onHomeClick() {
-        HomeFragment homeFrag = new HomeFragment();
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.main_fragment_container, homeFrag)
+                .replace(R.id.main_fragment_container, new HomeFragment())
                 .commit();
     }
 
     @Override
     public void onCampaignsClick() {
-        CampaignsFragment campFrag = new CampaignsFragment();
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.main_fragment_container, campFrag)
+                .replace(R.id.main_fragment_container, new CampaignsFragment())
                 .commit();
 
     }
 
     @Override
     public void onMessagesClick() {
-        MessagesFragment messFrag = new MessagesFragment();
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.main_fragment_container, messFrag, MESS_TAG)
+                .replace(R.id.main_fragment_container, new MessagesFragment(), MESS_TAG)
                 .commit();
     }
 
     @Override
     public void onNotificationsClick() {
-        NotificationsFragment notiFrag = new NotificationsFragment();
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.main_fragment_container, notiFrag, TAG)
+                .replace(R.id.main_fragment_container, new NotificationsFragment(), TAG)
                 .commit();
     }
 
     @Override
     public void onBlocClick() {
-        BlocFragment blocFrag = new BlocFragment();
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.main_fragment_container, blocFrag)
+                .replace(R.id.main_fragment_container, new BlocFragment())
                 .commit();
     }
 

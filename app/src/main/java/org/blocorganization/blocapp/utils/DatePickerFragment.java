@@ -21,7 +21,6 @@ public class DatePickerFragment extends DialogFragment
         try {
             mListener = (DateSetListener) getParentFragment();
         } catch (ClassCastException e) {
-            // The activity doesn't implement the interface, throw exception
             throw new ClassCastException(getParentFragment().toString()
                     + " must implement DateSetListener");
         }
@@ -29,13 +28,11 @@ public class DatePickerFragment extends DialogFragment
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        // Use the current fromDate as the default fromDate in the picker
         DateTime dt = new DateTime();
         int year = dt.getYear();
         int month = dt.getMonthOfYear() - 1;
         int day = dt.getDayOfMonth();
 
-        // Create a new instance of DatePickerDialog and return it
         return new DatePickerDialog(getActivity(), this, year, month, day);
     }
 
