@@ -58,11 +58,6 @@ public class MainActivity extends AppCompatActivity
 
         setupActivityComponents();
 
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.navbar_container, new NavBarFragment())
-                .commit();
-
         mUsername = ANONYMOUS;
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)

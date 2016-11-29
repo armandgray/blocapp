@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/view_flipper"
     android:layout_width="fill_parent"
-    android:layout_height="175dp"
+    android:layout_height="match_parent"
     android:background="@drawable/viewflipper_border"
     android:paddingBottom="1dp"
     android:paddingTop="1dp"
@@ -15,10 +15,11 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="@dimen/home_vf_image_height"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
             android:adjustViewBounds="true"
+            android:contentDescription="@string/view_flipper_image"
             android:padding="70dp"
             android:scaleType="centerCrop"
             android:src="@drawable/logo_negative" />
@@ -30,9 +31,10 @@
 
         <ImageView
             android:layout_width="fill_parent"
-            android:layout_height="match_parent"
+            android:layout_height="@dimen/home_vf_image_height"
             android:layout_gravity="center"
             android:adjustViewBounds="true"
+            android:contentDescription="@string/view_flipper_image"
             android:scaleType="centerCrop"
             android:src="@drawable/blocbbq2016_ianwbx" />
     </RelativeLayout>
@@ -43,9 +45,10 @@
 
         <ImageView
             android:layout_width="fill_parent"
-            android:layout_height="match_parent"
+            android:layout_height="@dimen/home_vf_image_height"
             android:layout_gravity="center"
             android:adjustViewBounds="true"
+            android:contentDescription="@string/view_flipper_image"
             android:scaleType="centerCrop"
             android:src="@drawable/theme_consent" />
     </RelativeLayout>
@@ -56,9 +59,10 @@
 
         <ImageView
             android:layout_width="fill_parent"
-            android:layout_height="match_parent"
+            android:layout_height="@dimen/home_vf_image_height"
             android:layout_gravity="center"
             android:adjustViewBounds="true"
+            android:contentDescription="@string/view_flipper_image"
             android:scaleType="centerCrop"
             android:src="@drawable/dinner_jmnuad" />
     </RelativeLayout>
@@ -70,10 +74,11 @@
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="@dimen/home_vf_image_height"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
             android:adjustViewBounds="true"
+            android:contentDescription="@string/view_flipper_image"
             android:scaleType="centerCrop"
             android:src="@drawable/theme_donate" />
     </RelativeLayout>

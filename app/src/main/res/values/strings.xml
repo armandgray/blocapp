@@ -139,5 +139,6 @@
     <string name="home">Home</string>
     <string name="chat">Chat</string>
     <string name="cal">Cal</string>
+    <string name="view_flipper_image">View Flipper Image</string>
 
 </resources>

@@ -1,74 +1,79 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:layout_height="wrap_content"
     tools:context="org.blocorganization.blocapp.HomeFragment">
 
-    <include layout="@layout/home_viewflipper" />
-
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/white_dividers_background"
-        android:orientation="horizontal"
-        android:paddingBottom="@dimen/small_header_pad_bottom"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/small_header_pad_top">
+        android:orientation="vertical">
+
+        <include layout="@layout/home_viewflipper" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/white_dividers_background"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/small_header_pad_bottom"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/small_header_pad_top">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:text="@string/campaigns"
+                android:textAllCaps="true"
+                android:textColor="@color/ToolBarColor"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <include
+                layout="@layout/chevron_down_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true" />
+        </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvCampaigns"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp" />
+
+        <!--<android.support.v7.widget.RecyclerView-->
+        <!--android:id="@+id/rvNewsFeed"-->
+        <!--android:background="@color/viewLightGrayBackground"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:padding="5dp"-->
+        <!--android:layout_height="wrap_content" />-->
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/white_dividers_background"
+            android:paddingBottom="@dimen/small_header_pad_bottom"
             android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:text="@string/campaigns"
+            android:paddingTop="@dimen/small_header_pad_top"
+            android:text="@string/feed"
             android:textAllCaps="true"
             android:textColor="@color/ToolBarColor"
             android:textSize="12sp"
             android:textStyle="bold" />
 
-        <include
-            layout="@layout/chevron_down_more"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true" />
-    </RelativeLayout>
+        <TextView
+            android:id="@+id/header_brotherhood"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/gray_item_background"
+            android:gravity="center"
+            android:text="@string/header_brohood_text"
+            android:textColor="#000000"
+            android:textSize="@dimen/headers_size" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvCampaigns"
-        android:layout_marginLeft="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <!--<android.support.v7.widget.RecyclerView-->
-    <!--android:id="@+id/rvNewsFeed"-->
-    <!--android:background="@color/viewLightGrayBackground"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:padding="5dp"-->
-    <!--android:layout_height="wrap_content" />-->
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/white_dividers_background"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/small_header_pad_top"
-        android:paddingBottom="@dimen/small_header_pad_bottom"
-        android:text="@string/feed"
-        android:textAllCaps="true"
-        android:textColor="@color/ToolBarColor"
-        android:textSize="12sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/header_brotherhood"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/gray_item_background"
-        android:gravity="center"
-        android:text="@string/header_brohood_text"
-        android:textColor="#000000"
-        android:textSize="@dimen/headers_size" />
-
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>

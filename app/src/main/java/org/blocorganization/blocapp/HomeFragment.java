@@ -13,9 +13,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import com.google.firebase.database.ChildEventListener;
@@ -47,10 +45,9 @@ public class HomeFragment extends Fragment {
     private ViewFlipper mViewFlipper;
     private Context mContext;
     private final GestureDetector detector = new GestureDetector(new SwipeGestureDetector());
-    private DatabaseReference mCampaignsDatabaseReference;
     private CampaignsItemAdapter adapter;
 
-    ArrayList<Campaign> campaigns;
+    ArrayList<Campaign> campaigns = new ArrayList<>();
 
     public HomeFragment() {
         // Required empty public constructor
@@ -62,12 +59,6 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
-
-        TextView tvMore = (TextView) rootView.findViewById(R.id.tvMore);
-        tvMore.setTextColor(getResources().getColor(R.color.ToolBarColor));
-        ImageView ivChevron = (ImageView) rootView.findViewById(R.id.ivChevron);
-        ivChevron.setColorFilter(getResources().getColor(R.color.ToolBarColor));
-        ivChevron.setRotation(270);
 
         /**
          *  Slideshow setup as ViewFlipper
@@ -83,27 +74,21 @@ public class HomeFragment extends Fragment {
                 return true;
             }
         });
-
-        // Begin Slideshow; Stops auto flip on swipe below.
         mViewFlipper.setAutoStart(true);
         mViewFlipper.setFlipInterval(7000);
         mViewFlipper.startFlipping();
 
-        // add animation listener to viewflipper
-//        mViewFlipper.getInAnimation().setAnimationListener(mAnimationListener);
-
         final RecyclerView rvCampaigns = (RecyclerView) rootView.findViewById(R.id.rvCampaigns);
-        campaigns = new ArrayList<>();
 
-        LinearLayout moreContainer = (LinearLayout) rootView.findViewById(R.id.more_container);
-        moreContainer.setOnClickListener(new View.OnClickListener() {
+        LinearLayout showMoreButton = (LinearLayout) rootView.findViewById(R.id.more_container);
+        showMoreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 rvCampaigns.scrollToPosition(rvCampaigns.getChildCount() - 1);
             }
         });
 
-        mCampaignsDatabaseReference = FirebaseDatabase.getInstance().getReference(CAMPAIGNS_CHILD);
+        DatabaseReference mCampaignsDatabaseReference = FirebaseDatabase.getInstance().getReference(CAMPAIGNS_CHILD);
         mCampaignsDatabaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {

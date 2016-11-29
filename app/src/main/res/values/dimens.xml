@@ -80,4 +80,7 @@
     <dimen name="menu_text_padding">40dp</dimen>
     <dimen name="menu_icon_size">20dp</dimen>
 
+    <!-- Miscellaneous -->
+    <dimen name="home_vf_image_height">175dp</dimen>
+
 </resources>
