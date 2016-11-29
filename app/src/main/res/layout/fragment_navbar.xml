@@ -3,114 +3,120 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:background="@drawable/navbar_border"
+    android:gravity="center"
     android:orientation="horizontal"
-    android:padding="@dimen/navbar_padding">
+    android:padding="@dimen/navbar_padding"
+    android:weightSum="1">
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="36dp">
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.2">
 
         <ImageView
             android:id="@+id/home"
             android:layout_width="@dimen/navbar_icon_size"
             android:layout_height="@dimen/navbar_icon_size"
-            android:layout_marginLeft="@dimen/navbar_margins"
-            android:layout_marginRight="@dimen/navbar_margins"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="@string/icon"
             app:srcCompat="@drawable/ic_home_white_48dp" />
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_below="@+id/home"
             android:layout_height="wrap_content"
-            android:textSize="10sp"
+            android:layout_below="@+id/home"
             android:layout_centerHorizontal="true"
-            android:text="Home"/>
+            android:text="@string/home"
+            android:textSize="@dimen/navbar_text_size" />
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="36dp">
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.2">
 
         <ImageView
             android:id="@+id/calendar"
             android:layout_width="@dimen/navbar_icon_size"
             android:layout_height="@dimen/navbar_icon_size"
-            android:layout_marginLeft="@dimen/navbar_margins"
-            android:layout_marginRight="@dimen/navbar_margins"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="@string/icon"
             app:srcCompat="@drawable/ic_calendar_today_white_48dp" />
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_below="@+id/calendar"
             android:layout_height="wrap_content"
-            android:textSize="10sp"
+            android:layout_below="@+id/calendar"
             android:layout_centerHorizontal="true"
-            android:text="Cal"/>
+            android:text="@string/cal"
+            android:textSize="@dimen/navbar_text_size" />
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="36dp">
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.2">
 
         <ImageView
             android:id="@+id/messages"
             android:layout_width="@dimen/navbar_icon_size"
             android:layout_height="@dimen/navbar_icon_size"
-            android:layout_marginLeft="@dimen/navbar_margins"
-            android:layout_marginRight="@dimen/navbar_margins"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="@string/icon"
             app:srcCompat="@drawable/ic_message_bulleted_white_48dp" />
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_below="@+id/messages"
             android:layout_height="wrap_content"
-            android:textSize="10sp"
+            android:layout_below="@+id/messages"
             android:layout_centerHorizontal="true"
-            android:text="Chat"/>
+            android:text="@string/chat"
+            android:textSize="@dimen/navbar_text_size" />
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="36dp">
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.2">
 
         <ImageView
             android:id="@+id/blinds"
             android:layout_width="@dimen/navbar_icon_size"
             android:layout_height="@dimen/navbar_icon_size"
-            android:layout_marginLeft="@dimen/navbar_margins"
-            android:layout_marginRight="@dimen/navbar_margins"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="@string/icon"
             app:srcCompat="@drawable/ic_blinds_white_48dp" />
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_below="@+id/blinds"
             android:layout_height="wrap_content"
-            android:textSize="10sp"
+            android:layout_below="@+id/blinds"
             android:layout_centerHorizontal="true"
-            android:text="Not"/>
+            android:text="@string/noti_abbreviation"
+            android:textSize="@dimen/navbar_text_size" />
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="36dp">
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.2">
 
         <ImageView
             android:id="@+id/ic_bloc"
             android:layout_width="@dimen/navbar_icon_size"
             android:layout_height="@dimen/navbar_icon_size"
-            android:layout_marginLeft="@dimen/navbar_margins"
-            android:layout_marginRight="@dimen/navbar_margins"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="@string/icon"
             app:srcCompat="@drawable/ic_bloc_positive" />
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_below="@+id/ic_bloc"
             android:layout_height="wrap_content"
-            android:textSize="10sp"
+            android:layout_below="@+id/ic_bloc"
             android:layout_centerHorizontal="true"
-            android:text="Bloc"/>
+            android:text="@string/bloc"
+            android:textSize="@dimen/navbar_text_size" />
     </RelativeLayout>
 
 </LinearLayout>

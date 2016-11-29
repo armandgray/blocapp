@@ -134,5 +134,10 @@
     <string name="in_progress">In Progress</string>
     <string name="archived">Archived</string>
     <string name="recurring">Recurring</string>
+    <string name="bloc">Bloc</string>
+    <string name="noti_abbreviation">Noti</string>
+    <string name="home">Home</string>
+    <string name="chat">Chat</string>
+    <string name="cal">Cal</string>
 
 </resources>
