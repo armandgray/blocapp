@@ -15,18 +15,17 @@
         android:gravity="center_vertical"
         android:text="@string/chevron_text"
         android:textAllCaps="true"
-        android:textColor="@color/ToolBarColor"
         android:textSize="12sp" />
 
     <ImageView
         android:id="@+id/ivChevron"
         android:layout_width="@dimen/chevron_side"
         android:layout_height="@dimen/chevron_side"
-        android:layout_marginBottom="@dimen/chevron_margin_bottom"
+        android:gravity="center_vertical"
+        android:layout_marginTop="2dp"
         android:layout_marginLeft="@dimen/chevron_margin_left"
+        android:layout_marginStart="@dimen/chevron_margin_left"
         android:contentDescription="@string/chevron"
-        android:rotation="270"
-        android:tint="@color/ToolBarColor"
         app:srcCompat="@drawable/chevron_down" />
 
 </LinearLayout>

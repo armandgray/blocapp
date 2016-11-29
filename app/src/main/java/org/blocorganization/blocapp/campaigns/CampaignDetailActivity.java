@@ -21,23 +21,6 @@ import static org.blocorganization.blocapp.utils.DateTimeHandler.setTextForDateW
 
 public class CampaignDetailActivity extends AppCompatActivity {
 
-    DisplayMetrics metrics;
-    ImageView ivCampaignImage;
-    ImageView ivTheme;
-    TextView tvTitle;
-    TextView tvType;
-    TextView tvDate;
-
-    ImageView ivAdminImage;
-    TextView tvAdminHeader;
-    TextView tvAdminName;
-    TextView tvAdminRole;
-
-    TextView tvDesc;
-    TextView tvAmbition;
-    TextView tvBenefits;
-    TextView tvPlan;
-    TextView tvBudget;
     private Campaign campaign;
 
 
@@ -47,23 +30,25 @@ public class CampaignDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_campaign_detail);
 
         LinearLayout itemInfoThemeContainer = (LinearLayout) findViewById(R.id.itemInfoThemeContainer);
-        ivCampaignImage = (ImageView) findViewById(R.id.ivCampaignImage);
-        ivTheme = (ImageView) findViewById(R.id.ivTheme);
-        tvTitle = (TextView) findViewById(R.id.tvTitle);
-        tvType = (TextView) findViewById(R.id.tvType);
-        tvDate = (TextView) findViewById(R.id.tvDate);
+        ImageView ivCampaignImage = (ImageView) findViewById(R.id.ivCampaignImage);
+        ImageView ivTheme = (ImageView) findViewById(R.id.ivTheme);
+        TextView tvTitle = (TextView) findViewById(R.id.tvTitle);
+        TextView tvType = (TextView) findViewById(R.id.tvType);
+        TextView tvFromDate = (TextView) findViewById(R.id.tvFromDate);
+        TextView tvToDate = (TextView) findViewById(R.id.tvToDate);
+        tvToDate.setVisibility(View.INVISIBLE);
 
         LinearLayout itemAdminContainer = (LinearLayout) findViewById(R.id.itemAdminContainer);
-        ivAdminImage = (ImageView) findViewById(R.id.ivAdminImage);
-        tvAdminHeader = (TextView) findViewById(R.id.tvAdminHeader);
-        tvAdminName = (TextView) findViewById(R.id.tvAdminName);
-        tvAdminRole = (TextView) findViewById(R.id.tvAdminRole);
+        ImageView ivAdminImage = (ImageView) findViewById(R.id.ivAdminImage);
+        TextView tvAdminHeader = (TextView) findViewById(R.id.tvAdminHeader);
+        TextView tvAdminName = (TextView) findViewById(R.id.tvAdminName);
+        TextView tvAdminRole = (TextView) findViewById(R.id.tvAdminRole);
 
-        tvDesc = (TextView) findViewById(R.id.tvDesc);
-        tvAmbition = (TextView) findViewById(R.id.tvAmbition);
-        tvBenefits = (TextView) findViewById(R.id.tvBenefits);
-        tvPlan = (TextView) findViewById(R.id.tvPlan);
-        tvBudget = (TextView) findViewById(R.id.tvBudget);
+        TextView tvDesc = (TextView) findViewById(R.id.tvDesc);
+        TextView tvAmbition = (TextView) findViewById(R.id.tvAmbition);
+        TextView tvBenefits = (TextView) findViewById(R.id.tvBenefits);
+        TextView tvPlan = (TextView) findViewById(R.id.tvPlan);
+        TextView tvBudget = (TextView) findViewById(R.id.tvBudget);
 
         final List<View> views = new ArrayList<>();
         views.add(itemInfoThemeContainer);
@@ -80,7 +65,8 @@ public class CampaignDetailActivity extends AppCompatActivity {
             Picasso.with(this).load(campaign.getThemeImageUrl()).into(ivTheme);
             tvTitle.setText(campaign.getTitle());
             tvType.setText(campaign.getRecordType());
-            setTextForDateWith(campaign.getFromDate(), tvDate, true);
+            setTextForDateWith(campaign.getFromDate(), tvFromDate, true);
+            setTextForDateWith(campaign.getFromDate(), tvToDate, false);
             tvDesc.setText(campaign.getDescription());
             tvAmbition.setText(campaign.getAmbition());
             tvBenefits.setText(campaign.getBenefits());
@@ -88,7 +74,7 @@ public class CampaignDetailActivity extends AppCompatActivity {
             tvBudget.setText(campaign.getItemizedBudget());
         }
 
-        metrics = new DisplayMetrics();
+        DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
         final ImageView editBtn = (ImageView) findViewById(R.id.ivCampaignEdit);
@@ -153,12 +139,12 @@ public class CampaignDetailActivity extends AppCompatActivity {
                 if (clicked) {
                     details.setVisibility(View.GONE);
                     tv.setText("More");
-                    iv.animate().rotationX(360).rotationY(0).setDuration(1000);
+                    iv.animate().rotationX(360).rotationY(0).setDuration(250);
                     clicked = !clicked;
                 } else {
                     details.setVisibility(View.VISIBLE);
                     tv.setText("Less");
-                    iv.animate().rotationX(180).rotationY(0).setDuration(1000);
+                    iv.animate().rotationX(180).rotationY(0).setDuration(250);
                     clicked = !clicked;
                 }
             }

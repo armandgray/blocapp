@@ -1,5 +1,6 @@
 package org.blocorganization.blocapp.utils;
 
+import android.view.View;
 import android.widget.TextView;
 
 import org.joda.time.DateTime;
@@ -31,6 +32,7 @@ public class DateTimeHandler {
                     + date.getMinuteOfHour() + " "
                     + amPm;
             tvReference.setText(dateText);
+            tvReference.setVisibility(View.VISIBLE);
         }
     }
 

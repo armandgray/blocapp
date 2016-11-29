@@ -41,6 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:orientation="vertical"
                 tools:showIn="@layout/activity_campaign_detail">
 
@@ -60,24 +61,28 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="@string/placeholder"
-                    android:textSize="20dp" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/tvType"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="@string/placeholder"
-                    android:textSize="12dp" />
+                    android:textSize="12sp" />
 
                 <TextView
-                    android:id="@+id/tvDate"
+                    android:id="@+id/tvFromDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="@string/placeholder"
-                    android:textSize="14dp" />
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvToDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:textSize="14sp" />
             </LinearLayout>
         </FrameLayout>
 
@@ -101,7 +106,6 @@
                 android:layout_weight="1" />
         </LinearLayout>
 
-        <!-- admin info -->
         <LinearLayout
             android:id="@+id/itemAdminContainer"
             android:layout_width="match_parent"
@@ -190,36 +194,32 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:text="@string/placeholder"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/tvBenefits"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/campaign_details_between_margin"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/tvPlan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/campaign_details_between_margin"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/tvBudget"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/campaign_details_between_margin"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:textSize="12dp" />
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/tvBenefits"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/campaign_details_between_margin"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:text="@string/placeholder"
-            android:textSize="12dp" />
-
-        <TextView
-            android:id="@+id/tvPlan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/campaign_details_between_margin"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:text="@string/placeholder"
-            android:textSize="12dp" />
-
-        <TextView
-            android:id="@+id/tvBudget"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/campaign_details_between_margin"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:text="@string/placeholder"
-            android:textSize="12dp" />
     </LinearLayout>
 
 </ScrollView>

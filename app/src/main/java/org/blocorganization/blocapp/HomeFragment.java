@@ -3,6 +3,7 @@ package org.blocorganization.blocapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,7 +14,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import com.google.firebase.database.ChildEventListener;
@@ -59,6 +62,8 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
+
+        setupMoreButton(rootView);
 
         /**
          *  Slideshow setup as ViewFlipper
@@ -171,6 +176,15 @@ public class HomeFragment extends Fragment {
         );
 
         return rootView;
+    }
+
+    private void setupMoreButton(View rootView) {
+        ImageView moreButtonArrow = (ImageView) rootView.findViewById(R.id.ivChevron);
+        moreButtonArrow.setColorFilter(Color.parseColor("#FF2A00"));
+        moreButtonArrow.setRotation(270);
+
+        TextView tvMore = (TextView) rootView.findViewById(R.id.tvMore);
+        tvMore.setTextColor(Color.parseColor("#FF2A00"));
     }
 
     /**
