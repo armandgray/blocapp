@@ -96,7 +96,7 @@ public class CampaignDetailActivity extends AppCompatActivity {
         final ImageView interestedBtnImage = (ImageView) interestedBtn.getChildAt(0);
         interestedBtnImage.setImageResource(R.drawable.ic_star_white_48dp);
         final TextView interestedBtnText = (TextView) interestedBtn.getChildAt(1);
-        interestedBtnText.setText("Interested");
+        interestedBtnText.setText("Maybe");
         interestedBtn.setOnClickListener(new View.OnClickListener() {
             boolean clicked;
 

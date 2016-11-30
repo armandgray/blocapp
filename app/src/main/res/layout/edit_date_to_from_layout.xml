@@ -55,7 +55,6 @@
             android:layout_centerVertical="true"
             android:layout_gravity="center_vertical|end"
             android:layout_marginRight="15dp"
-            android:rotation="270"
             app:srcCompat="@drawable/ic_menu_down_white_48dp" />
     </RelativeLayout>
 
@@ -90,7 +89,6 @@
             android:layout_centerVertical="true"
             android:layout_gravity="center_vertical|end"
             android:layout_marginRight="15dp"
-            android:rotation="270"
             app:srcCompat="@drawable/ic_menu_down_white_48dp" />
     </RelativeLayout>
 </RelativeLayout>

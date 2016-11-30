@@ -95,8 +95,6 @@ public class CreateInfoDialog extends DialogFragment
     private Spinner spVenue;
     private RecyclerView rvThemes;
 
-    private UploadActivityListener resultListener;
-
     public static CreateInfoDialog withCampaign(Campaign passedCampaign) {
         CreateInfoDialog fragment = new CreateInfoDialog();
         fragment.setArguments(passedCampaign.toBundle());
@@ -460,7 +458,7 @@ public class CreateInfoDialog extends DialogFragment
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        resultListener = new UploadActivityListener(getActivity());
+        UploadActivityListener resultListener = new UploadActivityListener(getActivity());
         resultListener.onActivityResult(requestCode, resultCode, data, campaign, ivUpload);
     }
 
