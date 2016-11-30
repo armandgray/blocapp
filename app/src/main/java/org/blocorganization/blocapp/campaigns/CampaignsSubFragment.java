@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -224,10 +225,12 @@ public class CampaignsSubFragment extends Fragment {
         createBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean isNewCampaign = true;
-                Intent intent = new Intent(getContext(), CampaignDetailActivity.class);
-                intent.putExtra(NEW_CAMPAIGN_TAG, isNewCampaign);
-                startActivity(intent);
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .add(android.R.id.content, new CreateInfoDialog())
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 

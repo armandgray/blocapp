@@ -45,6 +45,7 @@ import static org.blocorganization.blocapp.campaigns.FieldUtilities.saveCampaign
 import static org.blocorganization.blocapp.campaigns.FieldUtilities.setSelectionForSpinnerFromList;
 import static org.blocorganization.blocapp.campaigns.FieldUtilities.setTextForEditTextAndPrepend;
 import static org.blocorganization.blocapp.campaigns.FieldUtilities.setTextForEditTextWith;
+import static org.blocorganization.blocapp.campaigns.FieldUtilities.startDetailActivityWith;
 import static org.blocorganization.blocapp.campaigns.UploadButtonIncluder.setupUploadButtonFrom;
 import static org.blocorganization.blocapp.utils.DateTimeHandler.setTextForDateWith;
 
@@ -94,6 +95,8 @@ public class CreateInfoDialog extends DialogFragment
     private Spinner spType;
     private Spinner spVenue;
     private RecyclerView rvThemes;
+
+    private boolean isNewCampaign = true;
 
     public static CreateInfoDialog withCampaign(Campaign passedCampaign) {
         CreateInfoDialog fragment = new CreateInfoDialog();
@@ -364,6 +367,7 @@ public class CreateInfoDialog extends DialogFragment
         campaign = new Campaign(getArguments());
         if (getArguments() == null) {
             campaign.setTimestamp();
+            isNewCampaign = false;
         }
     }
 
@@ -452,6 +456,7 @@ public class CreateInfoDialog extends DialogFragment
     @Override
     public void onConfirmSave() {
         saveCampaignToDatabaseWith(getActivity(), campaign);
+        startDetailActivityWith(getActivity(), campaign, isNewCampaign);
     }
 
     @Override

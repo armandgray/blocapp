@@ -69,8 +69,12 @@ class FieldUtilities {
         mDatabase.child(String.valueOf(
                 BlocApp.getInstance().getCampaignPosition(campaign)))
                 .setValue(campaign);
+    }
 
-        activity.onBackPressed();
+    static void startDetailActivityWith(Activity activity, Campaign campaign, boolean isNewCampaign) {
+        if (!isNewCampaign) {
+            activity.onBackPressed();
+        }
         activity.onBackPressed();
         Intent intent = new Intent(activity, CampaignDetailActivity.class);
         intent.putExtras(campaign.toBundle());

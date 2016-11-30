@@ -3,8 +3,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="?android:attr/activatedBackgroundIndicator"
-    android:padding="@dimen/activity_horizontal_margin">
+    android:padding="5dp">
 
     <ImageView
         android:id="@+id/ivRecordImage"
@@ -39,6 +40,15 @@
             android:textSize="14sp"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
+        <ImageView
+            android:layout_width="@dimen/navbar_icon_size"
+            android:layout_height="@dimen/navbar_icon_size"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginRight="15dp"
+            app:srcCompat="@drawable/ic_menu_down_white_48dp" />
     </LinearLayout>
 
 </RelativeLayout>
