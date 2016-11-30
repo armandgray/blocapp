@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import org.blocorganization.blocapp.R;
 import org.blocorganization.blocapp.models.Campaign;
-import org.blocorganization.blocapp.models.Record;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,7 +18,7 @@ import org.blocorganization.blocapp.models.Record;
 public class NotificationsDetailFragment extends Fragment {
 
     public static final String BUNDLE_KEY = "BUNDLE_KEY";
-    Record campaign;
+    Campaign campaign;
 
     public NotificationsDetailFragment() {
         // Required empty public constructor

@@ -9,24 +9,24 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import org.blocorganization.blocapp.R;
-import org.blocorganization.blocapp.models.Record;
+import org.blocorganization.blocapp.models.Campaign;
 
 import java.util.List;
 
-public class NotificationsArrayAdapter extends ArrayAdapter<Record> {
+public class NotificationsArrayAdapter extends ArrayAdapter<Campaign> {
 
 	private Context context;
-	private List<? extends Record> objects;
+	private List<Campaign> objects;
 	
-	public NotificationsArrayAdapter(Context context, int resource, List<? extends Record> objects) {
-		super(context, resource, (List<Record>) objects);
+	public NotificationsArrayAdapter(Context context, int resource, List<Campaign> objects) {
+		super(context, resource, (List<Campaign>) objects);
 		this.context = context;
 		this.objects = objects;
 	}
 	
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		Record record = objects.get(position);
+		Campaign record = objects.get(position);
 		
 		LayoutInflater inflater = 
 				(LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);

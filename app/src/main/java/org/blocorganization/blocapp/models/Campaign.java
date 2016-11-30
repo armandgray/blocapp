@@ -35,17 +35,17 @@ public class Campaign extends Record {
     public String campaignTheme;
 
     public Campaign() {
-        this.abbreviation = null;
-        this.benefits = null;
-        this.ambition = null;
-        this.campaignPhoto = null;
-        this.campaignTheme = null;
-        this.planOfExecution = null;
-        this.itemizedBudget = null;
-        this.venue = null;
-        this.fromDate = null;
-        this.toDate = null;
-        this.timestamp = null;
+        this.abbreviation = "";
+        this.benefits = "";
+        this.ambition = "";
+        this.campaignPhoto = "";
+        this.campaignTheme = "";
+        this.planOfExecution = "";
+        this.itemizedBudget = "";
+        this.venue = "";
+        this.fromDate = new ArrayList<>();
+        this.toDate = new ArrayList<>();
+        this.timestamp = "";
     }
 
     //	Create from a bundle
@@ -64,16 +64,6 @@ public class Campaign extends Record {
             this.toDate = b.getIntegerArrayList(TO_DATE_KEY);
             this.timestamp = b.getString(TIMESTAMP_KEY);
         }
-    }
-
-    //	Package data for transfer between activities
-
-    public ArrayList<Integer> getToDate() {
-        return toDate;
-    }
-
-    public void setToDate(ArrayList<Integer> toDate) {
-        this.toDate = toDate;
     }
 
     public Bundle toBundle() {
@@ -148,6 +138,14 @@ public class Campaign extends Record {
 
     public void setFromDate(ArrayList<Integer> fromDate) {
         this.fromDate = fromDate;
+    }
+
+    public ArrayList<Integer> getToDate() {
+        return toDate;
+    }
+
+    public void setToDate(ArrayList<Integer> toDate) {
+        this.toDate = toDate;
     }
 
     public String getTimestamp() {

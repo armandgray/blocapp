@@ -4,39 +4,35 @@ import android.os.Bundle;
 
 import org.joda.time.DateTime;
 
-public class Record {
+abstract class Record {
 
-    //	constants for field references
-    public static final String RECORD_TYPE_KEY = "RECORD_TYPE_KEY";
-    public static final String ADMIN_KEY = "ADMIN_KEY";
-    public static final String DESCRIPTION_KEY = "DESCRIPTION_KEY";
-    public static final String TITLE_KEY = "TITLE_KEY";
-    public static final String EXTRAS_KEY = "EXTRAS_KEY";
-    public static final String ICON_KEY = "ICON_KEY";
-    public static final String TIMESTAMP_KEY = "TIMESTAMP_KEY";
+    private static final String RECORD_TYPE_KEY = "RECORD_TYPE_KEY";
+    private static final String ADMIN_KEY = "ADMIN_KEY";
+    private static final String DESCRIPTION_KEY = "DESCRIPTION_KEY";
+    private static final String TITLE_KEY = "TITLE_KEY";
+    private static final String EXTRAS_KEY = "EXTRAS_KEY";
+    private static final String ICON_KEY = "ICON_KEY";
+    private static final String TIMESTAMP_KEY = "TIMESTAMP_KEY";
 
-    //	private fields
-    public String recordType;
-    public String admin;
-    public String timestamp;
-    public String title;
-    public String description;
-    public String extras;
-    public String campaignTheme;
+    private String recordType;
+    private String admin;
+    private String timestamp;
+    private String title;
+    private String description;
+    private String extras;
+    private String campaignTheme;
 
-    //	Constructor used when creating the data object
-    public Record() {
-        this.recordType = null;
-        this.extras = null;
-        this.admin = null;
-        this.title = null;
-        this.description = null;
-        this.campaignTheme = null;
-        this.timestamp = null;
+    Record() {
+        this.recordType = "";
+        this.extras = "";
+        this.admin = "";
+        this.title = "";
+        this.description = "";
+        this.campaignTheme = "";
+        this.timestamp = "";
     }
 
-    //	Create from a bundle
-    public Record(Bundle b) {
+    Record(Bundle b) {
         if (b != null) {
             this.recordType = b.getString(RECORD_TYPE_KEY);
             this.extras = b.getString(EXTRAS_KEY);
@@ -49,7 +45,7 @@ public class Record {
     }
 
     //	Package data for transfer between activities
-    public Bundle toBundle() {
+    Bundle toBundle() {
         Bundle b = new Bundle();
         b.putString(RECORD_TYPE_KEY, this.recordType);
         b.putString(DESCRIPTION_KEY, this.description);
