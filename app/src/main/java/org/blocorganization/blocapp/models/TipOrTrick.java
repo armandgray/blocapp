@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 public class TipOrTrick extends Record {
 
+    public boolean isPublic;
+
     private TipOrTrick(Builder builder) {
         super.title = builder.title;
         super.description = builder.description;
@@ -11,6 +13,7 @@ public class TipOrTrick extends Record {
         super.recordType = RecordType.TIPSANDTRICKS.toString();
         super.setTimestamp();
 
+        isPublic = builder.isPublic;
         super.icon = builder.icon;
     }
 
@@ -19,6 +22,8 @@ public class TipOrTrick extends Record {
         private String description = "";
         private String admin = "";
         private int icon = 0;
+        private String subType;
+        private boolean isPublic;
 
         public Builder(String s) {
             title = s;
@@ -34,8 +39,8 @@ public class TipOrTrick extends Record {
             return this;
         }
 
-        public Builder icon(int i) {
-            icon = i;
+        public Builder subType(String s) {
+            subType = s;
             return this;
         }
 
@@ -44,6 +49,10 @@ public class TipOrTrick extends Record {
         }
 
 
+        public Builder isPublic(boolean b) {
+            isPublic = b;
+            return this;
+        }
     }
 
     public TipOrTrick(Bundle b) {
