@@ -2,7 +2,7 @@ package org.blocorganization.blocapp.models;
 
 public enum RecordType {
     // Don't forget to add to switch in adapter
-    DEFAULT("Other"), ACADEMICS("Academics"), COMMUNITY_ENGAGEMENT("Community Engagement"), SOCIAL_DINNER("Social Dinner"), SOCIAL_PARTY("Social Party"), MEETING("Meeting"), RESOURCE("Resource");
+    DEFAULT("Other"), ACADEMICS("Academics"), COMMUNITY_ENGAGEMENT("Community Engagement"), SOCIAL_DINNER("Social Dinner"), SOCIAL_PARTY("Social Party"), MEETING("Meeting"), RESOURCE("Resource"), TIPSANDTRICKS("Tips and Tricks");
 
     private String type;
 

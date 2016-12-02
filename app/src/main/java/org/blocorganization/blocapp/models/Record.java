@@ -14,13 +14,13 @@ abstract class Record {
     private static final String ICON_KEY = "ICON_KEY";
     private static final String TIMESTAMP_KEY = "TIMESTAMP_KEY";
 
-    private String recordType;
-    private String admin;
+    String recordType;
+    String admin;
     private String timestamp;
-    private String title;
-    private String description;
-    private String extras;
-    private String campaignTheme;
+    String title;
+    String description;
+    String extras;
+    String campaignTheme;
 
     Record() {
         this.recordType = "";
