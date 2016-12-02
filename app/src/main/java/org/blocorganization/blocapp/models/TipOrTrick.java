@@ -8,16 +8,17 @@ public class TipOrTrick extends Record {
         super.title = builder.title;
         super.description = builder.description;
         super.admin = builder.admin;
-        super.campaignTheme = builder.theme;
         super.recordType = RecordType.TIPSANDTRICKS.toString();
         super.setTimestamp();
+
+        super.icon = builder.icon;
     }
 
     public static class Builder {
         private String title = "";
         private String description = "";
         private String admin = "";
-        private String theme = "";
+        private int icon = 0;
 
         public Builder(String s) {
             title = s;
@@ -33,14 +34,16 @@ public class TipOrTrick extends Record {
             return this;
         }
 
-        public Builder theme(String s) {
-            theme = s;
+        public Builder icon(int i) {
+            icon = i;
             return this;
         }
 
         public TipOrTrick build() {
             return new TipOrTrick(this);
         }
+
+
     }
 
     public TipOrTrick(Bundle b) {

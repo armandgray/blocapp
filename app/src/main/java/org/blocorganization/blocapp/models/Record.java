@@ -16,11 +16,13 @@ abstract class Record {
 
     String recordType;
     String admin;
-    private String timestamp;
     String title;
     String description;
-    String extras;
-    String campaignTheme;
+    int icon;
+
+    private String extras;
+    private String timestamp;
+
 
     Record() {
         this.recordType = "";
@@ -28,7 +30,7 @@ abstract class Record {
         this.admin = "";
         this.title = "";
         this.description = "";
-        this.campaignTheme = "";
+        this.icon = 0;
         this.timestamp = "";
     }
 
@@ -39,7 +41,7 @@ abstract class Record {
             this.admin = b.getString(ADMIN_KEY);
             this.title = b.getString(TITLE_KEY);
             this.description = b.getString(DESCRIPTION_KEY);
-            this.campaignTheme = b.getString(ICON_KEY);
+            this.icon = b.getInt(ICON_KEY);
             this.timestamp = b.getString(TIMESTAMP_KEY);
         }
     }
@@ -52,7 +54,7 @@ abstract class Record {
         b.putString(ADMIN_KEY, this.admin);
         b.putString(TITLE_KEY, this.title);
         b.putString(EXTRAS_KEY, this.extras);
-        b.putString(ICON_KEY, this.campaignTheme);
+        b.putInt(ICON_KEY, this.icon);
         b.putString(TIMESTAMP_KEY, this.timestamp);
         return b;
     }
@@ -113,11 +115,11 @@ abstract class Record {
         this.title = title;
     }
 
-    public String getThemeImageUrl() {
-        return campaignTheme;
+    public int getIconId() {
+        return icon;
     }
 
-    public void setThemeImageUrl(String campaignTheme) {
-        this.campaignTheme = campaignTheme;
+    public void setIconId(int iconId) {
+        this.icon = iconId;
     }
 }
