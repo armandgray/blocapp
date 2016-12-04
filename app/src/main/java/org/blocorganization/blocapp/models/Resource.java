@@ -16,8 +16,8 @@ public class Resource extends Record {
         super.title = builder.title;
         super.description = builder.description;
         super.admin = builder.admin;
-        super.recordType = RecordType.TIPSANDTRICKS.toString();
         super.setTimestamp();
+        super.recordType = builder.type;
         subType = builder.subType;
         isPublic = builder.isPublic;
         super.icon = getIconIdFromSubType();
@@ -39,6 +39,7 @@ public class Resource extends Record {
         private String title = "";
         private String description = "";
         private String admin = "";
+        private String type = "";
         private String subType = "";
         private boolean isPublic;
 
@@ -68,6 +69,11 @@ public class Resource extends Record {
 
         public Builder isPublic(boolean b) {
             isPublic = b;
+            return this;
+        }
+
+        public Builder type(String s) {
+            type = s;
             return this;
         }
     }
