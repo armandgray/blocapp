@@ -2,27 +2,44 @@ package org.blocorganization.blocapp.models;
 
 import android.os.Bundle;
 
-public class TipOrTrick extends Record {
+import org.blocorganization.blocapp.R;
 
-    public boolean isPublic;
+public class Resource extends Record {
 
-    private TipOrTrick(Builder builder) {
+    private static final String ACADEMIC = "Academic";
+    private static final String LIFESTYLE = "Lifestyle";
+
+    private boolean isPublic;
+    private String subType = "";
+
+    private Resource(Builder builder) {
         super.title = builder.title;
         super.description = builder.description;
         super.admin = builder.admin;
         super.recordType = RecordType.TIPSANDTRICKS.toString();
         super.setTimestamp();
-
+        subType = builder.subType;
         isPublic = builder.isPublic;
-        super.icon = builder.icon;
+        super.icon = getIconIdFromSubType();
+
+    }
+
+    private int getIconIdFromSubType() {
+        switch (subType) {
+            case ACADEMIC:
+                return R.drawable.ic_book_open_variant_white_48dp;
+            case LIFESTYLE:
+                return R.drawable.ic_earth_white_48dp;
+            default:
+                return 0;
+        }
     }
 
     public static class Builder {
         private String title = "";
         private String description = "";
         private String admin = "";
-        private int icon = 0;
-        private String subType;
+        private String subType = "";
         private boolean isPublic;
 
         public Builder(String s) {
@@ -44,8 +61,8 @@ public class TipOrTrick extends Record {
             return this;
         }
 
-        public TipOrTrick build() {
-            return new TipOrTrick(this);
+        public Resource build() {
+            return new Resource(this);
         }
 
 
@@ -55,12 +72,20 @@ public class TipOrTrick extends Record {
         }
     }
 
-    public TipOrTrick(Bundle b) {
+    public Resource(Bundle b) {
         super(b);
     }
 
     @Override
     Bundle toBundle() {
         return super.toBundle();
+    }
+
+    public String getSubType() {
+        return subType;
+    }
+
+    public boolean isPublic() {
+        return isPublic;
     }
 }

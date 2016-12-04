@@ -52,11 +52,6 @@ public class HomeFragment extends Fragment {
 
     ArrayList<Campaign> campaigns = new ArrayList<>();
 
-    public HomeFragment() {
-        // Required empty public constructor
-    }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
