@@ -142,5 +142,10 @@
     <string name="view_flipper_image">View Flipper Image</string>
     <string name="yes_update_my_network">Yes, update my network</string>
     <string name="update_connections_text">Your connections may see this change in their feed or email</string>
+    <string name="inquiry_protocols">Inquiry Protocols</string>
+    <string name="workflows">Workflows</string>
+    <string name="tips_and_tricks">Tips and Tricks</string>
+    <string name="top_resources">Top Resources</string>
+    <string name="miscellaneous">Miscellaneous</string>
 
 </resources>
