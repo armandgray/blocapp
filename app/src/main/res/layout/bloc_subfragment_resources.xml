@@ -15,6 +15,7 @@
 
         <include
             layout="@layout/resources_header"
+            android:layout_marginTop="1dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"

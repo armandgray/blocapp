@@ -5,15 +5,16 @@
     android:id="@+id/resourceListItem"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/background_square_shadow"
+    android:layout_margin="10dp"
+    android:background="@color/colorPrimaryDark"
     android:orientation="vertical"
     tools:showIn="@layout/bloc_subfragment_resources">
 
     <LinearLayout
         android:id="@+id/itemHeader"
+        android:background="@drawable/resources_footer_border"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/admin_background_gradient"
         android:orientation="horizontal"
         android:paddingBottom="@dimen/btn_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -39,17 +40,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="2dp"
-                android:textStyle="bold"
+                android:text="@string/placeholder"
                 android:textAllCaps="true"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvAdminInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/placeholder"
-                android:textSize="12sp"
                 android:textAllCaps="true"
+                android:textSize="12sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -64,35 +66,45 @@
     <TextView
         android:id="@+id/tvDesc"
         android:layout_width="match_parent"
+        android:layout_margin="10dp"
         android:layout_height="wrap_content"
-        android:textSize="12sp"
-        android:textAllCaps="true" />
+        android:text="@string/placeholder"
+        android:textSize="14sp" />
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-        <RelativeLayout
-            android:layout_width="0dp"
+        <TextView
+            android:id="@+id/tvLikes"
+            android:paddingLeft="10dp"
+            android:paddingBottom="5dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.2">
+            android:text="@string/_5_likes"
+            android:textSize="12sp" />
 
-            <ImageView
-                android:id="@+id/home"
-                android:layout_width="@dimen/navbar_icon_size"
-                android:layout_height="@dimen/navbar_icon_size"
-                android:layout_centerHorizontal="true"
-                android:contentDescription="@string/icon"
-                app:srcCompat="@drawable/ic_home_white_48dp" />
+        <TextView
+            android:id="@+id/tvComments"
+            android:paddingLeft="10dp"
+            android:paddingBottom="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/_6_comments"
+            android:textSize="12sp" />
+    </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/home"
-                android:layout_centerHorizontal="true"
-                android:text="@string/home"
-                android:textSize="@dimen/navbar_text_size" />
-        </RelativeLayout>
+    <include
+        layout="@layout/resources_footer"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="5dp"
+        android:paddingTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
-    </FrameLayout>
 </LinearLayout>

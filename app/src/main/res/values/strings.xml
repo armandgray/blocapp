@@ -147,5 +147,10 @@
     <string name="tips_and_tricks">Tips and Tricks</string>
     <string name="top_resources">Top Resources</string>
     <string name="miscellaneous">Miscellaneous</string>
+    <string name="like">Like</string>
+    <string name="comment">Comment</string>
+    <string name="share">Share</string>
+    <string name="_5_likes">5 Likes</string>
+    <string name="_6_comments">6 Comments</string>
 
 </resources>

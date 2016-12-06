@@ -55,6 +55,9 @@
     <dimen name="contacts_long_interpadding">25dp</dimen>
     <dimen name="contacts_text_padding">5dp</dimen>
 
+    <!-- bloc resources -->
+    <dimen name="resource_icon_size">20dp</dimen>
+
     <!-- campaigns frag -->
     <dimen name="campaigns_image_margin">2.5dp</dimen>
     <dimen name="campaigns_header_size">14sp</dimen>
@@ -82,5 +85,6 @@
 
     <!-- Miscellaneous -->
     <dimen name="home_vf_image_height">175dp</dimen>
+    <dimen name="resource_icon_margin">10dp</dimen>
 
 </resources>

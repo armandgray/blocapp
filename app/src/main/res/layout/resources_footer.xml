@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dp"
+    android:paddingBottom="5dp"
+    android:paddingLeft="5dp"
+    android:paddingStart="5dp"
+    android:paddingRight="5dp"
+    android:paddingEnd="5dp"
+    android:background="@drawable/resources_footer_border"
+    tools:showIn="@layout/resource_listitem">
+
+    <RelativeLayout
+        android:id="@+id/btnLike"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start|center_vertical">
+
+        <ImageView
+            android:id="@+id/ivThumbUp"
+            android:layout_width="@dimen/resource_icon_size"
+            android:layout_height="@dimen/resource_icon_size"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/icon"
+            app:srcCompat="@drawable/ic_thumb_up_white_48dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/resource_icon_margin"
+            android:layout_toEndOf="@+id/ivThumbUp"
+            android:layout_toRightOf="@+id/ivThumbUp"
+            android:text="@string/like"
+            android:textSize="@dimen/navbar_text_size" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/btnComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:id="@+id/ivMessages"
+            android:layout_width="@dimen/resource_icon_size"
+            android:layout_height="@dimen/resource_icon_size"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/icon"
+            android:rotationY="180"
+            app:srcCompat="@drawable/ic_message_bulleted_white_48dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/resource_icon_margin"
+            android:layout_toEndOf="@+id/ivMessages"
+            android:layout_toRightOf="@+id/ivMessages"
+            android:text="@string/comment"
+            android:textSize="@dimen/navbar_text_size" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/btnShare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|center_vertical">
+
+        <ImageView
+            android:id="@+id/ivShare"
+            android:layout_width="@dimen/resource_icon_size"
+            android:layout_height="@dimen/resource_icon_size"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/icon"
+            app:srcCompat="@drawable/ic_share_white_48dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/resource_icon_margin"
+            android:layout_toEndOf="@+id/ivShare"
+            android:layout_toRightOf="@+id/ivShare"
+            android:text="@string/share"
+            android:textSize="@dimen/navbar_text_size" />
+    </RelativeLayout>
+</FrameLayout>
