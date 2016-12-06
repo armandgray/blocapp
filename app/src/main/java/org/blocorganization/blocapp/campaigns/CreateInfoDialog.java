@@ -37,17 +37,17 @@ import org.joda.time.DateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.blocorganization.blocapp.campaigns.FieldUtilities.AMBITION;
-import static org.blocorganization.blocapp.campaigns.FieldUtilities.BENEFITS_TO_THE_COLLEGE;
-import static org.blocorganization.blocapp.campaigns.FieldUtilities.DESCRIPTION;
-import static org.blocorganization.blocapp.campaigns.FieldUtilities.loadUrlIntoImageViewWithActivity;
-import static org.blocorganization.blocapp.campaigns.FieldUtilities.saveCampaignToDatabaseWith;
-import static org.blocorganization.blocapp.campaigns.FieldUtilities.setSelectionForSpinnerFromList;
-import static org.blocorganization.blocapp.campaigns.FieldUtilities.setTextForEditTextAndPrepend;
-import static org.blocorganization.blocapp.campaigns.FieldUtilities.setTextForEditTextWith;
-import static org.blocorganization.blocapp.campaigns.FieldUtilities.startDetailActivityWith;
+import static org.blocorganization.blocapp.campaigns.CreateInfoDialogUtilities.saveCampaignToDatabaseWith;
+import static org.blocorganization.blocapp.campaigns.CreateInfoDialogUtilities.startDetailActivityWith;
 import static org.blocorganization.blocapp.campaigns.UploadButtonIncluder.setupUploadButtonFrom;
 import static org.blocorganization.blocapp.utils.DateTimeHandler.setTextForDateWith;
+import static org.blocorganization.blocapp.utils.FieldUtilities.AMBITION;
+import static org.blocorganization.blocapp.utils.FieldUtilities.BENEFITS_TO_THE_COLLEGE;
+import static org.blocorganization.blocapp.utils.FieldUtilities.DESCRIPTION;
+import static org.blocorganization.blocapp.utils.FieldUtilities.loadUrlIntoImageViewWithActivity;
+import static org.blocorganization.blocapp.utils.FieldUtilities.setSelectionForSpinnerFromList;
+import static org.blocorganization.blocapp.utils.FieldUtilities.setTextForEditTextAndPrepend;
+import static org.blocorganization.blocapp.utils.FieldUtilities.setTextForEditTextWith;
 
 public class CreateInfoDialog extends DialogFragment
         implements DateTimePickerFragment.DateTimeSetListener,
