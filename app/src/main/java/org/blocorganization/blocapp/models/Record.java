@@ -4,6 +4,9 @@ import android.os.Bundle;
 
 import org.joda.time.DateTime;
 
+import java.util.ArrayList;
+import java.util.List;
+
 abstract class Record {
 
     private static final String RECORD_TYPE_KEY = "RECORD_TYPE_KEY";
@@ -20,9 +23,10 @@ abstract class Record {
     String description;
     int icon;
 
+    private List<Remark> likes = new ArrayList<>();
+    private List<Remark> comments = new ArrayList<>();
     private String extras;
     private String timestamp;
-
 
     Record() {
         this.recordType = "";
@@ -32,6 +36,7 @@ abstract class Record {
         this.description = "";
         this.icon = 0;
         this.timestamp = "";
+
     }
 
     Record(Bundle b) {
@@ -122,4 +127,29 @@ abstract class Record {
     public void setIconId(int iconId) {
         this.icon = iconId;
     }
+
+    public List<Remark> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(List<Remark> likes) {
+        this.likes = likes;
+    }
+
+    public void addLike(Remark like) {
+        this.likes.add(like);
+    }
+
+    public List<Remark> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Remark> comments) {
+        this.comments = comments;
+    }
+
+    public void addComment(Remark comment) {
+        this.comments.add(comment);
+    }
+
 }
