@@ -68,10 +68,7 @@
                 android:id="@+id/rvTopResources"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="@dimen/campaigns_recycler_margin"
-                android:layout_marginRight="@dimen/campaigns_recycler_margin"
-                android:layout_marginTop="@dimen/campaigns_image_margin" />
+                android:layout_gravity="center_horizontal"/>
 
             <TextView
                 android:id="@+id/tvTipsNTricks"
