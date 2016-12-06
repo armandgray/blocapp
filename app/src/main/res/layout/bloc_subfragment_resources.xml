@@ -62,8 +62,6 @@
                 android:textSize="12sp"
                 android:textStyle="bold" />
 
-            <include layout="@layout/resource_listitem" />
-
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rvTopResources"
                 android:layout_width="match_parent"
