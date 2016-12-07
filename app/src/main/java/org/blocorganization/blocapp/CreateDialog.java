@@ -32,6 +32,33 @@ public class CreateDialog extends DialogFragment {
     private TextView tvMessageSelector;
     private ViewPager vpPager;
 
+    public static CreateDialog newMessage() {
+
+        Bundle args = new Bundle();
+        args.putInt(SELECTED_DIALOG_NUM, 0);
+        CreateDialog fragment = new CreateDialog();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    public static CreateDialog newCampaign() {
+
+        Bundle args = new Bundle();
+        args.putInt(SELECTED_DIALOG_NUM, 1);
+        CreateDialog fragment = new CreateDialog();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    public static CreateDialog newResource() {
+
+        Bundle args = new Bundle();
+        args.putInt(SELECTED_DIALOG_NUM, 2);
+        CreateDialog fragment = new CreateDialog();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -96,12 +123,24 @@ public class CreateDialog extends DialogFragment {
     private void setVpFrom(Bundle arguments) {
         if (arguments != null) {
             switch (arguments.getInt(SELECTED_DIALOG_NUM)) {
+                case 0:
+                    vpPager.setCurrentItem(0);
+                    setupMessageFragment();
+                    return;
+                case 1:
+                    vpPager.setCurrentItem(1);
+                    setupCampaignFragment();
+                    return;
+                case 2:
+                    vpPager.setCurrentItem(2);
+                    setupResourceFragment();
+                    return;
                 default:
                     vpPager.setCurrentItem(1);
                     setupCampaignFragment();
             }
         } else {
-            vpPager.setCurrentItem(2);
+            vpPager.setCurrentItem(1);
             setupCampaignFragment();
         }
 

@@ -89,11 +89,10 @@ public class ResourcesSubFragment extends Fragment {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CreateDialog createDialog = new CreateDialog();
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .add(R.id.main_layout, createDialog)
+                        .add(R.id.main_layout, CreateDialog.newResource())
                         .addToBackStack(null)
                         .commit();
             }
