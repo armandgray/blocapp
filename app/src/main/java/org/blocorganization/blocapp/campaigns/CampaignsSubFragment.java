@@ -228,7 +228,7 @@ public class CampaignsSubFragment extends Fragment {
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .add(android.R.id.content, new CreateInfoDialog())
+                        .add(android.R.id.content, new CreateCampaignDialog())
                         .addToBackStack(null)
                         .commit();
             }

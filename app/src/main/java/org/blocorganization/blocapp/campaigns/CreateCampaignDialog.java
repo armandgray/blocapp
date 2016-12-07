@@ -37,8 +37,8 @@ import org.joda.time.DateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.blocorganization.blocapp.campaigns.CreateInfoDialogUtilities.saveCampaignToDatabaseWith;
-import static org.blocorganization.blocapp.campaigns.CreateInfoDialogUtilities.startDetailActivityWith;
+import static org.blocorganization.blocapp.campaigns.CreateCampaignDialogUtilities.saveCampaignToDatabaseWith;
+import static org.blocorganization.blocapp.campaigns.CreateCampaignDialogUtilities.startDetailActivityWith;
 import static org.blocorganization.blocapp.campaigns.UploadButtonIncluder.setupUploadButtonFrom;
 import static org.blocorganization.blocapp.utils.DateTimeHandler.setTextForDateWith;
 import static org.blocorganization.blocapp.utils.FieldUtilities.AMBITION;
@@ -49,7 +49,7 @@ import static org.blocorganization.blocapp.utils.FieldUtilities.setSelectionForS
 import static org.blocorganization.blocapp.utils.FieldUtilities.setTextForEditTextAndPrepend;
 import static org.blocorganization.blocapp.utils.FieldUtilities.setTextForEditTextWith;
 
-public class CreateInfoDialog extends DialogFragment
+public class CreateCampaignDialog extends DialogFragment
         implements DateTimePickerFragment.DateTimeSetListener,
         ConfirmChangesDialogFragment.ConfirmChangesListener {
 
@@ -98,8 +98,8 @@ public class CreateInfoDialog extends DialogFragment
 
     private boolean isNewCampaign = true;
 
-    public static CreateInfoDialog withCampaign(Campaign passedCampaign) {
-        CreateInfoDialog fragment = new CreateInfoDialog();
+    public static CreateCampaignDialog withCampaign(Campaign passedCampaign) {
+        CreateCampaignDialog fragment = new CreateCampaignDialog();
         fragment.setArguments(passedCampaign.toBundle());
         return fragment;
     }

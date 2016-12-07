@@ -22,14 +22,15 @@ public class Comment extends Remark {
         return text;
     }
 
-    Comment(Bundle b) {
+    public Comment(Bundle b) {
         super(b);
         if (b != null) {
             this.text = b.getString(TEXT);
         }
     }
 
-    Bundle toBundle() {
+    @Override
+    public Bundle toBundle() {
         Bundle b = super.toBundle();
         b.putString(TEXT, this.text);
         return b;

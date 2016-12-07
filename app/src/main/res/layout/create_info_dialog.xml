@@ -7,7 +7,7 @@
     android:layout_height="fill_parent"
     android:background="@android:color/black"
     android:orientation="vertical"
-    tools:context="org.blocorganization.blocapp.campaigns.CreateInfoDialog">
+    tools:context="org.blocorganization.blocapp.campaigns.CreateCampaignDialog">
 
     <include layout="@layout/dialog_submit_header" />
 

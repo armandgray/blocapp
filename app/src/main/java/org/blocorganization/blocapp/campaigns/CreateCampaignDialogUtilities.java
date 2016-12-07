@@ -9,7 +9,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import org.blocorganization.blocapp.BlocApp;
 import org.blocorganization.blocapp.models.Campaign;
 
-class CreateInfoDialogUtilities {
+class CreateCampaignDialogUtilities {
 
     private static final String CAMPAIGNS = "campaigns";
 

@@ -24,7 +24,7 @@ abstract class Record {
     int icon;
 
     private List<Remark> likes = new ArrayList<>();
-    private List<Remark> comments = new ArrayList<>();
+    private List<Comment> comments = new ArrayList<>();
     private String extras;
     private String timestamp;
 
@@ -140,15 +140,15 @@ abstract class Record {
         this.likes.add(like);
     }
 
-    public List<Remark> getComments() {
+    public List<Comment> getComments() {
         return comments;
     }
 
-    public void setComments(List<Remark> comments) {
+    public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
 
-    public void addComment(Remark comment) {
+    public void addComment(Comment comment) {
         this.comments.add(comment);
     }
 

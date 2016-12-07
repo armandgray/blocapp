@@ -48,7 +48,7 @@ public class ImageThemeAdapter extends
         ivCampaignTheme.setLayoutParams(new LinearLayout.LayoutParams(layoutParams, layoutParams));
         Picasso.with(mActivity).load(theme).into(ivCampaignTheme);
 
-        // when loadCampaignData in CreateInfoDialog set selected theme to getThemeImageUrl
+        // when loadCampaignData in CreateCampaignDialog set selected theme to getThemeImageUrl
         if (setTheme != null && !setTheme.equals("")) {
             if (setTheme.equals(mThemes.get(position))) {
                 // get Viewholder for row and change background

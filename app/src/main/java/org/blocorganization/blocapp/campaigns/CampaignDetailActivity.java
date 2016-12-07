@@ -85,7 +85,7 @@ public class CampaignDetailActivity extends AppCompatActivity {
                     getSupportFragmentManager()
                             .beginTransaction()
                             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                            .add(android.R.id.content, CreateInfoDialog.withCampaign(campaign))
+                            .add(android.R.id.content, CreateCampaignDialog.withCampaign(campaign))
                             .addToBackStack(null)
                             .commit();
                 }
