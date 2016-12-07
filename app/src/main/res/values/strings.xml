@@ -161,5 +161,12 @@
     <string name="campaign_motto">All great campaigns start here.</string>
     <string name="messages_motto">Open Discourse.</string>
     <string name="resource_motto">Tools for all.</string>
+    <string name="title">Title</string>
+    <string name="admin">Admin</string>
+    <string name="description">Description</string>
+    <string name="is_public">Is this resource public (default: yes)</string>
+    <string name="create_meetup">Create a New Meetup</string>
+    <string name="meetup_motto">In person gathering.</string>
+    <string name="meetup">Meetup</string>
 
 </resources>

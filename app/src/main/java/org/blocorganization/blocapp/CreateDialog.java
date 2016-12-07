@@ -21,13 +21,13 @@ public class CreateDialog extends DialogFragment {
     private FragmentManager fragmentManager;
     private TextView tvSubmitDialog;
     private TextView tvSelectorDetails;
-    private RelativeLayout campaignSelectorLayout;
+    private RelativeLayout meetupSelectorLayout;
     private RelativeLayout messagesSelectorLayout;
     private RelativeLayout resourcesSelectorLayout;
     private ImageView ivResourceSelector;
     private TextView tvResourceSelector;
-    private ImageView ivCampaignSelector;
-    private TextView tvCampaignSelector;
+    private ImageView ivMeetupSelector;
+    private TextView tvMeetupSelector;
     private ImageView ivMessageSelector;
     private TextView tvMessageSelector;
     private ViewPager vpPager;
@@ -41,7 +41,7 @@ public class CreateDialog extends DialogFragment {
         return fragment;
     }
 
-    public static CreateDialog newCampaign() {
+    public static CreateDialog newMeetup() {
 
         Bundle args = new Bundle();
         args.putInt(SELECTED_DIALOG_NUM, 1);
@@ -79,7 +79,7 @@ public class CreateDialog extends DialogFragment {
                         setupMessageFragment();
                         return;
                     case 1:
-                        setupCampaignFragment();
+                        setupMeetupFragment();
                         return;
                     case 2:
                         setupResourceFragment();
@@ -99,9 +99,9 @@ public class CreateDialog extends DialogFragment {
     private void assignLayoutsViewsFrom(View rootView) {
         tvSubmitDialog = (TextView) rootView.findViewById(R.id.tvSubmitDialog);
         tvSelectorDetails = (TextView) rootView.findViewById(R.id.tvSelectorDetails);
-        campaignSelectorLayout = (RelativeLayout) rootView.findViewById(R.id.campaignSelectorLayout);
-        ivCampaignSelector = (ImageView) campaignSelectorLayout.getChildAt(0);
-        tvCampaignSelector = (TextView) campaignSelectorLayout.getChildAt(1);
+        meetupSelectorLayout = (RelativeLayout) rootView.findViewById(R.id.meetupSelectorLayout);
+        ivMeetupSelector = (ImageView) meetupSelectorLayout.getChildAt(0);
+        tvMeetupSelector = (TextView) meetupSelectorLayout.getChildAt(1);
         messagesSelectorLayout = (RelativeLayout) rootView.findViewById(R.id.messagesSelectorLayout);
         ivMessageSelector = (ImageView) messagesSelectorLayout.getChildAt(0);
         tvMessageSelector = (TextView) messagesSelectorLayout.getChildAt(1);
@@ -129,7 +129,7 @@ public class CreateDialog extends DialogFragment {
                     return;
                 case 1:
                     vpPager.setCurrentItem(1);
-                    setupCampaignFragment();
+                    setupMeetupFragment();
                     return;
                 case 2:
                     vpPager.setCurrentItem(2);
@@ -137,11 +137,11 @@ public class CreateDialog extends DialogFragment {
                     return;
                 default:
                     vpPager.setCurrentItem(1);
-                    setupCampaignFragment();
+                    setupMeetupFragment();
             }
         } else {
             vpPager.setCurrentItem(1);
-            setupCampaignFragment();
+            setupMeetupFragment();
         }
 
     }
@@ -167,7 +167,7 @@ public class CreateDialog extends DialogFragment {
                 case 0:
                     return CreateMessageFragment.newInstance();
                 case 1:
-                    return CreateCampaignFragment.newInstance();
+                    return CreateMeetupFragment.newInstance();
                 case 2:
                     return CreateResourceFragment.newInstance();
                 default:
@@ -181,13 +181,13 @@ public class CreateDialog extends DialogFragment {
         tvSelectorDetails.setText(R.string.messages_motto);
         showSelectedColors(ivMessageSelector, tvMessageSelector);
         showDeselectedColors(ivResourceSelector, tvResourceSelector);
-        showDeselectedColors(ivCampaignSelector, tvCampaignSelector);
+        showDeselectedColors(ivMeetupSelector, tvMeetupSelector);
     }
 
-    private void setupCampaignFragment() {
-        tvSubmitDialog.setText(R.string.create_new_campaign);
-        tvSelectorDetails.setText(R.string.campaign_motto);
-        showSelectedColors(ivCampaignSelector, tvCampaignSelector);
+    private void setupMeetupFragment() {
+        tvSubmitDialog.setText(R.string.create_meetup);
+        tvSelectorDetails.setText(R.string.meetup_motto);
+        showSelectedColors(ivMeetupSelector, tvMeetupSelector);
         showDeselectedColors(ivResourceSelector, tvResourceSelector);
         showDeselectedColors(ivMessageSelector, tvMessageSelector);
     }
@@ -197,7 +197,7 @@ public class CreateDialog extends DialogFragment {
         tvSelectorDetails.setText(R.string.resource_motto);
         showSelectedColors(ivResourceSelector, tvResourceSelector);
         showDeselectedColors(ivMessageSelector, tvMessageSelector);
-        showDeselectedColors(ivCampaignSelector, tvCampaignSelector);
+        showDeselectedColors(ivMeetupSelector, tvMeetupSelector);
     }
 
     private void showDeselectedColors(ImageView imageView, TextView textView) {

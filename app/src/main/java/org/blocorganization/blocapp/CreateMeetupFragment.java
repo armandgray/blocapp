@@ -10,18 +10,18 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CreateCampaignFragment extends Fragment {
+public class CreateMeetupFragment extends Fragment {
 
 
-    public CreateCampaignFragment() {
+    public CreateMeetupFragment() {
         // Required empty public constructor
     }
 
-    public static CreateCampaignFragment newInstance() {
+    public static CreateMeetupFragment newInstance() {
         
         Bundle args = new Bundle();
         
-        CreateCampaignFragment fragment = new CreateCampaignFragment();
+        CreateMeetupFragment fragment = new CreateMeetupFragment();
         fragment.setArguments(args);
         return fragment;
     }
