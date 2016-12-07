@@ -108,7 +108,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center_horizontal"
                 android:paddingTop="5dp"
-                android:text="@string/resources"
+                android:text="@string/resource"
                 android:textColor="@color/ToolBarColor"
                 android:textSize="14sp"
                 android:textStyle="bold" />

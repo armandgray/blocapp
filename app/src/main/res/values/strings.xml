@@ -114,7 +114,7 @@
     <string name="creator_email">armandgray@gmail.com</string>
     <string name="ic_binoculars">ic_binoculars</string>
     <string name="logo_negative">logo_negative</string>
-    <string name="create_new_campaign">Create New Campaign</string>
+    <string name="create_new_campaign">Create A New Campaign</string>
     <string name="icon">icon</string>
     <string name="campaign_admin_image">Campaign Admin Image</string>
     <string name="chevron_text">More</string>
@@ -156,6 +156,7 @@
     <string name="create_dialog_icon">create_dialog_icon</string>
     <string name="talking_point">Talking Point</string>
     <string name="campaign">Campaign</string>
-    <string name="resources">Resources</string>
+    <string name="resource">Resource</string>
+    <string name="new_talking_point">Create A New Talking Point</string>
 
 </resources>

@@ -12,9 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.blocorganization.blocapp.bloc.FamilySubFragment;
-import org.blocorganization.blocapp.bloc.MissionSubFragment;
-
 public class CreateDialog extends DialogFragment {
 
     private FragmentManager fragmentManager;
@@ -25,23 +22,33 @@ public class CreateDialog extends DialogFragment {
         final View rootView = inflater.inflate(R.layout.create_dialog, container, false);
 
         TextView tvSubmitDialog = (TextView) rootView.findViewById(R.id.tvSubmitDialog);
-        tvSubmitDialog.setText(R.string.create_resource);
+        tvSubmitDialog.setText(R.string.create_new_campaign);
 
         ViewPager vpPager = getViewPager(rootView);
         vpPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
             }
 
             @Override
             public void onPageSelected(int position) {
-
+                switch (position) {
+                    case 0:
+                        setupMessageFragment();
+                        return;
+                    case 1:
+                        setupCampaignFragment();
+                        return;
+                    case 2:
+                        setupResourceFragment();
+                        return;
+                    default:
+                        setupResourceFragment();
+                }
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
-
             }
         });
         return rootView;
@@ -75,15 +82,25 @@ public class CreateDialog extends DialogFragment {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return MissionSubFragment.newInstance();
+                    return CreateMessageFragment.newInstance();
                 case 1:
-                    return FamilySubFragment.newInstance();
+                    return CreateCampaignFragment.newInstance();
                 case 2:
-                    return org.blocorganization.blocapp.bloc.HomeSubFragment.newInstance();
+                    return CreateResourceFragment.newInstance();
                 default:
                     return null;
             }
         }
+    }
+
+    private void setupResourceFragment() {
+    }
+
+    private void setupCampaignFragment() {
+    }
+
+    private void setupMessageFragment() {
+
     }
 
 }
