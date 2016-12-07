@@ -157,6 +157,9 @@
     <string name="talking_point">Talking Point</string>
     <string name="campaign">Campaign</string>
     <string name="resource">Resource</string>
-    <string name="new_talking_point">Create A New Talking Point</string>
+    <string name="create_talking_point">Create A New Talking Point</string>
+    <string name="campaign_motto">All great campaigns start here.</string>
+    <string name="messages_motto">Open Discourse.</string>
+    <string name="resource_motto">Tools for all.</string>
 
 </resources>

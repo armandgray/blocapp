@@ -10,19 +10,24 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class CreateDialog extends DialogFragment {
 
     private FragmentManager fragmentManager;
+    private TextView tvSubmitDialog;
+    private TextView tvSelectorDetails;
+    private RelativeLayout campaignSelectorLayout;
+    private RelativeLayout messagesSelectorLayout;
+    private RelativeLayout resourcesSelectorLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.create_dialog, container, false);
 
-        TextView tvSubmitDialog = (TextView) rootView.findViewById(R.id.tvSubmitDialog);
-        tvSubmitDialog.setText(R.string.create_new_campaign);
+        assignLayoutsViewsFrom(rootView);
 
         ViewPager vpPager = getViewPager(rootView);
         vpPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -52,6 +57,14 @@ public class CreateDialog extends DialogFragment {
             }
         });
         return rootView;
+    }
+
+    private void assignLayoutsViewsFrom(View rootView) {
+        tvSubmitDialog = (TextView) rootView.findViewById(R.id.tvSubmitDialog);
+        tvSelectorDetails = (TextView) rootView.findViewById(R.id.tvSelectorDetails);
+        campaignSelectorLayout = (RelativeLayout) rootView.findViewById(R.id.campaignSelectorLayout);
+        messagesSelectorLayout = (RelativeLayout) rootView.findViewById(R.id.messagesSelectorLayout);
+        resourcesSelectorLayout = (RelativeLayout) rootView.findViewById(R.id.resourcesSelectorLayout);
     }
 
     @NonNull
@@ -93,14 +106,19 @@ public class CreateDialog extends DialogFragment {
         }
     }
 
-    private void setupResourceFragment() {
+    private void setupMessageFragment() {
+        tvSubmitDialog.setText(R.string.create_talking_point);
+        tvSelectorDetails.setText(R.string.messages_motto);
     }
 
     private void setupCampaignFragment() {
+        tvSubmitDialog.setText(R.string.create_new_campaign);
+        tvSelectorDetails.setText(R.string.campaign_motto);
     }
 
-    private void setupMessageFragment() {
-
+    private void setupResourceFragment() {
+        tvSubmitDialog.setText(R.string.create_resource);
+        tvSelectorDetails.setText(R.string.resource_motto);
     }
 
 }
