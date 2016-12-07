@@ -87,6 +87,7 @@ public class CreateDialog extends DialogFragment {
         MyPagerAdapter adapterViewPager = new MyPagerAdapter(getChildFragmentManager());
         vpPager.setAdapter(adapterViewPager);
         vpPager.setCurrentItem(1);
+        setupCampaignFragment();
         return vpPager;
     }
 
@@ -123,16 +124,25 @@ public class CreateDialog extends DialogFragment {
     private void setupMessageFragment() {
         tvSubmitDialog.setText(R.string.create_talking_point);
         tvSelectorDetails.setText(R.string.messages_motto);
+        showSelectedColors(ivMessageSelector, tvMessageSelector);
+        showDeselectedColors(ivResourceSelector, tvResourceSelector);
+        showDeselectedColors(ivCampaignSelector, tvCampaignSelector);
     }
 
     private void setupCampaignFragment() {
         tvSubmitDialog.setText(R.string.create_new_campaign);
         tvSelectorDetails.setText(R.string.campaign_motto);
+        showSelectedColors(ivCampaignSelector, tvCampaignSelector);
+        showDeselectedColors(ivResourceSelector, tvResourceSelector);
+        showDeselectedColors(ivMessageSelector, tvMessageSelector);
     }
 
     private void setupResourceFragment() {
         tvSubmitDialog.setText(R.string.create_resource);
         tvSelectorDetails.setText(R.string.resource_motto);
+        showSelectedColors(ivResourceSelector, tvResourceSelector);
+        showDeselectedColors(ivMessageSelector, tvMessageSelector);
+        showDeselectedColors(ivCampaignSelector, tvCampaignSelector);
     }
 
     private void showDeselectedColors(ImageView imageView, TextView textView) {
