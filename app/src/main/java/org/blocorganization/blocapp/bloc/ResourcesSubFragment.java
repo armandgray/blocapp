@@ -3,14 +3,17 @@ package org.blocorganization.blocapp.bloc;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.blocorganization.blocapp.R;
+import org.blocorganization.blocapp.campaigns.CreateDialog;
 import org.blocorganization.blocapp.models.Resource;
 import org.blocorganization.blocapp.utils.RecyclerItemClickListener;
 import org.blocorganization.blocapp.utils.ResourceItemAdapter;
@@ -81,6 +84,22 @@ public class ResourcesSubFragment extends Fragment {
                     }
                 })
         );
+
+        ImageView btnAdd = (ImageView) rootView.findViewById(R.id.ivAddRes);
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CreateDialog createDialog = new CreateDialog();
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .add(R.id.main_layout, createDialog)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+
+
         return rootView;
     }
 

@@ -13,7 +13,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="5dp"
-    tools:showIn="@layout/create_info_dialog">
+    tools:showIn="@layout/create_campaign_dialog">
 
     <ImageView
         android:id="@+id/ivCalVariIcon"

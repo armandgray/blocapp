@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/dialog_header_background"
-    tools:showIn="@layout/create_info_dialog">
+    tools:showIn="@layout/create_campaign_dialog">
 
     <ImageView
         android:id="@+id/ivCancel"
@@ -22,6 +22,7 @@
         app:srcCompat="@drawable/ic_close_white_48dp" />
 
     <TextView
+        android:id="@+id/tvSubmitDialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"

@@ -108,7 +108,7 @@ public class CreateCampaignDialog extends DialogFragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout to use as dialog or embedded fragment
-        final View rootView = inflater.inflate(R.layout.create_info_dialog, container, false);
+        final View rootView = inflater.inflate(R.layout.create_campaign_dialog, container, false);
 
         getPassedCampaign();
 

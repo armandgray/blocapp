@@ -152,5 +152,7 @@
     <string name="share">Share</string>
     <string name="_5_likes">5 Likes</string>
     <string name="_6_comments">6 Comments</string>
+    <string name="create_resource">Create A New Resource</string>
+    <string name="create_dialog_icon">create_dialog_icon</string>
 
 </resources>
