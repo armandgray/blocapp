@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp">
+    android:background="@drawable/dialog_header_background"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp"
+    android:paddingEnd="10dp"
+    android:paddingRight="10dp"
+    android:paddingLeft="10dp"
+    android:paddingStart="10dp"
+    android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/selectorsContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:baselineAligned="false"
         android:orientation="horizontal"
         android:weightSum=".9">
 
@@ -19,7 +22,7 @@
             android:id="@+id/ivMessagesSelectorLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight=".3">
+            android:layout_weight="0.3">
 
             <ImageView
                 android:id="@+id/ivMessagesSelector"
@@ -37,7 +40,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
                 android:layout_below="@+id/ivMessagesSelector"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center_horizontal"
@@ -49,13 +51,13 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/ivCampaignsSelectorLayout"
+            android:id="@+id/ivCampaignSelectorLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight=".3">
+            android:layout_weight="0.3">
 
             <ImageView
-                android:id="@+id/ivCampaignsSelector"
+                android:id="@+id/ivCampaignSelector"
                 android:layout_width="@dimen/create_dialog_selector_dimens"
                 android:layout_height="@dimen/create_dialog_selector_dimens"
                 android:layout_alignParentTop="true"
@@ -65,17 +67,16 @@
                 android:contentDescription="@string/create_dialog_icon"
                 android:padding="20dp"
                 android:tint="@color/ToolBarColor"
-                app:srcCompat="@drawable/ic_message_bulleted_white_48dp" />
+                app:srcCompat="@drawable/ic_package_up_white_48dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_below="@+id/ivCampaignsSelector"
+                android:layout_below="@+id/ivCampaignSelector"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center_horizontal"
                 android:paddingTop="5dp"
-                android:text="@string/talking_point"
+                android:text="@string/campaign"
                 android:textColor="@color/ToolBarColor"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -85,7 +86,7 @@
             android:id="@+id/ivResourcesSelectorLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight=".3">
+            android:layout_weight="0.3">
 
             <ImageView
                 android:id="@+id/ivResourcesSelector"
@@ -98,21 +99,31 @@
                 android:contentDescription="@string/create_dialog_icon"
                 android:padding="20dp"
                 android:tint="@color/ToolBarColor"
-                app:srcCompat="@drawable/ic_message_bulleted_white_48dp" />
+                app:srcCompat="@drawable/ic_paperclip_white_48dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
                 android:layout_below="@+id/ivResourcesSelector"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center_horizontal"
                 android:paddingTop="5dp"
-                android:text="@string/talking_point"
+                android:text="@string/resources"
                 android:textColor="@color/ToolBarColor"
                 android:textSize="14sp"
                 android:textStyle="bold" />
         </RelativeLayout>
+
     </LinearLayout>
 
-</RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="15dp"
+        android:text="@string/placeholder"
+        android:textColor="@color/ToolBarColor"
+        android:textSize="14sp" />
+
+</LinearLayout>

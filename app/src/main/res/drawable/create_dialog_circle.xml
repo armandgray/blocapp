@@ -4,7 +4,7 @@
         android:color="#00FFFFFF"/>
 
     <stroke
-        android:width="5dp"
+        android:width="4dp"
         android:color="@color/ToolBarColor"/>
 
     <size

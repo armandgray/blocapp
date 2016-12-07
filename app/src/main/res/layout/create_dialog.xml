@@ -11,7 +11,10 @@
 
     <include layout="@layout/dialog_submit_header" />
 
-    <include layout="@layout/create_header_selector" />
+    <include layout="@layout/create_header_selector"
+        android:paddingTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
     <ScrollView
         android:layout_width="match_parent"
