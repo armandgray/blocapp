@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,20 +19,14 @@ import org.blocorganization.blocapp.R;
  */
 public class BlocFragment extends Fragment implements HomeSubFragment.HomeScrollListener {
 
+    private FragmentManager mFragmentManager;
     FragmentPagerAdapter adapterViewPager;
     private LinearLayout menu;
-    private View selectedBullet;
     private ImageView menuBullet0;
     private ImageView menuBullet1;
     private ImageView menuBullet2;
     private ImageView menuBullet3;
     private ImageView menuBullet4;
-
-    // Swipe Gesture Fields
-    private GestureDetector gestureDetector;
-
-    private static FragmentManager mFragmentManager;
-    private static Fragment createSubFrag;
 
     public BlocFragment() {
         // Required empty public constructor

@@ -1,55 +1,23 @@
-package org.blocorganization.blocapp.campaigns;
+package org.blocorganization.blocapp;
 
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.text.InputFilter;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import org.blocorganization.blocapp.R;
-import org.blocorganization.blocapp.models.Campaign;
-import org.blocorganization.blocapp.utils.ConfirmChangesDialogFragment;
-import org.blocorganization.blocapp.utils.DateTimePickerFragment;
-import org.blocorganization.blocapp.utils.GetDpMeasurement;
-import org.blocorganization.blocapp.utils.ImageThemeAdapter;
-import org.blocorganization.blocapp.utils.RecyclerItemClickListener;
-import org.blocorganization.blocapp.utils.SpinnerAdapter;
-import org.joda.time.DateTime;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.blocorganization.blocapp.campaigns.CreateCampaignDialogUtilities.saveCampaignToDatabaseWith;
-import static org.blocorganization.blocapp.campaigns.CreateCampaignDialogUtilities.startDetailActivityWith;
-import static org.blocorganization.blocapp.campaigns.UploadButtonIncluder.setupUploadButtonFrom;
-import static org.blocorganization.blocapp.utils.DateTimeHandler.setTextForDateWith;
-import static org.blocorganization.blocapp.utils.FieldUtilities.AMBITION;
-import static org.blocorganization.blocapp.utils.FieldUtilities.BENEFITS_TO_THE_COLLEGE;
-import static org.blocorganization.blocapp.utils.FieldUtilities.DESCRIPTION;
-import static org.blocorganization.blocapp.utils.FieldUtilities.loadUrlIntoImageViewWithActivity;
-import static org.blocorganization.blocapp.utils.FieldUtilities.setSelectionForSpinnerFromList;
-import static org.blocorganization.blocapp.utils.FieldUtilities.setTextForEditTextAndPrepend;
-import static org.blocorganization.blocapp.utils.FieldUtilities.setTextForEditTextWith;
+import org.blocorganization.blocapp.bloc.FamilySubFragment;
+import org.blocorganization.blocapp.bloc.MissionSubFragment;
 
 public class CreateDialog extends DialogFragment {
+
+    private FragmentManager fragmentManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,7 +27,63 @@ public class CreateDialog extends DialogFragment {
         TextView tvSubmitDialog = (TextView) rootView.findViewById(R.id.tvSubmitDialog);
         tvSubmitDialog.setText(R.string.create_resource);
 
+        ViewPager vpPager = getViewPager(rootView);
+        vpPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
         return rootView;
+    }
+
+    @NonNull
+    private ViewPager getViewPager(View rootView) {
+        ViewPager vpPager = (ViewPager) rootView.findViewById(R.id.vpCreateDialog);
+        MyPagerAdapter adapterViewPager = new MyPagerAdapter(getChildFragmentManager());
+        vpPager.setAdapter(adapterViewPager);
+        vpPager.setCurrentItem(1);
+        return vpPager;
+    }
+
+    public class MyPagerAdapter extends FragmentPagerAdapter {
+        private static final int NUM_PAGES = 3;
+
+        MyPagerAdapter(FragmentManager fragmentManager) {
+            super(fragmentManager);
+            CreateDialog.this.fragmentManager = fragmentManager;
+        }
+
+        // Returns total number of pages
+        @Override
+        public int getCount() {
+            return NUM_PAGES;
+        }
+
+        // Returns the fragment to display for that page
+        @Override
+        public Fragment getItem(int position) {
+            switch (position) {
+                case 0:
+                    return MissionSubFragment.newInstance();
+                case 1:
+                    return FamilySubFragment.newInstance();
+                case 2:
+                    return org.blocorganization.blocapp.bloc.HomeSubFragment.newInstance();
+                default:
+                    return null;
+            }
+        }
     }
 
 }

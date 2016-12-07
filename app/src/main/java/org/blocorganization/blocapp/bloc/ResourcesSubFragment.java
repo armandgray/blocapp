@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.blocorganization.blocapp.R;
-import org.blocorganization.blocapp.campaigns.CreateDialog;
+import org.blocorganization.blocapp.CreateDialog;
 import org.blocorganization.blocapp.models.Resource;
 import org.blocorganization.blocapp.utils.RecyclerItemClickListener;
 import org.blocorganization.blocapp.utils.ResourceItemAdapter;
@@ -60,7 +60,7 @@ public class ResourcesSubFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.bloc_subfragment_resources, container, false);
 
         createListObjects();
-        initializeTvReferencesFrom(rootView);
+        assignTvReferencesFrom(rootView);
         collapseAllEmptyViews();
 
         Resource tip = new Resource.Builder("Use JSTOR")
@@ -112,7 +112,7 @@ public class ResourcesSubFragment extends Fragment {
         lstMiscellaneous = new ArrayList<>();
     }
 
-    private void initializeTvReferencesFrom(View rootView) {
+    private void assignTvReferencesFrom(View rootView) {
         tvTipsNTricks = (TextView) rootView.findViewById(R.id.tvTipsNTricks);
         tvWorkflows = (TextView) rootView.findViewById(R.id.tvWorkflows);
         tvShoutouts = (TextView) rootView.findViewById(R.id.tvShoutouts);
