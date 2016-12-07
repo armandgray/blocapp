@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 public class CreateDialog extends DialogFragment {
 
+    public static final String SELECTED_DIALOG_NUM = "SELECTED_DIALOG_NUM";
     private FragmentManager fragmentManager;
     private TextView tvSubmitDialog;
     private TextView tvSelectorDetails;
@@ -29,6 +30,7 @@ public class CreateDialog extends DialogFragment {
     private TextView tvCampaignSelector;
     private ImageView ivMessageSelector;
     private TextView tvMessageSelector;
+    private ViewPager vpPager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -83,12 +85,26 @@ public class CreateDialog extends DialogFragment {
 
     @NonNull
     private ViewPager getViewPager(View rootView) {
-        ViewPager vpPager = (ViewPager) rootView.findViewById(R.id.vpCreateDialog);
+        vpPager = (ViewPager) rootView.findViewById(R.id.vpCreateDialog);
         MyPagerAdapter adapterViewPager = new MyPagerAdapter(getChildFragmentManager());
         vpPager.setAdapter(adapterViewPager);
-        vpPager.setCurrentItem(1);
-        setupCampaignFragment();
+        setVpFrom(getArguments());
+
         return vpPager;
+    }
+
+    private void setVpFrom(Bundle arguments) {
+        if (arguments != null) {
+            switch (arguments.getInt(SELECTED_DIALOG_NUM)) {
+                default:
+                    vpPager.setCurrentItem(1);
+                    setupCampaignFragment();
+            }
+        } else {
+            vpPager.setCurrentItem(2);
+            setupCampaignFragment();
+        }
+
     }
 
     public class MyPagerAdapter extends FragmentPagerAdapter {
