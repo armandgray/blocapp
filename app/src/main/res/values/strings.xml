@@ -154,5 +154,6 @@
     <string name="_6_comments">6 Comments</string>
     <string name="create_resource">Create A New Resource</string>
     <string name="create_dialog_icon">create_dialog_icon</string>
+    <string name="talking_point">Talking Point</string>
 
 </resources>

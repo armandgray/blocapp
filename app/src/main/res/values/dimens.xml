@@ -86,5 +86,6 @@
     <!-- Miscellaneous -->
     <dimen name="home_vf_image_height">175dp</dimen>
     <dimen name="resource_icon_margin">10dp</dimen>
+    <dimen name="create_dialog_selector_dimens">70dp</dimen>
 
 </resources>
