@@ -1,5 +1,6 @@
 package org.blocorganization.blocapp;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -10,6 +11,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -21,6 +23,12 @@ public class CreateDialog extends DialogFragment {
     private RelativeLayout campaignSelectorLayout;
     private RelativeLayout messagesSelectorLayout;
     private RelativeLayout resourcesSelectorLayout;
+    private ImageView ivResourceSelector;
+    private TextView tvResourceSelector;
+    private ImageView ivCampaignSelector;
+    private TextView tvCampaignSelector;
+    private ImageView ivMessageSelector;
+    private TextView tvMessageSelector;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -63,8 +71,14 @@ public class CreateDialog extends DialogFragment {
         tvSubmitDialog = (TextView) rootView.findViewById(R.id.tvSubmitDialog);
         tvSelectorDetails = (TextView) rootView.findViewById(R.id.tvSelectorDetails);
         campaignSelectorLayout = (RelativeLayout) rootView.findViewById(R.id.campaignSelectorLayout);
+        ivCampaignSelector = (ImageView) campaignSelectorLayout.getChildAt(0);
+        tvCampaignSelector = (TextView) campaignSelectorLayout.getChildAt(1);
         messagesSelectorLayout = (RelativeLayout) rootView.findViewById(R.id.messagesSelectorLayout);
+        ivMessageSelector = (ImageView) messagesSelectorLayout.getChildAt(0);
+        tvMessageSelector = (TextView) messagesSelectorLayout.getChildAt(1);
         resourcesSelectorLayout = (RelativeLayout) rootView.findViewById(R.id.resourcesSelectorLayout);
+        ivResourceSelector = (ImageView) resourcesSelectorLayout.getChildAt(0);
+        tvResourceSelector = (TextView) resourcesSelectorLayout.getChildAt(1);
     }
 
     @NonNull
@@ -119,6 +133,19 @@ public class CreateDialog extends DialogFragment {
     private void setupResourceFragment() {
         tvSubmitDialog.setText(R.string.create_resource);
         tvSelectorDetails.setText(R.string.resource_motto);
+    }
+
+    private void showDeselectedColors(ImageView imageView, TextView textView) {
+        imageView.setColorFilter(Color.parseColor("#333333"));
+        imageView.setBackgroundResource(R.drawable.create_dialog_circle);
+        textView.setTextColor(Color.parseColor("#333333"));
+    }
+
+    private void showSelectedColors(ImageView imageView, TextView textView) {
+        imageView.setColorFilter(Color.parseColor("#FF2A00"));
+        imageView.setBackgroundResource(R.drawable.create_dialog_circle_selected);
+        textView.setTextColor(Color.parseColor("#FF2A00"));
+
     }
 
 }
