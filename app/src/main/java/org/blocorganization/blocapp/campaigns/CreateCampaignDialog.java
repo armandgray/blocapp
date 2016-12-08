@@ -27,6 +27,7 @@ import org.blocorganization.blocapp.R;
 import org.blocorganization.blocapp.models.Campaign;
 import org.blocorganization.blocapp.utils.ConfirmChangesDialogFragment;
 import org.blocorganization.blocapp.utils.DateTimePickerFragment;
+import org.blocorganization.blocapp.utils.DateTimePresenter;
 import org.blocorganization.blocapp.utils.ImageThemeAdapter;
 import org.blocorganization.blocapp.utils.RecyclerItemClickListener;
 import org.blocorganization.blocapp.utils.SpinnerAdapter;
@@ -37,6 +38,8 @@ import java.util.List;
 import static org.blocorganization.blocapp.campaigns.CreateCampaignDialogUtilities.saveCampaignToDatabaseWith;
 import static org.blocorganization.blocapp.campaigns.CreateCampaignDialogUtilities.startDetailActivityWith;
 import static org.blocorganization.blocapp.campaigns.UploadButtonIncluder.setupUploadButtonFrom;
+import static org.blocorganization.blocapp.utils.DateTimeFormatHandler.setTextForDateWith;
+import static org.blocorganization.blocapp.utils.DateTimePresenter.DATE_TIME_PICKER;
 import static org.blocorganization.blocapp.utils.FieldUtilities.AMBITION;
 import static org.blocorganization.blocapp.utils.FieldUtilities.BENEFITS_TO_THE_COLLEGE;
 import static org.blocorganization.blocapp.utils.FieldUtilities.DESCRIPTION;
@@ -58,8 +61,6 @@ public class CreateCampaignDialog extends DialogFragment
     public static final String VENUES = "venues";
     public static final String TYPES = "types";
     public static final String DIALOG = "DIALOG";
-    public static final String DATE_TIME_PICKER = "dateTimePicker";
-
     public static final String DATE = "Date";
 
     private Campaign campaign;
@@ -222,6 +223,7 @@ public class CreateCampaignDialog extends DialogFragment
 
 //        assignDateFields(rootView);
 //        setupDateClickListeners();
+        DateTimePresenter presenter = new DateTimePresenter(rootView, this);
 
         setupUploadButtonFrom(rootView, this);
         ivUpload = (ImageView) rootView.findViewById(R.id.ivUpload);
@@ -311,82 +313,6 @@ public class CreateCampaignDialog extends DialogFragment
         return areFieldsNonEmpty;
     }
 
-//    private void assignDateFields(View rootView) {
-//        editDateLayout = (RelativeLayout) rootView.findViewById(R.id.editDateLayout);
-//        editDateFromLayout = (RelativeLayout) rootView.findViewById(R.id.editDateFromLayout);
-//        editDateEndLayout = (RelativeLayout) rootView.findViewById(R.id.editDateEndLayout);
-//        tvFromDate = (TextView) rootView.findViewById(R.id.tvFromDate);
-//        tvToDate = (TextView) rootView.findViewById(R.id.tvToDate);
-//        ivToDateMenuArrow = (ImageView) rootView.findViewById(R.id.ivMenuArrow);
-//    }
-
-//    private void setupDateClickListeners() {
-//        editDateEndLayout.setVisibility(View.GONE);
-//        editDateFromLayout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                new DateTimePickerFragment()
-//                        .show(getChildFragmentManager(), DATE_TIME_PICKER);
-//            }
-//        });
-//
-//        editDateEndLayout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                new DateTimePickerFragment()
-//                        .show(getChildFragmentManager(), DATE_TIME_PICKER);
-//                setupDateInitialState();
-//            }
-//        });
-//        editDateFromLayout.setOnLongClickListener(new View.OnLongClickListener() {
-//            @Override
-//            public boolean onLongClick(View v) {
-//                showEndDateView();
-//                return isRange = true;
-//            }
-//        });
-//        editDateEndLayout.setOnLongClickListener(new View.OnLongClickListener() {
-//            @Override
-//            public boolean onLongClick(View v) {
-//                return hideEndDateView();
-//            }
-//        });
-//    }
-//
-//    private void setupDateInitialState() {
-//        tvToDate.setTextColor(Color.parseColor("#FFFFFF"));
-//        ivToDateMenuArrow.setColorFilter(Color.parseColor("#FFFFFF"));
-//        ivToDateMenuArrow.setImageResource(R.drawable.ic_menu_down_white_48dp);
-//        isRange = true;
-//        editEndDate = true;
-//    }
-//
-//    private void loadDateFields() {
-//        setTextForDateWith(campaign.getFromDate(), tvFromDate, true);
-//        if (campaign.getToDate() != null) {
-//            setTextForDateWith(campaign.getToDate(), tvToDate, false);
-//            showEndDateView();
-//        }
-//    }
-//
-//    private void showEndDateView() {
-//        editDateEndLayout.setPadding(GetDpMeasurement.getDPI(getActivity(), 10), GetDpMeasurement.getDPI(getActivity(), 5), 0, 0);
-//        editDateEndLayout.setVisibility(View.VISIBLE);
-//
-//        tvToDate.setTextColor(Color.parseColor("#333333"));
-//        ivToDateMenuArrow.setImageResource(R.drawable.ic_menu_down_white_48dp);
-//        ivToDateMenuArrow.setColorFilter(Color.parseColor("#333333"));
-//
-//        editDateFromLayout.setBackgroundResource(R.drawable.date_divider_background);
-//        editDateFromLayout.setPadding(GetDpMeasurement.getDPI(getActivity(), 10), 0, 0, GetDpMeasurement.getDPI(getActivity(), 5));
-//    }
-//
-//    private boolean hideEndDateView() {
-//        editDateLayout.getChildAt(2).setVisibility(View.GONE);
-//        editDateLayout.getChildAt(1).setBackgroundResource(R.color.colorPrimaryDark);
-//        return isRange = false;
-//    }
-
     @Override
     public void onDatePickerCancel() {
         DialogFragment dialog = (DialogFragment) getChildFragmentManager()
@@ -442,6 +368,15 @@ public class CreateCampaignDialog extends DialogFragment
             setTextForEditTextAndPrepend(AMBITION, campaign.getAmbition(), etAmbition);
             setTextForEditTextAndPrepend(BENEFITS_TO_THE_COLLEGE, campaign.getBenefits(), etBenefits);
             loadUrlIntoImageViewWithActivity(campaign.getPhotoUrl(), ivUpload, getActivity());
+        }
+    }
+
+    private void loadDateFields() {
+        setTextForDateWith(campaign.getFromDate(), tvFromDate, true);
+        if (campaign.getToDate() != null) {
+            setTextForDateWith(campaign.getToDate(), tvToDate, false);
+            // TODO add call below through presenter object
+//            showEndDateView();
         }
     }
 
