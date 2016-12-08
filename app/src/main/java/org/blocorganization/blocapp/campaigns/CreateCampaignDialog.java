@@ -224,13 +224,7 @@ public class CreateCampaignDialog extends DialogFragment
             }
         });
 
-        // select fromDate with DatePickerFrag
-        editDateLayout = (RelativeLayout) rootView.findViewById(R.id.editDateLayout);
-        editDateFromLayout = (RelativeLayout) rootView.findViewById(R.id.editDateFromLayout);
-        editDateEndLayout = (RelativeLayout) rootView.findViewById(R.id.editDateEndLayout);
-        tvFromDate = (TextView) rootView.findViewById(R.id.tvFromDate);
-        tvToDate = (TextView) rootView.findViewById(R.id.tvToDate);
-        ivToDateMenuArrow = (ImageView) rootView.findViewById(R.id.ivMenuArrow);
+        assignDateFields(rootView);
 
         editDateEndLayout.setVisibility(View.GONE);
         editDateFromLayout.setOnClickListener(new View.OnClickListener() {
@@ -238,16 +232,6 @@ public class CreateCampaignDialog extends DialogFragment
             public void onClick(View view) {
                 new DateTimePickerFragment()
                         .show(getChildFragmentManager(), DATE_TIME_PICKER);
-            }
-        });
-
-        // handle fromDate range options
-        ivToDateMenuArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (isRange == null) {
-                    hideEndDateView();
-                }
             }
         });
 
@@ -281,16 +265,9 @@ public class CreateCampaignDialog extends DialogFragment
         });
 
         setupUploadButtonFrom(rootView, this);
-
         ivUpload = (ImageView) rootView.findViewById(R.id.ivUpload);
 
-        etTitle = (EditText) rootView.findViewById(R.id.etTitle);
-        etAbbreviation = (EditText) rootView.findViewById(R.id.etAbbreviation);
-        etAbbreviation.setFilters(new InputFilter[]{new InputFilter.AllCaps(), new InputFilter.LengthFilter(3)});
-        etAdmin = (EditText) rootView.findViewById(R.id.etAdmin);
-        etDescription = (EditText) rootView.findViewById(R.id.etDescription);
-        etAmbition = (EditText) rootView.findViewById(R.id.etAmbition);
-        etBenefits = (EditText) rootView.findViewById(R.id.etBenefits);
+        assignEditTextFields(rootView);
 
         return rootView;
     }
@@ -301,6 +278,22 @@ public class CreateCampaignDialog extends DialogFragment
             campaign.setTimestamp();
             isNewCampaign = false;
         }
+    }
+
+    private void highlightView(LinearLayout view, int position) {
+        LinearLayout imgLayout = view;
+        if (lastClick != null) {
+            lastClick.setBackgroundResource(R.drawable.background_square_shadow);
+            ImageView lastImg = (ImageView) lastClick.getChildAt(0);
+            lastImg.setColorFilter(Color.parseColor("#59000000"));
+            lastImg.setBackgroundColor(Color.parseColor("#59000000"));
+        }
+        imgLayout.setBackgroundResource(R.drawable.background_square_selected_shadow);
+        ImageView img = (ImageView) imgLayout.getChildAt(0);
+        img.setColorFilter(Color.parseColor("#00000000"));
+        img.setBackgroundColor(Color.parseColor("#00000000"));
+        themePosition = position;
+        lastClick = view;
     }
 
     private boolean fieldVerification() {
@@ -360,20 +353,13 @@ public class CreateCampaignDialog extends DialogFragment
         return areFieldsNonEmpty;
     }
 
-    private void highlightView(LinearLayout view, int position) {
-        LinearLayout imgLayout = view;
-        if (lastClick != null) {
-            lastClick.setBackgroundResource(R.drawable.background_square_shadow);
-            ImageView lastImg = (ImageView) lastClick.getChildAt(0);
-            lastImg.setColorFilter(Color.parseColor("#59000000"));
-            lastImg.setBackgroundColor(Color.parseColor("#59000000"));
-        }
-        imgLayout.setBackgroundResource(R.drawable.background_square_selected_shadow);
-        ImageView img = (ImageView) imgLayout.getChildAt(0);
-        img.setColorFilter(Color.parseColor("#00000000"));
-        img.setBackgroundColor(Color.parseColor("#00000000"));
-        themePosition = position;
-        lastClick = view;
+    private void assignDateFields(View rootView) {
+        editDateLayout = (RelativeLayout) rootView.findViewById(R.id.editDateLayout);
+        editDateFromLayout = (RelativeLayout) rootView.findViewById(R.id.editDateFromLayout);
+        editDateEndLayout = (RelativeLayout) rootView.findViewById(R.id.editDateEndLayout);
+        tvFromDate = (TextView) rootView.findViewById(R.id.tvFromDate);
+        tvToDate = (TextView) rootView.findViewById(R.id.tvToDate);
+        ivToDateMenuArrow = (ImageView) rootView.findViewById(R.id.ivMenuArrow);
     }
 
     private void loadCampaignData() {
@@ -433,7 +419,6 @@ public class CreateCampaignDialog extends DialogFragment
             tvFromDate.setText("On: " + dt.monthOfYear().getAsText() + " " + day + ", " + year + ", " + hourOfDay + ":" + minute + " " + ampmDesignator);
             campaign.setFromDate(date);
             showEndDateView();
-            ivToDateMenuArrow.setImageResource(R.drawable.ic_close_white_48dp);
         } else if (editEndDate && isRange) {
             tvToDate.setText("End: " + dt.monthOfYear().getAsText() + " " + day + ", " + year + ", " + hourOfDay + ":" + minute + " " + ampmDesignator);
             campaign.setToDate(date);
@@ -456,6 +441,16 @@ public class CreateCampaignDialog extends DialogFragment
         editDateLayout.getChildAt(2).setVisibility(View.GONE);
         editDateLayout.getChildAt(1).setBackgroundResource(R.color.colorPrimaryDark);
         return isRange = false;
+    }
+
+    private void assignEditTextFields(View rootView) {
+        etTitle = (EditText) rootView.findViewById(R.id.etTitle);
+        etAbbreviation = (EditText) rootView.findViewById(R.id.etAbbreviation);
+        etAbbreviation.setFilters(new InputFilter[]{new InputFilter.AllCaps(), new InputFilter.LengthFilter(3)});
+        etAdmin = (EditText) rootView.findViewById(R.id.etAdmin);
+        etDescription = (EditText) rootView.findViewById(R.id.etDescription);
+        etAmbition = (EditText) rootView.findViewById(R.id.etAmbition);
+        etBenefits = (EditText) rootView.findViewById(R.id.etBenefits);
     }
 
     @Override
