@@ -15,10 +15,6 @@
             android:id="@+id/containerType"
             layout="@layout/spinner_menu_layout" />
 
-        <include
-            android:id="@+id/containerSubtype"
-            layout="@layout/spinner_menu_layout" />
-
         <EditText
             android:id="@+id/etTitle"
             android:layout_width="match_parent"
