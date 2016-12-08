@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import org.blocorganization.blocapp.R;
 import org.blocorganization.blocapp.models.Campaign;
-import org.joda.time.DateTime;
 
 import java.util.ArrayList;
 
@@ -23,7 +22,7 @@ public class DateTimePresenter {
     private Fragment fragment;
 
     private Boolean isRange;
-    private boolean editEndDate;
+    private boolean endDateWasEdited;
     private RelativeLayout editDateLayout;
     private RelativeLayout editDateFromLayout;
     private RelativeLayout editDateEndLayout;
@@ -63,7 +62,9 @@ public class DateTimePresenter {
             public void onClick(View v) {
                 new DateTimePickerFragment()
                         .show(fragment.getChildFragmentManager(), DATE_TIME_PICKER);
-                setupInitialState();
+                setupDateAsRange();
+
+                endDateWasEdited = true;
             }
         });
         editDateFromLayout.setOnLongClickListener(new View.OnLongClickListener() {
@@ -81,12 +82,12 @@ public class DateTimePresenter {
         });
     }
 
-    private void setupInitialState() {
+    private void setupDateAsRange() {
         tvToDate.setTextColor(Color.parseColor("#FFFFFF"));
         ivToDateMenuArrow.setColorFilter(Color.parseColor("#FFFFFF"));
         ivToDateMenuArrow.setImageResource(R.drawable.ic_menu_down_white_48dp);
+
         isRange = true;
-        editEndDate = true;
     }
 
     private void showEndDateView() {
@@ -116,7 +117,6 @@ public class DateTimePresenter {
     }
 
     public void updateDateFields(Campaign campaign, int year, int month, int day, int hourOfDay, String minute) {
-        // Date formatting fields
         ArrayList<Integer> date = new ArrayList<>();
         date.add(year);
         date.add(month);
@@ -124,30 +124,28 @@ public class DateTimePresenter {
         date.add(hourOfDay);
         date.add(Integer.valueOf(minute));
 
-        DateTime dt = new DateTime();
-        String ampmDesignator = "am";
-        if (hourOfDay >= 12) {
-            ampmDesignator = "pm";
-        }
-        if (hourOfDay != 12) {
-            hourOfDay = hourOfDay % 12;
-        }
-        dt.withDate(year, month, day);
+        setTextForEditedDateField(campaign, date);
+    }
 
-        // initial state is null; afterwards editEndDate is true if user selects 2nd fromDate field
+    private void setTextForEditedDateField(Campaign campaign, ArrayList<Integer> date) {
         if (isRange == null) {
-            editDateFromLayout.setBackgroundResource(R.drawable.date_divider_background);
-            editDateFromLayout.setPadding(GetDpMeasurement.getDPI(fragment.getActivity(), 10), 0, 0, GetDpMeasurement.getDPI(fragment.getActivity(), 5));
-            tvFromDate.setText("On: " + dt.monthOfYear().getAsText() + " " + day + ", " + year + ", " + hourOfDay + ":" + minute + " " + ampmDesignator);
+            setupInitialState();
+            setTextForDateWith(date, tvFromDate, true);
             campaign.setFromDate(date);
-            showEndDateView();
-        } else if (editEndDate && isRange) {
-            tvToDate.setText("End: " + dt.monthOfYear().getAsText() + " " + day + ", " + year + ", " + hourOfDay + ":" + minute + " " + ampmDesignator);
+        } else if (endDateWasEdited) {
+            setTextForDateWith(date, tvToDate, false);
             campaign.setToDate(date);
-            editEndDate = false;
+            endDateWasEdited = false;
         } else {
-            tvFromDate.setText("On: " + dt.monthOfYear().getAsText() + " " + day + ", " + year + ", " + hourOfDay + ":" + minute + " " + ampmDesignator);
+            setTextForDateWith(date, tvFromDate, true);
+            campaign.setFromDate(date);
         }
+    }
+
+    private void setupInitialState() {
+        editDateFromLayout.setBackgroundResource(R.drawable.date_divider_background);
+        editDateFromLayout.setPadding(GetDpMeasurement.getDPI(fragment.getActivity(), 10), 0, 0, GetDpMeasurement.getDPI(fragment.getActivity(), 5));
+        showEndDateView();
     }
 
     public String getToDate() {
