@@ -44,10 +44,12 @@ import static org.blocorganization.blocapp.utils.DateTimeHandler.setTextForDateW
 import static org.blocorganization.blocapp.utils.FieldUtilities.AMBITION;
 import static org.blocorganization.blocapp.utils.FieldUtilities.BENEFITS_TO_THE_COLLEGE;
 import static org.blocorganization.blocapp.utils.FieldUtilities.DESCRIPTION;
+import static org.blocorganization.blocapp.utils.FieldUtilities.getTextFrom;
 import static org.blocorganization.blocapp.utils.FieldUtilities.loadUrlIntoImageViewWithActivity;
 import static org.blocorganization.blocapp.utils.FieldUtilities.setSelectionForSpinnerFromList;
 import static org.blocorganization.blocapp.utils.FieldUtilities.setTextForEditTextAndPrepend;
 import static org.blocorganization.blocapp.utils.FieldUtilities.setTextForEditTextWith;
+import static org.blocorganization.blocapp.utils.FieldUtilities.verify;
 
 public class CreateCampaignDialog extends DialogFragment
         implements DateTimePickerFragment.DateTimeSetListener,
@@ -96,6 +98,7 @@ public class CreateCampaignDialog extends DialogFragment
     private Spinner spVenue;
     private RecyclerView rvThemes;
 
+    LinearLayout lastClick;
     private boolean isNewCampaign = true;
 
     public static CreateCampaignDialog withCampaign(Campaign passedCampaign) {
@@ -121,23 +124,10 @@ public class CreateCampaignDialog extends DialogFragment
         rvThemes.setLayoutManager(layoutManager);
         rvThemes.addOnItemTouchListener(new RecyclerItemClickListener(getContext(),
                 new RecyclerItemClickListener.OnItemClickListener() {
-                    LinearLayout lastClick;
 
                     @Override
                     public void onItemClick(View view, int position) {
-                        LinearLayout imgLayout = (LinearLayout) view;
-                        if (lastClick != null) {
-                            lastClick.setBackgroundResource(R.drawable.background_square_shadow);
-                            ImageView lastImg = (ImageView) lastClick.getChildAt(0);
-                            lastImg.setColorFilter(Color.parseColor("#59000000"));
-                            lastImg.setBackgroundColor(Color.parseColor("#59000000"));
-                        }
-                        imgLayout.setBackgroundResource(R.drawable.background_square_selected_shadow);
-                        ImageView img = (ImageView) imgLayout.getChildAt(0);
-                        img.setColorFilter(Color.parseColor("#00000000"));
-                        img.setBackgroundColor(Color.parseColor("#00000000"));
-                        themePosition = position;
-                        lastClick = (LinearLayout) view;
+                        highlightView((LinearLayout) view, position);
                     }
                 }));
 
@@ -220,64 +210,6 @@ public class CreateCampaignDialog extends DialogFragment
                     new ConfirmChangesDialogFragment().show(
                             getChildFragmentManager(), DIALOG);
                 }
-            }
-
-            private boolean fieldVerification() {
-                boolean allClear = true;
-                if (themePosition != null) {
-                    campaign.setThemeImageUrl(themes.get(themePosition));
-                } else {
-                    allClear = false;
-                    Toast.makeText(getActivity(), "Theme is required", Toast.LENGTH_SHORT).show();
-                }
-                if (spType.getSelectedItemPosition() != 0) {
-                    campaign.setRecordType(types.get(spType.getSelectedItemPosition()));
-                } else {
-                    allClear = false;
-                    Toast.makeText(getActivity(), "Type is required", Toast.LENGTH_SHORT).show();
-                }
-                if (spVenue.getSelectedItemPosition() != 0) {
-                    campaign.setVenue(venues.get(spVenue.getSelectedItemPosition()));
-                } else {
-                    allClear = false;
-                    Toast.makeText(getActivity(), "Venue is required", Toast.LENGTH_SHORT).show();
-                }
-                if (tvFromDate.getText().toString().equals("") || tvFromDate.getText() == null || tvFromDate.getText().toString().equals(DATE)) {
-                    allClear = false;
-                    Toast.makeText(getActivity(), "Date is required", Toast.LENGTH_SHORT).show();
-                }
-                if (!etTitle.getText().toString().equals("") && etTitle.getText() != null) {
-                    campaign.setTitle(etTitle.getText().toString());
-                } else {
-                    allClear = false;
-                    Toast.makeText(getActivity(), "Title is required", Toast.LENGTH_SHORT).show();
-                }
-                if (!etAbbreviation.getText().toString().equals("") && etAbbreviation.getText() != null) {
-                    campaign.setAbbreviation(etAbbreviation.getText().toString());
-                }
-                if (!etAdmin.getText().toString().equals("") && etAdmin.getText() != null) {
-                    campaign.setAdmin(etAdmin.getText().toString());
-                } else {
-                    allClear = false;
-                    Toast.makeText(getActivity(), "Admin is required", Toast.LENGTH_SHORT).show();
-                }
-                if (!etDescription.getText().toString().equals("") && etDescription.getText() != null) {
-                    StringBuffer buffer = new StringBuffer(etDescription.getText().toString());
-                    campaign.setDescription(buffer.replace(0, DESCRIPTION.length(), "").toString());
-                } else {
-                    allClear = false;
-                    Toast.makeText(getActivity(), "Description is required", Toast.LENGTH_SHORT).show();
-                }
-                if (!etAmbition.getText().toString().equals("") && etAmbition.getText() != null) {
-                    StringBuffer buffer = new StringBuffer(etAmbition.getText().toString());
-                    campaign.setAmbition(buffer.replace(0, AMBITION.length(), "").toString());
-                }
-                if (!etBenefits.getText().toString().equals("") && etBenefits.getText() != null) {
-                    StringBuffer buffer = new StringBuffer(etBenefits.getText().toString());
-                    campaign.setBenefits(buffer.replace(0, BENEFITS_TO_THE_COLLEGE.length(), "").toString());
-                }
-                // if all fields are "allClear", move to confirm changes
-                return allClear;
             }
         });
 
@@ -369,6 +301,79 @@ public class CreateCampaignDialog extends DialogFragment
             campaign.setTimestamp();
             isNewCampaign = false;
         }
+    }
+
+    private boolean fieldVerification() {
+        boolean areFieldsNonEmpty = true;
+        if (themePosition != null) {
+            campaign.setThemeImageUrl(themes.get(themePosition));
+        } else {
+            areFieldsNonEmpty = false;
+            Toast.makeText(getActivity(), "Theme is required", Toast.LENGTH_SHORT).show();
+        }
+        if (spType.getSelectedItemPosition() != 0) {
+            campaign.setRecordType(types.get(spType.getSelectedItemPosition()));
+        } else {
+            areFieldsNonEmpty = false;
+            Toast.makeText(getActivity(), "Type is required", Toast.LENGTH_SHORT).show();
+        }
+        if (spVenue.getSelectedItemPosition() != 0) {
+            campaign.setVenue(venues.get(spVenue.getSelectedItemPosition()));
+        } else {
+            areFieldsNonEmpty = false;
+            Toast.makeText(getActivity(), "Venue is required", Toast.LENGTH_SHORT).show();
+        }
+        if (tvFromDate.getText().toString().equals("") || tvFromDate.getText() == null || tvFromDate.getText().toString().equals(DATE)) {
+            areFieldsNonEmpty = false;
+            Toast.makeText(getActivity(), "Date is required", Toast.LENGTH_SHORT).show();
+        }
+        if (!etTitle.getText().toString().equals("") && etTitle.getText() != null) {
+            campaign.setTitle(etTitle.getText().toString());
+        } else {
+            areFieldsNonEmpty = false;
+            Toast.makeText(getActivity(), "Title is required", Toast.LENGTH_SHORT).show();
+        }
+        if (verify(etAbbreviation)) {
+            campaign.setAbbreviation(getTextFrom(etAbbreviation));
+        }
+        if (!etAdmin.getText().toString().equals("") && etAdmin.getText() != null) {
+            campaign.setAdmin(etAdmin.getText().toString());
+        } else {
+            areFieldsNonEmpty = false;
+            Toast.makeText(getActivity(), "Admin is required", Toast.LENGTH_SHORT).show();
+        }
+        if (!etDescription.getText().toString().equals("") && etDescription.getText() != null) {
+            StringBuffer buffer = new StringBuffer(etDescription.getText().toString());
+            campaign.setDescription(buffer.replace(0, DESCRIPTION.length(), "").toString());
+        } else {
+            areFieldsNonEmpty = false;
+            Toast.makeText(getActivity(), "Description is required", Toast.LENGTH_SHORT).show();
+        }
+        if (!etAmbition.getText().toString().equals("") && etAmbition.getText() != null) {
+            StringBuffer buffer = new StringBuffer(etAmbition.getText().toString());
+            campaign.setAmbition(buffer.replace(0, AMBITION.length(), "").toString());
+        }
+        if (!etBenefits.getText().toString().equals("") && etBenefits.getText() != null) {
+            StringBuffer buffer = new StringBuffer(etBenefits.getText().toString());
+            campaign.setBenefits(buffer.replace(0, BENEFITS_TO_THE_COLLEGE.length(), "").toString());
+        }
+        return areFieldsNonEmpty;
+    }
+
+    private void highlightView(LinearLayout view, int position) {
+        LinearLayout imgLayout = view;
+        if (lastClick != null) {
+            lastClick.setBackgroundResource(R.drawable.background_square_shadow);
+            ImageView lastImg = (ImageView) lastClick.getChildAt(0);
+            lastImg.setColorFilter(Color.parseColor("#59000000"));
+            lastImg.setBackgroundColor(Color.parseColor("#59000000"));
+        }
+        imgLayout.setBackgroundResource(R.drawable.background_square_selected_shadow);
+        ImageView img = (ImageView) imgLayout.getChildAt(0);
+        img.setColorFilter(Color.parseColor("#00000000"));
+        img.setBackgroundColor(Color.parseColor("#00000000"));
+        themePosition = position;
+        lastClick = view;
     }
 
     private void loadCampaignData() {

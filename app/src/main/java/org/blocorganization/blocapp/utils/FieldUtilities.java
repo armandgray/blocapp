@@ -33,10 +33,13 @@ public class FieldUtilities {
         }
     }
 
-    public static void setTextForEditTextWith(String text, EditText etReference) {
-        if (text != null && !text.equals("")) {
-            etReference.setText(text);
-        }
+    public static boolean verify(EditText etReference) {
+        String text = etReference.getText().toString();
+        return !text.equals("");
+    }
+
+    public static String getTextFrom(EditText etReference) {
+        return etReference.getText().toString();
     }
 
     public static void setTextForTextViewAndPrepend(String prependedText, String text, TextView tvReference) {
@@ -48,6 +51,12 @@ public class FieldUtilities {
     public static void setTextForTextViewWith(String text, TextView tvReference) {
         if (text != null && !text.equals("")) {
             tvReference.setText(text);
+        }
+    }
+
+    public static void setTextForEditTextWith(String text, EditText etReference) {
+        if (text != null && !text.equals("")) {
+            etReference.setText(text);
         }
     }
 
