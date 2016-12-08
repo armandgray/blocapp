@@ -7,7 +7,7 @@ import org.joda.time.DateTime;
 
 import java.util.ArrayList;
 
-public class DateTimeHandler {
+public class DateTimeFormatHandler {
 
     private static final int SECONDS_ZERO = 0;
     private static final int YEAR = 0;

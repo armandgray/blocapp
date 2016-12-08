@@ -17,7 +17,7 @@ import org.blocorganization.blocapp.models.Campaign;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.blocorganization.blocapp.utils.DateTimeHandler.setTextForDateWith;
+import static org.blocorganization.blocapp.utils.DateTimeFormatHandler.setTextForDateWith;
 
 public class CampaignDetailActivity extends AppCompatActivity {
 

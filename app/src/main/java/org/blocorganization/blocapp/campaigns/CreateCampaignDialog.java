@@ -40,7 +40,7 @@ import java.util.List;
 import static org.blocorganization.blocapp.campaigns.CreateCampaignDialogUtilities.saveCampaignToDatabaseWith;
 import static org.blocorganization.blocapp.campaigns.CreateCampaignDialogUtilities.startDetailActivityWith;
 import static org.blocorganization.blocapp.campaigns.UploadButtonIncluder.setupUploadButtonFrom;
-import static org.blocorganization.blocapp.utils.DateTimeHandler.setTextForDateWith;
+import static org.blocorganization.blocapp.utils.DateTimeFormatHandler.setTextForDateWith;
 import static org.blocorganization.blocapp.utils.FieldUtilities.AMBITION;
 import static org.blocorganization.blocapp.utils.FieldUtilities.BENEFITS_TO_THE_COLLEGE;
 import static org.blocorganization.blocapp.utils.FieldUtilities.DESCRIPTION;
@@ -225,44 +225,7 @@ public class CreateCampaignDialog extends DialogFragment
         });
 
         assignDateFields(rootView);
-
-        editDateEndLayout.setVisibility(View.GONE);
-        editDateFromLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new DateTimePickerFragment()
-                        .show(getChildFragmentManager(), DATE_TIME_PICKER);
-            }
-        });
-
-        editDateEndLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new DateTimePickerFragment()
-                        .show(getChildFragmentManager(), DATE_TIME_PICKER);
-                tvToDate.setTextColor(Color.parseColor("#FFFFFF"));
-                ivToDateMenuArrow.setColorFilter(Color.parseColor("#FFFFFF"));
-                ivToDateMenuArrow.setImageResource(R.drawable.ic_menu_down_white_48dp);
-                isRange = true;
-                editEndDate = true;
-            }
-        });
-        editDateFromLayout.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                showEndDateView();
-                editDateFromLayout.setBackgroundResource(R.drawable.date_divider_background);
-                editDateFromLayout.setPadding(GetDpMeasurement.getDPI(getActivity(), 10), 0, 0, GetDpMeasurement.getDPI(getActivity(), 5));
-
-                return isRange = true;
-            }
-        });
-        editDateEndLayout.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                return hideEndDateView();
-            }
-        });
+        setupDateClickListeners();
 
         setupUploadButtonFrom(rootView, this);
         ivUpload = (ImageView) rootView.findViewById(R.id.ivUpload);
@@ -281,15 +244,14 @@ public class CreateCampaignDialog extends DialogFragment
     }
 
     private void highlightView(LinearLayout view, int position) {
-        LinearLayout imgLayout = view;
         if (lastClick != null) {
             lastClick.setBackgroundResource(R.drawable.background_square_shadow);
             ImageView lastImg = (ImageView) lastClick.getChildAt(0);
             lastImg.setColorFilter(Color.parseColor("#59000000"));
             lastImg.setBackgroundColor(Color.parseColor("#59000000"));
         }
-        imgLayout.setBackgroundResource(R.drawable.background_square_selected_shadow);
-        ImageView img = (ImageView) imgLayout.getChildAt(0);
+        view.setBackgroundResource(R.drawable.background_square_selected_shadow);
+        ImageView img = (ImageView) view.getChildAt(0);
         img.setColorFilter(Color.parseColor("#00000000"));
         img.setBackgroundColor(Color.parseColor("#00000000"));
         themePosition = position;
@@ -362,19 +324,45 @@ public class CreateCampaignDialog extends DialogFragment
         ivToDateMenuArrow = (ImageView) rootView.findViewById(R.id.ivMenuArrow);
     }
 
-    private void loadCampaignData() {
-        if (getArguments() != null) {
-            setSelectionForSpinnerFromList(types, campaign.getRecordType(), spType);
-            setSelectionForSpinnerFromList(venues, campaign.getVenue(), spVenue);
-            loadDateFields();
-            setTextForEditTextWith(campaign.getTitle(), etTitle);
-            setTextForEditTextWith(campaign.getAbbreviation(), etAbbreviation);
-            setTextForEditTextWith(campaign.getAdmin(), etAdmin);
-            setTextForEditTextAndPrepend(DESCRIPTION, campaign.getDescription(), etDescription);
-            setTextForEditTextAndPrepend(AMBITION, campaign.getAmbition(), etAmbition);
-            setTextForEditTextAndPrepend(BENEFITS_TO_THE_COLLEGE, campaign.getBenefits(), etBenefits);
-            loadUrlIntoImageViewWithActivity(campaign.getPhotoUrl(), ivUpload, getActivity());
-        }
+    private void setupDateClickListeners() {
+        editDateEndLayout.setVisibility(View.GONE);
+        editDateFromLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new DateTimePickerFragment()
+                        .show(getChildFragmentManager(), DATE_TIME_PICKER);
+            }
+        });
+
+        editDateEndLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new DateTimePickerFragment()
+                        .show(getChildFragmentManager(), DATE_TIME_PICKER);
+                setupDateInitialState();
+            }
+        });
+        editDateFromLayout.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                showEndDateView();
+                return isRange = true;
+            }
+        });
+        editDateEndLayout.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                return hideEndDateView();
+            }
+        });
+    }
+
+    private void setupDateInitialState() {
+        tvToDate.setTextColor(Color.parseColor("#FFFFFF"));
+        ivToDateMenuArrow.setColorFilter(Color.parseColor("#FFFFFF"));
+        ivToDateMenuArrow.setImageResource(R.drawable.ic_menu_down_white_48dp);
+        isRange = true;
+        editEndDate = true;
     }
 
     private void loadDateFields() {
@@ -383,6 +371,24 @@ public class CreateCampaignDialog extends DialogFragment
             setTextForDateWith(campaign.getToDate(), tvToDate, false);
             showEndDateView();
         }
+    }
+
+    private void showEndDateView() {
+        editDateEndLayout.setPadding(GetDpMeasurement.getDPI(getActivity(), 10), GetDpMeasurement.getDPI(getActivity(), 5), 0, 0);
+        editDateEndLayout.setVisibility(View.VISIBLE);
+
+        tvToDate.setTextColor(Color.parseColor("#333333"));
+        ivToDateMenuArrow.setImageResource(R.drawable.ic_menu_down_white_48dp);
+        ivToDateMenuArrow.setColorFilter(Color.parseColor("#333333"));
+
+        editDateFromLayout.setBackgroundResource(R.drawable.date_divider_background);
+        editDateFromLayout.setPadding(GetDpMeasurement.getDPI(getActivity(), 10), 0, 0, GetDpMeasurement.getDPI(getActivity(), 5));
+    }
+
+    private boolean hideEndDateView() {
+        editDateLayout.getChildAt(2).setVisibility(View.GONE);
+        editDateLayout.getChildAt(1).setBackgroundResource(R.color.colorPrimaryDark);
+        return isRange = false;
     }
 
     @Override
@@ -428,19 +434,19 @@ public class CreateCampaignDialog extends DialogFragment
         }
     }
 
-    private void showEndDateView() {
-        editDateEndLayout.setPadding(GetDpMeasurement.getDPI(getActivity(), 10), GetDpMeasurement.getDPI(getActivity(), 5), 0, 0);
-        editDateEndLayout.setVisibility(View.VISIBLE);
-
-        tvToDate.setTextColor(Color.parseColor("#333333"));
-        ivToDateMenuArrow.setImageResource(R.drawable.ic_menu_down_white_48dp);
-        ivToDateMenuArrow.setColorFilter(Color.parseColor("#333333"));
-    }
-
-    private boolean hideEndDateView() {
-        editDateLayout.getChildAt(2).setVisibility(View.GONE);
-        editDateLayout.getChildAt(1).setBackgroundResource(R.color.colorPrimaryDark);
-        return isRange = false;
+    private void loadCampaignData() {
+        if (getArguments() != null) {
+            setSelectionForSpinnerFromList(types, campaign.getRecordType(), spType);
+            setSelectionForSpinnerFromList(venues, campaign.getVenue(), spVenue);
+            loadDateFields();
+            setTextForEditTextWith(campaign.getTitle(), etTitle);
+            setTextForEditTextWith(campaign.getAbbreviation(), etAbbreviation);
+            setTextForEditTextWith(campaign.getAdmin(), etAdmin);
+            setTextForEditTextAndPrepend(DESCRIPTION, campaign.getDescription(), etDescription);
+            setTextForEditTextAndPrepend(AMBITION, campaign.getAmbition(), etAmbition);
+            setTextForEditTextAndPrepend(BENEFITS_TO_THE_COLLEGE, campaign.getBenefits(), etBenefits);
+            loadUrlIntoImageViewWithActivity(campaign.getPhotoUrl(), ivUpload, getActivity());
+        }
     }
 
     private void assignEditTextFields(View rootView) {
