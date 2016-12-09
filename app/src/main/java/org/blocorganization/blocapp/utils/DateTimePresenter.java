@@ -116,18 +116,7 @@ public class DateTimePresenter {
         }
     }
 
-    public void updateDateFields(Campaign campaign, int year, int month, int day, int hourOfDay, String minute) {
-        ArrayList<Integer> date = new ArrayList<>();
-        date.add(year);
-        date.add(month);
-        date.add(day);
-        date.add(hourOfDay);
-        date.add(Integer.valueOf(minute));
-
-        setTextForEditedDateField(campaign, date);
-    }
-
-    private void setTextForEditedDateField(Campaign campaign, ArrayList<Integer> date) {
+    public void setTextForEditedDateField(Campaign campaign, ArrayList<Integer> date) {
         if (isRange == null) {
             setupInitialState();
             setTextForDateWith(date, tvFromDate, true);
