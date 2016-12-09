@@ -9,7 +9,7 @@ import org.blocorganization.blocapp.R;
 
 public class DialogSubmitUtilities {
 
-    public static final String DIALOG = "DIALOG";
+    private static final String DIALOG = "DIALOG";
 
     private View rootView;
     private Fragment fragment;

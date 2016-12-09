@@ -137,9 +137,9 @@ public class CreateCampaignDialog extends DialogFragment
 
     private void setupRvThemes(View rootView) {
         rvThemes = (RecyclerView) rootView.findViewById(R.id.rvThemes);
-
         DatabaseReference dbThemes = databaseResources.child(IMAGEURLS).child(THEMES);
-        utilities.getRvImageUrlListFrom(dbThemes, rvThemes);
+
+        themes = utilities.getRvImageUrlListFrom(dbThemes, rvThemes);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         rvThemes.setLayoutManager(layoutManager);
@@ -160,8 +160,8 @@ public class CreateCampaignDialog extends DialogFragment
         DatabaseReference dbVenues = mDatabaseResources.child(VENUES);
         DatabaseReference dbTypes = mDatabaseResources.child(TYPES);
 
-        utilities.getSpinnerListItemsFrom(dbVenues, spVenue, VENUE);
-        utilities.getSpinnerListItemsFrom(dbTypes, spType, TYPE);
+        venues = utilities.getSpinnerListItemsFrom(dbVenues, spVenue, VENUE);
+        types = utilities.getSpinnerListItemsFrom(dbTypes, spType, TYPE);
     }
 
     private void setupDateTimePresenter(View rootView) {

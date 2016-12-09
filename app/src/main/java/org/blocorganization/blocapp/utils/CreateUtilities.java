@@ -46,7 +46,7 @@ public class CreateUtilities {
         this.listItems = new ArrayList<>();
     }
 
-    public void getRvImageUrlListFrom(DatabaseReference databaseReference, final RecyclerView recyclerView) {
+    public List<String> getRvImageUrlListFrom(DatabaseReference databaseReference, final RecyclerView recyclerView) {
         databaseReference.addValueEventListener(new ValueEventListener() {
             private ImageThemeAdapter adapter;
 
@@ -66,9 +66,10 @@ public class CreateUtilities {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+        return listItems;
     }
 
-    public void getSpinnerListItemsFrom(DatabaseReference databaseReference, final Spinner spinner, final String methodCall) {
+    public List<String> getSpinnerListItemsFrom(DatabaseReference databaseReference, final Spinner spinner, final String methodCall) {
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -90,6 +91,7 @@ public class CreateUtilities {
 
             }
         });
+        return listItems;
     }
 
     private void getSelectionFor(String methodCall, Spinner spinner) {
