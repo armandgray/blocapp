@@ -27,15 +27,15 @@ import org.blocorganization.blocapp.models.Campaign;
 import org.blocorganization.blocapp.utils.ConfirmChangesDialogFragment;
 import org.blocorganization.blocapp.utils.DateTimePickerFragment;
 import org.blocorganization.blocapp.utils.DateTimePresenter;
+import org.blocorganization.blocapp.utils.DialogSubmitUtilities;
 import org.blocorganization.blocapp.utils.ImageThemeAdapter;
 import org.blocorganization.blocapp.utils.RecyclerItemClickListener;
-import org.blocorganization.blocapp.utils.SpinnerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.blocorganization.blocapp.campaigns.CreateCampaignDialogUtilities.saveCampaignToDatabaseWith;
-import static org.blocorganization.blocapp.campaigns.CreateCampaignDialogUtilities.startDetailActivityWith;
+import static org.blocorganization.blocapp.campaigns.CreateUtilities.TYPE;
+import static org.blocorganization.blocapp.campaigns.CreateUtilities.VENUE;
 import static org.blocorganization.blocapp.campaigns.UploadButtonIncluder.setupUploadButtonFrom;
 import static org.blocorganization.blocapp.utils.DateTimePresenter.DATE_TIME_PICKER;
 import static org.blocorganization.blocapp.utils.FieldUtilities.AMBITION;
@@ -58,7 +58,6 @@ public class CreateCampaignDialog extends DialogFragment
     public static final String RES = "res";
     public static final String VENUES = "venues";
     public static final String TYPES = "types";
-    public static final String DIALOG = "DIALOG";
     public static final String DATE = "Date";
 
     private Campaign campaign;
@@ -86,6 +85,7 @@ public class CreateCampaignDialog extends DialogFragment
     LinearLayout previousSelectedTheme;
     private boolean isNewCampaign = true;
     private DateTimePresenter dateTimePresenter;
+    private CreateUtilities utilities;
 
     public static CreateCampaignDialog withCampaign(Campaign passedCampaign) {
         CreateCampaignDialog fragment = new CreateCampaignDialog();
@@ -141,74 +141,11 @@ public class CreateCampaignDialog extends DialogFragment
             }
         });
 
-        spVenue = (Spinner) rootView.findViewById(R.id.spVenue);
+        utilities = new CreateUtilities(campaign, getActivity());
+        getSpinnersListItems(rootView, mDatabaseResources);
 
-        // get venues from Firebase
-        DatabaseReference dbVenues = mDatabaseResources.child(VENUES);
-        dbVenues.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                venues = (List) dataSnapshot.getValue();
-                if (spVenue.getAdapter() == null) {
-                    SpinnerAdapter adVenues = new SpinnerAdapter(venues, getActivity());
-                    spVenue.setAdapter(adVenues);
-                    loadCampaignData();
-                } else {
-                    adapter.notifyDataSetChanged();
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        spType = (Spinner) rootView.findViewById(R.id.spType);
-
-        // get types from Firebase
-        DatabaseReference dbTypes = mDatabaseResources.child(TYPES);
-        dbTypes.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                types = (List) dataSnapshot.getValue();
-                if (spType.getAdapter() == null) {
-                    SpinnerAdapter adType = new SpinnerAdapter(types, getActivity());
-                    spType.setAdapter(adType);
-                    loadCampaignData();
-                } else {
-                    adapter.notifyDataSetChanged();
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
-
-        // handle check btn clicks
-        ImageView ivSubmit = (ImageView) rootView.findViewById(R.id.ivSubmit);
-        ivSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // field validation before confirming changes
-                if (fieldVerification()) {
-                    new ConfirmChangesDialogFragment().show(
-                            getChildFragmentManager(), DIALOG);
-                }
-            }
-        });
-
-        ImageView ivCancel = (ImageView) rootView.findViewById(R.id.ivCancel);
-        ivCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (getArguments() == null) {
-                    getActivity().onBackPressed();
-                }
-                getActivity().onBackPressed();
-            }
-        });
+        DialogSubmitUtilities submitUtilities = new DialogSubmitUtilities(rootView, this);
+        submitUtilities.setupClickListeners();
 
         dateTimePresenter = new DateTimePresenter(rootView, this);
         dateTimePresenter.loadDateFields(campaign);
@@ -219,6 +156,17 @@ public class CreateCampaignDialog extends DialogFragment
         assignEditTextFields(rootView);
 
         return rootView;
+    }
+
+    private void getSpinnersListItems(View rootView, DatabaseReference mDatabaseResources) {
+        spVenue = (Spinner) rootView.findViewById(R.id.spVenue);
+        spType = (Spinner) rootView.findViewById(R.id.spType);
+
+        DatabaseReference dbVenues = mDatabaseResources.child(VENUES);
+        DatabaseReference dbTypes = mDatabaseResources.child(TYPES);
+
+        utilities.getSpinnerListItemsFrom(dbVenues, spVenue, VENUE);
+        utilities.getSpinnerListItemsFrom(dbTypes, spType, TYPE);
     }
 
     private void getPassedCampaign() {
@@ -244,7 +192,7 @@ public class CreateCampaignDialog extends DialogFragment
         previousSelectedTheme = view;
     }
 
-    private boolean fieldVerification() {
+    public boolean fieldVerification() {
         boolean areFieldsNonEmpty = true;
         if (themePosition != null) {
             campaign.setThemeImageUrl(themes.get(themePosition));
@@ -324,7 +272,6 @@ public class CreateCampaignDialog extends DialogFragment
     private void loadCampaignData() {
         if (getArguments() != null) {
             setSelectionForSpinnerFromList(types, campaign.getRecordType(), spType);
-            setSelectionForSpinnerFromList(venues, campaign.getVenue(), spVenue);
             setTextForEditTextWith(campaign.getTitle(), etTitle);
             setTextForEditTextWith(campaign.getAbbreviation(), etAbbreviation);
             setTextForEditTextWith(campaign.getAdmin(), etAdmin);
@@ -347,8 +294,8 @@ public class CreateCampaignDialog extends DialogFragment
 
     @Override
     public void onConfirmSave() {
-        saveCampaignToDatabaseWith(getActivity(), campaign);
-        startDetailActivityWith(getActivity(), campaign, isNewCampaign);
+        utilities.saveCampaignToDatabase();
+        utilities.startDetailActivityWith(getActivity(), isNewCampaign);
     }
 
     @Override
@@ -358,5 +305,4 @@ public class CreateCampaignDialog extends DialogFragment
         UploadActivityListener resultListener = new UploadActivityListener(getActivity());
         resultListener.onActivityResult(requestCode, resultCode, data, campaign, ivUpload);
     }
-
 }
