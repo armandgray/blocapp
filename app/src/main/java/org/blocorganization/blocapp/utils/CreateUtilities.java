@@ -3,6 +3,7 @@ package org.blocorganization.blocapp.utils;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.RecyclerView;
 import android.widget.Spinner;
 
 import com.google.firebase.database.DataSnapshot;
@@ -18,6 +19,7 @@ import org.blocorganization.blocapp.models.Campaign;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.blocorganization.blocapp.campaigns.CreateCampaignDialog.THEME_LAYOUT_PARAMS;
 import static org.blocorganization.blocapp.utils.FieldUtilities.setSelectionForSpinnerFromList;
 
 public class CreateUtilities {
@@ -41,6 +43,28 @@ public class CreateUtilities {
         this.campaign = campaign;
         this.activity = activity;
         this.listItems = new ArrayList<>();
+    }
+
+    public void getRvImageUrlListFrom(DatabaseReference databaseReference, final RecyclerView recyclerView) {
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            private ImageThemeAdapter adapter;
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                listItems = (List) dataSnapshot.getValue();
+                if (recyclerView.getAdapter() == null) {
+                    adapter = new ImageThemeAdapter(activity,
+                            listItems, THEME_LAYOUT_PARAMS, campaign.getThemeImageUrl());
+                    recyclerView.setAdapter(adapter);
+                } else {
+                    adapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
     }
 
     public void getSpinnerListItemsFrom(DatabaseReference databaseReference, final Spinner spinner, final String methodCall) {

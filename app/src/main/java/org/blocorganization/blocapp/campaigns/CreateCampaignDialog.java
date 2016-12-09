@@ -16,11 +16,8 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import org.blocorganization.blocapp.R;
 import org.blocorganization.blocapp.models.Campaign;
@@ -86,6 +83,7 @@ public class CreateCampaignDialog extends DialogFragment
     private boolean isNewCampaign = true;
     private DateTimePresenter dateTimePresenter;
     private CreateUtilities utilities;
+    private DatabaseReference databaseResources;
 
     public static CreateCampaignDialog withCampaign(Campaign passedCampaign) {
         CreateCampaignDialog fragment = new CreateCampaignDialog();
@@ -96,71 +94,24 @@ public class CreateCampaignDialog extends DialogFragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout to use as dialog or embedded fragment
         final View rootView = inflater.inflate(R.layout.create_campaign_dialog, container, false);
 
+        setupUtilities(rootView);
         getPassedCampaign();
         assignEditTextFields(rootView);
-
-        DatabaseReference mDatabaseResources = FirebaseDatabase.getInstance().getReference().child(RES);
-        DatabaseReference dbThemes = mDatabaseResources.child(IMAGEURLS).child(THEMES);
-
-        // Load Recycler with jpg from Firebase
-        rvThemes = (RecyclerView) rootView.findViewById(R.id.rvThemes);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        rvThemes.setLayoutManager(layoutManager);
-        rvThemes.addOnItemTouchListener(new RecyclerItemClickListener(getContext(),
-                new RecyclerItemClickListener.OnItemClickListener() {
-
-                    @Override
-                    public void onItemClick(View view, int position) {
-                        highlightView((LinearLayout) view, position);
-                    }
-                }));
-
-        dbThemes.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                themes = (List) dataSnapshot.getValue();
-                if (rvThemes.getAdapter() == null) {
-                        adapter = new ImageThemeAdapter(getActivity(),
-                                themes, THEME_LAYOUT_PARAMS, campaign.getThemeImageUrl());
-                    rvThemes.setAdapter(adapter);
-                    loadCampaignData();
-                } else {
-                    adapter.notifyDataSetChanged();
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
-
-        utilities = new CreateUtilities(campaign, getActivity());
-        getSpinnersListItemsFrom(mDatabaseResources, rootView);
-
-        DialogSubmitUtilities submitUtilities = new DialogSubmitUtilities(rootView, this);
-        submitUtilities.setupClickListeners();
-
-        dateTimePresenter = new DateTimePresenter(rootView, this);
-        dateTimePresenter.loadDateFields(campaign);
-
+        setupRvThemes(rootView);
+        setupSpinnersFrom(databaseResources, rootView);
+        setupDateTimePresenter(rootView);
         setupUploadButtonFrom(rootView, this);
-        ivUpload = (ImageView) rootView.findViewById(R.id.ivUpload);
 
         return rootView;
     }
 
-    private void getSpinnersListItemsFrom(DatabaseReference mDatabaseResources, View rootView) {
-        spVenue = (Spinner) rootView.findViewById(R.id.spVenue);
-        spType = (Spinner) rootView.findViewById(R.id.spType);
-
-        DatabaseReference dbVenues = mDatabaseResources.child(VENUES);
-        DatabaseReference dbTypes = mDatabaseResources.child(TYPES);
-
-        utilities.getSpinnerListItemsFrom(dbVenues, spVenue, VENUE);
-        utilities.getSpinnerListItemsFrom(dbTypes, spType, TYPE);
+    private void setupUtilities(View rootView) {
+        utilities = new CreateUtilities(campaign, getActivity());
+        databaseResources = FirebaseDatabase.getInstance().getReference().child(RES);
+        DialogSubmitUtilities submitUtilities = new DialogSubmitUtilities(rootView, this);
+        submitUtilities.setupClickListeners();
     }
 
     private void getPassedCampaign() {
@@ -181,6 +132,40 @@ public class CreateCampaignDialog extends DialogFragment
             setTextForEditTextAndPrepend(BENEFITS_TO_THE_COLLEGE, campaign.getBenefits(), etBenefits);
             loadUrlIntoImageViewWithActivity(campaign.getPhotoUrl(), ivUpload, getActivity());
         }
+    }
+
+    private void setupRvThemes(View rootView) {
+        rvThemes = (RecyclerView) rootView.findViewById(R.id.rvThemes);
+
+        DatabaseReference dbThemes = databaseResources.child(IMAGEURLS).child(THEMES);
+        utilities.getRvImageUrlListFrom(dbThemes, rvThemes);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        rvThemes.setLayoutManager(layoutManager);
+        rvThemes.addOnItemTouchListener(new RecyclerItemClickListener(getContext(),
+                new RecyclerItemClickListener.OnItemClickListener() {
+
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        highlightView((LinearLayout) view, position);
+                    }
+                }));
+    }
+
+    private void setupSpinnersFrom(DatabaseReference mDatabaseResources, View rootView) {
+        spVenue = (Spinner) rootView.findViewById(R.id.spVenue);
+        spType = (Spinner) rootView.findViewById(R.id.spType);
+
+        DatabaseReference dbVenues = mDatabaseResources.child(VENUES);
+        DatabaseReference dbTypes = mDatabaseResources.child(TYPES);
+
+        utilities.getSpinnerListItemsFrom(dbVenues, spVenue, VENUE);
+        utilities.getSpinnerListItemsFrom(dbTypes, spType, TYPE);
+    }
+
+    private void setupDateTimePresenter(View rootView) {
+        dateTimePresenter = new DateTimePresenter(rootView, this);
+        dateTimePresenter.loadDateFields(campaign);
     }
 
     private void assignEditTextFields(View rootView) {
