@@ -1,5 +1,6 @@
 package org.blocorganization.blocapp.utils;
 
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.ImageView;
@@ -18,16 +19,19 @@ public class DialogSubmitUtilities {
         this.fragment = fragment;
     }
 
-    public void setupClickListeners() {
+    public void setupClickListeners(@NonNull final DialogSubmitListener dialogSubmitListener) {
         ImageView ivSubmit = (ImageView) rootView.findViewById(R.id.ivSubmit);
         ivSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // field validation before confirming changes
-                // TODO Change true in field verification
-                if (true) {
-                    new ConfirmChangesDialogFragment().show(
-                            fragment.getChildFragmentManager(), DIALOG);
+                try {
+                    if (dialogSubmitListener.verifyFields()) {
+                        new ConfirmChangesDialogFragment().show(
+                                fragment.getChildFragmentManager(), DIALOG);
+                    }
+                } catch (NullPointerException e) {
+                    throw new NullPointerException(fragment.toString()
+                            + " must implement DialogSubmitListener");
                 }
             }
         });
@@ -42,5 +46,9 @@ public class DialogSubmitUtilities {
                 fragment.getActivity().onBackPressed();
             }
         });
+    }
+
+    public interface DialogSubmitListener {
+        boolean verifyFields();
     }
 }

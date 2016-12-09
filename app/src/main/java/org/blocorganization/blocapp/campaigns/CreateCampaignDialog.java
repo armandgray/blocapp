@@ -26,7 +26,6 @@ import org.blocorganization.blocapp.utils.CreateUtilities;
 import org.blocorganization.blocapp.utils.DateTimePickerFragment;
 import org.blocorganization.blocapp.utils.DateTimePresenter;
 import org.blocorganization.blocapp.utils.DialogSubmitUtilities;
-import org.blocorganization.blocapp.utils.ImageThemeAdapter;
 import org.blocorganization.blocapp.utils.RecyclerItemClickListener;
 
 import java.util.ArrayList;
@@ -39,6 +38,7 @@ import static org.blocorganization.blocapp.utils.DateTimePresenter.DATE_TIME_PIC
 import static org.blocorganization.blocapp.utils.FieldUtilities.AMBITION;
 import static org.blocorganization.blocapp.utils.FieldUtilities.BENEFITS_TO_THE_COLLEGE;
 import static org.blocorganization.blocapp.utils.FieldUtilities.DESCRIPTION;
+import static org.blocorganization.blocapp.utils.FieldUtilities.alertVerify;
 import static org.blocorganization.blocapp.utils.FieldUtilities.getTextFrom;
 import static org.blocorganization.blocapp.utils.FieldUtilities.loadUrlIntoImageViewWithActivity;
 import static org.blocorganization.blocapp.utils.FieldUtilities.setTextForEditTextAndPrepend;
@@ -47,7 +47,8 @@ import static org.blocorganization.blocapp.utils.FieldUtilities.verify;
 
 public class CreateCampaignDialog extends DialogFragment
         implements DateTimePickerFragment.DateTimeSetListener,
-        ConfirmChangesDialogFragment.ConfirmChangesListener {
+        ConfirmChangesDialogFragment.ConfirmChangesListener,
+        DialogSubmitUtilities.DialogSubmitListener {
 
     public static final int THEME_LAYOUT_PARAMS = 100;
     public static final String THEMES = "themes";
@@ -56,34 +57,34 @@ public class CreateCampaignDialog extends DialogFragment
     public static final String VENUES = "venues";
     public static final String TYPES = "types";
     public static final String DATE = "Date";
+    public static final String ADMIN_REQUIRED = "Admin Required";
 
     private Campaign campaign;
+    private boolean isNewCampaign = true;
 
-    private ImageThemeAdapter adapter;
+    private DateTimePresenter dateTimePresenter;
+    private CreateUtilities utilities;
+    private DatabaseReference databaseResources;
+
     private List<String> themes = new ArrayList<>();
     private List<String> venues = new ArrayList<>();
     private List<String> types = new ArrayList<>();
 
-    // upload media fields
-    private ImageView ivUpload;
-
-    // fields references
-    private Integer themePosition;
     private EditText etTitle;
     private EditText etAbbreviation;
     private EditText etAdmin;
     private EditText etDescription;
     private EditText etAmbition;
     private EditText etBenefits;
+    private ImageView ivUpload;
+
     private Spinner spType;
     private Spinner spVenue;
     private RecyclerView rvThemes;
 
+    private Integer themePosition;
     LinearLayout previousSelectedTheme;
-    private boolean isNewCampaign = true;
-    private DateTimePresenter dateTimePresenter;
-    private CreateUtilities utilities;
-    private DatabaseReference databaseResources;
+
 
     public static CreateCampaignDialog withCampaign(Campaign passedCampaign) {
         CreateCampaignDialog fragment = new CreateCampaignDialog();
@@ -98,7 +99,7 @@ public class CreateCampaignDialog extends DialogFragment
 
         getPassedCampaign();
         setupUtilities(rootView);
-        assignEditTextFields(rootView);
+        assignFields(rootView);
         setupRvThemes(rootView);
         setupSpinnersFrom(databaseResources, rootView);
         setupDateTimePresenter(rootView);
@@ -107,19 +108,19 @@ public class CreateCampaignDialog extends DialogFragment
         return rootView;
     }
 
-    private void setupUtilities(View rootView) {
-        utilities = new CreateUtilities(campaign, getActivity());
-        databaseResources = FirebaseDatabase.getInstance().getReference().child(RES);
-        DialogSubmitUtilities submitUtilities = new DialogSubmitUtilities(rootView, this);
-        submitUtilities.setupClickListeners();
-    }
-
     private void getPassedCampaign() {
         campaign = new Campaign(getArguments());
         if (getArguments() == null) {
             campaign.setTimestamp();
             isNewCampaign = false;
         }
+    }
+
+    private void setupUtilities(View rootView) {
+        utilities = new CreateUtilities(campaign, getActivity());
+        databaseResources = FirebaseDatabase.getInstance().getReference().child(RES);
+        DialogSubmitUtilities submitUtilities = new DialogSubmitUtilities(rootView, this);
+        submitUtilities.setupClickListeners(this);
     }
 
     private void loadCampaignData() {
@@ -168,7 +169,7 @@ public class CreateCampaignDialog extends DialogFragment
         dateTimePresenter.loadDateFields(campaign);
     }
 
-    private void assignEditTextFields(View rootView) {
+    private void assignFields(View rootView) {
         etTitle = (EditText) rootView.findViewById(R.id.etTitle);
         etAbbreviation = (EditText) rootView.findViewById(R.id.etAbbreviation);
         etAbbreviation.setFilters(new InputFilter[]{new InputFilter.AllCaps(), new InputFilter.LengthFilter(3)});
@@ -176,6 +177,7 @@ public class CreateCampaignDialog extends DialogFragment
         etDescription = (EditText) rootView.findViewById(R.id.etDescription);
         etAmbition = (EditText) rootView.findViewById(R.id.etAmbition);
         etBenefits = (EditText) rootView.findViewById(R.id.etBenefits);
+        ivUpload = (ImageView) rootView.findViewById(R.id.ivUpload);
     }
 
     private void highlightView(LinearLayout view, int position) {
@@ -193,7 +195,27 @@ public class CreateCampaignDialog extends DialogFragment
         previousSelectedTheme = view;
     }
 
-    public boolean fieldVerification() {
+    @Override
+    public void onDatePickerCancel() {
+        DialogFragment dialog = (DialogFragment) getChildFragmentManager()
+                .findFragmentByTag(DATE_TIME_PICKER);
+        dialog.dismiss();
+    }
+
+    @Override
+    public void onEventDateTimeSet(int year, int month, int day, int hourOfDay, String minute) {
+        ArrayList<Integer> date = new ArrayList<>();
+        date.add(year);
+        date.add(month);
+        date.add(day);
+        date.add(hourOfDay);
+        date.add(Integer.valueOf(minute));
+
+        dateTimePresenter.setTextForEditedDateField(campaign, date);
+    }
+
+    @Override
+    public boolean verifyFields() {
         boolean areFieldsNonEmpty = true;
         if (themePosition != null) {
             campaign.setThemeImageUrl(themes.get(themePosition));
@@ -223,15 +245,9 @@ public class CreateCampaignDialog extends DialogFragment
             areFieldsNonEmpty = false;
             Toast.makeText(getActivity(), "Title is required", Toast.LENGTH_SHORT).show();
         }
-        if (verify(etAbbreviation)) {
-            campaign.setAbbreviation(getTextFrom(etAbbreviation));
-        }
-        if (!etAdmin.getText().toString().equals("") && etAdmin.getText() != null) {
-            campaign.setAdmin(etAdmin.getText().toString());
-        } else {
-            areFieldsNonEmpty = false;
-            Toast.makeText(getActivity(), "Admin is required", Toast.LENGTH_SHORT).show();
-        }
+        if (verify(etAbbreviation)) { campaign.setAbbreviation(getTextFrom(etAbbreviation)); }
+        if (alertVerify(etAdmin, ADMIN_REQUIRED)) { campaign.setAdmin(getTextFrom(etAdmin)); }
+
         if (!etDescription.getText().toString().equals("") && etDescription.getText() != null) {
             StringBuffer buffer = new StringBuffer(etDescription.getText().toString());
             campaign.setDescription(buffer.replace(0, DESCRIPTION.length(), "").toString());
@@ -248,25 +264,6 @@ public class CreateCampaignDialog extends DialogFragment
             campaign.setBenefits(buffer.replace(0, BENEFITS_TO_THE_COLLEGE.length(), "").toString());
         }
         return areFieldsNonEmpty;
-    }
-
-    @Override
-    public void onDatePickerCancel() {
-        DialogFragment dialog = (DialogFragment) getChildFragmentManager()
-                .findFragmentByTag(DATE_TIME_PICKER);
-        dialog.dismiss();
-    }
-
-    @Override
-    public void onEventDateTimeSet(int year, int month, int day, int hourOfDay, String minute) {
-        ArrayList<Integer> date = new ArrayList<>();
-        date.add(year);
-        date.add(month);
-        date.add(day);
-        date.add(hourOfDay);
-        date.add(Integer.valueOf(minute));
-
-        dateTimePresenter.setTextForEditedDateField(campaign, date);
     }
 
     @Override

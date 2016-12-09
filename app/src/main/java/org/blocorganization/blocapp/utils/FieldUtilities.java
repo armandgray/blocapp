@@ -6,6 +6,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -36,6 +37,16 @@ public class FieldUtilities {
     public static boolean verify(EditText etReference) {
         String text = etReference.getText().toString();
         return !text.equals("");
+    }
+
+    public static boolean alertVerify(EditText etReference, String alert) {
+        String text = etReference.getText().toString();
+        if (!text.equals("")) {
+            return true;
+        } else {
+            Toast.makeText(etReference.getContext(), alert, Toast.LENGTH_SHORT).show();
+            return false;
+        }
     }
 
     public static String getTextFrom(EditText etReference) {
