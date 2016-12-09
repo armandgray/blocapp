@@ -96,8 +96,8 @@ public class CreateCampaignDialog extends DialogFragment
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.create_campaign_dialog, container, false);
 
-        setupUtilities(rootView);
         getPassedCampaign();
+        setupUtilities(rootView);
         assignEditTextFields(rootView);
         setupRvThemes(rootView);
         setupSpinnersFrom(databaseResources, rootView);

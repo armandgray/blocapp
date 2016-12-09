@@ -2,6 +2,7 @@ package org.blocorganization.blocapp.utils;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Spinner;
@@ -39,7 +40,7 @@ public class CreateUtilities {
         this.listItems = new ArrayList<>();
     }
 
-    public CreateUtilities(Campaign campaign, Activity activity) {
+    public CreateUtilities(@NonNull Campaign campaign, Activity activity) {
         this.campaign = campaign;
         this.activity = activity;
         this.listItems = new ArrayList<>();
