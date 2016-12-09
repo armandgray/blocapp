@@ -1,4 +1,4 @@
-package org.blocorganization.blocapp.campaigns;
+package org.blocorganization.blocapp.utils;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,38 +12,38 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import org.blocorganization.blocapp.BlocApp;
+import org.blocorganization.blocapp.campaigns.CampaignDetailActivity;
 import org.blocorganization.blocapp.models.Campaign;
-import org.blocorganization.blocapp.utils.SpinnerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.blocorganization.blocapp.utils.FieldUtilities.setSelectionForSpinnerFromList;
 
-class CreateUtilities {
+public class CreateUtilities {
 
-    static final String TYPE = "TYPE";
+    public static final String TYPE = "TYPE";
+    public static final String VENUE = "VENUE";
 
     private static final String CAMPAIGNS = "campaigns";
-    public static final String VENUE = "VENUE";
 
     private List<String> listItems;
     @Nullable private Campaign campaign;
     private Activity activity;
 
-    CreateUtilities(Activity activity) {
+    public CreateUtilities(Activity activity) {
         this.campaign = null;
         this.activity = activity;
         this.listItems = new ArrayList<>();
     }
 
-    CreateUtilities(Campaign campaign, Activity activity) {
+    public CreateUtilities(Campaign campaign, Activity activity) {
         this.campaign = campaign;
         this.activity = activity;
         this.listItems = new ArrayList<>();
     }
 
-    void getSpinnerListItemsFrom(DatabaseReference databaseReference, final Spinner spinner, final String methodCall) {
+    public void getSpinnerListItemsFrom(DatabaseReference databaseReference, final Spinner spinner, final String methodCall) {
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -79,7 +79,7 @@ class CreateUtilities {
         }
     }
 
-    void saveCampaignToDatabase() {
+    public void saveCampaignToDatabase() {
         if (campaign != null) {
             DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child(CAMPAIGNS);
             mDatabase.child(String.valueOf(
@@ -88,7 +88,7 @@ class CreateUtilities {
         }
     }
 
-    void startDetailActivityWith(Activity activity, boolean isNewCampaign) {
+    public void startDetailActivityWith(Activity activity, boolean isNewCampaign) {
         if (!isNewCampaign) {
             activity.onBackPressed();
         }

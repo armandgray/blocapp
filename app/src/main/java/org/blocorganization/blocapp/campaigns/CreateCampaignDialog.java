@@ -25,6 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 import org.blocorganization.blocapp.R;
 import org.blocorganization.blocapp.models.Campaign;
 import org.blocorganization.blocapp.utils.ConfirmChangesDialogFragment;
+import org.blocorganization.blocapp.utils.CreateUtilities;
 import org.blocorganization.blocapp.utils.DateTimePickerFragment;
 import org.blocorganization.blocapp.utils.DateTimePresenter;
 import org.blocorganization.blocapp.utils.DialogSubmitUtilities;
@@ -34,8 +35,8 @@ import org.blocorganization.blocapp.utils.RecyclerItemClickListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.blocorganization.blocapp.campaigns.CreateUtilities.TYPE;
-import static org.blocorganization.blocapp.campaigns.CreateUtilities.VENUE;
+import static org.blocorganization.blocapp.utils.CreateUtilities.TYPE;
+import static org.blocorganization.blocapp.utils.CreateUtilities.VENUE;
 import static org.blocorganization.blocapp.campaigns.UploadButtonIncluder.setupUploadButtonFrom;
 import static org.blocorganization.blocapp.utils.DateTimePresenter.DATE_TIME_PICKER;
 import static org.blocorganization.blocapp.utils.FieldUtilities.AMBITION;
