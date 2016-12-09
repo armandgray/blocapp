@@ -35,16 +35,15 @@ import org.blocorganization.blocapp.utils.RecyclerItemClickListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.blocorganization.blocapp.campaigns.UploadButtonIncluder.setupUploadButtonFrom;
 import static org.blocorganization.blocapp.utils.CreateUtilities.TYPE;
 import static org.blocorganization.blocapp.utils.CreateUtilities.VENUE;
-import static org.blocorganization.blocapp.campaigns.UploadButtonIncluder.setupUploadButtonFrom;
 import static org.blocorganization.blocapp.utils.DateTimePresenter.DATE_TIME_PICKER;
 import static org.blocorganization.blocapp.utils.FieldUtilities.AMBITION;
 import static org.blocorganization.blocapp.utils.FieldUtilities.BENEFITS_TO_THE_COLLEGE;
 import static org.blocorganization.blocapp.utils.FieldUtilities.DESCRIPTION;
 import static org.blocorganization.blocapp.utils.FieldUtilities.getTextFrom;
 import static org.blocorganization.blocapp.utils.FieldUtilities.loadUrlIntoImageViewWithActivity;
-import static org.blocorganization.blocapp.utils.FieldUtilities.setSelectionForSpinnerFromList;
 import static org.blocorganization.blocapp.utils.FieldUtilities.setTextForEditTextAndPrepend;
 import static org.blocorganization.blocapp.utils.FieldUtilities.setTextForEditTextWith;
 import static org.blocorganization.blocapp.utils.FieldUtilities.verify;
@@ -101,6 +100,7 @@ public class CreateCampaignDialog extends DialogFragment
         final View rootView = inflater.inflate(R.layout.create_campaign_dialog, container, false);
 
         getPassedCampaign();
+        assignEditTextFields(rootView);
 
         DatabaseReference mDatabaseResources = FirebaseDatabase.getInstance().getReference().child(RES);
         DatabaseReference dbThemes = mDatabaseResources.child(IMAGEURLS).child(THEMES);
@@ -123,13 +123,8 @@ public class CreateCampaignDialog extends DialogFragment
             public void onDataChange(DataSnapshot dataSnapshot) {
                 themes = (List) dataSnapshot.getValue();
                 if (rvThemes.getAdapter() == null) {
-                    if (campaign.getThemeImageUrl() != null && !campaign.getThemeImageUrl().equals("")) {
                         adapter = new ImageThemeAdapter(getActivity(),
                                 themes, THEME_LAYOUT_PARAMS, campaign.getThemeImageUrl());
-                    } else {
-                        adapter = new ImageThemeAdapter(getActivity(),
-                                themes, THEME_LAYOUT_PARAMS, null);
-                    }
                     rvThemes.setAdapter(adapter);
                     loadCampaignData();
                 } else {
@@ -143,7 +138,7 @@ public class CreateCampaignDialog extends DialogFragment
         });
 
         utilities = new CreateUtilities(campaign, getActivity());
-        getSpinnersListItems(rootView, mDatabaseResources);
+        getSpinnersListItemsFrom(mDatabaseResources, rootView);
 
         DialogSubmitUtilities submitUtilities = new DialogSubmitUtilities(rootView, this);
         submitUtilities.setupClickListeners();
@@ -154,12 +149,10 @@ public class CreateCampaignDialog extends DialogFragment
         setupUploadButtonFrom(rootView, this);
         ivUpload = (ImageView) rootView.findViewById(R.id.ivUpload);
 
-        assignEditTextFields(rootView);
-
         return rootView;
     }
 
-    private void getSpinnersListItems(View rootView, DatabaseReference mDatabaseResources) {
+    private void getSpinnersListItemsFrom(DatabaseReference mDatabaseResources, View rootView) {
         spVenue = (Spinner) rootView.findViewById(R.id.spVenue);
         spType = (Spinner) rootView.findViewById(R.id.spType);
 
@@ -176,6 +169,28 @@ public class CreateCampaignDialog extends DialogFragment
             campaign.setTimestamp();
             isNewCampaign = false;
         }
+    }
+
+    private void loadCampaignData() {
+        if (getArguments() != null) {
+            setTextForEditTextWith(campaign.getTitle(), etTitle);
+            setTextForEditTextWith(campaign.getAbbreviation(), etAbbreviation);
+            setTextForEditTextWith(campaign.getAdmin(), etAdmin);
+            setTextForEditTextAndPrepend(DESCRIPTION, campaign.getDescription(), etDescription);
+            setTextForEditTextAndPrepend(AMBITION, campaign.getAmbition(), etAmbition);
+            setTextForEditTextAndPrepend(BENEFITS_TO_THE_COLLEGE, campaign.getBenefits(), etBenefits);
+            loadUrlIntoImageViewWithActivity(campaign.getPhotoUrl(), ivUpload, getActivity());
+        }
+    }
+
+    private void assignEditTextFields(View rootView) {
+        etTitle = (EditText) rootView.findViewById(R.id.etTitle);
+        etAbbreviation = (EditText) rootView.findViewById(R.id.etAbbreviation);
+        etAbbreviation.setFilters(new InputFilter[]{new InputFilter.AllCaps(), new InputFilter.LengthFilter(3)});
+        etAdmin = (EditText) rootView.findViewById(R.id.etAdmin);
+        etDescription = (EditText) rootView.findViewById(R.id.etDescription);
+        etAmbition = (EditText) rootView.findViewById(R.id.etAmbition);
+        etBenefits = (EditText) rootView.findViewById(R.id.etBenefits);
     }
 
     private void highlightView(LinearLayout view, int position) {
@@ -267,30 +282,6 @@ public class CreateCampaignDialog extends DialogFragment
         date.add(Integer.valueOf(minute));
 
         dateTimePresenter.setTextForEditedDateField(campaign, date);
-
-    }
-
-    private void loadCampaignData() {
-        if (getArguments() != null) {
-            setSelectionForSpinnerFromList(types, campaign.getRecordType(), spType);
-            setTextForEditTextWith(campaign.getTitle(), etTitle);
-            setTextForEditTextWith(campaign.getAbbreviation(), etAbbreviation);
-            setTextForEditTextWith(campaign.getAdmin(), etAdmin);
-            setTextForEditTextAndPrepend(DESCRIPTION, campaign.getDescription(), etDescription);
-            setTextForEditTextAndPrepend(AMBITION, campaign.getAmbition(), etAmbition);
-            setTextForEditTextAndPrepend(BENEFITS_TO_THE_COLLEGE, campaign.getBenefits(), etBenefits);
-            loadUrlIntoImageViewWithActivity(campaign.getPhotoUrl(), ivUpload, getActivity());
-        }
-    }
-
-    private void assignEditTextFields(View rootView) {
-        etTitle = (EditText) rootView.findViewById(R.id.etTitle);
-        etAbbreviation = (EditText) rootView.findViewById(R.id.etAbbreviation);
-        etAbbreviation.setFilters(new InputFilter[]{new InputFilter.AllCaps(), new InputFilter.LengthFilter(3)});
-        etAdmin = (EditText) rootView.findViewById(R.id.etAdmin);
-        etDescription = (EditText) rootView.findViewById(R.id.etDescription);
-        etAmbition = (EditText) rootView.findViewById(R.id.etAmbition);
-        etBenefits = (EditText) rootView.findViewById(R.id.etBenefits);
     }
 
     @Override
