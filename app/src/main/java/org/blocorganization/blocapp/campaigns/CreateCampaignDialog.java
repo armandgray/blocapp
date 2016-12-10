@@ -94,8 +94,9 @@ public class CreateCampaignDialog extends DialogFragment
         final View rootView = inflater.inflate(R.layout.create_campaign_dialog, container, false);
 
         getPassedCampaign();
-        setupUtilities(rootView);
         assignFields(rootView);
+        loadCampaignData();
+        setupUtilities(rootView);
         setupRvThemes(rootView);
         setupSpinnersFrom(databaseResources, rootView);
         setupDateTimePresenter(rootView);
@@ -105,10 +106,12 @@ public class CreateCampaignDialog extends DialogFragment
     }
 
     private void getPassedCampaign() {
-        campaign = new Campaign(getArguments());
-        if (getArguments() == null) {
+        if (getArguments() != null) {
+            campaign = new Campaign(getArguments());
+        } else {
+            campaign = new Campaign();
             campaign.setTimestamp();
-            isNewCampaign = false;
+            isNewCampaign = true;
         }
     }
 

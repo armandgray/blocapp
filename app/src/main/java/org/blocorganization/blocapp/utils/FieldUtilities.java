@@ -1,6 +1,7 @@
 package org.blocorganization.blocapp.utils;
 
 import android.app.Activity;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -61,31 +62,31 @@ public class FieldUtilities {
         return etReference.getText().toString();
     }
 
-    public static void setTextForTextViewAndPrepend(String prependedText, String text, TextView tvReference) {
+    public static void setTextForTextViewAndPrepend(String prependedText, @Nullable String text, TextView tvReference) {
         if (text != null && !text.equals("")) {
-            tvReference.setText(prependedText + text);
+            tvReference.setText(String.format("%s%s", prependedText, text));
         }
     }
 
-    public static void setTextForTextViewWith(String text, TextView tvReference) {
+    public static void setTextForTextViewWith(@Nullable String text, TextView tvReference) {
         if (text != null && !text.equals("")) {
             tvReference.setText(text);
         }
     }
 
-    public static void setTextForEditTextWith(String text, EditText etReference) {
+    public static void setTextForEditTextWith(@Nullable String text, EditText etReference) {
         if (text != null && !text.equals("")) {
             etReference.setText(text);
         }
     }
 
-    public static void setTextForEditTextAndPrepend(String prependedText, String text, EditText etReference) {
+    public static void setTextForEditTextAndPrepend(String prependedText, @Nullable String text, EditText etReference) {
         if (text != null && !text.equals("")) {
-            etReference.setText(prependedText + text);
+            etReference.setText(String.format("%s%s", prependedText, text));
         }
     }
 
-    public static void loadUrlIntoImageViewWithActivity(String url, ImageView ivReference, Activity activity) {
+    public static void loadUrlIntoImageViewWithActivity(@Nullable String url, ImageView ivReference, Activity activity) {
         if (url != null && !url.equals("")) {
             Picasso.with(activity).load(url).into(ivReference);
             ivReference.setVisibility(View.VISIBLE);

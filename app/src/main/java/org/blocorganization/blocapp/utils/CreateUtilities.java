@@ -116,7 +116,7 @@ public class CreateUtilities {
     }
 
     public void startDetailActivityWith(Activity activity, boolean isNewCampaign) {
-        if (!isNewCampaign) {
+        if (isNewCampaign) {
             activity.onBackPressed();
         }
         activity.onBackPressed();
