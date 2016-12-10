@@ -125,7 +125,12 @@ public class CreateUtilities {
         activity.startActivity(intent);
     }
 
+    @Nullable
     public List<String> getListItems() {
         return listItems;
+    }
+
+    public Activity getActivity() {
+        return activity;
     }
 }

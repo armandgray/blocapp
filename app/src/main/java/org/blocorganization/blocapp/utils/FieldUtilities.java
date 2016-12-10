@@ -1,6 +1,7 @@
 package org.blocorganization.blocapp.utils;
 
 import android.app.Activity;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.EditText;
@@ -17,13 +18,13 @@ public class FieldUtilities {
 
     private static final String DATE = "Date";
 
-    static void setSelectionForSpinnerFromList(List<String> spListItems, String text, Spinner spReference) {
+    static void setSelectionForSpinnerFromList(List<String> spListItems, String text, @NonNull Spinner spReference) {
         if (text != null && !text.equals("")) {
             findSpinnerItemIn(spListItems, text, spReference);
         }
     }
 
-    private static void findSpinnerItemIn(List<String> spListItems, String text, Spinner spReference) {
+    private static void findSpinnerItemIn(List<String> spListItems, String text, @NonNull Spinner spReference) {
         int itemIndex = 0;
         for (String item : spListItems) {
             if (text.equals(item)) {
@@ -33,12 +34,12 @@ public class FieldUtilities {
         }
     }
 
-    public static boolean verify(EditText etReference) {
+    public static boolean verify(@NonNull EditText etReference) {
         String text = etReference.getText().toString();
         return !text.equals("");
     }
 
-    public static boolean alertVerify(EditText etReference, String alert) {
+    public static boolean alertVerify(@NonNull EditText etReference, String alert) {
         String text = etReference.getText().toString();
         if (!text.equals("")) {
             return true;
@@ -48,7 +49,7 @@ public class FieldUtilities {
         }
     }
 
-    public static boolean alertVerify(TextView tvReference, String alert) {
+    public static boolean alertVerify(@NonNull TextView tvReference, String alert) {
         String text = tvReference.getText().toString();
         if (!text.equals("") && !text.equals(DATE)) {
             return true;
@@ -58,32 +59,46 @@ public class FieldUtilities {
         }
     }
 
-    public static boolean alertVerify(Integer integer, String alert, Activity activity) {
-        if (integer != null) {
+    public static boolean alertVerify(@NonNull Spinner spinner, String alert, CreateUtilities utilities) {
+        if (spinner.getSelectedItemPosition() != 0 && utilities.getListItems() != null) {
             return true;
         } else {
-            Toast.makeText(activity, alert, Toast.LENGTH_SHORT).show();
+            Toast.makeText(spinner.getContext(), alert, Toast.LENGTH_SHORT).show();
             return false;
         }
     }
 
-    public static String getTextFrom(EditText etReference) {
+    public static boolean alertVerify(Integer integer, String alert, CreateUtilities utilities) {
+        if (integer != null && utilities.getListItems() != null) {
+            return true;
+        } else {
+            Toast.makeText(utilities.getActivity(), alert, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
+
+    public static String getTextFrom(@NonNull EditText etReference) {
         return etReference.getText().toString();
     }
 
-    public static void setTextForTextViewAndPrepend(String prependedText, @Nullable String text, TextView tvReference) {
+    public static String getTextFrom(@NonNull List<String> list, Spinner spinner) {
+        return list.get(spinner.getSelectedItemPosition());
+    }
+
+    public static void setTextForTextViewAndPrepend(String prependedText, @Nullable String text, @NonNull TextView tvReference) {
         if (text != null && !text.equals("")) {
             tvReference.setText(String.format("%s%s", prependedText, text));
         }
     }
 
-    public static void setTextForTextViewWith(@Nullable String text, TextView tvReference) {
+    public static void setTextForTextViewWith(@Nullable String text, @NonNull TextView tvReference) {
         if (text != null && !text.equals("")) {
             tvReference.setText(text);
         }
     }
 
-    public static void setTextForEditTextWith(@Nullable String text, EditText etReference) {
+    public static void setTextForEditTextWith(@Nullable String text, @NonNull EditText etReference) {
         if (text != null && !text.equals("")) {
             etReference.setText(text);
         }

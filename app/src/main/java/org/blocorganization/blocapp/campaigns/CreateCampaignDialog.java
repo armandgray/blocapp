@@ -14,7 +14,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -56,6 +55,8 @@ public class CreateCampaignDialog extends DialogFragment
     public static final String TITLE_REQUIRED = "Title Required";
     public static final String DESCRIPTION_REQUIRED = "Description Required";
     public static final String THEME_REQUIRED = "Theme Required";
+    public static final String TYPE_REQUIRED = "Type Required";
+    public static final String VENUE_REQUIRED = "Venue Required";
 
     private Campaign campaign;
     private boolean isNewCampaign = true;
@@ -226,28 +227,30 @@ public class CreateCampaignDialog extends DialogFragment
         venues = venueUtilities.getListItems();
         types = typeUtilities.getListItems();
 
-        boolean areFieldsNonEmpty = true;
-        if (alertVerify(themePosition, THEME_REQUIRED, getActivity())) { campaign.setThemeImageUrl(themes.get(themePosition)); }
-        if (spType.getSelectedItemPosition() != 0) {
-            campaign.setRecordType(types.get(spType.getSelectedItemPosition()));
+        if (alertFieldsAreValid()) {
+            campaign.setThemeImageUrl(themes.get(themePosition));
+            campaign.setRecordType(getTextFrom(types, spType));
+            campaign.setVenue(getTextFrom(venues, spVenue));
+            campaign.setTitle(getTextFrom(etTitle));
+            campaign.setAdmin(getTextFrom(etAdmin));
+            campaign.setDescription(getTextFrom(etDescription));
         } else {
-            areFieldsNonEmpty = false;
-            Toast.makeText(getActivity(), "Type is required", Toast.LENGTH_SHORT).show();
-        }
-        if (spVenue.getSelectedItemPosition() != 0) {
-            campaign.setVenue(venues.get(spVenue.getSelectedItemPosition()));
-        } else {
-            areFieldsNonEmpty = false;
-            Toast.makeText(getActivity(), "Venue is required", Toast.LENGTH_SHORT).show();
+            return false;
         }
 
-        if (alertVerify(etTitle, TITLE_REQUIRED)) { campaign.setTitle(getTextFrom(etTitle)); }
-        if (alertVerify(etAdmin, ADMIN_REQUIRED)) { campaign.setAdmin(getTextFrom(etAdmin)); }
-        if (alertVerify(etDescription, DESCRIPTION_REQUIRED)) { campaign.setDescription(getTextFrom(etDescription)); }
         if (verify(etAmbition)) { campaign.setAmbition(getTextFrom(etAmbition)); }
         if (verify(etBenefits)) { campaign.setBenefits(getTextFrom(etBenefits)); }
 
-        return areFieldsNonEmpty;
+        return true;
+    }
+
+    private boolean alertFieldsAreValid() {
+        return alertVerify(themePosition, THEME_REQUIRED, themeUtilities)
+                && alertVerify(spType, TYPE_REQUIRED, typeUtilities)
+                && alertVerify(spVenue, VENUE_REQUIRED, venueUtilities)
+                && alertVerify(etTitle, TITLE_REQUIRED)
+                && alertVerify(etAdmin, ADMIN_REQUIRED)
+                && alertVerify(etDescription, DESCRIPTION_REQUIRED);
     }
 
     @Override
