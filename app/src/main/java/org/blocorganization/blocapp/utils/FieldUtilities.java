@@ -49,6 +49,9 @@ public class FieldUtilities {
         }
     }
 
+
+
+
     public static String getTextFrom(EditText etReference) {
         return etReference.getText().toString();
     }

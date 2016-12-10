@@ -18,7 +18,6 @@ public class DateTimeFormatHandler {
     public static final String ON = "On";
     public static final String END = "End";
 
-
     public static void setTextForDateWith(ArrayList<Integer> dateElementsList, TextView tvReference, boolean isStartDate) {
         if (dateElementsList != null && dateElementsList.get(0) != 0 && dateElementsList.get(0) != 1) {
             DateTime date = getDateTimeReferenceFrom(dateElementsList);

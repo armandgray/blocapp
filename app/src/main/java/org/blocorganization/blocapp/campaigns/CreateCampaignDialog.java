@@ -35,13 +35,9 @@ import static org.blocorganization.blocapp.campaigns.UploadButtonIncluder.setupU
 import static org.blocorganization.blocapp.utils.CreateUtilities.TYPE;
 import static org.blocorganization.blocapp.utils.CreateUtilities.VENUE;
 import static org.blocorganization.blocapp.utils.DateTimePresenter.DATE_TIME_PICKER;
-import static org.blocorganization.blocapp.utils.FieldUtilities.AMBITION;
-import static org.blocorganization.blocapp.utils.FieldUtilities.BENEFITS_TO_THE_COLLEGE;
-import static org.blocorganization.blocapp.utils.FieldUtilities.DESCRIPTION;
 import static org.blocorganization.blocapp.utils.FieldUtilities.alertVerify;
 import static org.blocorganization.blocapp.utils.FieldUtilities.getTextFrom;
 import static org.blocorganization.blocapp.utils.FieldUtilities.loadUrlIntoImageViewWithActivity;
-import static org.blocorganization.blocapp.utils.FieldUtilities.setTextForEditTextAndPrepend;
 import static org.blocorganization.blocapp.utils.FieldUtilities.setTextForEditTextWith;
 import static org.blocorganization.blocapp.utils.FieldUtilities.verify;
 
@@ -58,6 +54,8 @@ public class CreateCampaignDialog extends DialogFragment
     public static final String TYPES = "types";
     public static final String DATE = "Date";
     public static final String ADMIN_REQUIRED = "Admin Required";
+    public static final String TITLE_REQUIRED = "Title Required";
+    public static final String DESCRIPTION_REQUIRED = "Description Required";
 
     private Campaign campaign;
     private boolean isNewCampaign = true;
@@ -128,9 +126,9 @@ public class CreateCampaignDialog extends DialogFragment
             setTextForEditTextWith(campaign.getTitle(), etTitle);
             setTextForEditTextWith(campaign.getAbbreviation(), etAbbreviation);
             setTextForEditTextWith(campaign.getAdmin(), etAdmin);
-            setTextForEditTextAndPrepend(DESCRIPTION, campaign.getDescription(), etDescription);
-            setTextForEditTextAndPrepend(AMBITION, campaign.getAmbition(), etAmbition);
-            setTextForEditTextAndPrepend(BENEFITS_TO_THE_COLLEGE, campaign.getBenefits(), etBenefits);
+            setTextForEditTextWith(campaign.getDescription(), etDescription);
+            setTextForEditTextWith(campaign.getAmbition(), etAmbition);
+            setTextForEditTextWith(campaign.getBenefits(), etBenefits);
             loadUrlIntoImageViewWithActivity(campaign.getPhotoUrl(), ivUpload, getActivity());
         }
     }
@@ -235,34 +233,16 @@ public class CreateCampaignDialog extends DialogFragment
             areFieldsNonEmpty = false;
             Toast.makeText(getActivity(), "Venue is required", Toast.LENGTH_SHORT).show();
         }
-        if (dateTimePresenter.getFromDate().equals("") || dateTimePresenter.getFromDate() == null || dateTimePresenter.getFromDate().equals(DATE)) {
-            areFieldsNonEmpty = false;
-            Toast.makeText(getActivity(), "Date is required", Toast.LENGTH_SHORT).show();
-        }
-        if (!etTitle.getText().toString().equals("") && etTitle.getText() != null) {
-            campaign.setTitle(etTitle.getText().toString());
-        } else {
-            areFieldsNonEmpty = false;
-            Toast.makeText(getActivity(), "Title is required", Toast.LENGTH_SHORT).show();
-        }
-        if (verify(etAbbreviation)) { campaign.setAbbreviation(getTextFrom(etAbbreviation)); }
+//        if (dateTimePresenter.getFromDate().equals("") || dateTimePresenter.getFromDate() == null || dateTimePresenter.getFromDate().equals(DATE)) {
+//            areFieldsNonEmpty = false;
+//            Toast.makeText(getActivity(), "Date is required", Toast.LENGTH_SHORT).show();
+//        }
+        if (alertVerify(etTitle, TITLE_REQUIRED)) { campaign.setTitle(getTextFrom(etTitle)); }
         if (alertVerify(etAdmin, ADMIN_REQUIRED)) { campaign.setAdmin(getTextFrom(etAdmin)); }
+        if (alertVerify(etDescription, DESCRIPTION_REQUIRED)) { campaign.setDescription(getTextFrom(etDescription)); }
+        if (verify(etAmbition)) { campaign.setAmbition(getTextFrom(etAmbition)); }
+        if (verify(etBenefits)) { campaign.setBenefits(getTextFrom(etBenefits)); }
 
-        if (!etDescription.getText().toString().equals("") && etDescription.getText() != null) {
-            StringBuffer buffer = new StringBuffer(etDescription.getText().toString());
-            campaign.setDescription(buffer.replace(0, DESCRIPTION.length(), "").toString());
-        } else {
-            areFieldsNonEmpty = false;
-            Toast.makeText(getActivity(), "Description is required", Toast.LENGTH_SHORT).show();
-        }
-        if (!etAmbition.getText().toString().equals("") && etAmbition.getText() != null) {
-            StringBuffer buffer = new StringBuffer(etAmbition.getText().toString());
-            campaign.setAmbition(buffer.replace(0, AMBITION.length(), "").toString());
-        }
-        if (!etBenefits.getText().toString().equals("") && etBenefits.getText() != null) {
-            StringBuffer buffer = new StringBuffer(etBenefits.getText().toString());
-            campaign.setBenefits(buffer.replace(0, BENEFITS_TO_THE_COLLEGE.length(), "").toString());
-        }
         return areFieldsNonEmpty;
     }
 

@@ -137,10 +137,10 @@ public class DateTimePresenter {
         showEndDateView();
     }
 
-    public String getToDate() {
-        return tvToDate.getText().toString();
+    public ArrayList<Integer> getFromDate(Campaign campaign) {
+        return campaign.getFromDate();
     }
-    public String getFromDate() {
-        return tvFromDate.getText().toString();
+    public ArrayList<Integer> getToDate(Campaign campaign) {
+        return campaign.getToDate();
     }
 }
