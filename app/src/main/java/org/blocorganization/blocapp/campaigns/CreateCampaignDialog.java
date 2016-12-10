@@ -13,45 +13,37 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import org.blocorganization.blocapp.R;
 import org.blocorganization.blocapp.models.Campaign;
 import org.blocorganization.blocapp.utils.ConfirmChangesDialogFragment;
+import org.blocorganization.blocapp.utils.CreateUtilities;
 import org.blocorganization.blocapp.utils.DateTimePickerFragment;
-import org.blocorganization.blocapp.utils.GetDpMeasurement;
-import org.blocorganization.blocapp.utils.ImageThemeAdapter;
+import org.blocorganization.blocapp.utils.DateTimePresenter;
+import org.blocorganization.blocapp.utils.DialogSubmitUtilities;
 import org.blocorganization.blocapp.utils.RecyclerItemClickListener;
-import org.blocorganization.blocapp.utils.SpinnerAdapter;
-import org.joda.time.DateTime;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.blocorganization.blocapp.campaigns.CreateCampaignDialogUtilities.saveCampaignToDatabaseWith;
-import static org.blocorganization.blocapp.campaigns.CreateCampaignDialogUtilities.startDetailActivityWith;
 import static org.blocorganization.blocapp.campaigns.UploadButtonIncluder.setupUploadButtonFrom;
-import static org.blocorganization.blocapp.utils.DateTimeHandler.setTextForDateWith;
-import static org.blocorganization.blocapp.utils.FieldUtilities.AMBITION;
-import static org.blocorganization.blocapp.utils.FieldUtilities.BENEFITS_TO_THE_COLLEGE;
-import static org.blocorganization.blocapp.utils.FieldUtilities.DESCRIPTION;
+import static org.blocorganization.blocapp.utils.CreateUtilities.TYPE;
+import static org.blocorganization.blocapp.utils.CreateUtilities.VENUE;
+import static org.blocorganization.blocapp.utils.DateTimePresenter.DATE_TIME_PICKER;
+import static org.blocorganization.blocapp.utils.FieldUtilities.alertVerify;
+import static org.blocorganization.blocapp.utils.FieldUtilities.getTextFrom;
 import static org.blocorganization.blocapp.utils.FieldUtilities.loadUrlIntoImageViewWithActivity;
-import static org.blocorganization.blocapp.utils.FieldUtilities.setSelectionForSpinnerFromList;
-import static org.blocorganization.blocapp.utils.FieldUtilities.setTextForEditTextAndPrepend;
 import static org.blocorganization.blocapp.utils.FieldUtilities.setTextForEditTextWith;
+import static org.blocorganization.blocapp.utils.FieldUtilities.verify;
 
 public class CreateCampaignDialog extends DialogFragment
         implements DateTimePickerFragment.DateTimeSetListener,
-        ConfirmChangesDialogFragment.ConfirmChangesListener {
+        ConfirmChangesDialogFragment.ConfirmChangesListener,
+        DialogSubmitUtilities.DialogSubmitListener {
 
     public static final int THEME_LAYOUT_PARAMS = 100;
     public static final String THEMES = "themes";
@@ -59,44 +51,41 @@ public class CreateCampaignDialog extends DialogFragment
     public static final String RES = "res";
     public static final String VENUES = "venues";
     public static final String TYPES = "types";
-    public static final String DIALOG = "DIALOG";
-    public static final String DATE_TIME_PICKER = "dateTimePicker";
-
-    public static final String DATE = "Date";
+    public static final String ADMIN_REQUIRED = "Admin Required";
+    public static final String TITLE_REQUIRED = "Title Required";
+    public static final String DESCRIPTION_REQUIRED = "Description Required";
+    public static final String THEME_REQUIRED = "Theme Required";
+    public static final String TYPE_REQUIRED = "Type Required";
+    public static final String VENUE_REQUIRED = "Venue Required";
 
     private Campaign campaign;
+    private boolean isNewCampaign = true;
 
-    private ImageThemeAdapter adapter;
+    private DateTimePresenter dateTimePresenter;
+    private CreateUtilities themeUtilities;
+    private DatabaseReference databaseResources;
+
     private List<String> themes = new ArrayList<>();
     private List<String> venues = new ArrayList<>();
     private List<String> types = new ArrayList<>();
 
-    // Edit Date fields
-    private Boolean isRange;
-    private boolean editEndDate;
-    private RelativeLayout editDateLayout;
-    private RelativeLayout editDateFromLayout;
-    private RelativeLayout editDateEndLayout;
-    private TextView tvToDate;
-    private TextView tvFromDate;
-    private ImageView ivToDateMenuArrow;
-
-    // upload media fields
-    private ImageView ivUpload;
-
-    // fields references
-    private Integer themePosition;
     private EditText etTitle;
     private EditText etAbbreviation;
     private EditText etAdmin;
     private EditText etDescription;
     private EditText etAmbition;
     private EditText etBenefits;
+    private ImageView ivUpload;
+
     private Spinner spType;
     private Spinner spVenue;
     private RecyclerView rvThemes;
 
-    private boolean isNewCampaign = true;
+    private Integer themePosition;
+    LinearLayout previousSelectedTheme;
+    private CreateUtilities typeUtilities;
+    private CreateUtilities venueUtilities;
+
 
     public static CreateCampaignDialog withCampaign(Campaign passedCampaign) {
         CreateCampaignDialog fragment = new CreateCampaignDialog();
@@ -107,251 +96,87 @@ public class CreateCampaignDialog extends DialogFragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout to use as dialog or embedded fragment
         final View rootView = inflater.inflate(R.layout.create_campaign_dialog, container, false);
 
         getPassedCampaign();
+        assignFields(rootView);
+        loadCampaignData();
+        setupUtilities(rootView);
+        setupRvThemes(rootView);
+        setupSpinnersFrom(databaseResources, rootView);
+        setupDateTimePresenter(rootView);
+        setupUploadButtonFrom(rootView, this);
 
-        DatabaseReference mDatabaseResources = FirebaseDatabase.getInstance().getReference().child(RES);
-        DatabaseReference dbThemes = mDatabaseResources.child(IMAGEURLS).child(THEMES);
+        return rootView;
+    }
 
-        // Load Recycler with jpg from Firebase
+    private void getPassedCampaign() {
+        if (getArguments() != null) {
+            campaign = new Campaign(getArguments());
+        } else {
+            campaign = new Campaign();
+            campaign.setTimestamp();
+            isNewCampaign = true;
+        }
+    }
+
+    private void setupUtilities(View rootView) {
+        themeUtilities = new CreateUtilities(campaign, getActivity());
+        typeUtilities = new CreateUtilities(campaign, getActivity());
+        venueUtilities = new CreateUtilities(campaign, getActivity());
+
+        databaseResources = FirebaseDatabase.getInstance().getReference().child(RES);
+        DialogSubmitUtilities submitUtilities = new DialogSubmitUtilities(rootView, this);
+        submitUtilities.setupClickListeners(this);
+    }
+
+    private void loadCampaignData() {
+        if (getArguments() != null) {
+            setTextForEditTextWith(campaign.getTitle(), etTitle);
+            setTextForEditTextWith(campaign.getAbbreviation(), etAbbreviation);
+            setTextForEditTextWith(campaign.getAdmin(), etAdmin);
+            setTextForEditTextWith(campaign.getDescription(), etDescription);
+            setTextForEditTextWith(campaign.getAmbition(), etAmbition);
+            setTextForEditTextWith(campaign.getBenefits(), etBenefits);
+            loadUrlIntoImageViewWithActivity(campaign.getPhotoUrl(), ivUpload, getActivity());
+        }
+    }
+
+    private void setupRvThemes(View rootView) {
         rvThemes = (RecyclerView) rootView.findViewById(R.id.rvThemes);
+        DatabaseReference dbThemes = databaseResources.child(IMAGEURLS).child(THEMES);
+
+        themeUtilities.getRvImageUrlListFrom(dbThemes, rvThemes);
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         rvThemes.setLayoutManager(layoutManager);
         rvThemes.addOnItemTouchListener(new RecyclerItemClickListener(getContext(),
                 new RecyclerItemClickListener.OnItemClickListener() {
-                    LinearLayout lastClick;
 
                     @Override
                     public void onItemClick(View view, int position) {
-                        LinearLayout imgLayout = (LinearLayout) view;
-                        if (lastClick != null) {
-                            lastClick.setBackgroundResource(R.drawable.background_square_shadow);
-                            ImageView lastImg = (ImageView) lastClick.getChildAt(0);
-                            lastImg.setColorFilter(Color.parseColor("#59000000"));
-                            lastImg.setBackgroundColor(Color.parseColor("#59000000"));
-                        }
-                        imgLayout.setBackgroundResource(R.drawable.background_square_selected_shadow);
-                        ImageView img = (ImageView) imgLayout.getChildAt(0);
-                        img.setColorFilter(Color.parseColor("#00000000"));
-                        img.setBackgroundColor(Color.parseColor("#00000000"));
-                        themePosition = position;
-                        lastClick = (LinearLayout) view;
+                        highlightView((LinearLayout) view, position);
                     }
                 }));
+    }
 
-        dbThemes.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                themes = (List) dataSnapshot.getValue();
-                if (rvThemes.getAdapter() == null) {
-                    if (campaign.getThemeImageUrl() != null && !campaign.getThemeImageUrl().equals("")) {
-                        adapter = new ImageThemeAdapter(getActivity(),
-                                themes, THEME_LAYOUT_PARAMS, campaign.getThemeImageUrl());
-                    } else {
-                        adapter = new ImageThemeAdapter(getActivity(),
-                                themes, THEME_LAYOUT_PARAMS, null);
-                    }
-                    rvThemes.setAdapter(adapter);
-                    loadCampaignData();
-                } else {
-                    adapter.notifyDataSetChanged();
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
-
+    private void setupSpinnersFrom(DatabaseReference mDatabaseResources, View rootView) {
         spVenue = (Spinner) rootView.findViewById(R.id.spVenue);
-
-        // get venues from Firebase
-        DatabaseReference dbVenues = mDatabaseResources.child(VENUES);
-        dbVenues.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                venues = (List) dataSnapshot.getValue();
-                if (spVenue.getAdapter() == null) {
-                    SpinnerAdapter adVenues = new SpinnerAdapter(venues, getActivity());
-                    spVenue.setAdapter(adVenues);
-                    loadCampaignData();
-                } else {
-                    adapter.notifyDataSetChanged();
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
         spType = (Spinner) rootView.findViewById(R.id.spType);
 
-        // get types from Firebase
+        DatabaseReference dbVenues = mDatabaseResources.child(VENUES);
         DatabaseReference dbTypes = mDatabaseResources.child(TYPES);
-        dbTypes.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                types = (List) dataSnapshot.getValue();
-                if (spType.getAdapter() == null) {
-                    SpinnerAdapter adType = new SpinnerAdapter(types, getActivity());
-                    spType.setAdapter(adType);
-                    loadCampaignData();
-                } else {
-                    adapter.notifyDataSetChanged();
-                }
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
+        venueUtilities.getSpinnerListItemsFrom(dbVenues, spVenue, VENUE);
+        typeUtilities.getSpinnerListItemsFrom(dbTypes, spType, TYPE);
+    }
 
-        // handle check btn clicks
-        ImageView ivSubmit = (ImageView) rootView.findViewById(R.id.ivSubmit);
-        ivSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // field validation before confirming changes
-                if (fieldVerification()) {
-                    new ConfirmChangesDialogFragment().show(
-                            getChildFragmentManager(), DIALOG);
-                }
-            }
+    private void setupDateTimePresenter(View rootView) {
+        dateTimePresenter = new DateTimePresenter(rootView, this);
+        dateTimePresenter.loadDateFields(campaign);
+    }
 
-            private boolean fieldVerification() {
-                boolean allClear = true;
-                if (themePosition != null) {
-                    campaign.setThemeImageUrl(themes.get(themePosition));
-                } else {
-                    allClear = false;
-                    Toast.makeText(getActivity(), "Theme is required", Toast.LENGTH_SHORT).show();
-                }
-                if (spType.getSelectedItemPosition() != 0) {
-                    campaign.setRecordType(types.get(spType.getSelectedItemPosition()));
-                } else {
-                    allClear = false;
-                    Toast.makeText(getActivity(), "Type is required", Toast.LENGTH_SHORT).show();
-                }
-                if (spVenue.getSelectedItemPosition() != 0) {
-                    campaign.setVenue(venues.get(spVenue.getSelectedItemPosition()));
-                } else {
-                    allClear = false;
-                    Toast.makeText(getActivity(), "Venue is required", Toast.LENGTH_SHORT).show();
-                }
-                if (tvFromDate.getText().toString().equals("") || tvFromDate.getText() == null || tvFromDate.getText().toString().equals(DATE)) {
-                    allClear = false;
-                    Toast.makeText(getActivity(), "Date is required", Toast.LENGTH_SHORT).show();
-                }
-                if (!etTitle.getText().toString().equals("") && etTitle.getText() != null) {
-                    campaign.setTitle(etTitle.getText().toString());
-                } else {
-                    allClear = false;
-                    Toast.makeText(getActivity(), "Title is required", Toast.LENGTH_SHORT).show();
-                }
-                if (!etAbbreviation.getText().toString().equals("") && etAbbreviation.getText() != null) {
-                    campaign.setAbbreviation(etAbbreviation.getText().toString());
-                }
-                if (!etAdmin.getText().toString().equals("") && etAdmin.getText() != null) {
-                    campaign.setAdmin(etAdmin.getText().toString());
-                } else {
-                    allClear = false;
-                    Toast.makeText(getActivity(), "Admin is required", Toast.LENGTH_SHORT).show();
-                }
-                if (!etDescription.getText().toString().equals("") && etDescription.getText() != null) {
-                    StringBuffer buffer = new StringBuffer(etDescription.getText().toString());
-                    campaign.setDescription(buffer.replace(0, DESCRIPTION.length(), "").toString());
-                } else {
-                    allClear = false;
-                    Toast.makeText(getActivity(), "Description is required", Toast.LENGTH_SHORT).show();
-                }
-                if (!etAmbition.getText().toString().equals("") && etAmbition.getText() != null) {
-                    StringBuffer buffer = new StringBuffer(etAmbition.getText().toString());
-                    campaign.setAmbition(buffer.replace(0, AMBITION.length(), "").toString());
-                }
-                if (!etBenefits.getText().toString().equals("") && etBenefits.getText() != null) {
-                    StringBuffer buffer = new StringBuffer(etBenefits.getText().toString());
-                    campaign.setBenefits(buffer.replace(0, BENEFITS_TO_THE_COLLEGE.length(), "").toString());
-                }
-                // if all fields are "allClear", move to confirm changes
-                return allClear;
-            }
-        });
-
-        ImageView ivCancel = (ImageView) rootView.findViewById(R.id.ivCancel);
-        ivCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (getArguments() == null) {
-                    getActivity().onBackPressed();
-                }
-                getActivity().onBackPressed();
-            }
-        });
-
-        // select fromDate with DatePickerFrag
-        editDateLayout = (RelativeLayout) rootView.findViewById(R.id.editDateLayout);
-        editDateFromLayout = (RelativeLayout) rootView.findViewById(R.id.editDateFromLayout);
-        editDateEndLayout = (RelativeLayout) rootView.findViewById(R.id.editDateEndLayout);
-        tvFromDate = (TextView) rootView.findViewById(R.id.tvFromDate);
-        tvToDate = (TextView) rootView.findViewById(R.id.tvToDate);
-        ivToDateMenuArrow = (ImageView) rootView.findViewById(R.id.ivMenuArrow);
-
-        editDateEndLayout.setVisibility(View.GONE);
-        editDateFromLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new DateTimePickerFragment()
-                        .show(getChildFragmentManager(), DATE_TIME_PICKER);
-            }
-        });
-
-        // handle fromDate range options
-        ivToDateMenuArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (isRange == null) {
-                    hideEndDateView();
-                }
-            }
-        });
-
-        editDateEndLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new DateTimePickerFragment()
-                        .show(getChildFragmentManager(), DATE_TIME_PICKER);
-                tvToDate.setTextColor(Color.parseColor("#FFFFFF"));
-                ivToDateMenuArrow.setColorFilter(Color.parseColor("#FFFFFF"));
-                ivToDateMenuArrow.setImageResource(R.drawable.ic_menu_down_white_48dp);
-                isRange = true;
-                editEndDate = true;
-            }
-        });
-        editDateFromLayout.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                showEndDateView();
-                editDateFromLayout.setBackgroundResource(R.drawable.date_divider_background);
-                editDateFromLayout.setPadding(GetDpMeasurement.getDPI(getActivity(), 10), 0, 0, GetDpMeasurement.getDPI(getActivity(), 5));
-
-                return isRange = true;
-            }
-        });
-        editDateEndLayout.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                return hideEndDateView();
-            }
-        });
-
-        setupUploadButtonFrom(rootView, this);
-
-        ivUpload = (ImageView) rootView.findViewById(R.id.ivUpload);
-
+    private void assignFields(View rootView) {
         etTitle = (EditText) rootView.findViewById(R.id.etTitle);
         etAbbreviation = (EditText) rootView.findViewById(R.id.etAbbreviation);
         etAbbreviation.setFilters(new InputFilter[]{new InputFilter.AllCaps(), new InputFilter.LengthFilter(3)});
@@ -359,39 +184,22 @@ public class CreateCampaignDialog extends DialogFragment
         etDescription = (EditText) rootView.findViewById(R.id.etDescription);
         etAmbition = (EditText) rootView.findViewById(R.id.etAmbition);
         etBenefits = (EditText) rootView.findViewById(R.id.etBenefits);
-
-        return rootView;
+        ivUpload = (ImageView) rootView.findViewById(R.id.ivUpload);
     }
 
-    private void getPassedCampaign() {
-        campaign = new Campaign(getArguments());
-        if (getArguments() == null) {
-            campaign.setTimestamp();
-            isNewCampaign = false;
+    private void highlightView(LinearLayout view, int position) {
+        if (previousSelectedTheme != null) {
+            previousSelectedTheme.setBackgroundResource(R.drawable.background_square_shadow);
+            ImageView lastImg = (ImageView) previousSelectedTheme.getChildAt(0);
+            lastImg.setColorFilter(Color.parseColor("#59000000"));
+            lastImg.setBackgroundColor(Color.parseColor("#59000000"));
         }
-    }
-
-    private void loadCampaignData() {
-        if (getArguments() != null) {
-            setSelectionForSpinnerFromList(types, campaign.getRecordType(), spType);
-            setSelectionForSpinnerFromList(venues, campaign.getVenue(), spVenue);
-            loadDateFields();
-            setTextForEditTextWith(campaign.getTitle(), etTitle);
-            setTextForEditTextWith(campaign.getAbbreviation(), etAbbreviation);
-            setTextForEditTextWith(campaign.getAdmin(), etAdmin);
-            setTextForEditTextAndPrepend(DESCRIPTION, campaign.getDescription(), etDescription);
-            setTextForEditTextAndPrepend(AMBITION, campaign.getAmbition(), etAmbition);
-            setTextForEditTextAndPrepend(BENEFITS_TO_THE_COLLEGE, campaign.getBenefits(), etBenefits);
-            loadUrlIntoImageViewWithActivity(campaign.getPhotoUrl(), ivUpload, getActivity());
-        }
-    }
-
-    private void loadDateFields() {
-        setTextForDateWith(campaign.getFromDate(), tvFromDate, true);
-        if (campaign.getToDate() != null) {
-            setTextForDateWith(campaign.getToDate(), tvToDate, false);
-            showEndDateView();
-        }
+        view.setBackgroundResource(R.drawable.background_square_selected_shadow);
+        ImageView img = (ImageView) view.getChildAt(0);
+        img.setColorFilter(Color.parseColor("#00000000"));
+        img.setBackgroundColor(Color.parseColor("#00000000"));
+        themePosition = position;
+        previousSelectedTheme = view;
     }
 
     @Override
@@ -403,7 +211,6 @@ public class CreateCampaignDialog extends DialogFragment
 
     @Override
     public void onEventDateTimeSet(int year, int month, int day, int hourOfDay, String minute) {
-        // Date formatting fields
         ArrayList<Integer> date = new ArrayList<>();
         date.add(year);
         date.add(month);
@@ -411,52 +218,45 @@ public class CreateCampaignDialog extends DialogFragment
         date.add(hourOfDay);
         date.add(Integer.valueOf(minute));
 
-        DateTime dt = new DateTime();
-        String ampmDesignator = "am";
-        if (hourOfDay >= 12) {
-            ampmDesignator = "pm";
-        }
-        if (hourOfDay != 12) {
-            hourOfDay = hourOfDay % 12;
-        }
-        dt.withDate(year, month, day);
+        dateTimePresenter.setTextForEditedDateField(campaign, date);
+    }
 
-        // initial state is null; afterwards editEndDate is true if user selects 2nd fromDate field
-        if (isRange == null) {
-            editDateFromLayout.setBackgroundResource(R.drawable.date_divider_background);
-            editDateFromLayout.setPadding(GetDpMeasurement.getDPI(getActivity(), 10), 0, 0, GetDpMeasurement.getDPI(getActivity(), 5));
-            tvFromDate.setText("On: " + dt.monthOfYear().getAsText() + " " + day + ", " + year + ", " + hourOfDay + ":" + minute + " " + ampmDesignator);
-            campaign.setFromDate(date);
-            showEndDateView();
-            ivToDateMenuArrow.setImageResource(R.drawable.ic_close_white_48dp);
-        } else if (editEndDate && isRange) {
-            tvToDate.setText("End: " + dt.monthOfYear().getAsText() + " " + day + ", " + year + ", " + hourOfDay + ":" + minute + " " + ampmDesignator);
-            campaign.setToDate(date);
-            editEndDate = false;
+    @Override
+    public boolean verifyFields() {
+        themes = themeUtilities.getListItems();
+        venues = venueUtilities.getListItems();
+        types = typeUtilities.getListItems();
+
+        if (alertFieldsAreValid()) {
+            campaign.setThemeImageUrl(themes.get(themePosition));
+            campaign.setRecordType(getTextFrom(types, spType));
+            campaign.setVenue(getTextFrom(venues, spVenue));
+            campaign.setTitle(getTextFrom(etTitle));
+            campaign.setAdmin(getTextFrom(etAdmin));
+            campaign.setDescription(getTextFrom(etDescription));
         } else {
-            tvFromDate.setText("On: " + dt.monthOfYear().getAsText() + " " + day + ", " + year + ", " + hourOfDay + ":" + minute + " " + ampmDesignator);
+            return false;
         }
+
+        if (verify(etAmbition)) { campaign.setAmbition(getTextFrom(etAmbition)); }
+        if (verify(etBenefits)) { campaign.setBenefits(getTextFrom(etBenefits)); }
+
+        return true;
     }
 
-    private void showEndDateView() {
-        editDateEndLayout.setPadding(GetDpMeasurement.getDPI(getActivity(), 10), GetDpMeasurement.getDPI(getActivity(), 5), 0, 0);
-        editDateEndLayout.setVisibility(View.VISIBLE);
-
-        tvToDate.setTextColor(Color.parseColor("#333333"));
-        ivToDateMenuArrow.setImageResource(R.drawable.ic_menu_down_white_48dp);
-        ivToDateMenuArrow.setColorFilter(Color.parseColor("#333333"));
-    }
-
-    private boolean hideEndDateView() {
-        editDateLayout.getChildAt(2).setVisibility(View.GONE);
-        editDateLayout.getChildAt(1).setBackgroundResource(R.color.colorPrimaryDark);
-        return isRange = false;
+    private boolean alertFieldsAreValid() {
+        return alertVerify(themePosition, THEME_REQUIRED, themeUtilities)
+                && alertVerify(spType, TYPE_REQUIRED, typeUtilities)
+                && alertVerify(spVenue, VENUE_REQUIRED, venueUtilities)
+                && alertVerify(etTitle, TITLE_REQUIRED)
+                && alertVerify(etAdmin, ADMIN_REQUIRED)
+                && alertVerify(etDescription, DESCRIPTION_REQUIRED);
     }
 
     @Override
     public void onConfirmSave() {
-        saveCampaignToDatabaseWith(getActivity(), campaign);
-        startDetailActivityWith(getActivity(), campaign, isNewCampaign);
+        themeUtilities.saveCampaignToDatabase();
+        themeUtilities.startDetailActivityWith(getActivity(), isNewCampaign);
     }
 
     @Override
@@ -466,5 +266,4 @@ public class CreateCampaignDialog extends DialogFragment
         UploadActivityListener resultListener = new UploadActivityListener(getActivity());
         resultListener.onActivityResult(requestCode, resultCode, data, campaign, ivUpload);
     }
-
 }

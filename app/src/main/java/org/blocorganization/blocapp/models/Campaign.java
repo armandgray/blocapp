@@ -48,7 +48,6 @@ public class Campaign extends Record {
         this.timestamp = "";
     }
 
-    //	Create from a bundle
     public Campaign(Bundle b) {
         super(b);
         if (b != null) {

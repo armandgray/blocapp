@@ -7,7 +7,7 @@ import org.joda.time.DateTime;
 
 import java.util.ArrayList;
 
-public class DateTimeHandler {
+public class DateTimeFormatHandler {
 
     private static final int SECONDS_ZERO = 0;
     private static final int YEAR = 0;
@@ -15,9 +15,8 @@ public class DateTimeHandler {
     private static final int DAY = 2;
     private static final int HOUR = 3;
     private static final int MINUTE = 4;
-    public static final String ON = "On";
-    public static final String END = "End";
-
+    private static final String ON = "On";
+    private static final String END = "End";
 
     public static void setTextForDateWith(ArrayList<Integer> dateElementsList, TextView tvReference, boolean isStartDate) {
         if (dateElementsList != null && dateElementsList.get(0) != 0 && dateElementsList.get(0) != 1) {

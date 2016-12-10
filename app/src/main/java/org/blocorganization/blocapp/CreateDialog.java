@@ -21,9 +21,6 @@ public class CreateDialog extends DialogFragment {
     private FragmentManager fragmentManager;
     private TextView tvSubmitDialog;
     private TextView tvSelectorDetails;
-    private RelativeLayout meetupSelectorLayout;
-    private RelativeLayout messagesSelectorLayout;
-    private RelativeLayout resourcesSelectorLayout;
     private ImageView ivResourceSelector;
     private TextView tvResourceSelector;
     private ImageView ivMeetupSelector;
@@ -99,13 +96,13 @@ public class CreateDialog extends DialogFragment {
     private void assignLayoutsViewsFrom(View rootView) {
         tvSubmitDialog = (TextView) rootView.findViewById(R.id.tvSubmitDialog);
         tvSelectorDetails = (TextView) rootView.findViewById(R.id.tvSelectorDetails);
-        meetupSelectorLayout = (RelativeLayout) rootView.findViewById(R.id.meetupSelectorLayout);
+        RelativeLayout meetupSelectorLayout = (RelativeLayout) rootView.findViewById(R.id.meetupSelectorLayout);
         ivMeetupSelector = (ImageView) meetupSelectorLayout.getChildAt(0);
         tvMeetupSelector = (TextView) meetupSelectorLayout.getChildAt(1);
-        messagesSelectorLayout = (RelativeLayout) rootView.findViewById(R.id.messagesSelectorLayout);
+        RelativeLayout messagesSelectorLayout = (RelativeLayout) rootView.findViewById(R.id.messagesSelectorLayout);
         ivMessageSelector = (ImageView) messagesSelectorLayout.getChildAt(0);
         tvMessageSelector = (TextView) messagesSelectorLayout.getChildAt(1);
-        resourcesSelectorLayout = (RelativeLayout) rootView.findViewById(R.id.resourcesSelectorLayout);
+        RelativeLayout resourcesSelectorLayout = (RelativeLayout) rootView.findViewById(R.id.resourcesSelectorLayout);
         ivResourceSelector = (ImageView) resourcesSelectorLayout.getChildAt(0);
         tvResourceSelector = (TextView) resourcesSelectorLayout.getChildAt(1);
     }

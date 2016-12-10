@@ -2,6 +2,8 @@ package org.blocorganization.blocapp.utils;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +26,7 @@ public class ImageThemeAdapter extends
     private String setTheme;
 
     // Pass in the themes List & getThemeImageUrl into the constructor
-    public ImageThemeAdapter(Activity activity, List<String> themes, int layoutParams, String theme) {
+    public ImageThemeAdapter(@NonNull Activity activity, @NonNull List<String> themes, int layoutParams, @Nullable String theme) {
         mThemes = themes;
         mActivity = activity;
         mLayoutParams = layoutParams;

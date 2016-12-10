@@ -1,11 +1,14 @@
 package org.blocorganization.blocapp.utils;
 
 import android.app.Activity;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -13,17 +16,15 @@ import java.util.List;
 
 public class FieldUtilities {
 
-    public static final String DESCRIPTION = "Description\n\n\t\t";
-    public static final String AMBITION = "Ambition\n\n\t\t";
-    public static final String BENEFITS_TO_THE_COLLEGE = "Benefits to the College\n\n\t\t";
+    private static final String DATE = "Date";
 
-    public static void setSelectionForSpinnerFromList(List<String> spListItems, String text, Spinner spReference) {
+    static void setSelectionForSpinnerFromList(List<String> spListItems, String text, @NonNull Spinner spReference) {
         if (text != null && !text.equals("")) {
             findSpinnerItemIn(spListItems, text, spReference);
         }
     }
 
-    private static void findSpinnerItemIn(List<String> spListItems, String text, Spinner spReference) {
+    private static void findSpinnerItemIn(List<String> spListItems, String text, @NonNull Spinner spReference) {
         int itemIndex = 0;
         for (String item : spListItems) {
             if (text.equals(item)) {
@@ -33,31 +34,83 @@ public class FieldUtilities {
         }
     }
 
-    public static void setTextForEditTextWith(String text, EditText etReference) {
-        if (text != null && !text.equals("")) {
-            etReference.setText(text);
+    public static boolean verify(@NonNull EditText etReference) {
+        String text = etReference.getText().toString();
+        return !text.equals("");
+    }
+
+    public static boolean alertVerify(@NonNull EditText etReference, String alert) {
+        String text = etReference.getText().toString();
+        if (!text.equals("")) {
+            return true;
+        } else {
+            Toast.makeText(etReference.getContext(), alert, Toast.LENGTH_SHORT).show();
+            return false;
         }
     }
 
-    public static void setTextForTextViewAndPrepend(String prependedText, String text, TextView tvReference) {
-        if (text != null && !text.equals("")) {
-            tvReference.setText(prependedText + text);
+    public static boolean alertVerify(@NonNull TextView tvReference, String alert) {
+        String text = tvReference.getText().toString();
+        if (!text.equals("") && !text.equals(DATE)) {
+            return true;
+        } else {
+            Toast.makeText(tvReference.getContext(), alert, Toast.LENGTH_SHORT).show();
+            return false;
         }
     }
 
-    public static void setTextForTextViewWith(String text, TextView tvReference) {
+    public static boolean alertVerify(@NonNull Spinner spinner, String alert, CreateUtilities utilities) {
+        if (spinner.getSelectedItemPosition() != 0 && utilities.getListItems() != null) {
+            return true;
+        } else {
+            Toast.makeText(spinner.getContext(), alert, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
+    public static boolean alertVerify(Integer integer, String alert, CreateUtilities utilities) {
+        if (integer != null && utilities.getListItems() != null) {
+            return true;
+        } else {
+            Toast.makeText(utilities.getActivity(), alert, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
+
+    public static String getTextFrom(@NonNull EditText etReference) {
+        return etReference.getText().toString();
+    }
+
+    public static String getTextFrom(@NonNull List<String> list, Spinner spinner) {
+        return list.get(spinner.getSelectedItemPosition());
+    }
+
+    public static void setTextForTextViewAndPrepend(String prependedText, @Nullable String text, @NonNull TextView tvReference) {
+        if (text != null && !text.equals("")) {
+            tvReference.setText(String.format("%s%s", prependedText, text));
+        }
+    }
+
+    public static void setTextForTextViewWith(@Nullable String text, @NonNull TextView tvReference) {
         if (text != null && !text.equals("")) {
             tvReference.setText(text);
         }
     }
 
-    public static void setTextForEditTextAndPrepend(String prependedText, String text, EditText etReference) {
+    public static void setTextForEditTextWith(@Nullable String text, @NonNull EditText etReference) {
         if (text != null && !text.equals("")) {
-            etReference.setText(prependedText + text);
+            etReference.setText(text);
         }
     }
 
-    public static void loadUrlIntoImageViewWithActivity(String url, ImageView ivReference, Activity activity) {
+    public static void setTextForEditTextAndPrepend(String prependedText, @Nullable String text, EditText etReference) {
+        if (text != null && !text.equals("")) {
+            etReference.setText(String.format("%s%s", prependedText, text));
+        }
+    }
+
+    public static void loadUrlIntoImageViewWithActivity(@Nullable String url, ImageView ivReference, Activity activity) {
         if (url != null && !url.equals("")) {
             Picasso.with(activity).load(url).into(ivReference);
             ivReference.setVisibility(View.VISIBLE);
