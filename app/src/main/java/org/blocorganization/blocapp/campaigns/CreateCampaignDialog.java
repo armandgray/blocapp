@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -54,12 +55,13 @@ public class CreateCampaignDialog extends DialogFragment
     public static final String ADMIN_REQUIRED = "Admin Required";
     public static final String TITLE_REQUIRED = "Title Required";
     public static final String DESCRIPTION_REQUIRED = "Description Required";
+    public static final String THEME_REQUIRED = "Theme Required";
 
     private Campaign campaign;
     private boolean isNewCampaign = true;
 
     private DateTimePresenter dateTimePresenter;
-    private CreateUtilities utilities;
+    private CreateUtilities themeUtilities;
     private DatabaseReference databaseResources;
 
     private List<String> themes = new ArrayList<>();
@@ -80,6 +82,8 @@ public class CreateCampaignDialog extends DialogFragment
 
     private Integer themePosition;
     LinearLayout previousSelectedTheme;
+    private CreateUtilities typeUtilities;
+    private CreateUtilities venueUtilities;
 
 
     public static CreateCampaignDialog withCampaign(Campaign passedCampaign) {
@@ -116,7 +120,10 @@ public class CreateCampaignDialog extends DialogFragment
     }
 
     private void setupUtilities(View rootView) {
-        utilities = new CreateUtilities(campaign, getActivity());
+        themeUtilities = new CreateUtilities(campaign, getActivity());
+        typeUtilities = new CreateUtilities(campaign, getActivity());
+        venueUtilities = new CreateUtilities(campaign, getActivity());
+
         databaseResources = FirebaseDatabase.getInstance().getReference().child(RES);
         DialogSubmitUtilities submitUtilities = new DialogSubmitUtilities(rootView, this);
         submitUtilities.setupClickListeners(this);
@@ -138,7 +145,7 @@ public class CreateCampaignDialog extends DialogFragment
         rvThemes = (RecyclerView) rootView.findViewById(R.id.rvThemes);
         DatabaseReference dbThemes = databaseResources.child(IMAGEURLS).child(THEMES);
 
-        themes = utilities.getRvImageUrlListFrom(dbThemes, rvThemes);
+        themeUtilities.getRvImageUrlListFrom(dbThemes, rvThemes);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         rvThemes.setLayoutManager(layoutManager);
@@ -159,8 +166,8 @@ public class CreateCampaignDialog extends DialogFragment
         DatabaseReference dbVenues = mDatabaseResources.child(VENUES);
         DatabaseReference dbTypes = mDatabaseResources.child(TYPES);
 
-        venues = utilities.getSpinnerListItemsFrom(dbVenues, spVenue, VENUE);
-        types = utilities.getSpinnerListItemsFrom(dbTypes, spType, TYPE);
+        venueUtilities.getSpinnerListItemsFrom(dbVenues, spVenue, VENUE);
+        typeUtilities.getSpinnerListItemsFrom(dbTypes, spType, TYPE);
     }
 
     private void setupDateTimePresenter(View rootView) {
@@ -215,25 +222,24 @@ public class CreateCampaignDialog extends DialogFragment
 
     @Override
     public boolean verifyFields() {
+        themes = themeUtilities.getListItems();
+        venues = venueUtilities.getListItems();
+        types = typeUtilities.getListItems();
+
         boolean areFieldsNonEmpty = true;
-//        if (themePosition != null) {
-//            campaign.setThemeImageUrl(themes.get(themePosition));
-//        } else {
-//            areFieldsNonEmpty = false;
-//            Toast.makeText(getActivity(), "Theme is required", Toast.LENGTH_SHORT).show();
-//        }
-//        if (spType.getSelectedItemPosition() != 0) {
-//            campaign.setRecordType(types.get(spType.getSelectedItemPosition()));
-//        } else {
-//            areFieldsNonEmpty = false;
-//            Toast.makeText(getActivity(), "Type is required", Toast.LENGTH_SHORT).show();
-//        }
-//        if (spVenue.getSelectedItemPosition() != 0) {
-//            campaign.setVenue(venues.get(spVenue.getSelectedItemPosition()));
-//        } else {
-//            areFieldsNonEmpty = false;
-//            Toast.makeText(getActivity(), "Venue is required", Toast.LENGTH_SHORT).show();
-//        }
+        if (alertVerify(themePosition, THEME_REQUIRED, getActivity())) { campaign.setThemeImageUrl(themes.get(themePosition)); }
+        if (spType.getSelectedItemPosition() != 0) {
+            campaign.setRecordType(types.get(spType.getSelectedItemPosition()));
+        } else {
+            areFieldsNonEmpty = false;
+            Toast.makeText(getActivity(), "Type is required", Toast.LENGTH_SHORT).show();
+        }
+        if (spVenue.getSelectedItemPosition() != 0) {
+            campaign.setVenue(venues.get(spVenue.getSelectedItemPosition()));
+        } else {
+            areFieldsNonEmpty = false;
+            Toast.makeText(getActivity(), "Venue is required", Toast.LENGTH_SHORT).show();
+        }
 
         if (alertVerify(etTitle, TITLE_REQUIRED)) { campaign.setTitle(getTextFrom(etTitle)); }
         if (alertVerify(etAdmin, ADMIN_REQUIRED)) { campaign.setAdmin(getTextFrom(etAdmin)); }
@@ -246,8 +252,8 @@ public class CreateCampaignDialog extends DialogFragment
 
     @Override
     public void onConfirmSave() {
-        utilities.saveCampaignToDatabase();
-        utilities.startDetailActivityWith(getActivity(), isNewCampaign);
+        themeUtilities.saveCampaignToDatabase();
+        themeUtilities.startDetailActivityWith(getActivity(), isNewCampaign);
     }
 
     @Override

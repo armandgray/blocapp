@@ -58,6 +58,15 @@ public class FieldUtilities {
         }
     }
 
+    public static boolean alertVerify(Integer integer, String alert, Activity activity) {
+        if (integer != null) {
+            return true;
+        } else {
+            Toast.makeText(activity, alert, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
     public static String getTextFrom(EditText etReference) {
         return etReference.getText().toString();
     }
