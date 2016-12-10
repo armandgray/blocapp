@@ -14,11 +14,9 @@ import java.util.List;
 
 public class FieldUtilities {
 
-    public static final String DESCRIPTION = "Description\n\n\t\t";
-    public static final String AMBITION = "Ambition\n\n\t\t";
-    public static final String BENEFITS_TO_THE_COLLEGE = "Benefits to the College\n\n\t\t";
+    private static final String DATE = "Date";
 
-    public static void setSelectionForSpinnerFromList(List<String> spListItems, String text, Spinner spReference) {
+    static void setSelectionForSpinnerFromList(List<String> spListItems, String text, Spinner spReference) {
         if (text != null && !text.equals("")) {
             findSpinnerItemIn(spListItems, text, spReference);
         }
@@ -49,8 +47,15 @@ public class FieldUtilities {
         }
     }
 
-
-
+    public static boolean alertVerify(TextView tvReference, String alert) {
+        String text = tvReference.getText().toString();
+        if (!text.equals("") && !text.equals(DATE)) {
+            return true;
+        } else {
+            Toast.makeText(tvReference.getContext(), alert, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
 
     public static String getTextFrom(EditText etReference) {
         return etReference.getText().toString();

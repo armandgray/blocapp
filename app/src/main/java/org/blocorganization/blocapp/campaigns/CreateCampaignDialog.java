@@ -14,7 +14,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -52,7 +51,6 @@ public class CreateCampaignDialog extends DialogFragment
     public static final String RES = "res";
     public static final String VENUES = "venues";
     public static final String TYPES = "types";
-    public static final String DATE = "Date";
     public static final String ADMIN_REQUIRED = "Admin Required";
     public static final String TITLE_REQUIRED = "Title Required";
     public static final String DESCRIPTION_REQUIRED = "Description Required";
@@ -215,28 +213,25 @@ public class CreateCampaignDialog extends DialogFragment
     @Override
     public boolean verifyFields() {
         boolean areFieldsNonEmpty = true;
-        if (themePosition != null) {
-            campaign.setThemeImageUrl(themes.get(themePosition));
-        } else {
-            areFieldsNonEmpty = false;
-            Toast.makeText(getActivity(), "Theme is required", Toast.LENGTH_SHORT).show();
-        }
-        if (spType.getSelectedItemPosition() != 0) {
-            campaign.setRecordType(types.get(spType.getSelectedItemPosition()));
-        } else {
-            areFieldsNonEmpty = false;
-            Toast.makeText(getActivity(), "Type is required", Toast.LENGTH_SHORT).show();
-        }
-        if (spVenue.getSelectedItemPosition() != 0) {
-            campaign.setVenue(venues.get(spVenue.getSelectedItemPosition()));
-        } else {
-            areFieldsNonEmpty = false;
-            Toast.makeText(getActivity(), "Venue is required", Toast.LENGTH_SHORT).show();
-        }
-//        if (dateTimePresenter.getFromDate().equals("") || dateTimePresenter.getFromDate() == null || dateTimePresenter.getFromDate().equals(DATE)) {
+//        if (themePosition != null) {
+//            campaign.setThemeImageUrl(themes.get(themePosition));
+//        } else {
 //            areFieldsNonEmpty = false;
-//            Toast.makeText(getActivity(), "Date is required", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getActivity(), "Theme is required", Toast.LENGTH_SHORT).show();
 //        }
+//        if (spType.getSelectedItemPosition() != 0) {
+//            campaign.setRecordType(types.get(spType.getSelectedItemPosition()));
+//        } else {
+//            areFieldsNonEmpty = false;
+//            Toast.makeText(getActivity(), "Type is required", Toast.LENGTH_SHORT).show();
+//        }
+//        if (spVenue.getSelectedItemPosition() != 0) {
+//            campaign.setVenue(venues.get(spVenue.getSelectedItemPosition()));
+//        } else {
+//            areFieldsNonEmpty = false;
+//            Toast.makeText(getActivity(), "Venue is required", Toast.LENGTH_SHORT).show();
+//        }
+
         if (alertVerify(etTitle, TITLE_REQUIRED)) { campaign.setTitle(getTextFrom(etTitle)); }
         if (alertVerify(etAdmin, ADMIN_REQUIRED)) { campaign.setAdmin(getTextFrom(etAdmin)); }
         if (alertVerify(etDescription, DESCRIPTION_REQUIRED)) { campaign.setDescription(getTextFrom(etDescription)); }
