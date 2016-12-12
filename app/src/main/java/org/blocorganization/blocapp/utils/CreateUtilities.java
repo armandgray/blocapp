@@ -34,11 +34,13 @@ public class CreateUtilities {
     public static final String SUBTYPES = "subtypes";
     public static final String REPEAT_EVENT = "REPEAT_EVENT";
     public static final String REPEAT_OPTIONS = "repeat";
+    public static final String NEWSFEEDSOURCES = "newsfeedsources";
 
     private static final String CAMPAIGNS = "campaigns";
 
     private List<String> listItems;
-    @Nullable private Campaign campaign;
+    @Nullable
+    private Campaign campaign;
     private Activity activity;
 
     public CreateUtilities(Activity activity) {
@@ -109,6 +111,11 @@ public class CreateUtilities {
                     setSelectionForSpinnerFromList(listItems, campaign.getVenue(), spinner);
             }
         }
+    }
+
+    public void updateNetwork() {
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child(RES).child(NEWSFEEDSOURCES);
+        mDatabase.push().setValue(campaign);
     }
 
     public void saveCampaignToDatabase() {

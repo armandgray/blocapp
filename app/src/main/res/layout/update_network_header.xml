@@ -44,7 +44,7 @@
         android:orientation="horizontal">
 
         <Switch
-            android:id="@+id/mySwitch"
+            android:id="@+id/swUpdateNetwork"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:scaleX="1.5"

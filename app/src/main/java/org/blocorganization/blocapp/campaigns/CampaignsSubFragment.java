@@ -153,6 +153,11 @@ public class CampaignsSubFragment extends Fragment {
                 campaign.setExtras((String) campaignsSnapshot.get("extras"));
                 campaign.setPhotoUrl((String) campaignsSnapshot.get("campaignPhoto"));
                 campaign.setThemeImageUrl((String) campaignsSnapshot.get("campaignTheme"));
+                if (campaignsSnapshot.get("isPublic") == null) {
+                    campaign.setPublic(false);
+                } else {
+                    campaign.setPublic((Boolean) campaignsSnapshot.get("isPublic"));
+                }
 
                 ArrayList<Long> fromDateAsListLong = (ArrayList<Long>) campaignsSnapshot.get("fromDate");
                 if (fromDateAsListLong != null) {

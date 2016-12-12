@@ -7,6 +7,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.InputFilter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Switch;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -31,9 +33,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.blocorganization.blocapp.campaigns.UploadButtonIncluder.setupUploadButtonFrom;
-import static org.blocorganization.blocapp.utils.CreateUtilities.*;
+import static org.blocorganization.blocapp.utils.CreateUtilities.RES;
+import static org.blocorganization.blocapp.utils.CreateUtilities.TYPE;
+import static org.blocorganization.blocapp.utils.CreateUtilities.TYPES;
+import static org.blocorganization.blocapp.utils.CreateUtilities.VENUE;
+import static org.blocorganization.blocapp.utils.CreateUtilities.VENUES;
 import static org.blocorganization.blocapp.utils.DateTimePresenter.DATE_TIME_PICKER;
-import static org.blocorganization.blocapp.utils.FieldUtilities.*;
+import static org.blocorganization.blocapp.utils.FieldUtilities.ADMIN_REQUIRED;
+import static org.blocorganization.blocapp.utils.FieldUtilities.DESCRIPTION_REQUIRED;
+import static org.blocorganization.blocapp.utils.FieldUtilities.THEME_REQUIRED;
+import static org.blocorganization.blocapp.utils.FieldUtilities.TITLE_REQUIRED;
+import static org.blocorganization.blocapp.utils.FieldUtilities.TYPE_REQUIRED;
+import static org.blocorganization.blocapp.utils.FieldUtilities.VENUE_REQUIRED;
+import static org.blocorganization.blocapp.utils.FieldUtilities.alertVerify;
+import static org.blocorganization.blocapp.utils.FieldUtilities.getTextFrom;
+import static org.blocorganization.blocapp.utils.FieldUtilities.loadUrlIntoImageViewWithActivity;
+import static org.blocorganization.blocapp.utils.FieldUtilities.setTextForEditTextWith;
+import static org.blocorganization.blocapp.utils.FieldUtilities.verify;
 
 public class CreateCampaignDialog extends DialogFragment
         implements DateTimePickerFragment.DateTimeSetListener,
@@ -61,6 +77,8 @@ public class CreateCampaignDialog extends DialogFragment
     private EditText etDescription;
     private EditText etAmbition;
     private EditText etBenefits;
+    private Switch swIsPublic;
+    private Switch swUpdateNetwork;
     private ImageView ivUpload;
 
     private Spinner spType;
@@ -92,6 +110,7 @@ public class CreateCampaignDialog extends DialogFragment
         setupSpinnersFrom(databaseResources, rootView);
         setupDateTimePresenter(rootView);
         setupUploadButtonFrom(rootView, this);
+        setupSwitchClickListener();
 
         return rootView;
     }
@@ -114,6 +133,8 @@ public class CreateCampaignDialog extends DialogFragment
         etDescription = (EditText) rootView.findViewById(R.id.etDescription);
         etAmbition = (EditText) rootView.findViewById(R.id.etAmbition);
         etBenefits = (EditText) rootView.findViewById(R.id.etBenefits);
+        swUpdateNetwork = (Switch) rootView.findViewById(R.id.swUpdateNetwork);
+        swIsPublic = (Switch) rootView.findViewById(R.id.swIsPublic);
         ivUpload = (ImageView) rootView.findViewById(R.id.ivUpload);
     }
 
@@ -135,6 +156,7 @@ public class CreateCampaignDialog extends DialogFragment
             setTextForEditTextWith(campaign.getDescription(), etDescription);
             setTextForEditTextWith(campaign.getAmbition(), etAmbition);
             setTextForEditTextWith(campaign.getBenefits(), etBenefits);
+            swIsPublic.setChecked(campaign.isPublic());
             loadUrlIntoImageViewWithActivity(campaign.getPhotoUrl(), ivUpload, getActivity());
         }
     }
@@ -188,6 +210,15 @@ public class CreateCampaignDialog extends DialogFragment
         previousSelectedTheme = view;
     }
 
+    private void setupSwitchClickListener() {
+        swIsPublic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("SW_PUBLIC", String.valueOf(swIsPublic.isChecked()));
+            }
+        });
+    }
+
     @Override
     public void onDatePickerCancel() {
         DialogFragment dialog = (DialogFragment) getChildFragmentManager()
@@ -220,11 +251,13 @@ public class CreateCampaignDialog extends DialogFragment
             campaign.setTitle(getTextFrom(etTitle));
             campaign.setAdmin(getTextFrom(etAdmin));
             campaign.setDescription(getTextFrom(etDescription));
+            campaign.setPublic(swIsPublic.isChecked());
         } else {
             return false;
         }
 
         if (verify(etAmbition)) { campaign.setAmbition(getTextFrom(etAmbition)); }
+        if (verify(etAbbreviation)) { campaign.setAbbreviation(getTextFrom(etAbbreviation)); }
         if (verify(etBenefits)) { campaign.setBenefits(getTextFrom(etBenefits)); }
 
         return true;
@@ -241,6 +274,9 @@ public class CreateCampaignDialog extends DialogFragment
 
     @Override
     public void onConfirmSave() {
+        if (swUpdateNetwork.isChecked()) {
+            themeUtilities.updateNetwork();
+        }
         themeUtilities.saveCampaignToDatabase();
         themeUtilities.startDetailActivityWith(getActivity(), isNewCampaign);
     }

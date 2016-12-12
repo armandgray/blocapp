@@ -155,7 +155,11 @@ abstract class Record {
     }
 
     public boolean isPublic() {
-        return isPublic;
+        return this.isPublic;
+    }
+
+    public void setPublic(boolean bool) {
+        this.isPublic = bool;
     }
 
 }

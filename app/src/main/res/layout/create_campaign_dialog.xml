@@ -20,7 +20,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <include layout="@layout/update_network_header"
+            <include
+                layout="@layout/update_network_header"
                 android:layout_width="match_parent"
                 android:layout_height="100dp" />
 
@@ -125,15 +126,16 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:orientation="horizontal"
                 android:paddingTop="30dp">
+
                 <EditText
                     android:id="@+id/etTitle"
                     android:layout_width="0dp"
-                    android:layout_weight=".8"
                     android:layout_height="wrap_content"
+                    android:layout_weight=".8"
                     android:ems="15"
                     android:hint="Title"
                     android:inputType="textShortMessage"
@@ -145,12 +147,12 @@
                     android:id="@+id/etAbbreviation"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="end"
                     android:layout_weight=".2"
                     android:ems="3"
-                    android:maxLength="3"
-                    android:layout_gravity="end"
                     android:hint="(ABC)"
                     android:inputType="textShortMessage"
+                    android:maxLength="3"
                     android:textColor="@color/textColor"
                     android:textColorHint="#999999"
                     android:textSize="16sp" />
@@ -220,6 +222,16 @@
                 android:textColor="@color/textColor"
                 android:textColorHint="#999999"
                 android:textSize="14sp" />
+
+            <include
+                layout="@layout/single_line_switch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:background="@drawable/red_top_border_background"
+                android:paddingBottom="10dp"
+                android:paddingTop="30dp" />
 
             <TextView
                 android:layout_width="match_parent"
