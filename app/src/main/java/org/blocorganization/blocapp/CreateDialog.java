@@ -15,7 +15,12 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class CreateDialog extends DialogFragment {
+import org.blocorganization.blocapp.utils.ConfirmChangesDialogFragment;
+import org.blocorganization.blocapp.utils.DialogSubmitUtilities;
+
+public class CreateDialog extends DialogFragment
+        implements DialogSubmitUtilities.DialogSubmitListener,
+        ConfirmChangesDialogFragment.ConfirmChangesListener {
 
     public static final String SELECTED_DIALOG_NUM = "SELECTED_DIALOG_NUM";
     private TextView tvSubmitDialog;
@@ -27,6 +32,8 @@ public class CreateDialog extends DialogFragment {
     private ImageView ivMessageSelector;
     private TextView tvMessageSelector;
     private ViewPager vpPager;
+    private MyPagerAdapter adapterViewPager;
+    private ParentDialogSubmitListener listener;
 
     public static CreateDialog newMessage() {
 
@@ -61,7 +68,29 @@ public class CreateDialog extends DialogFragment {
         final View rootView = inflater.inflate(R.layout.create_dialog, container, false);
 
         assignLayoutsViewsFrom(rootView);
+        setupViewPager(rootView);
 
+        DialogSubmitUtilities submitUtilities = new DialogSubmitUtilities(rootView, this);
+        submitUtilities.setupClickListeners(this);
+
+        return rootView;
+    }
+
+    private void assignLayoutsViewsFrom(View rootView) {
+        tvSubmitDialog = (TextView) rootView.findViewById(R.id.tvSubmitDialog);
+        tvSelectorDetails = (TextView) rootView.findViewById(R.id.tvSelectorDetails);
+        RelativeLayout meetupSelectorLayout = (RelativeLayout) rootView.findViewById(R.id.meetupSelectorLayout);
+        ivMeetupSelector = (ImageView) meetupSelectorLayout.getChildAt(0);
+        tvMeetupSelector = (TextView) meetupSelectorLayout.getChildAt(1);
+        RelativeLayout messagesSelectorLayout = (RelativeLayout) rootView.findViewById(R.id.messagesSelectorLayout);
+        ivMessageSelector = (ImageView) messagesSelectorLayout.getChildAt(0);
+        tvMessageSelector = (TextView) messagesSelectorLayout.getChildAt(1);
+        RelativeLayout resourcesSelectorLayout = (RelativeLayout) rootView.findViewById(R.id.resourcesSelectorLayout);
+        ivResourceSelector = (ImageView) resourcesSelectorLayout.getChildAt(0);
+        tvResourceSelector = (TextView) resourcesSelectorLayout.getChildAt(1);
+    }
+
+    private void setupViewPager(View rootView) {
         ViewPager vpPager = getViewPager(rootView);
         vpPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -89,27 +118,12 @@ public class CreateDialog extends DialogFragment {
             public void onPageScrollStateChanged(int state) {
             }
         });
-        return rootView;
-    }
-
-    private void assignLayoutsViewsFrom(View rootView) {
-        tvSubmitDialog = (TextView) rootView.findViewById(R.id.tvSubmitDialog);
-        tvSelectorDetails = (TextView) rootView.findViewById(R.id.tvSelectorDetails);
-        RelativeLayout meetupSelectorLayout = (RelativeLayout) rootView.findViewById(R.id.meetupSelectorLayout);
-        ivMeetupSelector = (ImageView) meetupSelectorLayout.getChildAt(0);
-        tvMeetupSelector = (TextView) meetupSelectorLayout.getChildAt(1);
-        RelativeLayout messagesSelectorLayout = (RelativeLayout) rootView.findViewById(R.id.messagesSelectorLayout);
-        ivMessageSelector = (ImageView) messagesSelectorLayout.getChildAt(0);
-        tvMessageSelector = (TextView) messagesSelectorLayout.getChildAt(1);
-        RelativeLayout resourcesSelectorLayout = (RelativeLayout) rootView.findViewById(R.id.resourcesSelectorLayout);
-        ivResourceSelector = (ImageView) resourcesSelectorLayout.getChildAt(0);
-        tvResourceSelector = (TextView) resourcesSelectorLayout.getChildAt(1);
     }
 
     @NonNull
     private ViewPager getViewPager(View rootView) {
         vpPager = (ViewPager) rootView.findViewById(R.id.vpCreateDialog);
-        MyPagerAdapter adapterViewPager = new MyPagerAdapter(getChildFragmentManager());
+        adapterViewPager = new MyPagerAdapter(getChildFragmentManager());
         vpPager.setAdapter(adapterViewPager);
         setVpFrom(getArguments());
 
@@ -205,6 +219,23 @@ public class CreateDialog extends DialogFragment {
         imageView.setColorFilter(Color.parseColor("#FF2A00"));
         imageView.setBackgroundResource(R.drawable.create_dialog_circle_selected);
         textView.setTextColor(Color.parseColor("#FF2A00"));
+
+    }
+
+    @Override
+    public boolean verifyFields() {
+        listener = (ParentDialogSubmitListener) adapterViewPager.getItem(vpPager.getCurrentItem());
+        return listener.verifyFields();
+    }
+
+    @Override
+    public void onConfirmSave() {
+        listener.onConfirmSave();
+    }
+
+    public interface ParentDialogSubmitListener {
+        boolean verifyFields();
+        void onConfirmSave();
 
     }
 

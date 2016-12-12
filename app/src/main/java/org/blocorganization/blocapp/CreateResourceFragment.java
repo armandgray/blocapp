@@ -23,7 +23,9 @@ import static org.blocorganization.blocapp.utils.CreateUtilities.TYPE;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CreateResourceFragment extends Fragment implements DialogSubmitUtilities.DialogSubmitListener {
+public class CreateResourceFragment extends Fragment
+        implements DialogSubmitUtilities.DialogSubmitListener,
+        CreateDialog.ParentDialogSubmitListener {
 
     public static final String SUBTYPE = "SUBTYPE";
     public static final String SUBTYPES = "subtypes";
@@ -94,6 +96,10 @@ public class CreateResourceFragment extends Fragment implements DialogSubmitUtil
 
     @Override
     public boolean verifyFields() {
-        return false;
+        return true;
+    }
+
+    @Override
+    public void onConfirmSave() {
     }
 }

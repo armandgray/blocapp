@@ -21,7 +21,7 @@ public class ConfirmChangesDialogFragment extends DialogFragment {
             mListener = (ConfirmChangesListener) getParentFragment();
         } catch (ClassCastException e) {
             // The activity doesn't implement the interface, throw exception
-            throw new ClassCastException(context.toString()
+            throw new ClassCastException(getParentFragment().toString()
                     + " must implement ConfirmChangesListener");
         }
     }

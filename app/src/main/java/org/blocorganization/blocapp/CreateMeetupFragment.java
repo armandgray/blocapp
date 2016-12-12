@@ -7,10 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.blocorganization.blocapp.utils.DialogSubmitUtilities;
+
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CreateMeetupFragment extends Fragment {
+public class CreateMeetupFragment extends Fragment
+        implements DialogSubmitUtilities.DialogSubmitListener,
+        CreateDialog.ParentDialogSubmitListener {
 
 
     public CreateMeetupFragment() {
@@ -35,4 +39,13 @@ public class CreateMeetupFragment extends Fragment {
         return rootView;
     }
 
+    @Override
+    public boolean verifyFields() {
+        return true;
+    }
+
+    @Override
+    public void onConfirmSave() {
+
+    }
 }
