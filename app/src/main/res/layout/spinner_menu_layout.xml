@@ -26,6 +26,7 @@
         app:srcCompat="@drawable/ic_apps_white_48dp" />
 
     <ImageView
+        android:id="@id/ivMenuArrow"
         android:layout_width="@dimen/navbar_icon_size"
         android:layout_height="@dimen/navbar_icon_size"
         android:layout_gravity="center_vertical|end"

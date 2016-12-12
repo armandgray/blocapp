@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -77,8 +78,8 @@ public class CreateResourceFragment extends Fragment
 
         subtypeLayout = (FrameLayout) rootView.findViewById(R.id.containerSubtype);
         typeLayout = (FrameLayout) rootView.findViewById(R.id.containerType);
-        spSubtype = (Spinner) subtypeLayout.getChildAt(2);
-        spType = (Spinner) typeLayout.getChildAt(2);
+        spSubtype = (Spinner) subtypeLayout.findViewById(R.id.spinner);
+        spType = (Spinner) typeLayout.findViewById(R.id.spinner);
 
         databaseResources = FirebaseDatabase.getInstance().getReference().child(RES);
     }
@@ -98,8 +99,12 @@ public class CreateResourceFragment extends Fragment
 
     @Override
     public boolean verifyFields() {
-        if (alertVerify(spType, TYPE_REQUIRED, typeUtilities)) {
-            return true;
+        if (spType == null || TYPE_REQUIRED == null || typeUtilities == null) {
+            Toast.makeText(getActivity(), "Scary", Toast.LENGTH_SHORT).show();
+        } else {
+            if (alertVerify(spType, TYPE_REQUIRED, typeUtilities)) {
+                return true;
+            }
         }
         return false;
     }
