@@ -18,7 +18,6 @@ import android.widget.TextView;
 public class CreateDialog extends DialogFragment {
 
     public static final String SELECTED_DIALOG_NUM = "SELECTED_DIALOG_NUM";
-    private FragmentManager fragmentManager;
     private TextView tvSubmitDialog;
     private TextView tvSelectorDetails;
     private ImageView ivResourceSelector;
@@ -148,7 +147,6 @@ public class CreateDialog extends DialogFragment {
 
         MyPagerAdapter(FragmentManager fragmentManager) {
             super(fragmentManager);
-            CreateDialog.this.fragmentManager = fragmentManager;
         }
 
         // Returns total number of pages

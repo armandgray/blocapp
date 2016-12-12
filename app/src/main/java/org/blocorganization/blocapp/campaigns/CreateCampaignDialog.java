@@ -120,6 +120,17 @@ public class CreateCampaignDialog extends DialogFragment
         }
     }
 
+    private void assignFields(View rootView) {
+        etTitle = (EditText) rootView.findViewById(R.id.etTitle);
+        etAbbreviation = (EditText) rootView.findViewById(R.id.etAbbreviation);
+        etAbbreviation.setFilters(new InputFilter[]{new InputFilter.AllCaps(), new InputFilter.LengthFilter(3)});
+        etAdmin = (EditText) rootView.findViewById(R.id.etAdmin);
+        etDescription = (EditText) rootView.findViewById(R.id.etDescription);
+        etAmbition = (EditText) rootView.findViewById(R.id.etAmbition);
+        etBenefits = (EditText) rootView.findViewById(R.id.etBenefits);
+        ivUpload = (ImageView) rootView.findViewById(R.id.ivUpload);
+    }
+
     private void setupUtilities(View rootView) {
         themeUtilities = new CreateUtilities(campaign, getActivity());
         typeUtilities = new CreateUtilities(campaign, getActivity());
@@ -174,17 +185,6 @@ public class CreateCampaignDialog extends DialogFragment
     private void setupDateTimePresenter(View rootView) {
         dateTimePresenter = new DateTimePresenter(rootView, this);
         dateTimePresenter.loadDateFields(campaign);
-    }
-
-    private void assignFields(View rootView) {
-        etTitle = (EditText) rootView.findViewById(R.id.etTitle);
-        etAbbreviation = (EditText) rootView.findViewById(R.id.etAbbreviation);
-        etAbbreviation.setFilters(new InputFilter[]{new InputFilter.AllCaps(), new InputFilter.LengthFilter(3)});
-        etAdmin = (EditText) rootView.findViewById(R.id.etAdmin);
-        etDescription = (EditText) rootView.findViewById(R.id.etDescription);
-        etAmbition = (EditText) rootView.findViewById(R.id.etAmbition);
-        etBenefits = (EditText) rootView.findViewById(R.id.etBenefits);
-        ivUpload = (ImageView) rootView.findViewById(R.id.ivUpload);
     }
 
     private void highlightView(LinearLayout view, int position) {
