@@ -16,13 +16,13 @@
             layout="@layout/spinner_menu_layout" />
 
         <include
-            android:id="@+id/containerLocation"
+            android:id="@+id/containerVenue"
             layout="@layout/spinner_menu_layout" />
 
         <include layout="@layout/edit_date_to_from_layout" />
 
         <include
-            android:id="@+id/containerDateRepeat"
+            android:id="@+id/containerEventRepeat"
             layout="@layout/spinner_menu_layout" />
 
         <EditText

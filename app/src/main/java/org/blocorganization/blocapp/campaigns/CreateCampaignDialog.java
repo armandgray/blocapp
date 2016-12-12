@@ -31,8 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.blocorganization.blocapp.campaigns.UploadButtonIncluder.setupUploadButtonFrom;
-import static org.blocorganization.blocapp.utils.CreateUtilities.TYPE;
-import static org.blocorganization.blocapp.utils.CreateUtilities.VENUE;
+import static org.blocorganization.blocapp.utils.CreateUtilities.*;
 import static org.blocorganization.blocapp.utils.DateTimePresenter.DATE_TIME_PICKER;
 import static org.blocorganization.blocapp.utils.FieldUtilities.*;
 
@@ -44,9 +43,6 @@ public class CreateCampaignDialog extends DialogFragment
     public static final int THEME_LAYOUT_PARAMS = 100;
     public static final String THEMES = "themes";
     public static final String IMAGEURLS = "imageurls";
-    public static final String RES = "res";
-    public static final String VENUES = "venues";
-    public static final String TYPES = "types";
 
     private Campaign campaign;
     private boolean isNewCampaign = true;

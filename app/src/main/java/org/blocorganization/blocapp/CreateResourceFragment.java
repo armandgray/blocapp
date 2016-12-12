@@ -3,13 +3,13 @@ package org.blocorganization.blocapp;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -17,11 +17,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import org.blocorganization.blocapp.utils.CreateUtilities;
 import org.blocorganization.blocapp.utils.DialogSubmitUtilities;
 
-import static org.blocorganization.blocapp.campaigns.CreateCampaignDialog.RES;
-import static org.blocorganization.blocapp.campaigns.CreateCampaignDialog.TYPES;
+import static org.blocorganization.blocapp.utils.CreateUtilities.RES;
+import static org.blocorganization.blocapp.utils.CreateUtilities.SUBTYPE;
+import static org.blocorganization.blocapp.utils.CreateUtilities.SUBTYPES;
 import static org.blocorganization.blocapp.utils.CreateUtilities.TYPE;
-import static org.blocorganization.blocapp.utils.FieldUtilities.TYPE_REQUIRED;
-import static org.blocorganization.blocapp.utils.FieldUtilities.alertVerify;
+import static org.blocorganization.blocapp.utils.CreateUtilities.TYPES;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,8 +30,6 @@ public class CreateResourceFragment extends Fragment
         implements DialogSubmitUtilities.DialogSubmitListener,
         CreateDialog.ParentDialogSubmitListener {
 
-    public static final String SUBTYPE = "SUBTYPE";
-    public static final String SUBTYPES = "subtypes";
     private EditText etTitle;
     private EditText etAdmin;
     private EditText etDescription;
@@ -44,6 +42,7 @@ public class CreateResourceFragment extends Fragment
     private CreateUtilities typeUtilities;
     private CreateUtilities subtypeUtilities;
     private DatabaseReference databaseResources;
+    private View rootView;
 
     public CreateResourceFragment() {
     }
@@ -61,12 +60,13 @@ public class CreateResourceFragment extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.create_fragment_resource, container, false);
+        rootView = inflater.inflate(R.layout.create_fragment_resource, container, false);
 
         assignFields(rootView);
         setupUtilities(rootView);
         setupSpinnersFrom(databaseResources);
+
+        Log.i("Null Check", spType.toString());
 
         return rootView;
     }
@@ -95,18 +95,13 @@ public class CreateResourceFragment extends Fragment
 
         subtypeUtilities.getSpinnerListItemsFrom(dbSubtype, spSubtype, SUBTYPE);
         typeUtilities.getSpinnerListItemsFrom(dbTypes, spType, TYPE);
+        Log.i("Null Check 2", spType.toString());
     }
 
     @Override
     public boolean verifyFields() {
-        if (spType == null || TYPE_REQUIRED == null || typeUtilities == null) {
-            Toast.makeText(getActivity(), "Scary", Toast.LENGTH_SHORT).show();
-        } else {
-            if (alertVerify(spType, TYPE_REQUIRED, typeUtilities)) {
-                return true;
-            }
-        }
-        return false;
+//        Log.i("Null Check", spType.toString());
+        return true;
     }
 
     @Override

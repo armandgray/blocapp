@@ -27,6 +27,13 @@ public class CreateUtilities {
 
     public static final String TYPE = "TYPE";
     public static final String VENUE = "VENUE";
+    public static final String RES = "res";
+    public static final String VENUES = "venues";
+    public static final String TYPES = "types";
+    public static final String SUBTYPE = "SUBTYPE";
+    public static final String SUBTYPES = "subtypes";
+    public static final String REPEAT_EVENT = "REPEAT_EVENT";
+    public static final String REPEAT_OPTIONS = "repeat";
 
     private static final String CAMPAIGNS = "campaigns";
 

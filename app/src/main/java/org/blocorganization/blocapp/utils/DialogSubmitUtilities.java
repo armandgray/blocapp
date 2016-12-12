@@ -24,14 +24,9 @@ public class DialogSubmitUtilities {
         ivSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
-                    if (dialogSubmitListener.verifyFields()) {
-                        new ConfirmChangesDialogFragment().show(
-                                fragment.getChildFragmentManager(), DIALOG);
-                    }
-                } catch (NullPointerException e) {
-                    throw new NullPointerException(fragment.toString()
-                            + " must implement DialogSubmitListener");
+                if (dialogSubmitListener.verifyFields()) {
+                    new ConfirmChangesDialogFragment().show(
+                            fragment.getChildFragmentManager(), DIALOG);
                 }
             }
         });
