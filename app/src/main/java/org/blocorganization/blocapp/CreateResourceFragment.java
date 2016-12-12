@@ -19,6 +19,8 @@ import org.blocorganization.blocapp.utils.DialogSubmitUtilities;
 import static org.blocorganization.blocapp.campaigns.CreateCampaignDialog.RES;
 import static org.blocorganization.blocapp.campaigns.CreateCampaignDialog.TYPES;
 import static org.blocorganization.blocapp.utils.CreateUtilities.TYPE;
+import static org.blocorganization.blocapp.utils.FieldUtilities.TYPE_REQUIRED;
+import static org.blocorganization.blocapp.utils.FieldUtilities.alertVerify;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -46,9 +48,9 @@ public class CreateResourceFragment extends Fragment
     }
 
     public static CreateResourceFragment newInstance() {
-        
+
         Bundle args = new Bundle();
-        
+
         CreateResourceFragment fragment = new CreateResourceFragment();
         fragment.setArguments(args);
         return fragment;
@@ -96,7 +98,10 @@ public class CreateResourceFragment extends Fragment
 
     @Override
     public boolean verifyFields() {
-        return true;
+        if (alertVerify(spType, TYPE_REQUIRED, typeUtilities)) {
+            return true;
+        }
+        return false;
     }
 
     @Override
