@@ -34,11 +34,7 @@ import static org.blocorganization.blocapp.campaigns.UploadButtonIncluder.setupU
 import static org.blocorganization.blocapp.utils.CreateUtilities.TYPE;
 import static org.blocorganization.blocapp.utils.CreateUtilities.VENUE;
 import static org.blocorganization.blocapp.utils.DateTimePresenter.DATE_TIME_PICKER;
-import static org.blocorganization.blocapp.utils.FieldUtilities.alertVerify;
-import static org.blocorganization.blocapp.utils.FieldUtilities.getTextFrom;
-import static org.blocorganization.blocapp.utils.FieldUtilities.loadUrlIntoImageViewWithActivity;
-import static org.blocorganization.blocapp.utils.FieldUtilities.setTextForEditTextWith;
-import static org.blocorganization.blocapp.utils.FieldUtilities.verify;
+import static org.blocorganization.blocapp.utils.FieldUtilities.*;
 
 public class CreateCampaignDialog extends DialogFragment
         implements DateTimePickerFragment.DateTimeSetListener,
@@ -51,12 +47,6 @@ public class CreateCampaignDialog extends DialogFragment
     public static final String RES = "res";
     public static final String VENUES = "venues";
     public static final String TYPES = "types";
-    public static final String ADMIN_REQUIRED = "Admin Required";
-    public static final String TITLE_REQUIRED = "Title Required";
-    public static final String DESCRIPTION_REQUIRED = "Description Required";
-    public static final String THEME_REQUIRED = "Theme Required";
-    public static final String TYPE_REQUIRED = "Type Required";
-    public static final String VENUE_REQUIRED = "Venue Required";
 
     private Campaign campaign;
     private boolean isNewCampaign = true;

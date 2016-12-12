@@ -16,6 +16,14 @@ import java.util.List;
 
 public class FieldUtilities {
 
+    public static final String ADMIN_REQUIRED = "Admin Required";
+    public static final String TITLE_REQUIRED = "Title Required";
+    public static final String DESCRIPTION_REQUIRED = "Description Required";
+    public static final String THEME_REQUIRED = "Theme Required";
+    public static final String TYPE_REQUIRED = "Type Required";
+    public static final String SUBTYPE_REQUIRED = "Subtype Required";
+    public static final String VENUE_REQUIRED = "Venue Required";
+
     private static final String DATE = "Date";
 
     static void setSelectionForSpinnerFromList(List<String> spListItems, String text, @NonNull Spinner spReference) {
