@@ -16,7 +16,7 @@ import org.blocorganization.blocapp.R;
 import org.blocorganization.blocapp.CreateDialog;
 import org.blocorganization.blocapp.models.Resource;
 import org.blocorganization.blocapp.utils.RecyclerItemClickListener;
-import org.blocorganization.blocapp.utils.ResourceItemAdapter;
+import org.blocorganization.blocapp.utils.RecordItemAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +43,6 @@ public class ResourcesSubFragment extends Fragment {
     private TextView tvMiscellaneous;
 
     public ResourcesSubFragment() {
-        // Required empty public constructor
     }
 
     public static ResourcesSubFragment newInstance() {
@@ -62,42 +61,9 @@ public class ResourcesSubFragment extends Fragment {
         createListObjects();
         assignTvReferencesFrom(rootView);
         collapseAllEmptyViews();
-
-        Resource tip = new Resource.Builder("Use JSTOR")
-                .description("When writing essays, always start by writing out your ideas and then find sources on JSTOR to cite. Not the other way around!")
-                .admin("Armand Gray")
-                .type(TIPSANDTRICKS.toString())
-                .subType(ACADEMIC.toString())
-                .isPublic(true).build();
-        lstTopResources.add(tip);
-        lstTopResources.add(tip);
-
-        ResourceItemAdapter adptTopResources = new ResourceItemAdapter(lstTopResources);
-        RecyclerView rvTopResources = (RecyclerView) rootView.findViewById(R.id.rvTopResources);
-        rvTopResources.setAdapter(adptTopResources);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-        rvTopResources.setLayoutManager(layoutManager);
-        rvTopResources.addOnItemTouchListener(new RecyclerItemClickListener(getContext(),
-                new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, int position) {
-                    }
-                })
-        );
-
-        ImageView btnAdd = (ImageView) rootView.findViewById(R.id.ivAddRes);
-        btnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().getSupportFragmentManager()
-                        .beginTransaction()
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .add(R.id.main_layout, CreateDialog.newResource())
-                        .addToBackStack(null)
-                        .commit();
-            }
-        });
-
+        createMockResources();
+        setupRvTopResources(rootView);
+        setupAddResButton(rootView);
 
         return rootView;
     }
@@ -127,10 +93,50 @@ public class ResourcesSubFragment extends Fragment {
         collapseEmptyListView(lstMiscellaneous, tvMiscellaneous);
     }
 
-    public void collapseEmptyListView(List list, View view) {
+    private void collapseEmptyListView(List list, View view) {
         if (list.size() == 0) {
             view.setVisibility(View.GONE);
         }
     }
 
+    private void createMockResources() {
+        Resource tip = new Resource.Builder("Use JSTOR")
+                .description("When writing essays, always start by writing out your ideas and then find sources on JSTOR to cite. Not the other way around!")
+                .admin("Armand Gray")
+                .type(TIPSANDTRICKS.toString())
+                .subType(ACADEMIC.toString())
+                .isPublic(true).build();
+        lstTopResources.add(tip);
+        lstTopResources.add(tip);
+    }
+
+    private void setupRvTopResources(View rootView) {
+        RecordItemAdapter adptTopResources = new RecordItemAdapter(lstTopResources);
+        RecyclerView rvTopResources = (RecyclerView) rootView.findViewById(R.id.rvTopResources);
+        rvTopResources.setAdapter(adptTopResources);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        rvTopResources.setLayoutManager(layoutManager);
+        rvTopResources.addOnItemTouchListener(new RecyclerItemClickListener(getContext(),
+                new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                    }
+                })
+        );
+    }
+
+    private void setupAddResButton(View rootView) {
+        ImageView btnAdd = (ImageView) rootView.findViewById(R.id.ivAddRes);
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .add(R.id.main_layout, CreateDialog.newResource())
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+    }
 }

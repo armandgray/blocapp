@@ -7,7 +7,7 @@ import org.joda.time.DateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-abstract class Record {
+public abstract class Record {
 
     private static final String RECORD_TYPE_KEY = "RECORD_TYPE_KEY";
     private static final String ADMIN_KEY = "ADMIN_KEY";

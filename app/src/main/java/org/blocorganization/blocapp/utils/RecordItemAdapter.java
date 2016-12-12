@@ -9,19 +9,19 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.blocorganization.blocapp.R;
-import org.blocorganization.blocapp.models.Resource;
+import org.blocorganization.blocapp.models.Record;
 
 import java.util.List;
 
 import static org.blocorganization.blocapp.utils.FieldUtilities.setTextForTextViewWith;
 
-public class ResourceItemAdapter extends
-        RecyclerView.Adapter<ResourceItemAdapter.ViewHolder> {
+public class RecordItemAdapter extends
+        RecyclerView.Adapter<RecordItemAdapter.ViewHolder> {
 
-    private List<Resource> resources;
+    private List<? extends Record> records;
 
-    public ResourceItemAdapter(List<Resource> resources) {
-        this.resources = resources;
+    public RecordItemAdapter(List<? extends Record> records) {
+        this.records = records;
     }
 
     @Override
@@ -31,8 +31,8 @@ public class ResourceItemAdapter extends
     }
 
     @Override
-    public void onBindViewHolder(ResourceItemAdapter.ViewHolder viewHolder, int position) {
-        Resource resource = resources.get(position);
+    public void onBindViewHolder(RecordItemAdapter.ViewHolder viewHolder, int position) {
+        Record resource = records.get(position);
 
         ImageView ivAdminImage = viewHolder.ivAdminImage;
         TextView tvTitle = viewHolder.tvTitle;
@@ -57,7 +57,7 @@ public class ResourceItemAdapter extends
 
     @Override
     public int getItemCount() {
-        return resources.size();
+        return records.size();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {

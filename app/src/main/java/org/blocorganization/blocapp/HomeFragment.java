@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
@@ -27,13 +28,19 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import org.blocorganization.blocapp.campaigns.CampaignDetailActivity;
 import org.blocorganization.blocapp.models.Campaign;
+import org.blocorganization.blocapp.models.Record;
+import org.blocorganization.blocapp.models.Resource;
 import org.blocorganization.blocapp.utils.CampaignsItemAdapter;
+import org.blocorganization.blocapp.utils.RecordItemAdapter;
 import org.blocorganization.blocapp.utils.RecyclerItemClickListener;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import static org.blocorganization.blocapp.campaigns.CampaignsSubFragment.CAMPAIGNS_CHILD;
+import static org.blocorganization.blocapp.models.RecordType.ACADEMIC;
+import static org.blocorganization.blocapp.models.RecordType.TIPSANDTRICKS;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -42,13 +49,16 @@ public class HomeFragment extends Fragment {
 
     public static final String HOME_TAG = "HOME_TAG";
 
-    // View Flipper constants & handlers
+    private ScrollView svHome;
+
     private static final int SWIPE_MIN_DISTANCE = 120;
     private static final int SWIPE_THRESHOLD_VELOCITY = 200;
     private ViewFlipper mViewFlipper;
     private Context mContext;
-    private final GestureDetector detector = new GestureDetector(new SwipeGestureDetector());
+    private GestureDetector detector;
     private CampaignsItemAdapter adapter;
+
+    private List<Record> listNewsFeed = new ArrayList<>();
 
     ArrayList<Campaign> campaigns = new ArrayList<>();
 
@@ -58,6 +68,7 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
+        svHome = (ScrollView) rootView.findViewById(R.id.svHome);
         setupMoreButton(rootView);
 
         /**
@@ -66,6 +77,7 @@ public class HomeFragment extends Fragment {
          *  gesture listener below
          */
         mContext = getActivity();
+        detector = new GestureDetector(new SwipeGestureDetector());
         mViewFlipper = (ViewFlipper) rootView.findViewById(R.id.view_flipper);
         mViewFlipper.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -159,21 +171,10 @@ public class HomeFragment extends Fragment {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
-        adapter = new CampaignsItemAdapter(getActivity(), false, campaigns);
-        rvCampaigns.setAdapter(adapter);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        rvCampaigns.setLayoutManager(layoutManager);
-        
-        rvCampaigns.addOnItemTouchListener(new RecyclerItemClickListener(getContext(),
-                new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, int position) {
-                        Intent intent = new Intent(getActivity(), CampaignDetailActivity.class);
-                        intent.putExtras(campaigns.get(position).toBundle());
-                        startActivity(intent);
-                    }
-                })
-        );
+        setupRvCampaigns(rvCampaigns);
+
+        createMockResources();
+        setupRvTopResources(rootView);
 
         return rootView;
     }
@@ -187,6 +188,52 @@ public class HomeFragment extends Fragment {
         tvMore.setTextColor(Color.parseColor("#FF2A00"));
     }
 
+    private void setupRvCampaigns(RecyclerView rvCampaigns) {
+        adapter = new CampaignsItemAdapter(getActivity(), false, campaigns);
+        rvCampaigns.setAdapter(adapter);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        rvCampaigns.setLayoutManager(layoutManager);
+
+        rvCampaigns.addOnItemTouchListener(new RecyclerItemClickListener(getContext(),
+                new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        Intent intent = new Intent(getActivity(), CampaignDetailActivity.class);
+                        intent.putExtras(campaigns.get(position).toBundle());
+                        startActivity(intent);
+                    }
+                })
+        );
+    }
+
+    private void createMockResources() {
+        Resource tip = new Resource.Builder("Use JSTOR")
+                .description("When writing essays, always start by writing out your ideas and then find sources on JSTOR to cite. Not the other way around!")
+                .admin("Armand Gray")
+                .type(TIPSANDTRICKS.toString())
+                .subType(ACADEMIC.toString())
+                .isPublic(true).build();
+        listNewsFeed.add(tip);
+        listNewsFeed.add(tip);
+        listNewsFeed.add(tip);
+
+    }
+
+    private void setupRvTopResources(View rootView) {
+        RecordItemAdapter adptNewsFeed = new RecordItemAdapter(listNewsFeed);
+        final RecyclerView rvNewsFeed = (RecyclerView) rootView.findViewById(R.id.rvNewsFeed);
+        rvNewsFeed.setAdapter(adptNewsFeed);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        rvNewsFeed.setLayoutManager(layoutManager);
+        rvNewsFeed.addOnItemTouchListener(new RecyclerItemClickListener(getContext(),
+                new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                    }
+                })
+        );
+    }
+
     /**
      *  ViewFlipper gesture listener
      */
@@ -194,7 +241,6 @@ public class HomeFragment extends Fragment {
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
             try {
-                // right to left swipe
                 if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
                     mViewFlipper.setInAnimation(AnimationUtils.loadAnimation(mContext, R.anim.left_in));
                     mViewFlipper.setOutAnimation(AnimationUtils.loadAnimation(mContext, R.anim.left_out));
@@ -208,6 +254,10 @@ public class HomeFragment extends Fragment {
                     mViewFlipper.stopFlipping();
                     return true;
                 }
+                if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MIN_DISTANCE && Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
+                    // TODO add detector to rvNewsFeed and code below to handle flings
+                    return true;
+                }
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -216,19 +266,5 @@ public class HomeFragment extends Fragment {
             return false;
         }
     }
-
-    //animation listener
-//    Animation.AnimationListener mAnimationListener = new Animation.AnimationListener() {
-//        public void onAnimationStart(Animation animation) {
-//            //animation started event
-//        }
-//
-//        public void onAnimationRepeat(Animation animation) {
-//        }
-//
-//        public void onAnimationEnd(Animation animation) {
-//            //TODO animation stopped event
-//        }
-//    };
 
 }
