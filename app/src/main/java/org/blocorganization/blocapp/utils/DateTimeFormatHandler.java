@@ -23,12 +23,13 @@ public class DateTimeFormatHandler {
             DateTime date = getDateTimeReferenceFrom(dateElementsList);
             String onEnd = isStartDate ? ON : END;
             String amPm = designateAmPmFrom(dateElementsList.get(HOUR));
+            String minutes = String.format("%02d", date.getMinuteOfHour());
             String dateText = onEnd + ": "
                     + date.monthOfYear().getAsText() + " "
                     + date.getDayOfMonth() + ", "
                     + date.getYear() + " - "
                     + date.getHourOfDay() + ":"
-                    + date.getMinuteOfHour() + " "
+                    + minutes + " "
                     + amPm;
             tvReference.setText(dateText);
             tvReference.setVisibility(View.VISIBLE);

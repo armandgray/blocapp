@@ -196,13 +196,13 @@ public class CreateCampaignDialog extends DialogFragment
     }
 
     @Override
-    public void onEventDateTimeSet(int year, int month, int day, int hourOfDay, String minute) {
+    public void onEventDateTimeSet(int year, int month, int day, int hourOfDay, int minute) {
         ArrayList<Integer> date = new ArrayList<>();
         date.add(year);
         date.add(month);
         date.add(day);
         date.add(hourOfDay);
-        date.add(Integer.valueOf(minute));
+        date.add(minute);
 
         dateTimePresenter.setTextForEditedDateField(campaign, date);
     }

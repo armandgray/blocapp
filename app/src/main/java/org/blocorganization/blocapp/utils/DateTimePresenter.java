@@ -116,6 +116,18 @@ public class DateTimePresenter {
         }
     }
 
+    public void setTextForEditedDateField(ArrayList<Integer> date) {
+        if (isRange == null) {
+            setupInitialState();
+            setTextForDateWith(date, tvFromDate, true);
+        } else if (endDateWasEdited) {
+            setTextForDateWith(date, tvToDate, false);
+            endDateWasEdited = false;
+        } else {
+            setTextForDateWith(date, tvFromDate, true);
+        }
+    }
+
     public void setTextForEditedDateField(Campaign campaign, ArrayList<Integer> date) {
         if (isRange == null) {
             setupInitialState();

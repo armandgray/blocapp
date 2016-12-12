@@ -9,7 +9,6 @@ public class Resource extends Record {
     private static final String ACADEMIC = "Academic";
     private static final String LIFESTYLE = "Lifestyle";
 
-    private boolean isPublic;
     private String subType = "";
 
     private Resource(Builder builder) {
@@ -19,7 +18,7 @@ public class Resource extends Record {
         super.setTimestamp();
         super.recordType = builder.type;
         subType = builder.subType;
-        isPublic = builder.isPublic;
+        super.isPublic = builder.isPublic;
         super.icon = getIconIdFromSubType();
 
     }
@@ -91,7 +90,4 @@ public class Resource extends Record {
         return subType;
     }
 
-    public boolean isPublic() {
-        return isPublic;
-    }
 }

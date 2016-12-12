@@ -2,6 +2,7 @@ package org.blocorganization.blocapp;
 
 
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +15,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import org.blocorganization.blocapp.utils.CreateUtilities;
+import org.blocorganization.blocapp.utils.DateTimePickerFragment;
+import org.blocorganization.blocapp.utils.DateTimePresenter;
 import org.blocorganization.blocapp.utils.DialogSubmitUtilities;
+
+import java.util.ArrayList;
 
 import static org.blocorganization.blocapp.utils.CreateUtilities.REPEAT_EVENT;
 import static org.blocorganization.blocapp.utils.CreateUtilities.REPEAT_OPTIONS;
@@ -23,13 +28,15 @@ import static org.blocorganization.blocapp.utils.CreateUtilities.TYPE;
 import static org.blocorganization.blocapp.utils.CreateUtilities.TYPES;
 import static org.blocorganization.blocapp.utils.CreateUtilities.VENUE;
 import static org.blocorganization.blocapp.utils.CreateUtilities.VENUES;
+import static org.blocorganization.blocapp.utils.DateTimePresenter.DATE_TIME_PICKER;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class CreateMeetupFragment extends Fragment
         implements DialogSubmitUtilities.DialogSubmitListener,
-        CreateDialog.ParentDialogSubmitListener {
+        CreateDialog.ParentDialogSubmitListener,
+        DateTimePickerFragment.DateTimeSetListener {
 
 
     private EditText etTitle;
@@ -47,6 +54,7 @@ public class CreateMeetupFragment extends Fragment
     private CreateUtilities repeatEventUtilities;
 
     private DatabaseReference databaseResources;
+    private DateTimePresenter dateTimePresenter;
 
     public CreateMeetupFragment() {
         // Required empty public constructor
@@ -70,6 +78,7 @@ public class CreateMeetupFragment extends Fragment
         assignFields(rootView);
         setupUtilities(rootView);
         setupSpinnersFrom(databaseResources);
+        dateTimePresenter = new DateTimePresenter(rootView, this);
 
         return rootView;
     }
@@ -106,6 +115,25 @@ public class CreateMeetupFragment extends Fragment
     }
 
     @Override
+    public void onEventDateTimeSet(int year, int month, int day, int hourOfDay, int minute) {
+        ArrayList<Integer> date = new ArrayList<>();
+        date.add(year);
+        date.add(month);
+        date.add(day);
+        date.add(hourOfDay);
+        date.add(minute);
+
+        dateTimePresenter.setTextForEditedDateField(date);
+    }
+
+    @Override
+    public void onDatePickerCancel() {
+        DialogFragment dialog = (DialogFragment) getChildFragmentManager()
+                .findFragmentByTag(DATE_TIME_PICKER);
+        dialog.dismiss();
+    }
+
+    @Override
     public boolean verifyFields() {
         return true;
     }
@@ -114,4 +142,5 @@ public class CreateMeetupFragment extends Fragment
     public void onConfirmSave() {
 
     }
+
 }

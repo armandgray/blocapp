@@ -59,8 +59,7 @@ public class DateTimePickerFragment extends DialogFragment
     }
 
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-        String mMinutes = String.format("%02d", minute);
-        mListener.onEventDateTimeSet(mYear, mMonth, mDay, hourOfDay, mMinutes);
+        mListener.onEventDateTimeSet(mYear, mMonth, mDay, hourOfDay, minute);
     }
 
     @Override
@@ -76,7 +75,7 @@ public class DateTimePickerFragment extends DialogFragment
     }
 
     public interface DateTimeSetListener {
-        void onEventDateTimeSet(int year, int month, int day, int hourOfDay, String minute);
+        void onEventDateTimeSet(int year, int month, int day, int hourOfDay, int minute);
         void onDatePickerCancel();
     }
 }

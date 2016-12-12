@@ -16,11 +16,13 @@ abstract class Record {
     private static final String EXTRAS_KEY = "EXTRAS_KEY";
     private static final String ICON_KEY = "ICON_KEY";
     private static final String TIMESTAMP_KEY = "TIMESTAMP_KEY";
+    private static final String IS_PUBLIC_KEY = "IS_PUBLIC_KEY";
 
     String recordType;
     String admin;
     String title;
     String description;
+    boolean isPublic;
     int icon;
 
     private List<Remark> likes = new ArrayList<>();
@@ -34,7 +36,6 @@ abstract class Record {
         this.admin = "";
         this.title = "";
         this.description = "";
-        this.icon = 0;
         this.timestamp = "";
 
     }
@@ -48,10 +49,10 @@ abstract class Record {
             this.description = b.getString(DESCRIPTION_KEY);
             this.icon = b.getInt(ICON_KEY);
             this.timestamp = b.getString(TIMESTAMP_KEY);
+            this.isPublic = b.getBoolean(IS_PUBLIC_KEY);
         }
     }
 
-    //	Package data for transfer between activities
     Bundle toBundle() {
         Bundle b = new Bundle();
         b.putString(RECORD_TYPE_KEY, this.recordType);
@@ -61,6 +62,7 @@ abstract class Record {
         b.putString(EXTRAS_KEY, this.extras);
         b.putInt(ICON_KEY, this.icon);
         b.putString(TIMESTAMP_KEY, this.timestamp);
+        b.putBoolean(IS_PUBLIC_KEY, this.isPublic);
         return b;
     }
 
@@ -150,6 +152,10 @@ abstract class Record {
 
     public void addComment(Comment comment) {
         this.comments.add(comment);
+    }
+
+    public boolean isPublic() {
+        return isPublic;
     }
 
 }
