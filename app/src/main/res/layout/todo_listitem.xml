@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp"
+    android:background="@drawable/todo_item_background">
+
+    <!--<ImageView-->
+    <!--android:layout_width="30dp"-->
+    <!--android:layout_height="30dp"-->
+    <!--android:rotation="135"-->
+    <!--android:tint="@color/ToolBarColor"-->
+    <!--android:layout_gravity="top|start"-->
+    <!--app:srcCompat="@drawable/ic_menu_down_white_48dp" />-->
+
+    <LinearLayout
+        android:id="@+id/tvTimeLeftContainer"
+        android:background="@drawable/time_left_background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="0dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="5dp"
+        android:paddingRight="5dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvTimeLeft"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:textColor="@color/ToolBarColor"
+        android:text="2"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tvTimeLeftUnits"
+        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:textColor="@color/ToolBarColor"
+        android:text="Days"
+        android:textSize="14sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="6dp"
+        android:layout_marginStart="6dp"
+        android:layout_toEndOf="@id/tvTimeLeftContainer"
+        android:layout_toRightOf="@+id/tvTimeLeftContainer"
+        android:text="Buy toys from store"
+        android:textSize="14sp" />
+
+    <ImageView
+        android:layout_width="@dimen/navbar_icon_size"
+        android:layout_height="@dimen/navbar_icon_size"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:tint="@color/ToolBarColor"
+        app:srcCompat="@drawable/ic_dots_vertical_white_48dp" />
+
+    <LinearLayout
+        android:id="@+id/detailContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/tvTitle"
+        android:layout_margin="5dp"
+        android:layout_toEndOf="@+id/tvTimeLeftContainer"
+        android:layout_toRightOf="@+id/tvTimeLeftContainer"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/todo_item_icsize"
+            android:layout_height="@dimen/todo_item_icsize"
+            android:layout_gravity="center_vertical"
+            android:tint="@color/ToolBarColor"
+            app:srcCompat="@drawable/ic_calendar_clock_white_48dp" />
+
+        <TextView
+            android:id="@+id/tvTimestamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginStart="5dp"
+            android:text="11/4/16"
+            android:textSize="@dimen/todo_item_textsize" />
+
+        <ImageView
+            android:layout_width="@dimen/todo_item_icsize"
+            android:layout_height="@dimen/todo_item_icsize"
+            android:layout_gravity="center_vertical"
+            android:tint="@color/ToolBarColor"
+            app:srcCompat="@drawable/ic_folder_white_48dp" />
+
+        <TextView
+            android:id="@+id/tvSourceRecord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginStart="5dp"
+            android:text="Toys for Tots"
+            android:textSize="@dimen/todo_item_textsize" />
+
+        <ImageView
+            android:id="@+id/ivStatus"
+            android:layout_width="@dimen/todo_item_icsize"
+            android:layout_height="@dimen/todo_item_icsize"
+            android:layout_gravity="center_vertical"
+            android:tint="@color/ToolBarColor"
+            app:srcCompat="@drawable/ic_star_half_white_48dp" />
+
+        <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginStart="5dp"
+            android:text="New"
+            android:textSize="@dimen/todo_item_textsize" />
+    </LinearLayout>
+
+</RelativeLayout>

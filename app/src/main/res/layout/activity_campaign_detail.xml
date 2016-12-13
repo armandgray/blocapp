@@ -121,8 +121,11 @@
                 android:id="@+id/ivAdminImage"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:background="@drawable/circle_gray"
+                android:padding="12dp"
+                android:tint="@color/colorPrimary"
                 android:contentDescription="@string/campaign_admin_image"
-                app:srcCompat="@drawable/ghost" />
+                app:srcCompat="@drawable/ic_ghost_white_48dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"

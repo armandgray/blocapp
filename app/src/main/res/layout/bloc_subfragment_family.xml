@@ -9,27 +9,30 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Me"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
+        android:text="Me"
         android:textColor="@color/blocFamilyGroups" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:orientation="horizontal"
         android:paddingBottom="@dimen/activity_vertical_margin"
-        android:orientation="horizontal">
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin">
 
         <ImageView
             android:id="@+id/user_account_image"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:background="@drawable/circle_gray"
+            android:padding="12dp"
+            android:tint="@color/colorPrimary"
             android:contentDescription="@string/user_account_image"
-            app:srcCompat="@drawable/ghost" />
+            app:srcCompat="@drawable/ic_ghost_white_48dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -58,30 +61,31 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/family_group_executiveboard"
+        android:background="@drawable/family_groups_border"
+        android:paddingBottom="@dimen/contacts_short_interpadding"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
-        android:textColor="@android:color/black"
-        android:paddingBottom="@dimen/contacts_short_interpadding"
         android:paddingTop="@dimen/contacts_long_interpadding"
-        android:background="@drawable/family_groups_border"/>
+        android:text="@string/family_group_executiveboard"
+        android:textColor="@android:color/black" />
 
     <!-- Executive Board Members -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/contacts_short_interpadding"
+        android:orientation="horizontal"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/contacts_short_interpadding"
-        android:layout_marginBottom="@dimen/contacts_short_interpadding"
-        android:orientation="horizontal">
+        android:paddingTop="@dimen/contacts_short_interpadding">
 
         <ImageView
             android:id="@+id/bloc_member_image"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:background="@drawable/circle_gray"
             android:contentDescription="@string/bloc_member_image"
-            app:srcCompat="@drawable/ghost" />
+            app:srcCompat="@drawable/ic_ghost_white_48dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -110,30 +114,31 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/family_group_supportstaff"
+        android:background="@drawable/family_groups_border"
+        android:paddingBottom="@dimen/contacts_short_interpadding"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
-        android:textColor="@android:color/black"
-        android:paddingBottom="@dimen/contacts_short_interpadding"
         android:paddingTop="@dimen/contacts_long_interpadding"
-        android:background="@drawable/family_groups_border"/>
+        android:text="@string/family_group_supportstaff"
+        android:textColor="@android:color/black" />
 
     <!-- Bloc Support Staff -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/contacts_short_interpadding"
+        android:orientation="horizontal"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/contacts_short_interpadding"
-        android:layout_marginBottom="@dimen/contacts_short_interpadding"
-        android:orientation="horizontal">
+        android:paddingTop="@dimen/contacts_short_interpadding">
 
         <ImageView
             android:id="@+id/bloc_supportstaff_image"
             android:layout_width="40dp"
+            android:background="@drawable/circle_gray"
             android:layout_height="40dp"
             android:contentDescription="@string/bloc_supportstaff_image"
-            app:srcCompat="@drawable/ghost" />
+            app:srcCompat="@drawable/ic_ghost_white_48dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -162,30 +167,33 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/family_group_peoples"
+        android:background="@drawable/family_groups_border"
+        android:paddingBottom="@dimen/contacts_short_interpadding"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
-        android:textColor="@android:color/black"
-        android:paddingBottom="@dimen/contacts_short_interpadding"
         android:paddingTop="@dimen/contacts_long_interpadding"
-        android:background="@drawable/family_groups_border"/>
+        android:text="@string/family_group_peoples"
+        android:textColor="@android:color/black" />
 
     <!-- Our Peoples -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/contacts_short_interpadding"
+        android:orientation="horizontal"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/contacts_short_interpadding"
-        android:layout_marginBottom="@dimen/contacts_short_interpadding"
-        android:orientation="horizontal">
+        android:paddingTop="@dimen/contacts_short_interpadding">
 
         <ImageView
             android:id="@+id/bloc_peoples_image"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:background="@drawable/circle_gray"
+            android:padding="12dp"
+            android:tint="@color/colorPrimary"
             android:contentDescription="@string/bloc_peoples_image"
-            app:srcCompat="@drawable/ghost" />
+            app:srcCompat="@drawable/ic_ghost_white_48dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"

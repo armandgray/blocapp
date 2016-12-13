@@ -28,7 +28,7 @@ public abstract class Record {
     private List<Remark> likes = new ArrayList<>();
     private List<Comment> comments = new ArrayList<>();
     private String extras;
-    private String timestamp;
+    private ArrayList<Integer> timestamp;
 
     Record() {
         this.recordType = "";
@@ -36,7 +36,7 @@ public abstract class Record {
         this.admin = "";
         this.title = "";
         this.description = "";
-        this.timestamp = "";
+        this.timestamp = new ArrayList<>();
 
     }
 
@@ -48,7 +48,7 @@ public abstract class Record {
             this.title = b.getString(TITLE_KEY);
             this.description = b.getString(DESCRIPTION_KEY);
             this.icon = b.getInt(ICON_KEY);
-            this.timestamp = b.getString(TIMESTAMP_KEY);
+            this.timestamp = b.getIntegerArrayList(TIMESTAMP_KEY);
             this.isPublic = b.getBoolean(IS_PUBLIC_KEY);
         }
     }
@@ -61,7 +61,7 @@ public abstract class Record {
         b.putString(TITLE_KEY, this.title);
         b.putString(EXTRAS_KEY, this.extras);
         b.putInt(ICON_KEY, this.icon);
-        b.putString(TIMESTAMP_KEY, this.timestamp);
+        b.putIntegerArrayList(TIMESTAMP_KEY, this.timestamp);
         b.putBoolean(IS_PUBLIC_KEY, this.isPublic);
         return b;
     }
@@ -95,16 +95,19 @@ public abstract class Record {
 
     public void setTimestamp() {
         DateTime timestamp = new DateTime();
-        this.timestamp = String.valueOf(timestamp.getYear())
-                + timestamp.getMonthOfYear()
-                + timestamp.getDayOfMonth()
-                + timestamp.getHourOfDay()
-                + timestamp.getMinuteOfHour()
-                + timestamp.getSecondOfMinute()
-                + timestamp.getMillisOfSecond();
+        ArrayList<Integer> dateList = new ArrayList<>();
+        dateList.add(timestamp.getYear());
+        dateList.add(timestamp.getMonthOfYear());
+        dateList.add(timestamp.getDayOfMonth());
+        dateList.add(timestamp.getHourOfDay());
+        dateList.add(timestamp.getMinuteOfHour());
+        dateList.add(timestamp.getSecondOfMinute());
+        dateList.add(timestamp.getMillisOfSecond());
+
+        this.timestamp = dateList;
     }
 
-    public String getTimestamp() {
+    public ArrayList<Integer> getTimestamp() {
         return timestamp;
     }
 

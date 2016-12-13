@@ -168,5 +168,6 @@
     <string name="create_meetup">Create a New Meetup</string>
     <string name="meetup_motto">In person gathering.</string>
     <string name="meetup">Meetup</string>
+    <string name="tasks_completed">You have completed 4 tasks</string>
 
 </resources>

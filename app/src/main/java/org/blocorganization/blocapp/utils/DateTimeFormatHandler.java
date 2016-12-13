@@ -18,8 +18,18 @@ public class DateTimeFormatHandler {
     private static final String ON = "On";
     private static final String END = "End";
 
+    public static void setSlashDateWith(ArrayList<Integer> dateElementsList, TextView tvReference) {
+        if (dateElementsList != null && dateElementsList.get(0) != 0 && dateElementsList.get(0) != 1 && tvReference != null) {
+            DateTime date = getDateTimeReferenceFrom(dateElementsList);
+            String dateText = date.monthOfYear() + "/ "
+                    + date.getDayOfMonth() + "/ "
+                    + date.getYear();
+            tvReference.setText(dateText);
+        }
+    }
+
     public static void setTextForDateWith(ArrayList<Integer> dateElementsList, TextView tvReference, boolean isStartDate) {
-        if (dateElementsList != null && dateElementsList.get(0) != 0 && dateElementsList.get(0) != 1) {
+        if (dateElementsList != null && dateElementsList.get(0) != 0 && dateElementsList.get(0) != 1 && tvReference != null) {
             DateTime date = getDateTimeReferenceFrom(dateElementsList);
             String onEnd = isStartDate ? ON : END;
             String amPm = designateAmPmFrom(dateElementsList.get(HOUR));
