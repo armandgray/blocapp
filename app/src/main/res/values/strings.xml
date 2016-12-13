@@ -169,5 +169,6 @@
     <string name="meetup_motto">In person gathering.</string>
     <string name="meetup">Meetup</string>
     <string name="tasks_completed">You have completed 4 tasks</string>
+    <string name="high_priority">High Priority</string>
 
 </resources>

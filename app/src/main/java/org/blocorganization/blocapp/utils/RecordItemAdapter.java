@@ -13,6 +13,7 @@ import org.blocorganization.blocapp.models.Record;
 
 import java.util.List;
 
+import static org.blocorganization.blocapp.utils.DateTimeFormatHandler.setSlashDateWith;
 import static org.blocorganization.blocapp.utils.FieldUtilities.setTextForTextViewWith;
 
 public class RecordItemAdapter extends
@@ -48,7 +49,7 @@ public class RecordItemAdapter extends
 
         setTextForTextViewWith(resource.getTitle(), tvTitle);
         setTextForTextViewWith(resource.getAdmin(), tvAdminInfo);
-        setTextForTextViewWith(resource.getTimestamp(), tvTimeSinceCreation);
+        setSlashDateWith(resource.getTimestamp(), tvTimeSinceCreation);
         setTextForTextViewWith(resource.getDescription(), tvDesc);
 
 

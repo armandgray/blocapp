@@ -46,15 +46,6 @@
 
         <include layout="@layout/actionboard_campaigns_display" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rvTopResources"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="20dp"
-            android:background="@color/lightGray" />
-
         <include layout="@layout/todo_listitem"
             android:id="@+id/todoLayout"
             android:layout_width="match_parent"
@@ -63,5 +54,77 @@
             android:layout_marginBottom="20dp"
             android:layout_marginTop="20dp"/>
 
+        <TextView
+            android:id="@+id/tvHighPriority"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/white_dividers_background"
+            android:paddingBottom="@dimen/small_header_pad_bottom"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/small_header_pad_top"
+            android:text="@string/high_priority"
+            android:textAllCaps="true"
+            android:textColor="@color/ToolBarColor"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvHighPriority"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="@dimen/campaigns_recycler_margin"
+            android:layout_marginRight="@dimen/campaigns_recycler_margin"
+            android:layout_marginTop="@dimen/campaigns_image_margin" />
+
+        <TextView
+            android:id="@+id/tvMediumPriority"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/white_dividers_background"
+            android:paddingBottom="@dimen/small_header_pad_bottom"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/small_header_pad_top"
+            android:text="@string/tips_and_tricks"
+            android:textAllCaps="true"
+            android:textColor="@color/ToolBarColor"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvMediumPriority"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="@dimen/campaigns_recycler_margin"
+            android:layout_marginRight="@dimen/campaigns_recycler_margin"
+            android:layout_marginTop="@dimen/campaigns_image_margin" />
+
+        <TextView
+            android:id="@+id/tvLowPriority"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/white_dividers_background"
+            android:paddingBottom="@dimen/small_header_pad_bottom"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/small_header_pad_top"
+            android:text="@string/tips_and_tricks"
+            android:textAllCaps="true"
+            android:textColor="@color/ToolBarColor"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvLowPriority"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="@dimen/campaigns_recycler_margin"
+            android:layout_marginRight="@dimen/campaigns_recycler_margin"
+            android:layout_marginTop="@dimen/campaigns_image_margin" />
     </LinearLayout>
+
 </ScrollView>

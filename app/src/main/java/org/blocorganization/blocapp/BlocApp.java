@@ -62,12 +62,23 @@ public class BlocApp extends Application {
                 campaign.setItemizedBudget((String) campaignsSnapshot.get("itemizedBudget"));
                 campaign.setVenue((String) campaignsSnapshot.get("venue"));
                 campaign.setFromDate((ArrayList<Integer>) campaignsSnapshot.get("fromDate"));
-                campaign.setTimestamp((String) campaignsSnapshot.get("timestamp"));
                 campaign.setRecordType((String) campaignsSnapshot.get("recordType"));
                 campaign.setExtras((String) campaignsSnapshot.get("extras"));
                 campaign.setToDate((ArrayList<Integer>) campaignsSnapshot.get("toDate"));
                 campaign.setPhotoUrl((String) campaignsSnapshot.get("campaignPhoto"));
                 campaign.setThemeImageUrl((String) campaignsSnapshot.get("campaignTheme"));
+
+                ArrayList<Long> timestampAsListLong = (ArrayList<Long>) campaignsSnapshot.get("timestamp");
+                if (timestampAsListLong != null) {
+                    ArrayList<Integer> timestampList = new ArrayList<>();
+                    for (Long dateElement : timestampAsListLong) {
+                        Integer elementAsInteger = dateElement != null ? dateElement.intValue() : null;
+                        timestampList.add(elementAsInteger);
+                    }
+                    campaign.setTimestamp(timestampList);
+                } else {
+                    campaign.setTimestamp(null);
+                }
 
                 campaigns.add(campaign);
             }

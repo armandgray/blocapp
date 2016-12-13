@@ -31,7 +31,7 @@ public class Campaign extends Record {
     public String venue;
     public ArrayList<Integer> fromDate;
     public ArrayList<Integer> toDate;
-    public String timestamp;
+    public ArrayList<Integer> timestamp;
     public String campaignTheme;
 
     public Campaign() {
@@ -45,7 +45,7 @@ public class Campaign extends Record {
         this.venue = "";
         this.fromDate = new ArrayList<>();
         this.toDate = new ArrayList<>();
-        this.timestamp = "";
+        this.timestamp = new ArrayList<>();
     }
 
     public Campaign(Bundle b) {
@@ -61,7 +61,7 @@ public class Campaign extends Record {
             this.venue = b.getString(VENUE_KEY);
             this.fromDate = b.getIntegerArrayList(FROM_DATE_KEY);
             this.toDate = b.getIntegerArrayList(TO_DATE_KEY);
-            this.timestamp = b.getString(TIMESTAMP_KEY);
+            this.timestamp = b.getIntegerArrayList(TIMESTAMP_KEY);
         }
     }
 
@@ -77,7 +77,7 @@ public class Campaign extends Record {
         b.putString(VENUE_KEY, this.venue);
         b.putIntegerArrayList(FROM_DATE_KEY, this.fromDate);
         b.putIntegerArrayList(TO_DATE_KEY, this.toDate);
-        b.putString(TIMESTAMP_KEY, this.timestamp);
+        b.putIntegerArrayList(TIMESTAMP_KEY, this.timestamp);
 
         return b;
     }
@@ -147,19 +147,22 @@ public class Campaign extends Record {
         this.toDate = toDate;
     }
 
-    public String getTimestamp() {
+    public ArrayList<Integer> getTimestamp() {
         return timestamp;
     }
 
     public void setTimestamp() {
         DateTime timestamp = new DateTime();
-        this.timestamp = String.valueOf(timestamp.getYear())
-                + timestamp.getMonthOfYear()
-                + timestamp.getDayOfMonth()
-                + timestamp.getHourOfDay()
-                + timestamp.getMinuteOfHour()
-                + timestamp.getSecondOfMinute()
-                + timestamp.getMillisOfSecond();
+        ArrayList<Integer> dateList = new ArrayList<>();
+        dateList.add(timestamp.getYear());
+        dateList.add(timestamp.getMonthOfYear());
+        dateList.add(timestamp.getDayOfMonth());
+        dateList.add(timestamp.getHourOfDay());
+        dateList.add(timestamp.getMinuteOfHour());
+        dateList.add(timestamp.getSecondOfMinute());
+        dateList.add(timestamp.getMillisOfSecond());
+
+        this.timestamp = dateList;
     }
 
     public String getAbbreviation() {

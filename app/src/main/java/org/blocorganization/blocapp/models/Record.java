@@ -111,7 +111,7 @@ public abstract class Record {
         return timestamp;
     }
 
-    public void setTimestamp(String timestamp) { this.timestamp = timestamp; }
+    public void setTimestamp(ArrayList<Integer> timestamp) { this.timestamp = timestamp; }
 
     public String getExtras() { return extras; }
 

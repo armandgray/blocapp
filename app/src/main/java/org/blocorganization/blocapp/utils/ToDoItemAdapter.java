@@ -46,7 +46,7 @@ public class ToDoItemAdapter extends RecyclerView.Adapter<ToDoItemAdapter.ViewHo
         TextView tvSourceRecord = viewHolder.tvSourceRecord;
         ImageView ivStatus = viewHolder.ivStatus;
         TextView tvStatus = viewHolder.tvStatus;
-        
+
         setTextForTextViewWith(toDoItem.getTitle(), tvTitle);
         setSlashDateWith(toDoItem.getTimestamp(), tvTimestamp);
         setTextForTextViewWith(toDoItem.getSourceRecord(), tvSourceRecord);
