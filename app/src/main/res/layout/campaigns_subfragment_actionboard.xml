@@ -44,8 +44,6 @@
                 android:textSize="16sp" />
         </LinearLayout>
 
-        <include layout="@layout/actionboard_campaigns_display" />
-
         <include layout="@layout/todo_listitem"
             android:id="@+id/todoLayout"
             android:layout_width="match_parent"
@@ -73,10 +71,8 @@
             android:id="@+id/rvHighPriority"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="@dimen/campaigns_recycler_margin"
-            android:layout_marginRight="@dimen/campaigns_recycler_margin"
-            android:layout_marginTop="@dimen/campaigns_image_margin" />
+            android:background="#00FFFFFF"
+            android:layout_gravity="center_horizontal" />
 
         <TextView
             android:id="@+id/tvMediumPriority"
@@ -98,8 +94,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="@dimen/campaigns_recycler_margin"
-            android:layout_marginRight="@dimen/campaigns_recycler_margin"
             android:layout_marginTop="@dimen/campaigns_image_margin" />
 
         <TextView

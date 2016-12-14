@@ -21,7 +21,7 @@ public class DateTimeFormatHandler {
     public static void setSlashDateWith(ArrayList<Integer> dateElementsList, TextView tvReference) {
         if (dateElementsList != null && dateElementsList.get(0) != 0 && dateElementsList.get(0) != 1 && tvReference != null) {
             DateTime date = getDateTimeReferenceFrom(dateElementsList);
-            String dateText = date.monthOfYear() + "/ "
+            String dateText = date.getMonthOfYear() + "/ "
                     + date.getDayOfMonth() + "/ "
                     + date.getYear();
             tvReference.setText(dateText);

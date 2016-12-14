@@ -10,7 +10,7 @@
 
     <!-- upper rectangle (background color) -->
     <item
-        android:right="1dp">
+        android:left="1dp">
         <shape android:shape="rectangle">
             <solid android:color="@color/colorPrimaryDark" />
         </shape>

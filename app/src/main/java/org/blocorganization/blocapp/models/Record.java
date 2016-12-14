@@ -37,7 +37,7 @@ public abstract class Record {
         this.title = "";
         this.description = "";
         this.timestamp = new ArrayList<>();
-
+        setTimestamp();
     }
 
     Record(Bundle b) {

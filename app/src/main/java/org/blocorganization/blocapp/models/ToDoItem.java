@@ -9,7 +9,8 @@ public class ToDoItem extends Record {
 
     private static final String DEADLINE = "DEADLINE";
     private static final String STATUS = "STATUS";
-    public static final String SOURCE_RECORD = "SOURCE_RECORD";
+    private static final String SOURCE_RECORD = "SOURCE_RECORD";
+    private static final String NEW = "New";
 
     private ArrayList<Integer> deadline;
     private String status;
@@ -18,8 +19,9 @@ public class ToDoItem extends Record {
 
     public ToDoItem() {
         this.deadline = new ArrayList<>();
-        this.status = "";
+        this.status = NEW;
         this.sourceRecord = "";
+        setTimestamp();
     }
 
     public ToDoItem(Bundle b) {

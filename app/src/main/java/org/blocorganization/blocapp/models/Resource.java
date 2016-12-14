@@ -20,7 +20,7 @@ public class Resource extends Record {
         subType = builder.subType;
         super.isPublic = builder.isPublic;
         super.icon = getIconIdFromSubType();
-
+        setTimestamp();
     }
 
     private int getIconIdFromSubType() {
