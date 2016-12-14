@@ -1,6 +1,7 @@
 package org.blocorganization.blocapp.campaigns;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -80,7 +81,7 @@ public class ActionboardSubFragment extends Fragment {
     }
 
     private void setupImageViews() {
-//        ivCertIcon.setColorFilter(Color.parseColor("#FF2A00"));
+        ivCertIcon.setColorFilter(Color.parseColor("#FF2A00"));
 //        Picasso.with(getActivity()).load(IMAGE_URL1).into(ivCampaignImage1);
 //        Picasso.with(getActivity()).load(IMAGE_URL2).into(ivCampaignImage2);
 //        Picasso.with(getActivity()).load(IMAGE_URL3).into(ivCampaignImage3);
@@ -102,6 +103,7 @@ public class ActionboardSubFragment extends Fragment {
         ToDoItem toDoItem2 = new ToDoItem();
         toDoItem2.setTitle("Get paddies from Hilltop");
         toDoItem2.setSourceRecord("Bloc Party");
+        // TODO fix multiple item padding issue
 //        lstHighPriority.add(toDoItem2);
 
     }
