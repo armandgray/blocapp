@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
@@ -96,10 +97,14 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        final RelativeLayout moreCampaignsContainer = (RelativeLayout) rootView.findViewById(R.id.moreCampaignsContainer);
+        moreCampaignsContainer.setVisibility(View.GONE);
+
         DatabaseReference mCampaignsDatabaseReference = FirebaseDatabase.getInstance().getReference(CAMPAIGNS_CHILD);
         mCampaignsDatabaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                moreCampaignsContainer.setVisibility(View.VISIBLE);
                 Map<String, Object> campaignsSnapshot = (Map) dataSnapshot.getValue();
                 final Campaign campaign = new Campaign();
 
