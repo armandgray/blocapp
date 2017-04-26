@@ -50,59 +50,15 @@ public class BlocFragment extends Fragment implements HomeSubFragment.HomeScroll
 
         menu = (LinearLayout) rootView.findViewById(R.id.menu_container);
         menuBullet0 = (ImageView) menu.getChildAt(0);
-        menuBullet1 = (ImageView) menu.getChildAt(1);
-        menuBullet2 = (ImageView) menu.getChildAt(2);
-        menuBullet3 = (ImageView) menu.getChildAt(3);
-        menuBullet4 = (ImageView) menu.getChildAt(4);
-        menuBullet2.setImageResource(R.drawable.menu_selected_point);
-
-        vpPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                switch (position) {
-                    case 0:
-                        menuBullet1.setImageResource(R.drawable.menu_point);
-                        menuBullet0.setImageResource(R.drawable.menu_selected_point);
-                        return;
-                    case 1:
-                        menuBullet0.setImageResource(R.drawable.menu_point);
-                        menuBullet2.setImageResource(R.drawable.menu_point);
-                        menuBullet1.setImageResource(R.drawable.menu_selected_point);
-                        return;
-                    case 2:
-                        menuBullet1.setImageResource(R.drawable.menu_point);
-                        menuBullet3.setImageResource(R.drawable.menu_point);
-                        menuBullet2.setImageResource(R.drawable.menu_selected_point);
-                        return;
-                    case 3:
-                        menuBullet2.setImageResource(R.drawable.menu_point);
-                        menuBullet4.setImageResource(R.drawable.menu_point);
-                        menuBullet3.setImageResource(R.drawable.menu_selected_point);
-                        return;
-                    case 4:
-                        menuBullet3.setImageResource(R.drawable.menu_point);
-                        menuBullet4.setImageResource(R.drawable.menu_selected_point);
-                        return;
-                }
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
+        menuBullet0.setImageResource(R.drawable.menu_selected_point);
 
         return rootView;
     }
 
-    public class MyPagerAdapter extends FragmentPagerAdapter {
+    private class MyPagerAdapter extends FragmentPagerAdapter {
         private static final int NUM_PAGES = 5;
 
-        public MyPagerAdapter(FragmentManager fragmentManager) {
+        MyPagerAdapter(FragmentManager fragmentManager) {
             super(fragmentManager);
             mFragmentManager = fragmentManager;
         }
