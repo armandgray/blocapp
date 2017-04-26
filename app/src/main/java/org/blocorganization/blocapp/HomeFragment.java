@@ -65,7 +65,7 @@ public class HomeFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
         svHome = (ScrollView) rootView.findViewById(R.id.svHome);
-        setupMoreButton(rootView);
+        setupMoreButtons(rootView);
 
         /**
          *  Slideshow setup as ViewFlipper
@@ -183,13 +183,19 @@ public class HomeFragment extends Fragment {
         return rootView;
     }
 
-    private void setupMoreButton(View rootView) {
+    private void setupMoreButtons(View rootView) {
         ImageView moreButtonArrow = (ImageView) rootView.findViewById(R.id.ivChevron);
+        ImageView missionMoreButton = (ImageView) rootView.findViewById(R.id.missionContainer)
+                .findViewById(R.id.ivChevron);
+        missionMoreButton.setColorFilter(Color.parseColor("#FF2A00"));
         moreButtonArrow.setColorFilter(Color.parseColor("#FF2A00"));
         moreButtonArrow.setRotation(270);
 
         TextView tvMore = (TextView) rootView.findViewById(R.id.tvMore);
+        TextView tvMoreMission = (TextView) rootView.findViewById(R.id.missionContainer)
+                .findViewById(R.id.tvMore);
         tvMore.setTextColor(Color.parseColor("#FF2A00"));
+        tvMoreMission.setTextColor(Color.parseColor("#FF2A00"));
     }
 
     private void setupRvCampaigns(RecyclerView rvCampaigns) {
