@@ -130,10 +130,4 @@ public class SignInActivity extends AppCompatActivity implements
         Log.d(TAG, "onConnectionFailed:" + connectionResult);
         Toast.makeText(this, "Google Play Services error.", Toast.LENGTH_SHORT).show();
     }
-
-    public void onGuestClick(View view) {
-        mFirebaseAuth.signInAnonymously();
-        startActivity(new Intent(SignInActivity.this, MainActivity.class));
-        finish();
-    }
 }

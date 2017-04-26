@@ -63,13 +63,6 @@ public class NavBarFragment extends Fragment {
             }
         });
 
-        ImageView blinds = (ImageView) rootView.findViewById(R.id.blinds);
-        blinds.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {mListener.onNotificationsClick();
-            }
-        });
-
         ImageView bloc = (ImageView) rootView.findViewById(R.id.ic_bloc);
         bloc.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,7 +79,6 @@ public class NavBarFragment extends Fragment {
         void onCampaignsClick();
         void onMessagesClick();
         void onBlocClick();
-        void onNotificationsClick();
     }
 
 }

@@ -14,7 +14,7 @@
     <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="0.2">
+        android:layout_weight="0.25">
 
         <ImageView
             android:id="@+id/home"
@@ -36,7 +36,7 @@
     <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="0.2">
+        android:layout_weight="0.25">
 
         <ImageView
             android:id="@+id/calendar"
@@ -58,7 +58,7 @@
     <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="0.2">
+        android:layout_weight="0.25">
 
         <ImageView
             android:id="@+id/messages"
@@ -80,29 +80,7 @@
     <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="0.2">
-
-        <ImageView
-            android:id="@+id/blinds"
-            android:layout_width="@dimen/navbar_icon_size"
-            android:layout_height="@dimen/navbar_icon_size"
-            android:layout_centerHorizontal="true"
-            android:contentDescription="@string/icon"
-            app:srcCompat="@drawable/ic_blinds_white_48dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/blinds"
-            android:layout_centerHorizontal="true"
-            android:text="@string/noti_abbreviation"
-            android:textSize="@dimen/navbar_text_size" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.2">
+        android:layout_weight="0.25">
 
         <ImageView
             android:id="@+id/ic_bloc"

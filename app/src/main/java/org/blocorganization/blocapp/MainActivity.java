@@ -28,7 +28,6 @@ import com.google.firebase.crash.FirebaseCrash;
 import org.blocorganization.blocapp.bloc.BlocFragment;
 import org.blocorganization.blocapp.campaigns.CampaignsFragment;
 import org.blocorganization.blocapp.messages.MessagesFragment;
-import org.blocorganization.blocapp.notifications.NotificationsFragment;
 import org.blocorganization.blocapp.utils.NavBarFragment;
 
 public class MainActivity extends AppCompatActivity
@@ -250,14 +249,6 @@ public class MainActivity extends AppCompatActivity
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.main_fragment_container, new MessagesFragment(), MESS_TAG)
-                .commit();
-    }
-
-    @Override
-    public void onNotificationsClick() {
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.main_fragment_container, new NotificationsFragment(), TAG)
                 .commit();
     }
 
