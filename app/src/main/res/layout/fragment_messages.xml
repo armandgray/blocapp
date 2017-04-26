@@ -37,9 +37,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:enabled="false"
-            android:onClick="onSendClick"
-            android:text="SEND"/>
+            android:enabled="true"
+            android:text="@string/send"/>
 
     </LinearLayout>
 
