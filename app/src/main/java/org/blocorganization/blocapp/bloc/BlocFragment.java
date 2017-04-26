@@ -19,14 +19,8 @@ import org.blocorganization.blocapp.R;
  */
 public class BlocFragment extends Fragment implements HomeSubFragment.HomeScrollListener {
 
-    private FragmentManager mFragmentManager;
     FragmentPagerAdapter adapterViewPager;
     private LinearLayout menu;
-    private ImageView menuBullet0;
-    private ImageView menuBullet1;
-    private ImageView menuBullet2;
-    private ImageView menuBullet3;
-    private ImageView menuBullet4;
 
     public BlocFragment() {
         // Required empty public constructor
@@ -39,28 +33,23 @@ public class BlocFragment extends Fragment implements HomeSubFragment.HomeScroll
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_bloc, container, false);
 
-        /**
-         *  View Pager - Follow Link for more dynamic options
-         *  https://guides.codepath.com/android/ViewPager-with-FragmentPagerAdapter
-         */
         ViewPager vpPager = (ViewPager) rootView.findViewById(R.id.bloc_vpager);
         adapterViewPager = new MyPagerAdapter(getChildFragmentManager());
         vpPager.setAdapter(adapterViewPager);
-        vpPager.setCurrentItem(2);
+        vpPager.setCurrentItem(0);
 
         menu = (LinearLayout) rootView.findViewById(R.id.menu_container);
-        menuBullet0 = (ImageView) menu.getChildAt(0);
+        ImageView menuBullet0 = (ImageView) menu.getChildAt(0);
         menuBullet0.setImageResource(R.drawable.menu_selected_point);
 
         return rootView;
     }
 
     private class MyPagerAdapter extends FragmentPagerAdapter {
-        private static final int NUM_PAGES = 5;
+        private static final int NUM_PAGES = 1;
 
         MyPagerAdapter(FragmentManager fragmentManager) {
             super(fragmentManager);
-            mFragmentManager = fragmentManager;
         }
 
         // Returns total number of pages
@@ -74,15 +63,7 @@ public class BlocFragment extends Fragment implements HomeSubFragment.HomeScroll
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return MissionSubFragment.newInstance();
-                case 1:
-                    return FamilySubFragment.newInstance();
-                case 2:
                     return HomeSubFragment.newInstance();
-                case 3:
-                    return RolesSubFragment.newInstance();
-                case 4:
-                    return ResourcesSubFragment.newInstance();
                 default:
                     return null;
             }
