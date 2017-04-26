@@ -29,9 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import org.blocorganization.blocapp.campaigns.CampaignDetailActivity;
 import org.blocorganization.blocapp.models.Campaign;
 import org.blocorganization.blocapp.models.Record;
-import org.blocorganization.blocapp.models.Resource;
 import org.blocorganization.blocapp.utils.CampaignsItemAdapter;
-import org.blocorganization.blocapp.utils.RecordItemAdapter;
 import org.blocorganization.blocapp.utils.RecyclerItemClickListener;
 
 import java.util.ArrayList;
@@ -39,8 +37,6 @@ import java.util.List;
 import java.util.Map;
 
 import static org.blocorganization.blocapp.campaigns.CampaignsSubFragment.CAMPAIGNS_CHILD;
-import static org.blocorganization.blocapp.models.RecordType.ACADEMIC;
-import static org.blocorganization.blocapp.models.RecordType.TIPSANDTRICKS;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -183,10 +179,7 @@ public class HomeFragment extends Fragment {
             }
         });
         setupRvCampaigns(rvCampaigns);
-
-        createMockResources();
-        setupRvTopResources(rootView);
-
+        
         return rootView;
     }
 
@@ -212,34 +205,6 @@ public class HomeFragment extends Fragment {
                         Intent intent = new Intent(getActivity(), CampaignDetailActivity.class);
                         intent.putExtras(campaigns.get(position).toBundle());
                         startActivity(intent);
-                    }
-                })
-        );
-    }
-
-    private void createMockResources() {
-        Resource tip = new Resource.Builder("Use JSTOR")
-                .description("When writing essays, always start by writing out your ideas and then find sources on JSTOR to cite. Not the other way around!")
-                .admin("Armand Gray")
-                .type(TIPSANDTRICKS.toString())
-                .subType(ACADEMIC.toString())
-                .isPublic(true).build();
-        listNewsFeed.add(tip);
-        listNewsFeed.add(tip);
-        listNewsFeed.add(tip);
-
-    }
-
-    private void setupRvTopResources(View rootView) {
-        RecordItemAdapter adptNewsFeed = new RecordItemAdapter(listNewsFeed);
-        final RecyclerView rvNewsFeed = (RecyclerView) rootView.findViewById(R.id.rvNewsFeed);
-        rvNewsFeed.setAdapter(adptNewsFeed);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-        rvNewsFeed.setLayoutManager(layoutManager);
-        rvNewsFeed.addOnItemTouchListener(new RecyclerItemClickListener(getContext(),
-                new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, int position) {
                     }
                 })
         );
