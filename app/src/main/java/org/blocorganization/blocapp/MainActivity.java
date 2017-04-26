@@ -3,14 +3,8 @@ package org.blocorganization.blocapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.SpannableString;
-import android.text.style.TextAppearanceSpan;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -32,7 +26,6 @@ import org.blocorganization.blocapp.utils.NavBarFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavBarFragment.NavBarFragmentListener,
-                NavigationView.OnNavigationItemSelectedListener,
                 GoogleApiClient.OnConnectionFailedListener {
 
     public static final String TAG = "MainActivity";
@@ -41,13 +34,13 @@ public class MainActivity extends AppCompatActivity
 
     private static final int REQUEST_INVITE = 1;
 
-    public static String mUsername;
-    public static String mPhotoUrl;
-    public static FirebaseAuth mFirebaseAuth;
-    public static FirebaseUser mFirebaseUser;
+    public static String username;
+    public static String photoUrl;
+    public static FirebaseAuth firebaseAuth;
+    public static FirebaseUser firebaseUser;
 
-    private FirebaseAnalytics mFirebaseAnalytics;
-    private GoogleApiClient mGoogleApiClient;
+    private FirebaseAnalytics firebaseAnalytics;
+    private GoogleApiClient googleApiClient;
 
 
     @Override
@@ -55,27 +48,27 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setupActivityComponents();
+        setupToolBar();
 
-        mUsername = ANONYMOUS;
+        username = ANONYMOUS;
 
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
+        googleApiClient = new GoogleApiClient.Builder(this)
                 .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
                 .addApi(Auth.GOOGLE_SIGN_IN_API)
                 .build();
 
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-        mFirebaseAuth = FirebaseAuth.getInstance();
-        mFirebaseUser = mFirebaseAuth.getCurrentUser();
-        if (mFirebaseUser == null) {
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
+        if (firebaseUser == null) {
             // Not signed in, launch the Sign In activity
             startActivity(new Intent(this, SignInActivity.class));
             finish();
             return;
         } else {
-            mUsername = mFirebaseUser.getDisplayName();
-            if (mFirebaseUser.getPhotoUrl() != null) {
-                mPhotoUrl = mFirebaseUser.getPhotoUrl().toString();
+            username = firebaseUser.getDisplayName();
+            if (firebaseUser.getPhotoUrl() != null) {
+                photoUrl = firebaseUser.getPhotoUrl().toString();
             }
         }
 
@@ -85,25 +78,9 @@ public class MainActivity extends AppCompatActivity
                 .commit();
     }
 
-    private void setupActivityComponents() {
+    private void setupToolBar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        Menu menu = navigationView.getMenu();
-
-        MenuItem tools = menu.findItem(R.id.drawer_title);
-        SpannableString s = new SpannableString(tools.getTitle());
-        s.setSpan(new TextAppearanceSpan(this, R.style.NavTitles), 0, s.length(), 0);
-        tools.setTitle(s);
-
-        navigationView.setNavigationItemSelectedListener(this);
     }
 
     public interface MainActivityListener {
@@ -128,7 +105,7 @@ public class MainActivity extends AppCompatActivity
             if (resultCode == RESULT_OK) {
                 Bundle payload = new Bundle();
                 payload.putString(FirebaseAnalytics.Param.VALUE, "sent");
-                mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SHARE,
+                firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SHARE,
                         payload);
                 // Check how many invitations were sent.
                 String[] ids = AppInviteInvitation
@@ -137,7 +114,7 @@ public class MainActivity extends AppCompatActivity
             } else {
                 Bundle payload = new Bundle();
                 payload.putString(FirebaseAnalytics.Param.VALUE, "not sent");
-                mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SHARE,
+                firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SHARE,
                         payload);
                 // Sending failed or it was canceled, show failure message to
                 // the user
@@ -169,9 +146,9 @@ public class MainActivity extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.sign_out_menu:
-                mFirebaseAuth.signOut();
-                Auth.GoogleSignInApi.signOut(mGoogleApiClient);
-                mUsername = ANONYMOUS;
+                firebaseAuth.signOut();
+                Auth.GoogleSignInApi.signOut(googleApiClient);
+                username = ANONYMOUS;
                 startActivity(new Intent(this, SignInActivity.class));
                 return true;
             case R.id.invite_menu:
@@ -184,41 +161,6 @@ public class MainActivity extends AppCompatActivity
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
     }
 
     @Override

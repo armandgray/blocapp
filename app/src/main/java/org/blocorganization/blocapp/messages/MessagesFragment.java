@@ -37,8 +37,8 @@ import java.util.Map;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static org.blocorganization.blocapp.MainActivity.MESS_TAG;
-import static org.blocorganization.blocapp.MainActivity.mPhotoUrl;
-import static org.blocorganization.blocapp.MainActivity.mUsername;
+import static org.blocorganization.blocapp.MainActivity.photoUrl;
+import static org.blocorganization.blocapp.MainActivity.username;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -176,8 +176,8 @@ public class MessagesFragment extends Fragment implements MainActivity.MainActiv
                     // Send messages on click.
                     FriendlyMessage friendlyMessage = new
                             FriendlyMessage(mMessageEditText.getText().toString(),
-                            mUsername,
-                            mPhotoUrl);
+                            username,
+                            photoUrl);
                     mFirebaseDatabaseReference.child(MESSAGES_CHILD)
                             .push().setValue(friendlyMessage);
                     mMessageEditText.setText("");
@@ -196,8 +196,8 @@ public class MessagesFragment extends Fragment implements MainActivity.MainActiv
                 // Send messages on click.
                 FriendlyMessage friendlyMessage = new
                         FriendlyMessage(mMessageEditText.getText().toString(),
-                        mUsername,
-                        mPhotoUrl);
+                        username,
+                        photoUrl);
                 mFirebaseDatabaseReference.child(MESSAGES_CHILD)
                         .push().setValue(friendlyMessage);
                 mMessageEditText.setText("");
