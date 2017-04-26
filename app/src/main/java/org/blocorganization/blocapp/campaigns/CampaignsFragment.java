@@ -18,8 +18,7 @@ import org.blocorganization.blocapp.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CampaignsFragment extends Fragment
-            implements HomeSubFragment.HomeFragListener {
+public class CampaignsFragment extends Fragment {
 
     private FragmentPagerAdapter adapterViewPager;
     private ViewPager vpPager;
@@ -82,16 +81,6 @@ public class CampaignsFragment extends Fragment
                     return null;
             }
         }
-    }
-
-    @Override
-    public void onCalendarImageClick() {
-        vpPager.setCurrentItem(0);
-    }
-
-    @Override
-    public void onHomeCreate() {
-
     }
 
 }
