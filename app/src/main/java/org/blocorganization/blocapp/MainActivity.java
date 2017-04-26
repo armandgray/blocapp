@@ -174,12 +174,6 @@ public class MainActivity extends AppCompatActivity
                 mUsername = ANONYMOUS;
                 startActivity(new Intent(this, SignInActivity.class));
                 return true;
-            case R.id.fresh_config_menu:
-                MessagesFragment fragment = (MessagesFragment) getSupportFragmentManager()
-                        .findFragmentByTag(MESS_TAG);
-                assert fragment instanceof MainActivityListener;
-                fragment.fetchConfig();
-                return true;
             case R.id.invite_menu:
                 sendInvitation();
                 return true;
