@@ -1,8 +1,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/svHome"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/svHome"
     tools:context="org.blocorganization.blocapp.HomeFragment">
 
     <LinearLayout
@@ -46,27 +46,42 @@
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="5dp" />
 
-        <TextView
+        <RelativeLayout
+            android:id="@+id/missionContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/white_dividers_background"
+            android:orientation="horizontal"
             android:paddingBottom="@dimen/small_header_pad_bottom"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/small_header_pad_top"
-            android:text="@string/feed"
-            android:textAllCaps="true"
-            android:textColor="@color/ToolBarColor"
-            android:textSize="12sp"
-            android:textStyle="bold" />
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/small_header_pad_top">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:text="@string/mission"
+                android:textAllCaps="true"
+                android:textColor="@color/ToolBarColor"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <include
+                layout="@layout/chevron_down_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true" />
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/tvMission"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingBottom="50dp"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
             android:paddingTop="10dp"
             android:text="@string/mission_text"
             android:textSize="@dimen/text_size" />
