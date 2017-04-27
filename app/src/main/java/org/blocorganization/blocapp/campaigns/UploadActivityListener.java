@@ -85,7 +85,9 @@ class UploadActivityListener {
 
     private void saveUriToCampaignFrom(TaskSnapshot taskSnapshot) {
         progressDialog.dismiss();
-        imgDownloadUri = taskSnapshot.getDownloadUrl().toString();
+        if (taskSnapshot != null && taskSnapshot.getDownloadUrl() != null) {
+            imgDownloadUri = taskSnapshot.getDownloadUrl().toString();
+        }
         campaign.setPhotoUrl(imgDownloadUri);
         Picasso.with(activity).load(imgDownloadUri).into(ivUpload);
         Toast.makeText(activity, UPLOAD_DONE, Toast.LENGTH_LONG).show();

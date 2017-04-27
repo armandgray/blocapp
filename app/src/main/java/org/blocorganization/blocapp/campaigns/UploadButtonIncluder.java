@@ -10,7 +10,7 @@ import org.blocorganization.blocapp.utils.SetupButtonIncluder;
 
 class UploadButtonIncluder {
 
-    public static final int GALLERY_INTENT = 2;
+    static final int GALLERY_INTENT = 2;
 
     private static final String UPLOAD_BUTTON_TEXT = "Upload";
     private static final int UPLOAD_BUTTON_TEXT_SIZE = 12;
