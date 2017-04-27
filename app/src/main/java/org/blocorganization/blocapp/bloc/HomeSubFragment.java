@@ -22,7 +22,7 @@ import org.blocorganization.blocapp.R;
  */
 public class HomeSubFragment extends Fragment {
 
-    LinearLayout menuContainer;
+    RelativeLayout menuContainer;
     HomeScrollListener mListener;
 
     public HomeSubFragment() {
@@ -54,7 +54,7 @@ public class HomeSubFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.bloc_subfragment_home, container, false);
 
-        menuContainer = (LinearLayout) rootView.findViewById(R.id.menu_container);
+        menuContainer = (RelativeLayout) rootView.findViewById(R.id.menuContainer);
         final RelativeLayout layout = (RelativeLayout) rootView.findViewById(R.id.bloc_layout);
         final ImageView chevron = (ImageView) rootView.findViewById(R.id.bloc_chevron_down);
         chevron.setVisibility(View.GONE);
