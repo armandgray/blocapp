@@ -79,45 +79,6 @@
             </LinearLayout>
         </FrameLayout>
 
-        <LinearLayout
-            android:id="@+id/itemAdminContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/admin_background_gradient"
-            android:orientation="horizontal"
-            android:paddingBottom="@dimen/btn_margin"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/btn_margin">
-
-            <ImageView
-                android:id="@+id/ivAdminImage"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@drawable/circle_gray"
-                android:padding="12dp"
-                android:tint="@color/colorPrimary"
-                android:contentDescription="@string/campaign_admin_image"
-                app:srcCompat="@drawable/ic_ghost_white_48dp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:orientation="vertical">
-
-
-
-                <TextView
-                    android:id="@+id/tvAdminRole"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/placeholder"
-                    android:textAllCaps="true"
-                    android:textSize="10dp" />
-            </LinearLayout>
-        </LinearLayout>
-
         <TextView
             android:id="@+id/tvDesc"
             android:layout_width="wrap_content"
