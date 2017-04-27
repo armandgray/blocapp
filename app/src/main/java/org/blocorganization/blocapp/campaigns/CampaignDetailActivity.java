@@ -36,16 +36,12 @@ public class CampaignDetailActivity extends AppCompatActivity {
         TextView tvDesc = (TextView) findViewById(R.id.tvDesc);
         TextView tvAmbition = (TextView) findViewById(R.id.tvAmbition);
         TextView tvBenefits = (TextView) findViewById(R.id.tvBenefits);
-        TextView tvPlan = (TextView) findViewById(R.id.tvPlan);
-        TextView tvBudget = (TextView) findViewById(R.id.tvBudget);
 
         final List<View> views = new ArrayList<>();
         views.add(itemInfoThemeContainer);
         views.add(tvDesc);
         views.add(tvAmbition);
         views.add(tvBenefits);
-        views.add(tvPlan);
-        views.add(tvBudget);
 
         if (getIntent().getExtras() != null) {
             campaign = new Campaign(getIntent().getExtras());
@@ -57,8 +53,6 @@ public class CampaignDetailActivity extends AppCompatActivity {
             tvDesc.setText(campaign.getDescription());
             tvAmbition.setText(campaign.getAmbition());
             tvBenefits.setText(campaign.getBenefits());
-            tvPlan.setText(campaign.getPlanOfExecution());
-            tvBudget.setText(campaign.getItemizedBudget());
         }
 
         DisplayMetrics metrics = new DisplayMetrics();

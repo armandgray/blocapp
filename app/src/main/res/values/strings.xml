@@ -174,5 +174,7 @@
     <string name="medium_priority">Medium Priority</string>
     <string name="low_priority">Low Priority</string>
     <string name="send">SEND</string>
+    <string name="ambition">Ambition</string>
+    <string name="benefits">Benefits</string>
 
 </resources>
