@@ -51,6 +51,7 @@ import static org.blocorganization.blocapp.utils.FieldUtilities.getTextFrom;
 import static org.blocorganization.blocapp.utils.FieldUtilities.loadUrlIntoImageViewWithActivity;
 import static org.blocorganization.blocapp.utils.FieldUtilities.setTextForEditTextWith;
 import static org.blocorganization.blocapp.utils.FieldUtilities.verify;
+import static org.blocorganization.blocapp.utils.GetDpMeasurement.getDPI;
 
 public class CreateCampaignDialog extends DialogFragment
         implements DateTimePickerFragment.DateTimeSetListener,
@@ -98,7 +99,7 @@ public class CreateCampaignDialog extends DialogFragment
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.create_campaign_dialog, container, false);
 
-        getPassedCampaign();
+        getPassedCampaign(rootView);
         assignFields(rootView);
         loadCampaignData();
         setupUtilities(rootView);
@@ -111,13 +112,17 @@ public class CreateCampaignDialog extends DialogFragment
         return rootView;
     }
 
-    private void getPassedCampaign() {
+    private void getPassedCampaign(View rootView) {
         if (getArguments() != null) {
             campaign = new Campaign(getArguments());
         } else {
             campaign = new Campaign();
             campaign.setTimestamp();
             isNewCampaign = true;
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            layoutParams.setMargins(0, getDPI(getActivity(), 22), 0, 0);
+            rootView.findViewById(R.id.dialogSubmitHeader).setLayoutParams(layoutParams);
         }
     }
 
