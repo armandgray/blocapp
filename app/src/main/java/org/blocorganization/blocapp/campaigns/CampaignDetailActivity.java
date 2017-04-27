@@ -37,12 +37,6 @@ public class CampaignDetailActivity extends AppCompatActivity {
         TextView tvAmbition = (TextView) findViewById(R.id.tvAmbition);
         TextView tvBenefits = (TextView) findViewById(R.id.tvBenefits);
 
-        final List<View> views = new ArrayList<>();
-        views.add(itemInfoThemeContainer);
-        views.add(tvDesc);
-        views.add(tvAmbition);
-        views.add(tvBenefits);
-
         if (getIntent().getExtras() != null) {
             campaign = new Campaign(getIntent().getExtras());
             Picasso.with(this).load(campaign.getPhotoUrl()).into(ivCampaignImage);

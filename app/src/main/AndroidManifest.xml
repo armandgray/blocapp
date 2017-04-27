@@ -13,10 +13,11 @@
         android:label="@string/app_name"
         android:logo="@drawable/ic_bloc_negative"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.NoActionBar">
+        android:theme="@style/AppTheme.NoActionBar"
+        android:fullBackupContent="@xml/backup_descriptor">
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".SignInActivity"
             android:label="@string/sign_in_title"
@@ -31,8 +32,14 @@
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
+                <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="http"
+                    android:host="www.armandgray.com"
+                    android:pathPrefix="/seeme" />
+                <data android:scheme="armandgray"
+                    android:host="seeme" />
             </intent-filter>
         </activity>
 

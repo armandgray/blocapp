@@ -5,7 +5,6 @@ import android.os.Bundle;
 import org.joda.time.DateTime;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public abstract class Record {
 
@@ -18,12 +17,12 @@ public abstract class Record {
     private static final String TIMESTAMP_KEY = "TIMESTAMP_KEY";
     private static final String IS_PUBLIC_KEY = "IS_PUBLIC_KEY";
 
-    String recordType;
-    String admin;
-    String title;
-    String description;
-    boolean isPublic;
-    int icon;
+    private String recordType;
+    private String admin;
+    private String title;
+    private String description;
+    private boolean isPublic;
+    private int icon;
 
     private String extras;
     private ArrayList<Integer> timestamp;
@@ -105,13 +104,7 @@ public abstract class Record {
         this.timestamp = dateList;
     }
 
-    public ArrayList<Integer> getTimestamp() {
-        return timestamp;
-    }
-
     public void setTimestamp(ArrayList<Integer> timestamp) { this.timestamp = timestamp; }
-
-    public String getExtras() { return extras; }
 
     public void setExtras(String extras) { this.extras = extras; }
 
@@ -121,14 +114,6 @@ public abstract class Record {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public int getIconId() {
-        return icon;
-    }
-
-    public void setIconId(int iconId) {
-        this.icon = iconId;
     }
 
     public boolean isPublic() {

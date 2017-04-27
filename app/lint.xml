@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="IconLocation">
+        <ignore path="src/main/res/drawable/background_square_selected_shadow.9.png" />
+        <ignore path="src/main/res/drawable/background_square_shadow.9.png" />
+        <ignore path="src/main/res/drawable/bloc_member1516.jpg" />
+        <ignore path="src/main/res/drawable/blocbbq2016_ianwbx.jpg" />
+        <ignore path="src/main/res/drawable/chevron_down.png" />
+        <ignore path="src/main/res/drawable/dinner_jmnuad.jpg" />
+        <ignore path="src/main/res/drawable/menu_point.png" />
+        <ignore path="src/main/res/drawable/menu_selected_point.png" />
+        <ignore path="src/main/res/drawable/theme_consent.jpg" />
+        <ignore path="src/main/res/drawable/theme_donate.jpg" />
+        <ignore path="src/main/res/drawable/toys_for_tots.jpg" />
+    </issue>
+</lint>
