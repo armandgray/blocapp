@@ -107,7 +107,6 @@ public class CreateCampaignDialog extends DialogFragment
         setupSpinnersFrom(databaseResources, rootView);
         setupDateTimePresenter(rootView);
         setupUploadButtonFrom(rootView, this);
-        setupSwitchClickListener();
 
         return rootView;
     }
@@ -216,15 +215,6 @@ public class CreateCampaignDialog extends DialogFragment
         img.setBackgroundColor(Color.parseColor("#00000000"));
         themePosition = position;
         previousSelectedTheme = view;
-    }
-
-    private void setupSwitchClickListener() {
-        swIsPublic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.i("SW_PUBLIC", String.valueOf(swIsPublic.isChecked()));
-            }
-        });
     }
 
     @Override

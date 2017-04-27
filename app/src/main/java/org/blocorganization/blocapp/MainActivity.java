@@ -92,8 +92,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.d(TAG, "onActivityResult: requestCode=" + requestCode +
-                ", resultCode=" + resultCode);
 
         if (requestCode == REQUEST_INVITE) {
             if (resultCode == RESULT_OK) {
@@ -104,7 +102,6 @@ public class MainActivity extends AppCompatActivity
                 // Check how many invitations were sent.
                 String[] ids = AppInviteInvitation
                         .getInvitationIds(resultCode, data);
-                Log.d(TAG, "Invitations sent: " + ids.length);
             } else {
                 Bundle payload = new Bundle();
                 payload.putString(FirebaseAnalytics.Param.VALUE, "not sent");
@@ -112,7 +109,6 @@ public class MainActivity extends AppCompatActivity
                         payload);
                 // Sending failed or it was canceled, show failure message to
                 // the user
-                Log.d(TAG, "Failed to send invitation.");
             }
         }
     }
@@ -121,7 +117,6 @@ public class MainActivity extends AppCompatActivity
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         // An unresolvable error has occurred and Google APIs (including Sign-In) will not
         // be available.
-        Log.d(TAG, "onConnectionFailed:" + connectionResult);
         Toast.makeText(this, "Google Play Services error.", Toast.LENGTH_SHORT).show();
     }
 
@@ -149,7 +144,6 @@ public class MainActivity extends AppCompatActivity
                 sendInvitation();
                 return true;
             case R.id.crash_menu:
-                FirebaseCrash.logcat(Log.ERROR, TAG, "crash caused");
                 causeCrash();
                 return true;
             default:
