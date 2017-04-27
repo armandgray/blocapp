@@ -188,5 +188,7 @@
     <string name="_new">New</string>
     <string name="icon_folder_white">icon folder white</string>
     <string name="buy_toys_from_store">Buy toys from store</string>
+    <string name="date">Date</string>
+    <string name="end">End</string>
 
 </resources>
