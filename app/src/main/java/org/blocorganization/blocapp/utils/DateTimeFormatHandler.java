@@ -6,6 +6,7 @@ import android.widget.TextView;
 import org.joda.time.DateTime;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class DateTimeFormatHandler {
 
@@ -33,7 +34,7 @@ public class DateTimeFormatHandler {
             DateTime date = getDateTimeReferenceFrom(dateElementsList);
             String onEnd = isStartDate ? ON : END;
             String amPm = designateAmPmFrom(dateElementsList.get(HOUR));
-            String minutes = String.format("%02d", date.getMinuteOfHour());
+            String minutes = String.format(Locale.US, "%02d", date.getMinuteOfHour());
             String dateText = onEnd + ": "
                     + date.monthOfYear().getAsText() + " "
                     + date.getDayOfMonth() + ", "

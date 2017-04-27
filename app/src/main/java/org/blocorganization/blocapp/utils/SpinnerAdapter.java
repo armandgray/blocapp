@@ -42,10 +42,10 @@ public class SpinnerAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup viewGroup) {
+    public View getView(int position, View convertView, ViewGroup parent) {
         View view = convertView;
         if (convertView == null) {
-            view = inflater.inflate(R.layout.create_spinner_item, null);
+            view = inflater.inflate(R.layout.create_spinner_item, parent, false);
         }
         TextView tvSpinner = (TextView) view.findViewById(R.id.tvSpinner);
         tvSpinner.setText(lstData.get(position));
