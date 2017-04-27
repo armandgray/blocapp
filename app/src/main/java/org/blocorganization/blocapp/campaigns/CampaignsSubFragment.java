@@ -52,8 +52,6 @@ public class CampaignsSubFragment extends Fragment {
     public static final String PHOTOS = "photos";
 
     private StorageReference mStorage;
-    private StorageReference filepath;
-    private DatabaseReference mCampaignsDatabaseReference;
     private ProgressDialog mProgressDialog;
 
     List<Campaign> campaigns = new ArrayList<>();
@@ -78,7 +76,7 @@ public class CampaignsSubFragment extends Fragment {
         mStorage = FirebaseStorage.getInstance().getReference();
         mProgressDialog = new ProgressDialog(getActivity());
 
-        mCampaignsDatabaseReference = FirebaseDatabase.getInstance().getReference(CAMPAIGNS_CHILD);
+        DatabaseReference mCampaignsDatabaseReference = FirebaseDatabase.getInstance().getReference(CAMPAIGNS_CHILD);
         mCampaignsDatabaseReference.addChildEventListener(new ChildEventListener() {
 
             @Override
@@ -208,19 +206,12 @@ public class CampaignsSubFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-//        https://www.youtube.com/watch?v=Zy2DKo0v-OY&index=14&list=PLGCjwl1RrtcTXrWuRTa59RyRmQ4OedWrt
-//        if (position % 2 == 0) {
-//
-//                        } else {
-//                            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//                            startActivityForResult(intent, CAMERA_REQUEST_CODE);
-//                        }
         if (requestCode == GALLERY_INTENT && resultCode == RESULT_OK) {
             mProgressDialog.setMessage("Uploading...");
             mProgressDialog.show();
 
             Uri uri = data.getData();
-            filepath = mStorage.child(PHOTOS).child(uri.getLastPathSegment());
+            StorageReference filepath = mStorage.child(PHOTOS).child(uri.getLastPathSegment());
 
             filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
