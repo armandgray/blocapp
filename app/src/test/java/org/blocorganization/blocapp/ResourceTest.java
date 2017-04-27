@@ -1,6 +1,5 @@
 package org.blocorganization.blocapp;
 
-import org.blocorganization.blocapp.models.Resource;
 import org.junit.Test;
 
 import static junit.framework.Assert.assertEquals;

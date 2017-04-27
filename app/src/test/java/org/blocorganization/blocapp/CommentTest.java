@@ -1,6 +1,5 @@
 package org.blocorganization.blocapp;
 
-import org.blocorganization.blocapp.models.Comment;
 import org.blocorganization.blocapp.models.RecordType;
 import org.junit.Test;
 

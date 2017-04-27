@@ -19,7 +19,7 @@ public class NotificationsArrayAdapter extends ArrayAdapter<Campaign> {
 	private List<Campaign> objects;
 	
 	public NotificationsArrayAdapter(Context context, int resource, List<Campaign> objects) {
-		super(context, resource, (List<Campaign>) objects);
+		super(context, resource, objects);
 		this.context = context;
 		this.objects = objects;
 	}

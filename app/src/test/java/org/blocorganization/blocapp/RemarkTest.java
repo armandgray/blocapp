@@ -1,7 +1,6 @@
 package org.blocorganization.blocapp;
 
 import org.blocorganization.blocapp.models.RecordType;
-import org.blocorganization.blocapp.models.Remark;
 import org.junit.Test;
 
 import static junit.framework.Assert.assertEquals;

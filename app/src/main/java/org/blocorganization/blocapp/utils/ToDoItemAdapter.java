@@ -8,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.blocorganization.blocapp.R;
-import org.blocorganization.blocapp.models.ToDoItem;
 
 import java.util.List;
 
