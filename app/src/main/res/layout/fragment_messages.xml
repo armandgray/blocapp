@@ -32,6 +32,7 @@
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:inputType="text"
+            android:textColorHint="#333333"
             android:hint="@string/please_enter_message"
             android:textColor="@color/textColor" />
 
