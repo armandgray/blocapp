@@ -14,6 +14,7 @@
         android:layout_width="@dimen/btn_side"
         android:layout_height="@dimen/btn_side"
         android:layout_marginRight="@dimen/btn_padding"
+        android:layout_marginEnd="@dimen/btn_padding"
         android:contentDescription="@string/icon" />
 
     <TextView

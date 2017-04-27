@@ -27,40 +27,36 @@
         android:background="#FF5A00" />
 
     <LinearLayout
-        android:id="@+id/item_details_container"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:paddingBottom="5dp"
+        android:paddingEnd="0dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="0dp"
+        android:paddingStart="5dp">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/tvCampaignTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingBottom="5dp"
-            android:paddingLeft="5dp">
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/toys_for_tots"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/campaigns_header_size"
+            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/tvCampaignTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="Toys for Tots"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/campaigns_header_size"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tvCampaignDetails"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/campaigns_image_margin"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:text="by Jaureese Gaines"
-                android:textAllCaps="true"
-                android:textColor="#333333"
-                android:textSize="@dimen/campaign_detail_text_size" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/tvCampaignDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/campaigns_image_margin"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@string/by_jaureese_gaines"
+            android:textAllCaps="true"
+            android:textColor="#333333"
+            android:textSize="@dimen/campaign_detail_text_size" />
     </LinearLayout>
 </LinearLayout>
