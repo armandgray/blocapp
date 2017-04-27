@@ -14,7 +14,9 @@
         android:logo="@drawable/ic_bloc_negative"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".MainActivity" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".SignInActivity"
             android:label="@string/sign_in_title"
