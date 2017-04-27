@@ -22,7 +22,6 @@ import org.blocorganization.blocapp.R;
  */
 public class HomeSubFragment extends Fragment {
 
-    public static final String BLOC_FRAG = "BLOC_FRAG";
     LinearLayout menuContainer;
     HomeScrollListener mListener;
 
@@ -101,7 +100,7 @@ public class HomeSubFragment extends Fragment {
         return rootView;
     }
 
-    public interface HomeScrollListener {
+    interface HomeScrollListener {
         void onScrollTop();
         void onScrollDown();
     }
