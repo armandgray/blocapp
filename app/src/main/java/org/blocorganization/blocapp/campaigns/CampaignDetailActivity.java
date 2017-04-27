@@ -17,8 +17,6 @@ import org.blocorganization.blocapp.models.Campaign;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.blocorganization.blocapp.utils.DateTimeFormatHandler.setTextForDateWith;
-
 public class CampaignDetailActivity extends AppCompatActivity {
 
     private Campaign campaign;
@@ -34,15 +32,8 @@ public class CampaignDetailActivity extends AppCompatActivity {
         ImageView ivTheme = (ImageView) findViewById(R.id.ivTheme);
         TextView tvTitle = (TextView) findViewById(R.id.tvTitle);
         TextView tvType = (TextView) findViewById(R.id.tvType);
-        TextView tvFromDate = (TextView) findViewById(R.id.tvFromDate);
-        TextView tvToDate = (TextView) findViewById(R.id.tvToDate);
-        tvToDate.setVisibility(View.INVISIBLE);
 
         LinearLayout itemAdminContainer = (LinearLayout) findViewById(R.id.itemAdminContainer);
-        ImageView ivAdminImage = (ImageView) findViewById(R.id.ivAdminImage);
-        TextView tvAdminHeader = (TextView) findViewById(R.id.tvAdminHeader);
-        TextView tvAdminName = (TextView) findViewById(R.id.tvAdminName);
-        TextView tvAdminRole = (TextView) findViewById(R.id.tvAdminRole);
 
         TextView tvDesc = (TextView) findViewById(R.id.tvDesc);
         TextView tvAmbition = (TextView) findViewById(R.id.tvAmbition);
@@ -65,8 +56,6 @@ public class CampaignDetailActivity extends AppCompatActivity {
             Picasso.with(this).load(campaign.getThemeImageUrl()).into(ivTheme);
             tvTitle.setText(campaign.getTitle());
             tvType.setText(campaign.getRecordType());
-            setTextForDateWith(campaign.getFromDate(), tvFromDate, true);
-            setTextForDateWith(campaign.getFromDate(), tvToDate, false);
             tvDesc.setText(campaign.getDescription());
             tvAmbition.setText(campaign.getAmbition());
             tvBenefits.setText(campaign.getBenefits());
@@ -89,40 +78,6 @@ public class CampaignDetailActivity extends AppCompatActivity {
                             .addToBackStack(null)
                             .commit();
                 }
-            }
-        });
-
-        final LinearLayout interestedBtn = (LinearLayout) findViewById(R.id.btn_container_red);
-        final ImageView interestedBtnImage = (ImageView) interestedBtn.getChildAt(0);
-        interestedBtnImage.setImageResource(R.drawable.ic_star_white_48dp);
-        final TextView interestedBtnText = (TextView) interestedBtn.getChildAt(1);
-        interestedBtnText.setText("Maybe");
-        interestedBtn.setOnClickListener(new View.OnClickListener() {
-            boolean clicked;
-
-            @Override
-            public void onClick(View view) {
-                interestedBtnText.setText("Going");
-                if (clicked) {
-                    interestedBtnImage.setImageResource(R.drawable.ic_check_white_48dp);
-                    clicked = !clicked;
-                } else {
-                    interestedBtnImage.setImageResource(R.drawable.ic_plus_white_48dp);
-                    clicked = !clicked;
-                }
-            }
-        });
-
-        LinearLayout shareBtn = (LinearLayout) findViewById(R.id.btn_container_gray);
-        final ImageView shareBtnImage = (ImageView) shareBtn.getChildAt(0);
-        shareBtnImage.setImageResource(R.drawable.ic_share_grey600_48dp);
-        final TextView shareBtnText = (TextView) shareBtn.getChildAt(1);
-        shareBtnText.setText("Share");
-
-        shareBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                shareBtnImage.setImageResource(R.drawable.ic_check_grey600_48dp);
             }
         });
 
