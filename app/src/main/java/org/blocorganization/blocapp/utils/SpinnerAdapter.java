@@ -14,15 +14,13 @@ import org.blocorganization.blocapp.R;
 
 import java.util.List;
 
-public class SpinnerAdapter extends BaseAdapter {
+class SpinnerAdapter extends BaseAdapter {
 
     private List<String> lstData;
-    private Activity activity;
     private LayoutInflater inflater;
 
-    public SpinnerAdapter(List<String> lstData, Activity activity) {
+    SpinnerAdapter(List<String> lstData, Activity activity) {
         this.lstData = lstData;
-        this.activity = activity;
         this.inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -57,8 +55,7 @@ public class SpinnerAdapter extends BaseAdapter {
         View view = super.getDropDownView(position, convertView, parent);
         LinearLayout layout = (LinearLayout) view;
         TextView tvSpinner = (TextView) layout.findViewById(R.id.tvSpinner);
-        tvSpinner.setGravity(Gravity.LEFT);
-//        tvSpinner.setTextColor(Color.parseColor("#FFFFFF"));
+        tvSpinner.setGravity(Gravity.START);
         tvSpinner.setLayoutParams(new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT));

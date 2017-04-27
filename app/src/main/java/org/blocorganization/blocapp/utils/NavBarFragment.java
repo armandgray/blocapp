@@ -16,9 +16,7 @@ public class NavBarFragment extends Fragment {
 
     private NavBarFragmentListener mListener;
 
-    public NavBarFragment(){
-        // Required empty public constructor
-    }
+    public NavBarFragment(){}
 
     @Override
     public void onAttach(Context context) {

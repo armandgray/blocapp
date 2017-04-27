@@ -9,8 +9,6 @@ import android.widget.TextView;
 
 public class SetupButtonIncluder {
 
-    public static final int VISIBLE = 0x00000000;
-    public static final int INVISIBLE = 0x00000004;
     public static final int GONE = 0x00000008;
 
     private ImageView ivButtonIcon;
@@ -31,13 +29,6 @@ public class SetupButtonIncluder {
         this.tvButtonText.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
     }
 
-    public void setButtonIconAs(int drawableReferenceId) {
-        this.ivButtonIcon.setImageResource(drawableReferenceId);
-    }
-
-    /**
-     *  @param visibility One of {@link #VISIBLE}, {@link #INVISIBLE}, or {@link #GONE}.
-     */
     public void setButtonIconVisibility(int visibility) {
         this.ivButtonIcon.setVisibility(visibility);
     }
