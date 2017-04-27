@@ -75,11 +75,11 @@ public class FieldUtilities {
         }
     }
 
-    public static boolean alertVerify(Integer integer, String alert, CreateUtilities utilities) {
+    public static boolean alertVerify(Integer integer, CreateUtilities utilities) {
         if (integer != null && utilities.getListItems() != null) {
             return true;
         } else {
-            Toast.makeText(utilities.getActivity(), alert, Toast.LENGTH_SHORT).show();
+            Toast.makeText(utilities.getActivity(), FieldUtilities.THEME_REQUIRED, Toast.LENGTH_SHORT).show();
             return false;
         }
     }

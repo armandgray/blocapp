@@ -20,7 +20,6 @@ import org.blocorganization.blocapp.models.Campaign;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.blocorganization.blocapp.campaigns.CreateCampaignDialog.THEME_LAYOUT_PARAMS;
 import static org.blocorganization.blocapp.utils.FieldUtilities.setSelectionForSpinnerFromList;
 
 public class CreateUtilities {
@@ -58,7 +57,7 @@ public class CreateUtilities {
                 if (recyclerView.getAdapter() == null) {
                     if (campaign != null) {
                         adapter = new ImageThemeAdapter(activity,
-                                listItems, THEME_LAYOUT_PARAMS, campaign.getThemeImageUrl());
+                                listItems, campaign.getThemeImageUrl());
                     }
                     recyclerView.setAdapter(adapter);
                 } else {

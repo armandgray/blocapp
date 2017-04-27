@@ -5,7 +5,6 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import org.blocorganization.blocapp.R;
 import org.blocorganization.blocapp.utils.SetupButtonIncluder;
 
 class UploadButtonIncluder {
@@ -17,16 +16,16 @@ class UploadButtonIncluder {
     private static final int PADDING = 5;
 
     static void setupUploadButtonFrom(View rootView, Fragment fragment) {
-        SetupButtonIncluder buttonIncluder = new SetupButtonIncluder(rootView, R.id.btn_container_red);
+        SetupButtonIncluder buttonIncluder = new SetupButtonIncluder(rootView);
         setButtonAttributesWith(buttonIncluder, fragment);
         addUploadButtonClickListenerWith(buttonIncluder, fragment);
     }
 
     private static void setButtonAttributesWith(SetupButtonIncluder buttonIncluder, Fragment fragment) {
-        buttonIncluder.setButtonIconVisibility(SetupButtonIncluder.GONE);
-        buttonIncluder.setButtonTextSizeInSp(UPLOAD_BUTTON_TEXT_SIZE);
-        buttonIncluder.setButtonText(UPLOAD_BUTTON_TEXT);
-        buttonIncluder.setButtonPaddingWithin(fragment.getActivity(), PADDING);
+        buttonIncluder.setButtonIconVisibility();
+        buttonIncluder.setButtonTextSizeInSp();
+        buttonIncluder.setButtonText();
+        buttonIncluder.setButtonPaddingWithin(fragment.getActivity());
     }
 
     private static void addUploadButtonClickListenerWith(SetupButtonIncluder buttonIncluder, final Fragment fragment) {

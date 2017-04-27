@@ -25,10 +25,10 @@ class ImageThemeAdapter extends
     private int mLayoutParams;
     private String setTheme;
 
-    ImageThemeAdapter(@NonNull Activity activity, @NonNull List<String> themes, int layoutParams, @Nullable String theme) {
+    ImageThemeAdapter(@NonNull Activity activity, @NonNull List<String> themes, @Nullable String theme) {
         mThemes = themes;
         mActivity = activity;
-        mLayoutParams = layoutParams;
+        mLayoutParams = org.blocorganization.blocapp.campaigns.CreateCampaignDialog.THEME_LAYOUT_PARAMS;
         setTheme = theme;
     }
 

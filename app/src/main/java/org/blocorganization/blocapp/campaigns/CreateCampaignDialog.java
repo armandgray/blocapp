@@ -43,7 +43,6 @@ import static org.blocorganization.blocapp.utils.CreateUtilities.VENUES;
 import static org.blocorganization.blocapp.utils.DateTimePresenter.DATE_TIME_PICKER;
 import static org.blocorganization.blocapp.utils.FieldUtilities.ADMIN_REQUIRED;
 import static org.blocorganization.blocapp.utils.FieldUtilities.DESCRIPTION_REQUIRED;
-import static org.blocorganization.blocapp.utils.FieldUtilities.THEME_REQUIRED;
 import static org.blocorganization.blocapp.utils.FieldUtilities.TITLE_REQUIRED;
 import static org.blocorganization.blocapp.utils.FieldUtilities.TYPE_REQUIRED;
 import static org.blocorganization.blocapp.utils.FieldUtilities.VENUE_REQUIRED;
@@ -279,7 +278,7 @@ public class CreateCampaignDialog extends DialogFragment
     }
 
     private boolean alertFieldsAreValid() {
-        return alertVerify(themePosition, THEME_REQUIRED, themeUtilities)
+        return alertVerify(themePosition, themeUtilities)
                 && alertVerify(spType, TYPE_REQUIRED, typeUtilities)
                 && alertVerify(spVenue, VENUE_REQUIRED, venueUtilities)
                 && alertVerify(etTitle, TITLE_REQUIRED)

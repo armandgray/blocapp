@@ -15,26 +15,26 @@ public class SetupButtonIncluder {
     private TextView tvButtonText;
     private LinearLayout buttonLayoutReference;
 
-    public SetupButtonIncluder(View rootView, int buttonLayoutId) {
-        buttonLayoutReference = (LinearLayout) rootView.findViewById(buttonLayoutId);
+    public SetupButtonIncluder(View rootView) {
+        buttonLayoutReference = (LinearLayout) rootView.findViewById(org.blocorganization.blocapp.R.id.btn_container_red);
         this.ivButtonIcon = (ImageView) buttonLayoutReference.getChildAt(0);
         this.tvButtonText = (TextView) buttonLayoutReference.getChildAt(1);
     }
 
-    public void setButtonText(String text) {
-        this.tvButtonText.setText(text);
+    public void setButtonText() {
+        this.tvButtonText.setText(org.blocorganization.blocapp.campaigns.UploadButtonIncluder.UPLOAD_BUTTON_TEXT);
     }
 
-    public void setButtonTextSizeInSp (int textSize) {
-        this.tvButtonText.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
+    public void setButtonTextSizeInSp() {
+        this.tvButtonText.setTextSize(TypedValue.COMPLEX_UNIT_SP, org.blocorganization.blocapp.campaigns.UploadButtonIncluder.UPLOAD_BUTTON_TEXT_SIZE);
     }
 
-    public void setButtonIconVisibility(int visibility) {
-        this.ivButtonIcon.setVisibility(visibility);
+    public void setButtonIconVisibility() {
+        this.ivButtonIcon.setVisibility(SetupButtonIncluder.GONE);
     }
 
-    public void setButtonPaddingWithin(Activity activity, int padding) {
-        final int pad = GetDpMeasurement.getDPI(activity, padding);
+    public void setButtonPaddingWithin(Activity activity) {
+        final int pad = GetDpMeasurement.getDPI(activity, org.blocorganization.blocapp.campaigns.UploadButtonIncluder.PADDING);
         buttonLayoutReference.setPadding(pad, pad, pad, pad);
     }
 
