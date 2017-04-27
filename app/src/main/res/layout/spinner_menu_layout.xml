@@ -32,6 +32,7 @@
         android:layout_gravity="center_vertical|end"
         android:layout_marginRight="15dp"
         android:layout_marginEnd="15dp"
+        android:contentDescription="@string/menu_down_white_ic"
         app:srcCompat="@drawable/ic_menu_down_white_48dp" />
 
     <Spinner
@@ -42,5 +43,7 @@
         android:background="@android:color/transparent"
         android:paddingLeft="@dimen/menu_text_padding"
         android:paddingStart="40dp"
+        android:paddingRight="0dp"
+        android:paddingEnd="0dp"
         android:popupBackground="#333333" />
 </FrameLayout>

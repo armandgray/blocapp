@@ -15,6 +15,7 @@
         android:id="@+id/imageView"
         android:layout_width="@dimen/nav_image_side"
         android:layout_height="@dimen/nav_image_side"
+        android:contentDescription="@string/logo_app_bloc_positive"
         android:src="@drawable/logo_positive" />
 
     <TextView

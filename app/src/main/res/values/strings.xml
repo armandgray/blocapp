@@ -176,5 +176,17 @@
     <string name="send">SEND</string>
     <string name="ambition">Ambition</string>
     <string name="benefits">Benefits</string>
+    <string name="menu_down_white_ic">menu down white ic</string>
+    <string name="logo_app_bloc_positive">logo app bloc positive</string>
+    <string name="border">border</string>
+    <string name="_2">2</string>
+    <string name="days">Days</string>
+    <string name="menu_dots_vertical">Menu Dots Vertical</string>
+    <string name="icon_calendar_clock_white">icon calendar clock white</string>
+    <string name="_11_4_16">11/4/16</string>
+    <string name="toys_for_tots">Toys for Tots</string>
+    <string name="_new">New</string>
+    <string name="icon_folder_white">icon folder white</string>
+    <string name="buy_toys_from_store">Buy toys from store</string>
 
 </resources>

@@ -70,6 +70,7 @@
                     android:layout_height="@dimen/navbar_icon_size"
                     android:layout_gravity="center_vertical|end"
                     android:layout_marginRight="15dp"
+                    android:contentDescription="@string/menu_down_white_ic"
                     app:srcCompat="@drawable/ic_menu_down_white_48dp" />
 
                 <Spinner
@@ -109,6 +110,7 @@
                     android:layout_height="@dimen/navbar_icon_size"
                     android:layout_gravity="center_vertical|end"
                     android:layout_marginRight="15dp"
+                    android:contentDescription="@string/menu_down_white_ic"
                     app:srcCompat="@drawable/ic_menu_down_white_48dp" />
 
                 <Spinner
