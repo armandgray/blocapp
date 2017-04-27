@@ -19,13 +19,19 @@
             android:background="@drawable/white_dividers_background"
             android:orientation="horizontal"
             android:paddingBottom="@dimen/small_header_pad_bottom"
+            android:paddingStart="0dp"
+            android:paddingLeft="0dp"
             android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingEnd="@dimen/activity_horizontal_margin"
             android:paddingTop="@dimen/small_header_pad_top">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingStart="@dimen/activity_horizontal_margin"
+                android:paddingEnd="0dp"
+                android:paddingRight="0dp"
                 android:text="@string/campaigns"
                 android:textAllCaps="true"
                 android:textColor="@color/ToolBarColor"
@@ -45,6 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
+            android:layout_marginStart="5dp"
             android:layout_marginLeft="5dp" />
 
         <RelativeLayout
@@ -55,12 +62,18 @@
             android:orientation="horizontal"
             android:paddingBottom="@dimen/small_header_pad_bottom"
             android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingStart="0dp"
+            android:paddingLeft="0dp"
+            android:paddingEnd="@dimen/activity_horizontal_margin"
             android:paddingTop="@dimen/small_header_pad_top">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingStart="@dimen/activity_horizontal_margin"
+                android:paddingEnd="0dp"
+                android:paddingRight="0dp"
                 android:text="@string/mission"
                 android:textAllCaps="true"
                 android:textColor="@color/ToolBarColor"
