@@ -35,32 +35,6 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="4dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tvCampaignMonth"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Dec"
-                android:textAllCaps="true"
-                android:textColor="@color/colorPrimary"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/tvCampaignDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center_horizontal"
-                android:text="12"
-                android:textColor="@android:color/black"
-                android:textSize="12sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingBottom="5dp"
             android:paddingLeft="5dp">
