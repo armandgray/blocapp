@@ -30,11 +30,7 @@ public class CreateUtilities {
     public static final String RES = "res";
     public static final String VENUES = "venues";
     public static final String TYPES = "types";
-    public static final String SUBTYPE = "SUBTYPE";
-    public static final String SUBTYPES = "subtypes";
-    public static final String REPEAT_EVENT = "REPEAT_EVENT";
-    public static final String REPEAT_OPTIONS = "repeat";
-    public static final String NEWSFEEDSOURCES = "newsfeedsources";
+    private static final String NEWS_FEED_SOURCES = "news feed sources";
 
     private static final String CAMPAIGNS = "campaigns";
 
@@ -42,12 +38,6 @@ public class CreateUtilities {
     @Nullable
     private Campaign campaign;
     private Activity activity;
-
-    public CreateUtilities(Activity activity) {
-        this.campaign = null;
-        this.activity = activity;
-        this.listItems = new ArrayList<>();
-    }
 
     public CreateUtilities(@NonNull Campaign campaign, Activity activity) {
         this.campaign = campaign;
@@ -59,12 +49,17 @@ public class CreateUtilities {
         databaseReference.addValueEventListener(new ValueEventListener() {
             private ImageThemeAdapter adapter;
 
+            @SuppressWarnings("unchecked")
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                listItems = (List) dataSnapshot.getValue();
+                if (dataSnapshot.getValue() instanceof List) {
+                    listItems = (List) dataSnapshot.getValue();
+                }
                 if (recyclerView.getAdapter() == null) {
-                    adapter = new ImageThemeAdapter(activity,
-                            listItems, THEME_LAYOUT_PARAMS, campaign.getThemeImageUrl());
+                    if (campaign != null) {
+                        adapter = new ImageThemeAdapter(activity,
+                                listItems, THEME_LAYOUT_PARAMS, campaign.getThemeImageUrl());
+                    }
                     recyclerView.setAdapter(adapter);
                 } else {
                     adapter.notifyDataSetChanged();
@@ -80,6 +75,7 @@ public class CreateUtilities {
     public void getSpinnerListItemsFrom(DatabaseReference databaseReference, final Spinner spinner, final String methodCall) {
 
         databaseReference.addValueEventListener(new ValueEventListener() {
+            @SuppressWarnings("unchecked")
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 listItems = (List) dataSnapshot.getValue();
@@ -114,7 +110,7 @@ public class CreateUtilities {
     }
 
     public void updateNetwork() {
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child(RES).child(NEWSFEEDSOURCES);
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child(RES).child(NEWS_FEED_SOURCES);
         mDatabase.push().setValue(campaign);
     }
 

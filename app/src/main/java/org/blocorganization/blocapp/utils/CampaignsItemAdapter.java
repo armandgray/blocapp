@@ -22,34 +22,26 @@ public class CampaignsItemAdapter extends
 
     private List<Campaign> mCampaigns;
     private Activity mActivity;
-    private Context mContext;
     private Boolean fullItem;
 
-    // Pass in the contact array into the constructor
     public CampaignsItemAdapter(Activity activity, Boolean bool, List<Campaign> campaigns) {
         mCampaigns = campaigns;
         mActivity = activity;
         fullItem = bool;
     }
 
-    // Usually involves inflating a layout from XML and returning the holder
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        mContext = parent.getContext();
+        Context mContext = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(mContext);
 
-        // Inflate the custom layout
         View contactView = inflater.inflate(R.layout.campaign_listitem, parent, false);
 
-        // Return a new holder instance
-        ViewHolder viewHolder = new ViewHolder(contactView);
-        return viewHolder;
+        return new ViewHolder(contactView);
     }
 
-    // Involves populating data into the item through holder
     @Override
     public void onBindViewHolder(CampaignsItemAdapter.ViewHolder viewHolder, int position) {
-        // Get the data model based on position
         Campaign campaign = mCampaigns.get(position);
         int containerDimens = GetDpMeasurement.getDPI(mActivity, 120);
 
@@ -75,21 +67,19 @@ public class CampaignsItemAdapter extends
         return mCampaigns.size();
     }
 
-    // Provide a direct reference to each of the views within a data item
-    // Used to cache the views within the item layout for fast access
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
 
-        public LinearLayout campaignItemContainer;
-        public ImageView ivCampaignImage;
-        public TextView tvCampaignTitle;
-        public TextView tvCampaignDetails;
-        public LinearLayout itemDetailsContainer;
-        public View border;
+         LinearLayout campaignItemContainer;
+         ImageView ivCampaignImage;
+         TextView tvCampaignTitle;
+         TextView tvCampaignDetails;
+         LinearLayout itemDetailsContainer;
+         View border;
 
         // We also create a constructor that accepts the entire item row
         // and does the view lookups to find each subview
-        public ViewHolder(View itemView) {
-            // Stores the itemView in a public final member variable that can be used
+         ViewHolder(View itemView) {
+            // Stores the itemView in a private final member variable that can be used
             // to access the context from any ViewHolder instance.
             super(itemView);
 
