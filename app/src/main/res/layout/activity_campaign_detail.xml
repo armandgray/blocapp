@@ -96,17 +96,6 @@
             android:text="@string/placeholder"
             android:textSize="12dp" />
 
-        <include
-            layout="@layout/chevron_down_more"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:gravity="end" />
-
         <LinearLayout
             android:id="@+id/campaign_details_container"
             android:layout_width="match_parent"

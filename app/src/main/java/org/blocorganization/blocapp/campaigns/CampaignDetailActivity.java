@@ -78,30 +78,6 @@ public class CampaignDetailActivity extends AppCompatActivity {
                 }
             }
         });
-
-        final LinearLayout more = (LinearLayout) findViewById(R.id.more_container);
-        final LinearLayout details = (LinearLayout) findViewById(R.id.campaign_details_container);
-        details.setVisibility(View.GONE);
-        more.setOnClickListener(new View.OnClickListener() {
-            boolean clicked;
-            TextView tv = (TextView) more.getChildAt(0);
-            ImageView iv = (ImageView) more.getChildAt(1);
-
-            @Override
-            public void onClick(View view) {
-                if (clicked) {
-                    details.setVisibility(View.GONE);
-                    tv.setText("More");
-                    iv.animate().rotationX(360).rotationY(0).setDuration(250);
-                    clicked = !clicked;
-                } else {
-                    details.setVisibility(View.VISIBLE);
-                    tv.setText("Less");
-                    iv.animate().rotationX(180).rotationY(0).setDuration(250);
-                    clicked = !clicked;
-                }
-            }
-        });
     }
 
 }
