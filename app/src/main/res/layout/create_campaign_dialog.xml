@@ -30,8 +30,11 @@
                 android:layout_height="wrap_content"
                 android:lines="2"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingStart="@dimen/activity_horizontal_margin"
+                android:paddingEnd="0dp"
+                android:paddingRight="0dp"
                 android:paddingTop="5dp"
-                android:text="Select A Theme"
+                android:text="@string/select_a_theme"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
@@ -61,6 +64,7 @@
                     android:layout_height="@dimen/menu_icon_size"
                     android:layout_gravity="center_vertical"
                     android:layout_marginRight="@dimen/btn_padding"
+                    android:layout_marginEnd="@dimen/btn_padding"
                     android:contentDescription="@string/icon"
                     android:tint="@color/ToolBarColor"
                     app:srcCompat="@drawable/ic_apps_white_48dp" />
@@ -70,6 +74,7 @@
                     android:layout_height="@dimen/navbar_icon_size"
                     android:layout_gravity="center_vertical|end"
                     android:layout_marginRight="15dp"
+                    android:layout_marginEnd="15dp"
                     android:contentDescription="@string/menu_down_white_ic"
                     app:srcCompat="@drawable/ic_menu_down_white_48dp" />
 
@@ -80,6 +85,9 @@
                     android:layout_gravity="center_vertical"
                     android:background="@android:color/transparent"
                     android:paddingLeft="@dimen/menu_text_padding"
+                    android:paddingStart="@dimen/menu_text_padding"
+                    android:paddingEnd="0dp"
+                    android:paddingRight="0dp"
                     android:popupBackground="#333333" />
             </FrameLayout>
 
@@ -101,6 +109,7 @@
                     android:layout_height="@dimen/menu_icon_size"
                     android:layout_gravity="center_vertical"
                     android:layout_marginRight="@dimen/btn_padding"
+                    android:layout_marginEnd="@dimen/btn_padding"
                     android:contentDescription="@string/icon"
                     android:tint="@color/ToolBarColor"
                     app:srcCompat="@drawable/ic_map_marker_white_48dp" />
@@ -110,6 +119,7 @@
                     android:layout_height="@dimen/navbar_icon_size"
                     android:layout_gravity="center_vertical|end"
                     android:layout_marginRight="15dp"
+                    android:layout_marginEnd="15dp"
                     android:contentDescription="@string/menu_down_white_ic"
                     app:srcCompat="@drawable/ic_menu_down_white_48dp" />
 
@@ -120,6 +130,9 @@
                     android:layout_gravity="center_vertical"
                     android:background="@android:color/transparent"
                     android:paddingLeft="@dimen/menu_text_padding"
+                    android:paddingStart="@dimen/menu_text_padding"
+                    android:paddingEnd="0dp"
+                    android:paddingRight="0dp"
                     android:popupBackground="#333333" />
             </FrameLayout>
 
@@ -139,7 +152,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight=".8"
                     android:ems="15"
-                    android:hint="Title"
+                    android:hint="@string/title"
                     android:inputType="textShortMessage"
                     android:textColor="@color/textColor"
                     android:textColorHint="#999999"
@@ -152,7 +165,7 @@
                     android:layout_gravity="end"
                     android:layout_weight=".2"
                     android:ems="3"
-                    android:hint="(ABC)"
+                    android:hint="@string/abc"
                     android:inputType="textShortMessage"
                     android:maxLength="3"
                     android:textColor="@color/textColor"
@@ -169,7 +182,7 @@
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:background="@drawable/red_top_border_background"
                 android:ems="15"
-                android:hint="Admin"
+                android:hint="@string/admin"
                 android:inputType="textShortMessage"
                 android:paddingBottom="10dp"
                 android:paddingTop="30dp"
@@ -185,7 +198,7 @@
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:background="@drawable/red_top_border_background"
                 android:ems="15"
-                android:hint="Description"
+                android:hint="@string/description"
                 android:inputType="textMultiLine"
                 android:paddingBottom="10dp"
                 android:paddingTop="30dp"
@@ -201,7 +214,7 @@
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:background="@drawable/red_top_border_background"
                 android:ems="15"
-                android:hint="Ambition"
+                android:hint="@string/ambition"
                 android:inputType="textMultiLine"
                 android:paddingBottom="10dp"
                 android:paddingTop="30dp"
@@ -217,7 +230,7 @@
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:background="@drawable/red_top_border_background"
                 android:ems="15"
-                android:hint="Benefits to the College"
+                android:hint="@string/benefits_to_the_college"
                 android:inputType="textMultiLine"
                 android:paddingBottom="10dp"
                 android:paddingTop="30dp"
@@ -242,7 +255,7 @@
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:background="@drawable/red_top_border_background"
                 android:paddingTop="30dp"
-                android:text="Media"
+                android:text="@string/media"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
@@ -256,7 +269,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.8"
-                    android:text="Add external documents, photos, sites, videos, presentations."
+                    android:text="@string/add_external_documents_photos_sites_videos_presentations"
                     android:textSize="12sp"
                     android:textStyle="normal" />
 
@@ -266,6 +279,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
                     android:layout_weight="0.2" />
             </LinearLayout>
 

@@ -191,5 +191,10 @@
     <string name="date">Date</string>
     <string name="end">End</string>
     <string name="by_jaureese_gaines">by Jaureese Gaines</string>
+    <string name="select_a_theme">Select A Theme</string>
+    <string name="abc">(ABC)</string>
+    <string name="benefits_to_the_college">Benefits to the College</string>
+    <string name="media">Media</string>
+    <string name="add_external_documents_photos_sites_videos_presentations">Add external documents, photos, sites, videos, presentations.</string>
 
 </resources>
