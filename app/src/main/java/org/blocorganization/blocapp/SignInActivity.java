@@ -29,11 +29,7 @@ public class SignInActivity extends AppCompatActivity implements
     private static final String TAG = "SignInActivity";
     private static final int RC_SIGN_IN = 9001;
 
-    private SignInButton mSignInButton;
-
     private GoogleApiClient mGoogleApiClient;
-
-    // Firebase instance variables
     private FirebaseAuth mFirebaseAuth;
 
     @Override
@@ -44,13 +40,9 @@ public class SignInActivity extends AppCompatActivity implements
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_signin);
         setSupportActionBar(toolbar);
 
-        // Assign fields
-        mSignInButton = (SignInButton) findViewById(R.id.sign_in_button);
-
-        // Set click listeners
+        SignInButton mSignInButton = (SignInButton) findViewById(R.id.sign_in_button);
         mSignInButton.setOnClickListener(this);
 
-        // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -60,7 +52,6 @@ public class SignInActivity extends AppCompatActivity implements
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
-        // Initialize FirebaseAuth
         mFirebaseAuth = FirebaseAuth.getInstance();
     }
 

@@ -17,7 +17,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
@@ -29,12 +28,10 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import org.blocorganization.blocapp.campaigns.CampaignDetailActivity;
 import org.blocorganization.blocapp.models.Campaign;
-import org.blocorganization.blocapp.models.Record;
 import org.blocorganization.blocapp.utils.CampaignsItemAdapter;
 import org.blocorganization.blocapp.utils.RecyclerItemClickListener;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import static org.blocorganization.blocapp.campaigns.CampaignsSubFragment.CAMPAIGNS_CHILD;
@@ -44,10 +41,6 @@ import static org.blocorganization.blocapp.campaigns.CampaignsSubFragment.CAMPAI
  */
 public class HomeFragment extends Fragment {
 
-    public static final String HOME_TAG = "HOME_TAG";
-
-    private ScrollView svHome;
-
     private static final int SWIPE_MIN_DISTANCE = 120;
     private static final int SWIPE_THRESHOLD_VELOCITY = 200;
     private ViewFlipper mViewFlipper;
@@ -55,24 +48,16 @@ public class HomeFragment extends Fragment {
     private GestureDetector detector;
     private CampaignsItemAdapter adapter;
 
-    private List<Record> listNewsFeed = new ArrayList<>();
-
     ArrayList<Campaign> campaigns = new ArrayList<>();
 
+    @SuppressWarnings("deprecation")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
-        svHome = (ScrollView) rootView.findViewById(R.id.svHome);
         setupMoreButtons(rootView);
 
-        /**
-         *  Slideshow setup as ViewFlipper
-         *  Source: http://stacktips.com/tutorials/android/android-viewflipper-example
-         *  gesture listener below
-         */
         mContext = getActivity();
         detector = new GestureDetector(new SwipeGestureDetector());
         mViewFlipper = (ViewFlipper) rootView.findViewById(R.id.view_flipper);
@@ -102,6 +87,7 @@ public class HomeFragment extends Fragment {
 
         DatabaseReference mCampaignsDatabaseReference = FirebaseDatabase.getInstance().getReference(CAMPAIGNS_CHILD);
         mCampaignsDatabaseReference.addChildEventListener(new ChildEventListener() {
+            @SuppressWarnings("unchecked")
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 moreCampaignsContainer.setVisibility(View.VISIBLE);
@@ -221,10 +207,7 @@ public class HomeFragment extends Fragment {
         );
     }
 
-    /**
-     *  ViewFlipper gesture listener
-     */
-    class SwipeGestureDetector extends GestureDetector.SimpleOnGestureListener {
+    private class SwipeGestureDetector extends GestureDetector.SimpleOnGestureListener {
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
             try {
