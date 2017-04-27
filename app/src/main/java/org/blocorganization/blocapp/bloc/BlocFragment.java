@@ -18,7 +18,6 @@ import org.blocorganization.blocapp.R;
  */
 public class BlocFragment extends Fragment implements HomeSubFragment.HomeScrollListener {
 
-    private FragmentPagerAdapter adapterViewPager;
     private ImageView menuBullet0;
 
     public BlocFragment() {}
@@ -31,7 +30,7 @@ public class BlocFragment extends Fragment implements HomeSubFragment.HomeScroll
         View rootView = inflater.inflate(R.layout.fragment_bloc, container, false);
 
         ViewPager vpPager = (ViewPager) rootView.findViewById(R.id.bloc_vpager);
-        adapterViewPager = new MyPagerAdapter(getChildFragmentManager());
+        FragmentPagerAdapter adapterViewPager = new MyPagerAdapter(getChildFragmentManager());
         vpPager.setAdapter(adapterViewPager);
         vpPager.setCurrentItem(0);
 

@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity
     public static String username;
     public static String photoUrl;
     private static FirebaseAuth firebaseAuth;
-    private static FirebaseUser firebaseUser;
 
     private FirebaseAnalytics firebaseAnalytics;
     private GoogleApiClient googleApiClient;
@@ -59,7 +58,7 @@ public class MainActivity extends AppCompatActivity
 
         firebaseAnalytics = FirebaseAnalytics.getInstance(this);
         firebaseAuth = FirebaseAuth.getInstance();
-        firebaseUser = firebaseAuth.getCurrentUser();
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         if (firebaseUser == null) {
             startActivity(new Intent(this, SignInActivity.class));
             finish();

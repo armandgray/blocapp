@@ -7,6 +7,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import static org.blocorganization.blocapp.campaigns.UploadButtonIncluder.*;
+
 public class SetupButtonIncluder {
 
     private static final int GONE = 0x00000008;
@@ -22,11 +24,11 @@ public class SetupButtonIncluder {
     }
 
     public void setButtonText() {
-        this.tvButtonText.setText(org.blocorganization.blocapp.campaigns.UploadButtonIncluder.UPLOAD_BUTTON_TEXT);
+        this.tvButtonText.setText(UPLOAD_BUTTON_TEXT);
     }
 
     public void setButtonTextSizeInSp() {
-        this.tvButtonText.setTextSize(TypedValue.COMPLEX_UNIT_SP, org.blocorganization.blocapp.campaigns.UploadButtonIncluder.UPLOAD_BUTTON_TEXT_SIZE);
+        this.tvButtonText.setTextSize(TypedValue.COMPLEX_UNIT_SP, UPLOAD_BUTTON_TEXT_SIZE);
     }
 
     public void setButtonIconVisibility() {
@@ -34,7 +36,7 @@ public class SetupButtonIncluder {
     }
 
     public void setButtonPaddingWithin(Activity activity) {
-        final int pad = GetDpMeasurement.getDPI(activity, org.blocorganization.blocapp.campaigns.UploadButtonIncluder.PADDING);
+        final int pad = GetDpMeasurement.getDPI(activity, PADDING);
         buttonLayoutReference.setPadding(pad, pad, pad, pad);
     }
 
