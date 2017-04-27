@@ -192,7 +192,7 @@ public class MessagesFragment extends Fragment {
         return rootView;
     }
 
-    public void fetchConfig() {
+    private void fetchConfig() {
         long cacheExpiration = 3600;
         if (mFirebaseRemoteConfig.getInfo().getConfigSettings()
                 .isDeveloperModeEnabled()) {
