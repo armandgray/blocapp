@@ -21,14 +21,6 @@
         android:tint="@color/ToolBarColor"
         app:srcCompat="@drawable/ic_close_white_48dp" />
 
-    <TextView
-        android:id="@+id/tvSubmitDialog"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Create a new campaign"
-        android:textAllCaps="true"
-        android:textSize="14sp" />
 
     <ImageView
         android:id="@+id/ivSubmit"
@@ -41,4 +33,17 @@
         android:layout_margin="@dimen/btn_padding"
         android:contentDescription="@string/icon"
         app:srcCompat="@drawable/ic_check_white_48dp" />
+
+    <TextView
+        android:id="@+id/tvSubmitDialog"
+        android:layout_width="match_parent"
+        android:layout_toEndOf="@+id/ivCancel"
+        android:layout_toLeftOf="@+id/ivSubmit"
+        android:layout_toRightOf="@+id/ivCancel"
+        android:layout_toStartOf="@+id/ivSubmit"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/create_a_new_campaign"
+        android:textAllCaps="true"
+        android:textSize="14sp" />
 </RelativeLayout>
