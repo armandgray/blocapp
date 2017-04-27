@@ -199,5 +199,6 @@
     <string name="create_a_new_campaign">Create a new campaign</string>
     <string name="update_campaign">Update Campaign</string>
     <string name="please_enter_message">Please Enter Message</string>
+    <string name="upload">Upload</string>
 
 </resources>

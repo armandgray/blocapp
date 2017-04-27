@@ -7,13 +7,9 @@ import android.widget.LinearLayout;
 
 import org.blocorganization.blocapp.utils.SetupButtonIncluder;
 
-public class UploadButtonIncluder {
+class UploadButtonIncluder {
 
     static final int GALLERY_INTENT = 2;
-
-    public static final String UPLOAD_BUTTON_TEXT = "Upload";
-    public static final int UPLOAD_BUTTON_TEXT_SIZE = 12;
-    public static final int PADDING = 5;
 
     static void setupUploadButtonFrom(View rootView, Fragment fragment) {
         SetupButtonIncluder buttonIncluder = new SetupButtonIncluder(rootView);
