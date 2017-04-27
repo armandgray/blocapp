@@ -10,7 +10,7 @@
                 android:type="radial" />
 
             <!-- The radius makes the corners rounded -->
-            <corners android:radius="0dp"></corners>
+            <corners android:radius="0dp" />
         </shape>
     </item>
 
@@ -20,7 +20,7 @@
             <solid android:color="#121212" />
 
             <!-- The radius makes the corners rounded -->
-            <corners android:radius="0dp"></corners>
+            <corners android:radius="0dp" />
         </shape>
     </item>
 </layer-list>
