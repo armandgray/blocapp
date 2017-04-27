@@ -10,7 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import org.blocorganization.blocapp.R;
 
@@ -20,7 +20,7 @@ import org.blocorganization.blocapp.R;
 public class BlocFragment extends Fragment implements HomeSubFragment.HomeScrollListener {
 
     FragmentPagerAdapter adapterViewPager;
-    private LinearLayout menu;
+    private RelativeLayout menu;
 
     public BlocFragment() {
         // Required empty public constructor
@@ -38,7 +38,7 @@ public class BlocFragment extends Fragment implements HomeSubFragment.HomeScroll
         vpPager.setAdapter(adapterViewPager);
         vpPager.setCurrentItem(0);
 
-        menu = (LinearLayout) rootView.findViewById(R.id.menu_container);
+        menu = (RelativeLayout) rootView.findViewById(R.id.menuContainer);
         ImageView menuBullet0 = (ImageView) menu.getChildAt(0);
         menuBullet0.setImageResource(R.drawable.menu_selected_point);
 
