@@ -1,29 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.blocorganization.blocapp">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".BlocApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:logo="@drawable/ic_bloc_negative"
         android:supportsRtl="true"
-        android:name=".BlocApp"
         android:theme="@style/AppTheme.NoActionBar">
         <activity android:name=".MainActivity" />
         <activity
             android:name=".SignInActivity"
             android:label="@string/sign_in_title"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.blocorganization.blocapp.MainActivity" />
         </activity>
         <activity
             android:name=".SplashActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,7 +50,9 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".campaigns.CampaignDetailActivity" />
+        <activity
+            android:name=".campaigns.CampaignDetailActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
