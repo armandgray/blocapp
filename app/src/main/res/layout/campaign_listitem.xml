@@ -19,7 +19,6 @@
         app:srcCompat="@drawable/toys_for_tots" />
 
     <View
-        android:id="@+id/campaign_item_border"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginBottom="@dimen/campaigns_image_margin"

@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimaryDark">#121212</color>
-    <color name="colorPrimary">#333333</color>
     <color name="colorAccent">#BB0000</color>
     <color name="background">#000000</color>
     <color name="textColor">#FFFFFF</color>
-    <color name="constitutionTextColor">#BB0000</color>
-    <color name="constitutionHeadersColor">#BB0000</color>
-    <color name="blocRolesColor">#999999</color>
-    <color name="blocRolesBorderColor">#cccccc</color>
     <color name="aboveToolBarColor">#FF0000</color>
     <color name="ToolBarColor">#FF2A00</color>
-    <color name="lightGray">#cccccc</color>
-    <color name="blocFamilyGroups">#aaa</color>
-    <color name="viewLightGrayBackground">#E8E8E8</color>
 
 </resources>
