@@ -18,7 +18,6 @@ public class BlocApp extends Application {
 
     public static final String CAMPAIGNS = "campaigns";
     private List<Campaign> campaigns = new ArrayList<>();
-    private DatabaseReference mDatabase;
 
     private static BlocApp singleton;
 
@@ -45,9 +44,10 @@ public class BlocApp extends Application {
         super.onCreate();
         singleton = this;
 
-        mDatabase = FirebaseDatabase.getInstance().getReference().child(CAMPAIGNS);
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child(CAMPAIGNS);
         mDatabase.addChildEventListener(new ChildEventListener() {
             @Override
+            @SuppressWarnings("unchecked")
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Map<String, Object> campaignsSnapshot = (Map) dataSnapshot.getValue();
                 final Campaign campaign = new Campaign();

@@ -83,6 +83,7 @@ class UploadActivityListener {
         });
     }
 
+    @SuppressWarnings("VisibleForTests")
     private void saveUriToCampaignFrom(TaskSnapshot taskSnapshot) {
         progressDialog.dismiss();
         if (taskSnapshot != null && taskSnapshot.getDownloadUrl() != null) {

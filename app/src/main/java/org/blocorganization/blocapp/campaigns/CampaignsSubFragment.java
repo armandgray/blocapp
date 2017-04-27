@@ -79,6 +79,7 @@ public class CampaignsSubFragment extends Fragment {
         DatabaseReference mCampaignsDatabaseReference = FirebaseDatabase.getInstance().getReference(CAMPAIGNS_CHILD);
         mCampaignsDatabaseReference.addChildEventListener(new ChildEventListener() {
 
+            @SuppressWarnings("unchecked")
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Map<String, Object> campaignsSnapshot = (Map) dataSnapshot.getValue();
