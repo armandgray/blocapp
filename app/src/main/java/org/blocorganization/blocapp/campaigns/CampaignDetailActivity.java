@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -24,7 +23,6 @@ public class CampaignDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_campaign_detail);
 
-        LinearLayout itemInfoThemeContainer = (LinearLayout) findViewById(R.id.itemInfoThemeContainer);
         ImageView ivCampaignImage = (ImageView) findViewById(R.id.ivCampaignImage);
         ImageView ivTheme = (ImageView) findViewById(R.id.ivTheme);
         TextView tvTitle = (TextView) findViewById(R.id.tvTitle);

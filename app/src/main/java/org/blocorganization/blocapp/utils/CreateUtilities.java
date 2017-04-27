@@ -34,7 +34,6 @@ public class CreateUtilities {
     private static final String CAMPAIGNS = "campaigns";
 
     private List<String> listItems;
-    @Nullable
     private final Campaign campaign;
     private final Activity activity;
 

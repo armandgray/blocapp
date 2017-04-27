@@ -27,7 +27,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 
-import org.blocorganization.blocapp.MainActivity;
 import org.blocorganization.blocapp.R;
 import org.blocorganization.blocapp.models.FriendlyMessage;
 
@@ -43,7 +42,7 @@ import static org.blocorganization.blocapp.MainActivity.username;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MessagesFragment extends Fragment implements MainActivity.MainActivityListener {
+public class MessagesFragment extends Fragment {
 
     private static final String MESSAGES_CHILD = "messages";
 
@@ -193,7 +192,6 @@ public class MessagesFragment extends Fragment implements MainActivity.MainActiv
         return rootView;
     }
 
-    @Override
     public void fetchConfig() {
         long cacheExpiration = 3600;
         if (mFirebaseRemoteConfig.getInfo().getConfigSettings()
