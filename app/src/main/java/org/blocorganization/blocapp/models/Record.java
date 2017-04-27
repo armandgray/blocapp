@@ -25,8 +25,6 @@ public abstract class Record {
     boolean isPublic;
     int icon;
 
-    private List<Remark> likes = new ArrayList<>();
-    private List<Comment> comments = new ArrayList<>();
     private String extras;
     private ArrayList<Integer> timestamp;
 
@@ -131,30 +129,6 @@ public abstract class Record {
 
     public void setIconId(int iconId) {
         this.icon = iconId;
-    }
-
-    public List<Remark> getLikes() {
-        return likes;
-    }
-
-    public void setLikes(List<Remark> likes) {
-        this.likes = likes;
-    }
-
-    public void addLike(Remark like) {
-        this.likes.add(like);
-    }
-
-    public List<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
-    }
-
-    public void addComment(Comment comment) {
-        this.comments.add(comment);
     }
 
     public boolean isPublic() {
