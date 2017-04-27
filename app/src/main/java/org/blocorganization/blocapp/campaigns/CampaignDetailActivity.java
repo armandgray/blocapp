@@ -33,9 +33,6 @@ public class CampaignDetailActivity extends AppCompatActivity {
         TextView tvTitle = (TextView) findViewById(R.id.tvTitle);
         TextView tvType = (TextView) findViewById(R.id.tvType);
         TextView tvAdmin = (TextView) findViewById(R.id.tvAdmin);
-
-        LinearLayout itemAdminContainer = (LinearLayout) findViewById(R.id.itemAdminContainer);
-
         TextView tvDesc = (TextView) findViewById(R.id.tvDesc);
         TextView tvAmbition = (TextView) findViewById(R.id.tvAmbition);
         TextView tvBenefits = (TextView) findViewById(R.id.tvBenefits);
@@ -44,7 +41,6 @@ public class CampaignDetailActivity extends AppCompatActivity {
 
         final List<View> views = new ArrayList<>();
         views.add(itemInfoThemeContainer);
-        views.add(itemAdminContainer);
         views.add(tvDesc);
         views.add(tvAmbition);
         views.add(tvBenefits);
