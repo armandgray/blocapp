@@ -209,8 +209,6 @@ public class MessagesFragment extends Fragment {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.w(MESS_TAG, "Error fetching config: " +
-                                e.getMessage());
                         applyRetrievedLengthLimit();
                     }
                 });
@@ -221,7 +219,6 @@ public class MessagesFragment extends Fragment {
                 mFirebaseRemoteConfig.getLong("friendly_msg_length");
         mMessageEditText.setFilters(new InputFilter[]{new
                 InputFilter.LengthFilter(friendly_msg_length.intValue())});
-        Log.d(MESS_TAG, "FML is: " + friendly_msg_length);
     }
 
 }
