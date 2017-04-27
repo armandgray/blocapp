@@ -66,7 +66,7 @@
     <dimen name="home_campaign_images_margin">10dp</dimen>
     <dimen name="campaign_detail_icon_side">15dp</dimen>
     <dimen name="campaign_detail_text_size">8sp</dimen>
-    <dimen name="campaigns_image_height">122dp</dimen>
+    <dimen name="campaigns_image_height">100dp</dimen>
     <dimen name="campaigns_item_width">180dp</dimen>
     <dimen name="campaigns_item_height">190dp</dimen>
     <dimen name="campaign_detail_header">300dp</dimen>

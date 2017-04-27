@@ -3,27 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/campaignItemContainer"
-    android:layout_width="@dimen/campaigns_item_width"
-    android:layout_height="@dimen/campaigns_item_height"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:background="@drawable/background_square_shadow"
     android:orientation="vertical"
     tools:showIn="@layout/campaigns_subfragment_campaigns">
 
     <ImageView
         android:id="@+id/ivCampaignImage"
-        android:layout_width="match_parent"
-        android:paddingTop="@dimen/campaigns_image_margin"
+        android:layout_width="wrap_content"
         android:layout_height="@dimen/campaigns_image_height"
         android:contentDescription="@string/campaigns_image_desc"
+        android:paddingTop="@dimen/campaigns_image_margin"
         android:scaleType="centerCrop"
         app:srcCompat="@drawable/toys_for_tots" />
 
     <View
         android:id="@+id/campaign_item_border"
         android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/campaigns_image_margin"
         android:layout_height="1dp"
         android:layout_marginBottom="@dimen/campaigns_image_margin"
+        android:layout_marginTop="@dimen/campaigns_image_margin"
         android:background="#FF5A00" />
 
     <LinearLayout
