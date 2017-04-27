@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 import org.blocorganization.blocapp.R;
 
@@ -20,11 +19,9 @@ import org.blocorganization.blocapp.R;
 public class BlocFragment extends Fragment implements HomeSubFragment.HomeScrollListener {
 
     FragmentPagerAdapter adapterViewPager;
-    private RelativeLayout menu;
+    private ImageView menuBullet0;
 
-    public BlocFragment() {
-        // Required empty public constructor
-    }
+    public BlocFragment() {}
 
 
     @Override
@@ -38,8 +35,7 @@ public class BlocFragment extends Fragment implements HomeSubFragment.HomeScroll
         vpPager.setAdapter(adapterViewPager);
         vpPager.setCurrentItem(0);
 
-        menu = (RelativeLayout) rootView.findViewById(R.id.menuContainer);
-        ImageView menuBullet0 = (ImageView) menu.getChildAt(0);
+        menuBullet0 = (ImageView) rootView.findViewById(R.id.menu_bullet0);
         menuBullet0.setImageResource(R.drawable.menu_selected_point);
 
         return rootView;
@@ -72,12 +68,12 @@ public class BlocFragment extends Fragment implements HomeSubFragment.HomeScroll
 
     @Override
     public void onScrollTop() {
-        menu.setVisibility(View.VISIBLE);
+        menuBullet0.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void onScrollDown() {
-        menu.setVisibility(View.GONE);
+        menuBullet0.setVisibility(View.GONE);
     }
 
 

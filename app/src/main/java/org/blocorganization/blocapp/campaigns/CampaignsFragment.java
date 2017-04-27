@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import org.blocorganization.blocapp.R;
 
@@ -32,8 +31,7 @@ public class CampaignsFragment extends Fragment {
         vpPager.setAdapter(adapterViewPager);
         vpPager.setCurrentItem(0);
 
-        LinearLayout menu = (LinearLayout) rootView.findViewById(R.id.menu_container);
-        ImageView menuBullet0 = (ImageView) menu.getChildAt(0);
+        ImageView menuBullet0 = (ImageView) rootView.findViewById(R.id.menu_bullet0);
         menuBullet0.setImageResource(R.drawable.menu_selected_point);
 
         return rootView;
