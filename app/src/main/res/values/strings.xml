@@ -197,5 +197,6 @@
     <string name="media">Media</string>
     <string name="add_external_documents_photos_sites_videos_presentations">Add external documents, photos, sites, videos, presentations.</string>
     <string name="create_a_new_campaign">Create a new campaign</string>
+    <string name="update_campaign">Update Campaign</string>
 
 </resources>

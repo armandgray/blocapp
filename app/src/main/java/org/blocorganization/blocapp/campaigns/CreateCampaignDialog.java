@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
@@ -123,6 +124,8 @@ public class CreateCampaignDialog extends DialogFragment
                     ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             layoutParams.setMargins(0, getDPI(getActivity(), 22), 0, 0);
             rootView.findViewById(R.id.dialogSubmitHeader).setLayoutParams(layoutParams);
+            ((TextView) rootView.findViewById(R.id.tvSubmitDialog))
+                    .setText(R.string.create_a_new_campaign);
         }
     }
 

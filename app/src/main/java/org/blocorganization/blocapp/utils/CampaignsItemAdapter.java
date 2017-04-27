@@ -73,7 +73,6 @@ public class CampaignsItemAdapter extends
          ImageView ivCampaignImage;
          TextView tvCampaignTitle;
          TextView tvCampaignDetails;
-         LinearLayout itemDetailsContainer;
          View border;
 
         // We also create a constructor that accepts the entire item row
@@ -87,7 +86,6 @@ public class CampaignsItemAdapter extends
             ivCampaignImage = (ImageView) itemView.findViewById(R.id.ivCampaignImage);
             tvCampaignTitle = (TextView) itemView.findViewById(R.id.tvCampaignTitle);
             tvCampaignDetails = (TextView) itemView.findViewById(R.id.tvCampaignDetails);
-            itemDetailsContainer = (LinearLayout) itemView.findViewById(R.id.item_details_container);
             border = itemView.findViewById(R.id.campaign_item_border);
         }
     }

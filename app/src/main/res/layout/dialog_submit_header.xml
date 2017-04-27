@@ -43,7 +43,8 @@
         android:layout_toStartOf="@+id/ivSubmit"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="@string/create_a_new_campaign"
+        android:gravity="center"
+        android:text="@string/update_campaign"
         android:textAllCaps="true"
         android:textSize="14sp" />
 </RelativeLayout>
