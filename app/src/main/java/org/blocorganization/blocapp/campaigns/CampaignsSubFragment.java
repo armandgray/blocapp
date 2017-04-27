@@ -38,36 +38,28 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static android.app.Activity.RESULT_OK;
+
 /**
  * A simple {@link Fragment} subclass.
  */
 public class CampaignsSubFragment extends Fragment {
 
     public static final String CAMPAIGNS_CHILD = "campaigns";
-    private static final String CAMPAIGN_CREATED_EVENT = "campaign_created";
     public static final int GALLERY_INTENT = 2;
     public static final String UPLOAD_DONE = "UPLOAD_DONE";
     public static final String UPLOAD_FAILED = "UPLOAD_FAILED";
-    public static final int CAMERA_REQUEST_CODE = 1;
     public static final String PHOTOS = "photos";
-    public static final String DOWNLOAD_FAILED = "DOWNLOAD_FAILED";
-    public static final String NEW_CAMPAIGN_TAG = "NEW_CAMPAIGN";
-    Boolean initLoad = true;
 
     private StorageReference mStorage;
     private StorageReference filepath;
     private DatabaseReference mCampaignsDatabaseReference;
     private ProgressDialog mProgressDialog;
-    private ImageView ivTemporary;
-
-    String link;
 
     List<Campaign> campaigns = new ArrayList<>();
     CampaignsItemAdapter adapter;
 
-    public CampaignsSubFragment() {
-        // Required empty public constructor
-    }
+    public CampaignsSubFragment() {}
 
     public static CampaignsSubFragment newInstance() {
 
@@ -81,13 +73,11 @@ public class CampaignsSubFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.campaigns_subfragment_campaigns, container, false);
 
         mStorage = FirebaseStorage.getInstance().getReference();
         mProgressDialog = new ProgressDialog(getActivity());
 
-        // Add campaigns to FirebaseDatabase child("campaigns")
         mCampaignsDatabaseReference = FirebaseDatabase.getInstance().getReference(CAMPAIGNS_CHILD);
         mCampaignsDatabaseReference.addChildEventListener(new ChildEventListener() {
 
@@ -225,12 +215,11 @@ public class CampaignsSubFragment extends Fragment {
 //                            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 //                            startActivityForResult(intent, CAMERA_REQUEST_CODE);
 //                        }
-        if (requestCode == GALLERY_INTENT && resultCode == getActivity().RESULT_OK) {
+        if (requestCode == GALLERY_INTENT && resultCode == RESULT_OK) {
             mProgressDialog.setMessage("Uploading...");
             mProgressDialog.show();
 
             Uri uri = data.getData();
-            // Create dir photos and subfile
             filepath = mStorage.child(PHOTOS).child(uri.getLastPathSegment());
 
             filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -238,7 +227,6 @@ public class CampaignsSubFragment extends Fragment {
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Toast.makeText(getActivity(), UPLOAD_DONE, Toast.LENGTH_LONG).show();
                     mProgressDialog.dismiss();
-                    Uri downloadUri = taskSnapshot.getDownloadUrl();
 
                 }
             }).addOnFailureListener(new OnFailureListener() {
