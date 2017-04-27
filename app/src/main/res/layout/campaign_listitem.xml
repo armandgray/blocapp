@@ -57,7 +57,7 @@
                 android:layout_marginBottom="@dimen/campaigns_image_margin"
                 android:ellipsize="end"
                 android:maxLines="2"
-                android:text="December 12th, Last Year\nby Jaureese Gaines"
+                android:text="by Jaureese Gaines"
                 android:textAllCaps="true"
                 android:textColor="#333333"
                 android:textSize="@dimen/campaign_detail_text_size" />

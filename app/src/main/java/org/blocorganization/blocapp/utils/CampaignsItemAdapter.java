@@ -14,7 +14,6 @@ import com.squareup.picasso.Picasso;
 
 import org.blocorganization.blocapp.R;
 import org.blocorganization.blocapp.models.Campaign;
-import org.joda.time.DateTime;
 
 import java.util.List;
 
@@ -56,13 +55,11 @@ public class CampaignsItemAdapter extends
 
         LinearLayout campaignItemContainer = viewHolder.campaignItemContainer;
         ImageView ivCampaignImage = viewHolder.ivCampaignImage;
-        TextView tvCampaignMonth = viewHolder.tvCampaignMonth;
-        TextView tvCampaignDate = viewHolder.tvCampaignDate;
         TextView tvCampaignDetails = viewHolder.tvCampaignDetails;
         TextView tvCampaignTitle = viewHolder.tvCampaignTitle;
 
         Picasso.with(mActivity).load(campaign.getPhotoUrl()).into(ivCampaignImage);
-        tvCampaignDetails.setText(campaign.getFromDate() + ",\n by " + campaign.getAdmin());
+        tvCampaignDetails.setText("By " + campaign.getAdmin());
 
         if (fullItem) {
             tvCampaignTitle.setText(campaign.getTitle());
@@ -70,16 +67,6 @@ public class CampaignsItemAdapter extends
             campaignItemContainer.removeView(campaignItemContainer.getChildAt(1));
             campaignItemContainer.removeView(campaignItemContainer.getChildAt(2));
             campaignItemContainer.setLayoutParams(new LinearLayout.LayoutParams(containerDimens, containerDimens));
-        }
-        if (campaign.getFromDate() != null && !campaign.getFromDate().equals("")) {
-            DateTime dt = new DateTime();
-//            StringBuffer buffer = new StringBuffer(campaign.getFromDate());
-//            Log.i("BUFFER", buffer.substring(header.length(), 3));
-//            dt.withDate();
-//            tvCampaignMonth.setText(campaign.getMonth());
-//            tvCampaignDate.setText(campaign.getFromDate());
-        } else {
-            tvCampaignMonth.setVisibility(View.GONE);
         }
     }
 
@@ -94,8 +81,6 @@ public class CampaignsItemAdapter extends
 
         public LinearLayout campaignItemContainer;
         public ImageView ivCampaignImage;
-        public TextView tvCampaignMonth;
-        public TextView tvCampaignDate;
         public TextView tvCampaignTitle;
         public TextView tvCampaignDetails;
         public LinearLayout itemDetailsContainer;
@@ -110,8 +95,6 @@ public class CampaignsItemAdapter extends
 
             campaignItemContainer = (LinearLayout) itemView.findViewById(R.id.campaignItemContainer);
             ivCampaignImage = (ImageView) itemView.findViewById(R.id.ivCampaignImage);
-            tvCampaignMonth = (TextView) itemView.findViewById(R.id.tvCampaignMonth);
-            tvCampaignDate = (TextView) itemView.findViewById(R.id.tvCampaignDate);
             tvCampaignTitle = (TextView) itemView.findViewById(R.id.tvCampaignTitle);
             tvCampaignDetails = (TextView) itemView.findViewById(R.id.tvCampaignDetails);
             itemDetailsContainer = (LinearLayout) itemView.findViewById(R.id.item_details_container);
