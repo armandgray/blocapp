@@ -11,7 +11,6 @@ import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.DatePicker;
 import android.widget.TimePicker;
 
 import org.joda.time.DateTime;
@@ -63,7 +62,7 @@ public class DateTimePickerFragment extends DialogFragment
     }
 
     @Override
-    public void onEventDateSet(DatePicker view, int year, int month, int day) {
+    public void onEventDateSet(int year, int month, int day) {
         mYear = year;
         mMonth = month;
         mDay = day;

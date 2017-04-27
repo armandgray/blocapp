@@ -18,8 +18,8 @@ public class DateTimePresenter {
 
     public static final String DATE_TIME_PICKER = "dateTimePicker";
 
-    private View rootView;
-    private Fragment fragment;
+    private final View rootView;
+    private final Fragment fragment;
 
     private Boolean isRange;
     private boolean endDateWasEdited;

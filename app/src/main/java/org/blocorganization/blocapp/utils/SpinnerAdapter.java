@@ -16,8 +16,8 @@ import java.util.List;
 
 class SpinnerAdapter extends BaseAdapter {
 
-    private List<String> lstData;
-    private LayoutInflater inflater;
+    private final List<String> lstData;
+    private final LayoutInflater inflater;
 
     SpinnerAdapter(List<String> lstData, Activity activity) {
         this.lstData = lstData;

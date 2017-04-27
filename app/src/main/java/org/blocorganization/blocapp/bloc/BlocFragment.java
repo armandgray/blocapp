@@ -18,7 +18,7 @@ import org.blocorganization.blocapp.R;
  */
 public class BlocFragment extends Fragment implements HomeSubFragment.HomeScrollListener {
 
-    FragmentPagerAdapter adapterViewPager;
+    private FragmentPagerAdapter adapterViewPager;
     private ImageView menuBullet0;
 
     public BlocFragment() {}

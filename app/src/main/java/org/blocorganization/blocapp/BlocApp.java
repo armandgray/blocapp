@@ -16,8 +16,8 @@ import java.util.Map;
 
 public class BlocApp extends Application {
 
-    public static final String CAMPAIGNS = "campaigns";
-    private List<Campaign> campaigns = new ArrayList<>();
+    private static final String CAMPAIGNS = "campaigns";
+    private final List<Campaign> campaigns = new ArrayList<>();
 
     private static BlocApp singleton;
 

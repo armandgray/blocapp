@@ -90,7 +90,7 @@ public abstract class Record {
 
     public void setDescription(String description) { this.description = description; }
 
-    public void setTimestamp() {
+    void setTimestamp() {
         DateTime timestamp = new DateTime();
         ArrayList<Integer> dateList = new ArrayList<>();
         dateList.add(timestamp.getYear());

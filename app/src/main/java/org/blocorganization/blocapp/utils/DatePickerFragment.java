@@ -45,11 +45,11 @@ public class DatePickerFragment extends DialogFragment
     }
 
     public void onDateSet(DatePicker view, int year, int month, int day) {
-        mListener.onEventDateSet(view, year, month + 1, day);
+        mListener.onEventDateSet(year, month + 1, day);
     }
 
     interface DateSetListener {
-        void onEventDateSet(DatePicker view, int year, int month, int day);
+        void onEventDateSet(int year, int month, int day);
         void onDatePickerCancel();
     }
 }

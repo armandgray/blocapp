@@ -20,10 +20,10 @@ import java.util.List;
 class ImageThemeAdapter extends
         RecyclerView.Adapter<ImageThemeAdapter.ViewHolder> {
 
-    private List<String> mThemes;
-    private Activity mActivity;
-    private int mLayoutParams;
-    private String setTheme;
+    private final List<String> mThemes;
+    private final Activity mActivity;
+    private final int mLayoutParams;
+    private final String setTheme;
 
     ImageThemeAdapter(@NonNull Activity activity, @NonNull List<String> themes, @Nullable String theme) {
         mThemes = themes;
@@ -65,7 +65,7 @@ class ImageThemeAdapter extends
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView ivCampaignTheme;
+        final ImageView ivCampaignTheme;
 
         ViewHolder(View itemView) {
             super(itemView);

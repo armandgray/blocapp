@@ -45,7 +45,7 @@ import static org.blocorganization.blocapp.MainActivity.username;
  */
 public class MessagesFragment extends Fragment implements MainActivity.MainActivityListener {
 
-    public static final String MESSAGES_CHILD = "messages";
+    private static final String MESSAGES_CHILD = "messages";
 
     private RecyclerView mMessageRecyclerView;
     private LinearLayoutManager mLinearLayoutManager;
@@ -57,9 +57,9 @@ public class MessagesFragment extends Fragment implements MainActivity.MainActiv
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
 
     private static class MessageViewHolder extends RecyclerView.ViewHolder {
-        TextView messageTextView;
-        TextView messengerTextView;
-        CircleImageView messengerImageView;
+        final TextView messageTextView;
+        final TextView messengerTextView;
+        final CircleImageView messengerImageView;
 
         public MessageViewHolder(View v) {
             super(v);

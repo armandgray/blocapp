@@ -11,8 +11,8 @@ public class DialogSubmitUtilities {
 
     private static final String DIALOG = "DIALOG";
 
-    private View rootView;
-    private Fragment fragment;
+    private final View rootView;
+    private final Fragment fragment;
 
     public DialogSubmitUtilities(View rootView, Fragment fragment) {
         this.rootView = rootView;

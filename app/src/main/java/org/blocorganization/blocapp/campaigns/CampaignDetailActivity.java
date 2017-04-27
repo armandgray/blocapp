@@ -14,9 +14,6 @@ import com.squareup.picasso.Picasso;
 import org.blocorganization.blocapp.R;
 import org.blocorganization.blocapp.models.Campaign;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class CampaignDetailActivity extends AppCompatActivity {
 
     private Campaign campaign;

@@ -46,16 +46,16 @@ import static android.app.Activity.RESULT_OK;
 public class CampaignsSubFragment extends Fragment {
 
     public static final String CAMPAIGNS_CHILD = "campaigns";
-    public static final int GALLERY_INTENT = 2;
-    public static final String UPLOAD_DONE = "UPLOAD_DONE";
-    public static final String UPLOAD_FAILED = "UPLOAD_FAILED";
-    public static final String PHOTOS = "photos";
+    private static final int GALLERY_INTENT = 2;
+    private static final String UPLOAD_DONE = "UPLOAD_DONE";
+    private static final String UPLOAD_FAILED = "UPLOAD_FAILED";
+    private static final String PHOTOS = "photos";
 
     private StorageReference mStorage;
     private ProgressDialog mProgressDialog;
 
-    List<Campaign> campaigns = new ArrayList<>();
-    CampaignsItemAdapter adapter;
+    private final List<Campaign> campaigns = new ArrayList<>();
+    private CampaignsItemAdapter adapter;
 
     public CampaignsSubFragment() {}
 

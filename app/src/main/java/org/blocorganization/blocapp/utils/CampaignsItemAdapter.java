@@ -20,9 +20,9 @@ import java.util.List;
 public class CampaignsItemAdapter extends
         RecyclerView.Adapter<CampaignsItemAdapter.ViewHolder> {
 
-    private List<Campaign> mCampaigns;
-    private Activity mActivity;
-    private Boolean fullItem;
+    private final List<Campaign> mCampaigns;
+    private final Activity mActivity;
+    private final Boolean fullItem;
 
     public CampaignsItemAdapter(Activity activity, Boolean bool, List<Campaign> campaigns) {
         mCampaigns = campaigns;
@@ -69,11 +69,11 @@ public class CampaignsItemAdapter extends
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
-         LinearLayout campaignItemContainer;
-         ImageView ivCampaignImage;
-         TextView tvCampaignTitle;
-         TextView tvCampaignDetails;
-         View border;
+         final LinearLayout campaignItemContainer;
+         final ImageView ivCampaignImage;
+         final TextView tvCampaignTitle;
+         final TextView tvCampaignDetails;
+         final View border;
 
         // We also create a constructor that accepts the entire item row
         // and does the view lookups to find each subview

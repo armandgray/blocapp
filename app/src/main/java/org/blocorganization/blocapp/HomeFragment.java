@@ -48,7 +48,7 @@ public class HomeFragment extends Fragment {
     private GestureDetector detector;
     private CampaignsItemAdapter adapter;
 
-    ArrayList<Campaign> campaigns = new ArrayList<>();
+    private final ArrayList<Campaign> campaigns = new ArrayList<>();
 
     @SuppressWarnings("deprecation")
     @Override

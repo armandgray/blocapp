@@ -9,11 +9,11 @@ import android.widget.TextView;
 
 public class SetupButtonIncluder {
 
-    public static final int GONE = 0x00000008;
+    private static final int GONE = 0x00000008;
 
-    private ImageView ivButtonIcon;
-    private TextView tvButtonText;
-    private LinearLayout buttonLayoutReference;
+    private final ImageView ivButtonIcon;
+    private final TextView tvButtonText;
+    private final LinearLayout buttonLayoutReference;
 
     public SetupButtonIncluder(View rootView) {
         buttonLayoutReference = (LinearLayout) rootView.findViewById(org.blocorganization.blocapp.R.id.btn_container_red);

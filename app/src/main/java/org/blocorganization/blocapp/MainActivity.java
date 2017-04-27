@@ -28,16 +28,16 @@ public class MainActivity extends AppCompatActivity
         implements NavBarFragment.NavBarFragmentListener,
                 GoogleApiClient.OnConnectionFailedListener {
 
-    public static final String TAG = "MainActivity";
-    public static final String ANONYMOUS = "anonymous";
+    private static final String TAG = "MainActivity";
+    private static final String ANONYMOUS = "anonymous";
     public static final String MESS_TAG = "MESS_TAG";
 
     private static final int REQUEST_INVITE = 1;
 
     public static String username;
     public static String photoUrl;
-    public static FirebaseAuth firebaseAuth;
-    public static FirebaseUser firebaseUser;
+    private static FirebaseAuth firebaseAuth;
+    private static FirebaseUser firebaseUser;
 
     private FirebaseAnalytics firebaseAnalytics;
     private GoogleApiClient googleApiClient;

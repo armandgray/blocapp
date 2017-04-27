@@ -59,8 +59,8 @@ public class CreateCampaignDialog extends DialogFragment
         DialogSubmitUtilities.DialogSubmitListener {
 
     public static final int THEME_LAYOUT_PARAMS = 100;
-    public static final String THEMES = "themes";
-    public static final String IMAGEURLS = "imageurls";
+    private static final String THEMES = "themes";
+    private static final String IMAGEURLS = "imageurls";
 
     private Campaign campaign;
     private boolean isNewCampaign = true;
@@ -83,7 +83,7 @@ public class CreateCampaignDialog extends DialogFragment
     private Spinner spVenue;
 
     private Integer themePosition;
-    LinearLayout previousSelectedTheme;
+    private LinearLayout previousSelectedTheme;
     private CreateUtilities typeUtilities;
     private CreateUtilities venueUtilities;
 

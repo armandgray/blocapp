@@ -19,7 +19,7 @@ public class FieldUtilities {
     public static final String ADMIN_REQUIRED = "Admin Required";
     public static final String TITLE_REQUIRED = "Title Required";
     public static final String DESCRIPTION_REQUIRED = "Description Required";
-    public static final String THEME_REQUIRED = "Theme Required";
+    private static final String THEME_REQUIRED = "Theme Required";
     public static final String TYPE_REQUIRED = "Type Required";
     public static final String VENUE_REQUIRED = "Venue Required";
 

@@ -35,8 +35,8 @@ public class CreateUtilities {
 
     private List<String> listItems;
     @Nullable
-    private Campaign campaign;
-    private Activity activity;
+    private final Campaign campaign;
+    private final Activity activity;
 
     public CreateUtilities(@NonNull Campaign campaign, Activity activity) {
         this.campaign = campaign;

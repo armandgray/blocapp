@@ -22,7 +22,7 @@ import org.blocorganization.blocapp.R;
  */
 public class HomeSubFragment extends Fragment {
 
-    HomeScrollListener mListener;
+    private HomeScrollListener mListener;
 
     public HomeSubFragment() {
     }

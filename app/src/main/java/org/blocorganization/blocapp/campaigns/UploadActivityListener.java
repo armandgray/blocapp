@@ -29,8 +29,8 @@ class UploadActivityListener {
 
     private String imgDownloadUri;
 
-    private Activity activity;
-    private ProgressDialog progressDialog;
+    private final Activity activity;
+    private final ProgressDialog progressDialog;
     private Campaign campaign;
     private ImageView ivUpload;
 
