@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -67,10 +68,6 @@ public class CreateCampaignDialog extends DialogFragment
     private CreateUtilities themeUtilities;
     private DatabaseReference databaseResources;
 
-    private List<String> themes = new ArrayList<>();
-    private List<String> venues = new ArrayList<>();
-    private List<String> types = new ArrayList<>();
-
     private EditText etTitle;
     private EditText etAbbreviation;
     private EditText etAdmin;
@@ -83,7 +80,6 @@ public class CreateCampaignDialog extends DialogFragment
 
     private Spinner spType;
     private Spinner spVenue;
-    private RecyclerView rvThemes;
 
     private Integer themePosition;
     LinearLayout previousSelectedTheme;
@@ -162,8 +158,13 @@ public class CreateCampaignDialog extends DialogFragment
     }
 
     private void setupRvThemes(View rootView) {
-        rvThemes = (RecyclerView) rootView.findViewById(R.id.rvThemes);
+        RecyclerView rvThemes = (RecyclerView) rootView.findViewById(R.id.rvThemes);
         DatabaseReference dbThemes = databaseResources.child(IMAGEURLS).child(THEMES);
+        if (dbThemes == null) {
+            Toast.makeText(getActivity(), "Database Access Failure (Required)", Toast.LENGTH_SHORT).show();
+            getActivity().onBackPressed();
+            return;
+        }
 
         themeUtilities.getRvImageUrlListFrom(dbThemes, rvThemes);
 
@@ -240,9 +241,9 @@ public class CreateCampaignDialog extends DialogFragment
 
     @Override
     public boolean verifyFields() {
-        themes = themeUtilities.getListItems();
-        venues = venueUtilities.getListItems();
-        types = typeUtilities.getListItems();
+        List<String> themes = themeUtilities.getListItems();
+        List<String> venues = venueUtilities.getListItems();
+        List<String> types = typeUtilities.getListItems();
 
         if (alertFieldsAreValid()) {
             campaign.setThemeImageUrl(themes.get(themePosition));
