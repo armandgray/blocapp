@@ -46,10 +46,7 @@ import static org.blocorganization.blocapp.MainActivity.username;
 public class MessagesFragment extends Fragment implements MainActivity.MainActivityListener {
 
     public static final String MESSAGES_CHILD = "messages";
-    public static final int DEFAULT_MSG_LENGTH_LIMIT = 10;
-    private static final String MESSAGE_SENT_EVENT = "message_sent";
 
-    private Button mSendButton;
     private RecyclerView mMessageRecyclerView;
     private LinearLayoutManager mLinearLayoutManager;
     private ProgressBar mProgressBar;
@@ -59,10 +56,10 @@ public class MessagesFragment extends Fragment implements MainActivity.MainActiv
     private FirebaseRecyclerAdapter<FriendlyMessage, MessageViewHolder> mFirebaseAdapter;
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
 
-    public static class MessageViewHolder extends RecyclerView.ViewHolder {
-        public TextView messageTextView;
-        public TextView messengerTextView;
-        public CircleImageView messengerImageView;
+    private static class MessageViewHolder extends RecyclerView.ViewHolder {
+        TextView messageTextView;
+        TextView messengerTextView;
+        CircleImageView messengerImageView;
 
         public MessageViewHolder(View v) {
             super(v);
@@ -72,9 +69,7 @@ public class MessagesFragment extends Fragment implements MainActivity.MainActiv
         }
     }
 
-    public MessagesFragment() {
-        // Required empty public constructor
-    }
+    public MessagesFragment() {}
 
 
     @Override
@@ -110,13 +105,6 @@ public class MessagesFragment extends Fragment implements MainActivity.MainActiv
 
         // Fetch remote config.
         fetchConfig();
-
-        /**
-         *  This code initially adds all existing messages then
-         *  listens for new child entries under the messages path
-         *  in your Firebase Realtime Database. It adds a new
-         *  element to the UI for each message. New child entries:
-         */
 
         mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
         mFirebaseAdapter = new FirebaseRecyclerAdapter<FriendlyMessage,
@@ -173,7 +161,6 @@ public class MessagesFragment extends Fragment implements MainActivity.MainActiv
 
                 if (keyEvent.getAction() == KeyEvent.ACTION_DOWN
                         && keyCode == KeyEvent.KEYCODE_ENTER) {
-                    // Send messages on click.
                     FriendlyMessage friendlyMessage = new
                             FriendlyMessage(mMessageEditText.getText().toString(),
                             username,
@@ -189,11 +176,10 @@ public class MessagesFragment extends Fragment implements MainActivity.MainActiv
 
         });
 
-        mSendButton = (Button) rootView.findViewById(R.id.sendButton);
+        Button mSendButton = (Button) rootView.findViewById(R.id.sendButton);
         mSendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Send messages on click.
                 FriendlyMessage friendlyMessage = new
                         FriendlyMessage(mMessageEditText.getText().toString(),
                         username,
@@ -207,13 +193,9 @@ public class MessagesFragment extends Fragment implements MainActivity.MainActiv
         return rootView;
     }
 
-    // Fetch the config to determine the allowed length of messages.
     @Override
     public void fetchConfig() {
-        long cacheExpiration = 3600; // 1 hour in seconds
-        // If developer mode is enabled reduce cacheExpiration to 0 so that
-        // each fetch goes to the server. This should not be used in release
-        // builds.
+        long cacheExpiration = 3600;
         if (mFirebaseRemoteConfig.getInfo().getConfigSettings()
                 .isDeveloperModeEnabled()) {
             cacheExpiration = 0;
@@ -222,8 +204,6 @@ public class MessagesFragment extends Fragment implements MainActivity.MainActiv
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        // Make the fetched config available via
-                        // FirebaseRemoteConfig get<type> calls.
                         mFirebaseRemoteConfig.activateFetched();
                         applyRetrievedLengthLimit();
                     }
@@ -231,7 +211,6 @@ public class MessagesFragment extends Fragment implements MainActivity.MainActiv
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        // There has been an error fetching the config
                         Log.w(MESS_TAG, "Error fetching config: " +
                                 e.getMessage());
                         applyRetrievedLengthLimit();
@@ -239,12 +218,6 @@ public class MessagesFragment extends Fragment implements MainActivity.MainActiv
                 });
     }
 
-
-    /**
-     * Apply retrieved length limit to edit text field.
-     * This result may be fresh from the server or it may be from cached
-     * values.
-     */
     private void applyRetrievedLengthLimit() {
         Long friendly_msg_length =
                 mFirebaseRemoteConfig.getLong("friendly_msg_length");
