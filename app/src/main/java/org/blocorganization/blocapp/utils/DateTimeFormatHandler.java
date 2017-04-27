@@ -20,7 +20,11 @@ class DateTimeFormatHandler {
     private static final String END = "End";
 
     static void setTextForDateWith(ArrayList<Integer> dateElementsList, TextView tvReference, boolean isStartDate) {
-        if (dateElementsList != null && dateElementsList.get(0) != 0 && dateElementsList.get(0) != 1 && tvReference != null) {
+        if (dateElementsList != null
+                && dateElementsList.size() > 0
+                && dateElementsList.get(0) != 0
+                && dateElementsList.get(0) != 1
+                & tvReference != null) {
             DateTime date = getDateTimeReferenceFrom(dateElementsList);
             String onEnd = isStartDate ? ON : END;
             String amPm = designateAmPmFrom(dateElementsList.get(HOUR));

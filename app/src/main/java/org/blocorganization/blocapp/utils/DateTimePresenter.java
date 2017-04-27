@@ -109,7 +109,9 @@ public class DateTimePresenter {
     }
 
     public void loadDateFields(Campaign campaign) {
-        setTextForDateWith(campaign.getFromDate(), tvFromDate, true);
+        if (campaign.getFromDate() != null) {
+            setTextForDateWith(campaign.getFromDate(), tvFromDate, true);
+        }
         if (campaign.getToDate() != null) {
             setTextForDateWith(campaign.getToDate(), tvToDate, false);
             showEndDateView();

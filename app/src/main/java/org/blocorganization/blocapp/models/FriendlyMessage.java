@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,6 +16,8 @@
 package org.blocorganization.blocapp.models;
 
 public class FriendlyMessage {
+
+    @SuppressWarnings("unused") public FriendlyMessage() {}
 
     private String text;
     private String name;
