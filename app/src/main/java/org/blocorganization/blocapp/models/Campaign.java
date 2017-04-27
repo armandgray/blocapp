@@ -9,30 +9,30 @@ import java.util.ArrayList;
 public class Campaign extends Record {
 
     //	constants for field references
-    public static final String ABBREVIATION_KEY = "ABBREVIATION_KEY";
-    public static final String BENEFITS_KEY = "BENEFITS_KEY";
-    public static final String AMBITION_KEY = "AMBITION_KEY";
-    public static final String CAMPAIGN_PHOTO_KEY = "CAMPAIGN_PHOTO_KEY";
-    public static final String CAMPAIGN_THEME_KEY = "CAMPAIGN_THEME_KEY";
-    public static final String PLAN_OF_EXECUTION_KEY = "PLAN_OF_EXECUTION_KEY";
-    public static final String ITEMIZED_BUDGET_KEY = "ITEMIZED_BUDGET_KEY";
-    public static final String VENUE_KEY = "VENUE_KEY";
-    public static final String FROM_DATE_KEY = "FROM_DATE_KEY";
-    public static final String TO_DATE_KEY = "TO_DATE_KEY";
-    public static final String TIMESTAMP_KEY = "TIMESTAMP_KEY";
+    private static final String ABBREVIATION_KEY = "ABBREVIATION_KEY";
+    private static final String BENEFITS_KEY = "BENEFITS_KEY";
+    private static final String AMBITION_KEY = "AMBITION_KEY";
+    private static final String CAMPAIGN_PHOTO_KEY = "CAMPAIGN_PHOTO_KEY";
+    private static final String CAMPAIGN_THEME_KEY = "CAMPAIGN_THEME_KEY";
+    private static final String PLAN_OF_EXECUTION_KEY = "PLAN_OF_EXECUTION_KEY";
+    private static final String ITEMIZED_BUDGET_KEY = "ITEMIZED_BUDGET_KEY";
+    private static final String VENUE_KEY = "VENUE_KEY";
+    private static final String FROM_DATE_KEY = "FROM_DATE_KEY";
+    private static final String TO_DATE_KEY = "TO_DATE_KEY";
+    private static final String TIMESTAMP_KEY = "TIMESTAMP_KEY";
 
     //	private fields
-    public String abbreviation;
-    public String benefits;
-    public String ambition;
-    public String campaignPhoto;
-    public String planOfExecution;
-    public String itemizedBudget;
-    public String venue;
-    public ArrayList<Integer> fromDate;
-    public ArrayList<Integer> toDate;
-    public ArrayList<Integer> timestamp;
-    public String campaignTheme;
+    private String abbreviation;
+    private String benefits;
+    private String ambition;
+    private String campaignPhoto;
+    private String planOfExecution;
+    private String itemizedBudget;
+    private String venue;
+    private ArrayList<Integer> fromDate;
+    private ArrayList<Integer> toDate;
+    private ArrayList<Integer> timestamp;
+    private String campaignTheme;
 
     public Campaign() {
         this.abbreviation = "";
@@ -107,16 +107,8 @@ public class Campaign extends Record {
         this.campaignPhoto = campaignPhoto;
     }
 
-    public String getPlanOfExecution() {
-        return planOfExecution;
-    }
-
     public void setPlanOfExecution(String planOfExecution) {
         this.planOfExecution = planOfExecution;
-    }
-
-    public String getItemizedBudget() {
-        return itemizedBudget;
     }
 
     public void setItemizedBudget(String itemizedBudget) {
