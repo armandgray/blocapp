@@ -32,6 +32,7 @@ public class CampaignDetailActivity extends AppCompatActivity {
         ImageView ivTheme = (ImageView) findViewById(R.id.ivTheme);
         TextView tvTitle = (TextView) findViewById(R.id.tvTitle);
         TextView tvType = (TextView) findViewById(R.id.tvType);
+        TextView tvAdmin = (TextView) findViewById(R.id.tvAdmin);
 
         LinearLayout itemAdminContainer = (LinearLayout) findViewById(R.id.itemAdminContainer);
 
@@ -56,6 +57,7 @@ public class CampaignDetailActivity extends AppCompatActivity {
             Picasso.with(this).load(campaign.getThemeImageUrl()).into(ivTheme);
             tvTitle.setText(campaign.getTitle());
             tvType.setText(campaign.getRecordType());
+            tvAdmin.setText("Admin: " + campaign.getAdmin());
             tvDesc.setText(campaign.getDescription());
             tvAmbition.setText(campaign.getAmbition());
             tvBenefits.setText(campaign.getBenefits());
