@@ -21,7 +21,6 @@ public class FieldUtilities {
     public static final String DESCRIPTION_REQUIRED = "Description Required";
     public static final String THEME_REQUIRED = "Theme Required";
     public static final String TYPE_REQUIRED = "Type Required";
-    public static final String SUBTYPE_REQUIRED = "Subtype Required";
     public static final String VENUE_REQUIRED = "Venue Required";
 
     private static final String DATE = "Date";
@@ -94,27 +93,9 @@ public class FieldUtilities {
         return list.get(spinner.getSelectedItemPosition());
     }
 
-    public static void setTextForTextViewAndPrepend(String prependedText, @Nullable String text, @NonNull TextView tvReference) {
-        if (text != null && !text.equals("")) {
-            tvReference.setText(String.format("%s%s", prependedText, text));
-        }
-    }
-
-    public static void setTextForTextViewWith(@Nullable String text, @NonNull TextView tvReference) {
-        if (text != null && !text.equals("")) {
-            tvReference.setText(text);
-        }
-    }
-
     public static void setTextForEditTextWith(@Nullable String text, @NonNull EditText etReference) {
         if (text != null && !text.equals("")) {
             etReference.setText(text);
-        }
-    }
-
-    public static void setTextForEditTextAndPrepend(String prependedText, @Nullable String text, EditText etReference) {
-        if (text != null && !text.equals("")) {
-            etReference.setText(String.format("%s%s", prependedText, text));
         }
     }
 
@@ -123,11 +104,6 @@ public class FieldUtilities {
             Picasso.with(activity).load(url).into(ivReference);
             ivReference.setVisibility(View.VISIBLE);
         }
-    }
-
-    public static void setResourceForImageViewWithId(int resourceId, ImageView ivReference) {
-        ivReference.setImageResource(resourceId);
-        ivReference.setVisibility(View.VISIBLE);
     }
 
 }

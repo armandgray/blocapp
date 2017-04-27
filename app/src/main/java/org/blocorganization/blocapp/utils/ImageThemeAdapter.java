@@ -17,7 +17,7 @@ import org.blocorganization.blocapp.R;
 
 import java.util.List;
 
-public class ImageThemeAdapter extends
+class ImageThemeAdapter extends
         RecyclerView.Adapter<ImageThemeAdapter.ViewHolder> {
 
     private List<String> mThemes;
@@ -25,8 +25,7 @@ public class ImageThemeAdapter extends
     private int mLayoutParams;
     private String setTheme;
 
-    // Pass in the themes List & getThemeImageUrl into the constructor
-    public ImageThemeAdapter(@NonNull Activity activity, @NonNull List<String> themes, int layoutParams, @Nullable String theme) {
+    ImageThemeAdapter(@NonNull Activity activity, @NonNull List<String> themes, int layoutParams, @Nullable String theme) {
         mThemes = themes;
         mActivity = activity;
         mLayoutParams = layoutParams;
@@ -39,10 +38,8 @@ public class ImageThemeAdapter extends
                 .inflate(R.layout.themes_listitem, parent, false));
     }
 
-    // Involves populating data into the item through holder
     @Override
     public void onBindViewHolder(ImageThemeAdapter.ViewHolder viewHolder, int position) {
-        // Get the data model based on position
         String theme = mThemes.get(position);
         int layoutParams = GetDpMeasurement.getDPI(mActivity, mLayoutParams);
 
@@ -50,17 +47,13 @@ public class ImageThemeAdapter extends
         ivCampaignTheme.setLayoutParams(new LinearLayout.LayoutParams(layoutParams, layoutParams));
         Picasso.with(mActivity).load(theme).into(ivCampaignTheme);
 
-        // when loadCampaignData in CreateCampaignDialog set selected theme to getThemeImageUrl
         if (setTheme != null && !setTheme.equals("")) {
             if (setTheme.equals(mThemes.get(position))) {
-                // get Viewholder for row and change background
                 LinearLayout setLayout = (LinearLayout) viewHolder.itemView;
                 setLayout.setBackgroundResource(R.drawable.background_square_selected_shadow);
                 ImageView setImg = (ImageView) setLayout.getChildAt(0);
                 setImg.setColorFilter(Color.parseColor("#00000000"));
                 setImg.setBackgroundColor(Color.parseColor("#00000000"));
-
-                // TODO Add code to cause auto-scroll to position and selected-state
             }
         }
 

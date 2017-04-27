@@ -8,7 +8,7 @@ import org.joda.time.DateTime;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class DateTimeFormatHandler {
+class DateTimeFormatHandler {
 
     private static final int SECONDS_ZERO = 0;
     private static final int YEAR = 0;
@@ -19,17 +19,7 @@ public class DateTimeFormatHandler {
     private static final String ON = "On";
     private static final String END = "End";
 
-    public static void setSlashDateWith(ArrayList<Integer> dateElementsList, TextView tvReference) {
-        if (dateElementsList != null && dateElementsList.get(0) != 0 && dateElementsList.get(0) != 1 && tvReference != null) {
-            DateTime date = getDateTimeReferenceFrom(dateElementsList);
-            String dateText = date.getMonthOfYear() + "/ "
-                    + date.getDayOfMonth() + "/ "
-                    + date.getYear();
-            tvReference.setText(dateText);
-        }
-    }
-
-    public static void setTextForDateWith(ArrayList<Integer> dateElementsList, TextView tvReference, boolean isStartDate) {
+    static void setTextForDateWith(ArrayList<Integer> dateElementsList, TextView tvReference, boolean isStartDate) {
         if (dateElementsList != null && dateElementsList.get(0) != 0 && dateElementsList.get(0) != 1 && tvReference != null) {
             DateTime date = getDateTimeReferenceFrom(dateElementsList);
             String onEnd = isStartDate ? ON : END;
@@ -66,7 +56,7 @@ public class DateTimeFormatHandler {
 
     private static Integer get12HourFormatFrom(Integer hour) {
         if (hour != 12) {
-            return hour = hour % 12;
+            return hour % 12;
         }
         return 12;
     }

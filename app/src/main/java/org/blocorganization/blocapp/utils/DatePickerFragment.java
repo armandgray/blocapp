@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.widget.DatePicker;
 
@@ -26,6 +27,7 @@ public class DatePickerFragment extends DialogFragment
         }
     }
 
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         DateTime dt = new DateTime();
@@ -46,7 +48,7 @@ public class DatePickerFragment extends DialogFragment
         mListener.onEventDateSet(view, year, month + 1, day);
     }
 
-    public interface DateSetListener {
+    interface DateSetListener {
         void onEventDateSet(DatePicker view, int year, int month, int day);
         void onDatePickerCancel();
     }
