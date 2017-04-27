@@ -246,9 +246,15 @@ public class CreateCampaignDialog extends DialogFragment
         List<String> types = typeUtilities.getListItems();
 
         if (alertFieldsAreValid()) {
-            campaign.setThemeImageUrl(themes.get(themePosition));
-            campaign.setRecordType(getTextFrom(types, spType));
-            campaign.setVenue(getTextFrom(venues, spVenue));
+            if (themes != null) {
+                campaign.setThemeImageUrl(themes.get(themePosition));
+            }
+            if (types != null) {
+                campaign.setRecordType(getTextFrom(types, spType));
+            }
+            if (venues != null) {
+                campaign.setVenue(getTextFrom(venues, spVenue));
+            }
             campaign.setTitle(getTextFrom(etTitle));
             campaign.setAdmin(getTextFrom(etAdmin));
             campaign.setDescription(getTextFrom(etDescription));
