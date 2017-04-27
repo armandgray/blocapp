@@ -49,12 +49,9 @@ class UploadActivityListener {
         }
     }
 
-    @NonNull
-    private ProgressDialog startProgressDialog(ProgressDialog progressDialog) {
+    private void startProgressDialog(ProgressDialog progressDialog) {
         progressDialog.setMessage(UPLOADING);
         progressDialog.show();
-
-        return progressDialog;
     }
 
     private void setupFileForPathFrom(Intent data) {

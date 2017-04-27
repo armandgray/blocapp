@@ -139,10 +139,6 @@ public class Campaign extends Record {
         this.toDate = toDate;
     }
 
-    public ArrayList<Integer> getTimestamp() {
-        return timestamp;
-    }
-
     public void setTimestamp() {
         DateTime timestamp = new DateTime();
         ArrayList<Integer> dateList = new ArrayList<>();

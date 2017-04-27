@@ -73,20 +73,14 @@ public class CampaignsItemAdapter extends
          final ImageView ivCampaignImage;
          final TextView tvCampaignTitle;
          final TextView tvCampaignDetails;
-         final View border;
 
-        // We also create a constructor that accepts the entire item row
-        // and does the view lookups to find each subview
          ViewHolder(View itemView) {
-            // Stores the itemView in a private final member variable that can be used
-            // to access the context from any ViewHolder instance.
             super(itemView);
 
             campaignItemContainer = (LinearLayout) itemView.findViewById(R.id.campaignItemContainer);
             ivCampaignImage = (ImageView) itemView.findViewById(R.id.ivCampaignImage);
             tvCampaignTitle = (TextView) itemView.findViewById(R.id.tvCampaignTitle);
             tvCampaignDetails = (TextView) itemView.findViewById(R.id.tvCampaignDetails);
-            border = itemView.findViewById(R.id.campaign_item_border);
         }
     }
 

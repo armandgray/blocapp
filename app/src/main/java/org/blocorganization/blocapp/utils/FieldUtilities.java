@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
@@ -22,8 +21,6 @@ public class FieldUtilities {
     private static final String THEME_REQUIRED = "Theme Required";
     public static final String TYPE_REQUIRED = "Type Required";
     public static final String VENUE_REQUIRED = "Venue Required";
-
-    private static final String DATE = "Date";
 
     static void setSelectionForSpinnerFromList(List<String> spListItems, String text, @NonNull Spinner spReference) {
         if (text != null && !text.equals("")) {
@@ -52,16 +49,6 @@ public class FieldUtilities {
             return true;
         } else {
             Toast.makeText(etReference.getContext(), alert, Toast.LENGTH_SHORT).show();
-            return false;
-        }
-    }
-
-    public static boolean alertVerify(@NonNull TextView tvReference, String alert) {
-        String text = tvReference.getText().toString();
-        if (!text.equals("") && !text.equals(DATE)) {
-            return true;
-        } else {
-            Toast.makeText(tvReference.getContext(), alert, Toast.LENGTH_SHORT).show();
             return false;
         }
     }
