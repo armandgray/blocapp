@@ -20,7 +20,7 @@ public class FirebaseCampaignsHelper {
     private static FirebaseCampaignsHelper singleton;
 
     private FirebaseCampaignsHelper() {
-        getCampaigns();
+        retrieveFirebaseCampaignData();
     }
 
     public static FirebaseCampaignsHelper getInstance(){
@@ -30,7 +30,7 @@ public class FirebaseCampaignsHelper {
         return singleton;
     }
 
-    public List<Campaign> getCampaigns(){
+    private void retrieveFirebaseCampaignData(){
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child(CAMPAIGNS);
         mDatabase.addChildEventListener(new ChildEventListener() {
             @Override
@@ -82,6 +82,9 @@ public class FirebaseCampaignsHelper {
             @Override
             public void onCancelled(DatabaseError databaseError) {}
         });
+    }
+
+    public List<Campaign> getCampaigns() {
         return campaigns;
     }
 
