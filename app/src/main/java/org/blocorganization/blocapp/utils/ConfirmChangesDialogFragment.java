@@ -3,6 +3,7 @@ package org.blocorganization.blocapp.utils;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -43,8 +44,18 @@ public class ConfirmChangesDialogFragment extends DialogFragment {
                         // Do nothing, auto closes window.
                     }
                 });
-        // Create the AlertDialog object and return it
-        return builder.create();
+
+        final AlertDialog alertDialog = builder.create();
+        alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                alertDialog.getButton(DialogInterface.BUTTON_POSITIVE)
+                        .setTextColor(Color.parseColor("#000000"));
+                alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE)
+                        .setTextColor(Color.parseColor("#000000"));
+            }
+        });
+        return alertDialog;
     }
 
     public interface ConfirmChangesListener {
