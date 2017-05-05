@@ -13,7 +13,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.blocorganization.blocapp.BlocApp;
+import org.blocorganization.blocapp.FirebaseCampaignsHelper;
 import org.blocorganization.blocapp.campaigns.CampaignDetailActivity;
 import org.blocorganization.blocapp.models.Campaign;
 
@@ -34,11 +34,11 @@ public class CreateUtilities {
     private static final String CAMPAIGNS = "campaigns";
 
     private List<String> listItems;
-    private final Campaign campaign;
+    private final Campaign passedCampaign;
     private final Activity activity;
 
     public CreateUtilities(@NonNull Campaign campaign, Activity activity) {
-        this.campaign = campaign;
+        this.passedCampaign = campaign;
         this.activity = activity;
         this.listItems = new ArrayList<>();
     }
@@ -54,9 +54,9 @@ public class CreateUtilities {
                     listItems = (List) dataSnapshot.getValue();
                 }
                 if (recyclerView.getAdapter() == null) {
-                    if (campaign != null) {
+                    if (passedCampaign != null) {
                         adapter = new ImageThemeAdapter(activity,
-                                listItems, campaign.getThemeImageUrl());
+                                listItems, passedCampaign.getThemeImageUrl());
                     }
                     recyclerView.setAdapter(adapter);
                 } else {
@@ -96,28 +96,28 @@ public class CreateUtilities {
     }
 
     private void getSelectionFor(String methodCall, Spinner spinner) {
-        if (campaign != null) {
+        if (passedCampaign != null) {
             switch (methodCall) {
                 case TYPE:
-                    setSelectionForSpinnerFromList(listItems, campaign.getRecordType(), spinner);
+                    setSelectionForSpinnerFromList(listItems, passedCampaign.getRecordType(), spinner);
                     return;
                 case VENUE:
-                    setSelectionForSpinnerFromList(listItems, campaign.getVenue(), spinner);
+                    setSelectionForSpinnerFromList(listItems, passedCampaign.getVenue(), spinner);
             }
         }
     }
 
     public void updateNetwork() {
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child(RES).child(NEWS_FEED_SOURCES);
-        mDatabase.push().setValue(campaign);
+        mDatabase.push().setValue(passedCampaign);
     }
 
     public void saveCampaignToDatabase() {
-        if (campaign != null) {
+        if (passedCampaign != null) {
             DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child(CAMPAIGNS);
             mDatabase.child(String.valueOf(
-                    BlocApp.getInstance().getCampaignPosition(campaign)))
-                    .setValue(campaign);
+                    FirebaseCampaignsHelper.getInstance().getCampaignPosition(passedCampaign)))
+                    .setValue(passedCampaign);
         }
     }
 
@@ -127,8 +127,8 @@ public class CreateUtilities {
         }
         activity.onBackPressed();
         Intent intent = new Intent(activity, CampaignDetailActivity.class);
-        if (campaign != null) {
-            intent.putExtras(campaign.toBundle());
+        if (passedCampaign != null) {
+            intent.putExtras(passedCampaign.toBundle());
         }
         activity.startActivity(intent);
     }

@@ -1,7 +1,5 @@
 package org.blocorganization.blocapp;
 
-import android.app.Application;
-
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -14,36 +12,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class BlocApp extends Application {
+public class FirebaseCampaignsHelper {
 
     private static final String CAMPAIGNS = "campaigns";
     private final List<Campaign> campaigns = new ArrayList<>();
 
-    private static BlocApp singleton;
+    private static FirebaseCampaignsHelper singleton = new FirebaseCampaignsHelper();
 
-    public static BlocApp getInstance(){
+    private FirebaseCampaignsHelper() {
+        getCampaigns();
+    }
+
+    public static FirebaseCampaignsHelper getInstance(){
         return singleton;
     }
 
     public List<Campaign> getCampaigns(){
-        return campaigns;
-    }
-
-    public int getCampaignPosition(Campaign campaign) {
-        for (int i = 0; i < campaigns.size(); i++) {
-                if (campaign.getTitle().equals(campaigns.get(i).getTitle())) {
-                return i;
-            }
-        }
-
-        return campaigns.size();
-    }
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        singleton = this;
-
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child(CAMPAIGNS);
         mDatabase.addChildEventListener(new ChildEventListener() {
             @Override
@@ -65,8 +49,8 @@ public class BlocApp extends Application {
                 campaign.setRecordType((String) campaignsSnapshot.get("recordType"));
                 campaign.setExtras((String) campaignsSnapshot.get("extras"));
                 campaign.setToDate((ArrayList<Integer>) campaignsSnapshot.get("toDate"));
-                campaign.setPhotoUrl((String) campaignsSnapshot.get("campaignPhoto"));
-                campaign.setThemeImageUrl((String) campaignsSnapshot.get("campaignTheme"));
+                campaign.setPhotoUrl((String) campaignsSnapshot.get("photoUrl"));
+                campaign.setThemeImageUrl((String) campaignsSnapshot.get("themeImageUrl"));
 
                 ArrayList<Long> timestampAsListLong = (ArrayList<Long>) campaignsSnapshot.get("timestamp");
                 if (timestampAsListLong != null) {
@@ -84,20 +68,27 @@ public class BlocApp extends Application {
             }
 
             @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-            }
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {}
 
             @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-            }
+            public void onChildRemoved(DataSnapshot dataSnapshot) {}
 
             @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-            }
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {}
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
+            public void onCancelled(DatabaseError databaseError) {}
         });
+        return campaigns;
     }
+
+    public int getCampaignPosition(Campaign campaign) {
+        for (int i = 0; i < campaigns.size(); i++) {
+                if (campaign.getTitle().equals(campaigns.get(i).getTitle())) {
+                return i;
+            }
+        }
+        return campaigns.size();
+    }
+
 }
