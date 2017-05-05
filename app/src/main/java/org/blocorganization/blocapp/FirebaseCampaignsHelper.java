@@ -17,13 +17,16 @@ public class FirebaseCampaignsHelper {
     private static final String CAMPAIGNS = "campaigns";
     private final List<Campaign> campaigns = new ArrayList<>();
 
-    private static FirebaseCampaignsHelper singleton = new FirebaseCampaignsHelper();
+    private static FirebaseCampaignsHelper singleton;
 
     private FirebaseCampaignsHelper() {
         getCampaigns();
     }
 
     public static FirebaseCampaignsHelper getInstance(){
+        if (singleton == null) {
+            singleton = new FirebaseCampaignsHelper();
+        }
         return singleton;
     }
 
