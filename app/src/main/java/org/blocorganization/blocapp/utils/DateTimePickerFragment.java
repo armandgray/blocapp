@@ -3,6 +3,8 @@ package org.blocorganization.blocapp.utils;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -53,8 +55,20 @@ public class DateTimePickerFragment extends DialogFragment
         int hour = dt.getHourOfDay();
         int minute = dt.getMinuteOfHour();
 
-        return new TimePickerDialog(getActivity(), this, hour, minute,
+        final TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(), this, hour, minute,
                 DateFormat.is24HourFormat(getActivity()));
+        timePickerDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                timePickerDialog.getButton(DialogInterface.BUTTON_POSITIVE)
+                        .setTextColor(Color.parseColor("#000000"));
+                timePickerDialog.getButton(DialogInterface.BUTTON_NEGATIVE)
+                        .setTextColor(Color.parseColor("#000000"));
+                timePickerDialog.getButton(DialogInterface.BUTTON_NEUTRAL)
+                        .setTextColor(Color.parseColor("#000000"));
+            }
+        });
+        return timePickerDialog;
     }
 
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
