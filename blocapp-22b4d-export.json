@@ -1,0 +1,94 @@
+{
+  "campaigns" : [ {
+    "abbreviation" : "BLC",
+    "admin" : "Salif Doubare",
+    "ambition" : "The core values of the group have four direct points of impact: Social Unity, On-Campus Activism, Off-Campus Community Organization, and Academic Promotion. The first aspect of Social Unity represents the formation of the community through the induction of new members, the interactions at meetings, communication with alumni and presentation of BLOC produced events. ",
+    "benefits" : "On-Campus Activism reflects the ideology of the members of the organization in standing behind one another and behind the community of color at Pomona. Off-Campus Community Organization has been on going through collaborations with local high schools in the area and the specific community programs initiated by BLOC members. The last most important aspect of the core values, Academic Promotion, represents an emerging focus on the educational support and professional development of BLOC’s own members.",
+    "description" : "At its foundation, BLOC represents the formation of a community! In particular, the BLOC community is designed to be a locus for the support and promotion of the Black men at Pomona College. This community is active at Pomona College and is maintained by its members. These members include any and all men on campus actively in support of the unity, strength and voice of the marginalized men at the 5 C’s.",
+    "fromDate" : [ 2016, 11, 30, 17, 33 ],
+    "photoUrl" : "https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/photos%2F241?alt=media&token=4d00fe0c-5261-41de-be40-c24314d72a27",
+    "public" : false,
+    "recordType" : "Meeting",
+    "themeImageUrl" : "https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/themes%2Ftheme_throwback.jpg?alt=media&token=466997e4-af6f-40b2-a872-1f494fce9dde",
+    "title" : "Building Leaders On Campus",
+    "venue" : "Smith Campus Center"
+  }, null, {
+    "abbreviation" : "TOY",
+    "admin" : "Jauresse Gaines",
+    "ambition" : "Toys for Tots aims to serve 100 students in local hospitals during the Christmas holidays each year. BLOC has continuing partnerships with local LA hospitals to provide toys and connection to children who cannot return home during the holiday season. ",
+    "benefits" : "As a student organization of Pomona College, the community service work completed by BLOC add party of its mission aids the Colleges campaign for a productive and cohesive existence with the surrounding LA community.",
+    "description" : "The members of BLOC are very aware of the economic distinction between the students of the Claremont Colleges and the surrounding community. While most of the students are fairly well-to-do, families in the surrounding community struggle to makes ends meet. With this in mind, BLOC created its Toys for Tots program. ",
+    "fromDate" : [ 2016, 11, 30, 17, 33 ],
+    "photoUrl" : "https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/photos%2F63?alt=media&token=37842550-7926-45b4-a050-f2bc10705f8b",
+    "public" : false,
+    "recordType" : "Community Engagement",
+    "themeImageUrl" : "https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/themes%2Ftheme_donate.jpg?alt=media&token=84597e3f-5a37-4527-bb78-996094a95819",
+    "title" : "Toys For Tots",
+    "venue" : "Smith Campus Center"
+  }, {
+    "abbreviation" : "YMC",
+    "admin" : "Martin Barrera",
+    "ambition" : "Martin Barrera's initial vision for Young Men's Circle was to empower a group of 20 students to become better prepared academically and consciously for college application and the necessities of every day life. ",
+    "benefits" : "As a student organization of Pomona College, the community service work completed in local schools aids in Pomona Colleges efforts to provide better access to college-level education to marganilized members of our LA community.",
+    "description" : "The members of BLOC are very aware of the economic distinction between the students of the Claremont Colleges and the surrounding community. While some students from local high school have access and knowledge of the resources necessary to effectively apply to colleges and universities, many do not. Young Men's Circle is a mentoring program to fill the gap for these students.",
+    "fromDate" : [ 2016, 11, 30, 17, 33 ],
+    "photoUrl" : "https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/photos%2Fyoung_mens_circle%202.png?alt=media&token=fdfbd39a-e86b-48a8-a290-b868db72b04b",
+    "public" : false,
+    "recordType" : "Community Engagement",
+    "themeImageUrl" : "https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/themes%2Ftheme_mentoring2.png?alt=media&token=b5139116-5567-4fd2-a579-8592ef06ba9c",
+    "title" : "Toys For Tots",
+    "venue" : "Smith Campus Center"
+  }, {
+    "abbreviation" : "ASK",
+    "admin" : "Jauresse Gaines",
+    "ambition" : "The ambition of the BLOC campaign is to reach as many students at the 5'Cs as possible, raising their awareness around sexual assault, language, and most of all the respect of all women.",
+    "benefits" : "The BLOC campaign hopes to get students who attend parties actively and enthusiastically engaging in consensual language and actions. In alignment with Pomona College values, BLOC also wants to move people away from the notion that consent can only be given or received during sexual interactions with a partner. Consent can be given and received in many situations that we do not usually think of as situations that require consent. ",
+    "description" : "The purpose of the Ask Campaign is to ensure that people are actively practicing consent. The Ask Campaign is not a substitution to the original Consent Campaign - designed to ensure that all members of the Claremont community feel that in any social setting they are made to feel included, and safe -  the Ask Campaign is intended for the purpose of targeting and influencing the actions of students at the 5’Cs to more conscious and participant in the respect of women and their bodies. ",
+    "fromDate" : [ 2016, 11, 30, 17, 33 ],
+    "photoUrl" : "https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/photos%2FAsk%20Flyer.jpg?alt=media&token=a9e14f66-7999-46d0-b0ec-aa10dd4f1e6c",
+    "public" : false,
+    "recordType" : "Community Engagement",
+    "themeImageUrl" : "https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/themes%2Ftheme_consent.jpg?alt=media&token=b56d1ec4-ebfc-420a-8bb1-adf75d47b004",
+    "title" : "ASK Campaign",
+    "venue" : "Dom's Lounge"
+  } ],
+  "messages" : {
+    "-K2ib4H77rj0LYewF7dP" : {
+      "name" : "BLOC",
+      "text" : "Be the first to write a message"
+    }
+  },
+  "res" : {
+    "imageurls" : {
+      "themes" : [ "https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/themes%2Ftheme_bbq.jpg?alt=media&token=1db41d20-ad45-486f-8de6-298396b9cde2", "https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/themes%2Ftheme_bbq2.png?alt=media&token=6e6b1d1d-7349-40be-9dcd-3cd477c407ab", "https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/themes%2Ftheme_business.jpg?alt=media&token=74d1d0a2-484c-48b1-a568-65da23e2f495", "https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/themes%2Ftheme_call.jpg?alt=media&token=a3bff5a0-7768-4b40-bac5-67a5c5c4f94c", "https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/themes%2Ftheme_call2.jpg?alt=media&token=1b1f9242-4c46-4e63-8a50-61697df9237d", "https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/themes%2Ftheme_consent.jpg?alt=media&token=b56d1ec4-ebfc-420a-8bb1-adf75d47b004", "https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/themes%2Ftheme_donate.jpg?alt=media&token=84597e3f-5a37-4527-bb78-996094a95819", "https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/themes%2Ftheme_icecreamsocial.jpg?alt=media&token=d5746667-263d-4b9c-b503-4ac1f500cba4", "https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/themes%2Ftheme_mentoring.jpg?alt=media&token=2d7fd4a2-5f94-4ca9-9a2f-2e79b961cc4b", "https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/themes%2Ftheme_mentoring2.png?alt=media&token=b5139116-5567-4fd2-a579-8592ef06ba9c", "https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/themes%2Ftheme_networking.jpg?alt=media&token=0cdf8b5a-92a1-459a-bc1a-b79a8142395e", "https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/themes%2Ftheme_party.jpeg?alt=media&token=3180ec93-de1e-4fe8-be2b-1783cfc9bc3f", "https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/themes%2Ftheme_slopes.jpg?alt=media&token=5663b906-616e-4d9c-befb-89c55809e8f8", "https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/themes%2Ftheme_slopes2.jpg?alt=media&token=bf5c844b-3d05-4152-97ad-045ab35ce804", "https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/themes%2Ftheme_social.jpg?alt=media&token=1bffe860-c5af-4b82-bc67-0ab9a1ded51f", "https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/themes%2Ftheme_throwback.jpg?alt=media&token=466997e4-af6f-40b2-a872-1f494fce9dde" ]
+    },
+    "newsfeedsources" : {
+      "-KYoeBXYv1WIBCmle5Pc" : {
+        "abbreviation" : "ASK",
+        "admin" : "Jauresse Gaines",
+        "ambition" : "Jauresse Gaines",
+        "benefits" : "The members of BLOC are very aware of the economic distinction between the students of the Claremont Colleges and the surrounding community. While most of the students are fairly well-to-do, families in the surrounding community struggle to makes ends meet. With this in mind, BLOC created its Toys for Tots program. ",
+        "campaignPhoto" : "https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/photos%2F63?alt=media&token=37842550-7926-45b4-a050-f2bc10705f8b",
+        "campaignTheme" : "https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/themes%2Ftheme_donate.jpg?alt=media&token=84597e3f-5a37-4527-bb78-996094a95819",
+        "description" : "The members of BLOC are very aware of the economic distinction between the students of the Claremont Colleges and the surrounding community. While most of the students are fairly well-to-do, families in the surrounding community struggle to makes ends meet. With this in mind, BLOC created its Toys for Tots program. ",
+        "extras" : "R.drawable.toy_drive_donations_sheet",
+        "fromDate" : [ 2016, 11, 30, 17, 33 ],
+        "icon" : 0,
+        "iconId" : 0,
+        "isPublic" : true,
+        "photoUrl" : "https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/photos%2F63?alt=media&token=37842550-7926-45b4-a050-f2bc10705f8b",
+        "planOfExecution" : "During the month of November, members of BLOC sit in dining halls around campus and ask for donations. To fromDate, BLOC has collected upwards of $2500 in toys and funds. All donations have gone to the Citrus Valley Health Partners pediatric unit and in the future, BLOC will be expanding its donations to various women and children’s shelters in the area.",
+        "public" : true,
+        "recordType" : "Community Engagement",
+        "themeImageUrl" : "https://firebasestorage.googleapis.com/v0/b/blocapp-22b4d.appspot.com/o/themes%2Ftheme_donate.jpg?alt=media&token=84597e3f-5a37-4527-bb78-996094a95819",
+        "timestamp" : "",
+        "title" : "Toys For Tots",
+        "venue" : "Smith Campus Center"
+      }
+    },
+    "repeat" : [ "Repeat", "Never", "Every Day", "Every Week", "Every 2 Weeks", "Every Month", "Every Year" ],
+    "subtypes" : [ "Subtype", "Tips and Tricks", "Inquiry Protocol", "Article", "Resource", "Shoutout", "Workflow" ],
+    "types" : [ "Type", "Academics", "Community Engagement", "Meeting", "Resource", "Social Dinner", "Social Party", "Other" ],
+    "venues" : [ "Venue", "Athern Field", "Big Bridges", "Carnegie", "Dom's Lounge", "Edmund's Ballroom", "Little Bridges", "Marston Quad", "Millikan", "Pendleton Pool", "Pitzer", "Scripps Pool", "Smith Campus Center", "Social Room", "Tranquada", "Walker Beach", "HMC" ]
+  }
+}
