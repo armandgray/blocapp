@@ -99,14 +99,14 @@ public class HomeFragment extends Fragment {
                 campaign.setAdmin((String) campaignsSnapshot.get("admin"));
                 campaign.setDescription((String) campaignsSnapshot.get("description"));
                 campaign.setBenefits((String) campaignsSnapshot.get("benefits"));
-                campaign.setAmbition((String) campaignsSnapshot.get("admin"));
+                campaign.setAmbition((String) campaignsSnapshot.get("ambition"));
                 campaign.setPlanOfExecution((String) campaignsSnapshot.get("planOfExecution"));
                 campaign.setItemizedBudget((String) campaignsSnapshot.get("itemizedBudget"));
                 campaign.setVenue((String) campaignsSnapshot.get("venue"));
                 campaign.setRecordType((String) campaignsSnapshot.get("recordType"));
                 campaign.setExtras((String) campaignsSnapshot.get("extras"));
-                campaign.setPhotoUrl((String) campaignsSnapshot.get("campaignPhoto"));
-                campaign.setThemeImageUrl((String) campaignsSnapshot.get("campaignTheme"));
+                campaign.setPhotoUrl((String) campaignsSnapshot.get("photoUrl"));
+                campaign.setThemeImageUrl((String) campaignsSnapshot.get("themeImageUrl"));
                 if (campaignsSnapshot.get("isPublic") == null) {
                     campaign.setPublic(false);
                 } else {
