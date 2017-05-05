@@ -8,7 +8,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.InputFilter;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,7 +34,6 @@ import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-import static org.blocorganization.blocapp.MainActivity.MESS_TAG;
 import static org.blocorganization.blocapp.MainActivity.photoUrl;
 import static org.blocorganization.blocapp.MainActivity.username;
 
@@ -55,7 +53,8 @@ public class MessagesFragment extends Fragment {
     private FirebaseRecyclerAdapter<FriendlyMessage, MessageViewHolder> mFirebaseAdapter;
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
 
-    private static class MessageViewHolder extends RecyclerView.ViewHolder {
+    @SuppressWarnings("WeakerAccess")
+    public static class MessageViewHolder extends RecyclerView.ViewHolder {
         final TextView messageTextView;
         final TextView messengerTextView;
         final CircleImageView messengerImageView;

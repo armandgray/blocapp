@@ -65,8 +65,8 @@ public class BlocApp extends Application {
                 campaign.setRecordType((String) campaignsSnapshot.get("recordType"));
                 campaign.setExtras((String) campaignsSnapshot.get("extras"));
                 campaign.setToDate((ArrayList<Integer>) campaignsSnapshot.get("toDate"));
-                campaign.setPhotoUrl((String) campaignsSnapshot.get("photoUrl"));
-                campaign.setThemeImageUrl((String) campaignsSnapshot.get("themeImageUrl"));
+                campaign.setPhotoUrl((String) campaignsSnapshot.get("campaignPhoto"));
+                campaign.setThemeImageUrl((String) campaignsSnapshot.get("campaignTheme"));
 
                 ArrayList<Long> timestampAsListLong = (ArrayList<Long>) campaignsSnapshot.get("timestamp");
                 if (timestampAsListLong != null) {
