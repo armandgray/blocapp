@@ -48,6 +48,7 @@ public class CampaignDetailActivity extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
         final ImageView editBtn = (ImageView) findViewById(R.id.ivCampaignEdit);
+        editBtn.setVisibility(View.GONE);
         editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
