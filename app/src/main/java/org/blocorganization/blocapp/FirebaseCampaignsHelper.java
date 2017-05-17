@@ -1,5 +1,7 @@
 package org.blocorganization.blocapp;
 
+import android.support.annotation.NonNull;
+
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -111,6 +113,7 @@ public class FirebaseCampaignsHelper {
         });
     }
 
+    @NonNull
     public List<Campaign> getCampaigns() {
         return campaigns;
     }

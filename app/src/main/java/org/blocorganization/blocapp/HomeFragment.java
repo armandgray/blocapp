@@ -25,7 +25,6 @@ import org.blocorganization.blocapp.models.Campaign;
 import org.blocorganization.blocapp.utils.CampaignsItemAdapter;
 import org.blocorganization.blocapp.utils.RecyclerItemClickListener;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,15 +35,15 @@ public class HomeFragment extends Fragment
 
     private static final int SWIPE_MIN_DISTANCE = 120;
     private static final int SWIPE_THRESHOLD_VELOCITY = 200;
-    
+
     private View rootView;
     private ViewFlipper mViewFlipper;
     private Context mContext;
     private GestureDetector detector;
 
     private CampaignsItemAdapter adapter;
-    private final ArrayList<Campaign> campaigns = new ArrayList<>();
     private RecyclerView rvCampaigns;
+    private RelativeLayout moreCampaignsContainer;
 
     @SuppressWarnings("deprecation")
     @Override
@@ -77,6 +76,12 @@ public class HomeFragment extends Fragment
                 rvCampaigns.scrollToPosition(rvCampaigns.getChildCount() - 1);
             }
         });
+
+        moreCampaignsContainer = (RelativeLayout) rootView.findViewById(R.id.moreCampaignsContainer);
+        moreCampaignsContainer.setVisibility(View.GONE);
+
+        moreCampaignsContainer.setVisibility(View.VISIBLE);
+        setupRvCampaigns(rvCampaigns, getFirebaseCampaigns());
         
         return rootView;
     }
@@ -96,17 +101,7 @@ public class HomeFragment extends Fragment
         tvMoreMission.setTextColor(Color.parseColor("#FF2A00"));
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        final RelativeLayout moreCampaignsContainer = (RelativeLayout) rootView.findViewById(R.id.moreCampaignsContainer);
-        moreCampaignsContainer.setVisibility(View.GONE);
-        moreCampaignsContainer.setVisibility(View.VISIBLE);
-
-        setupRvCampaigns(rvCampaigns);
-    }
-
-    private void setupRvCampaigns(RecyclerView rvCampaigns) {
+    private void setupRvCampaigns(RecyclerView rvCampaigns, final List<Campaign> campaigns) {
         adapter = new CampaignsItemAdapter(getActivity(), false, campaigns);
         rvCampaigns.setAdapter(adapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
