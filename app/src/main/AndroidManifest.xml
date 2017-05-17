@@ -39,11 +39,11 @@
 
                 <data
                     android:host="www.armandgray.com"
-                    android:pathPrefix="/seeme"
+                    android:pathPrefix="/blocapp"
                     android:scheme="http" />
                 <data
-                    android:host="seeme"
-                    android:scheme="armandgray" />
+                    android:host="blocapp"
+                    android:scheme="organization" />
             </intent-filter>
         </activity>
 
