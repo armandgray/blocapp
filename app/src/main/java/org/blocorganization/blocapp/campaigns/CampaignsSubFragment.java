@@ -24,12 +24,12 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import org.blocorganization.blocapp.FirebaseCampaignsHelper;
 import org.blocorganization.blocapp.R;
 import org.blocorganization.blocapp.models.Campaign;
 import org.blocorganization.blocapp.utils.CampaignsItemAdapter;
 import org.blocorganization.blocapp.utils.RecyclerItemClickListener;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
@@ -37,7 +37,8 @@ import static android.app.Activity.RESULT_OK;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CampaignsSubFragment extends Fragment {
+public class CampaignsSubFragment extends Fragment
+        implements FirebaseCampaignsHelper.FirebaseCampaignsListener {
 
     public static final String CAMPAIGNS_CHILD = "campaigns";
     private static final int GALLERY_INTENT = 2;
@@ -48,7 +49,6 @@ public class CampaignsSubFragment extends Fragment {
     private StorageReference mStorage;
     private ProgressDialog mProgressDialog;
 
-    private final List<Campaign> campaigns = new ArrayList<>();
     private CampaignsItemAdapter adapter;
 
     public CampaignsSubFragment() {}
@@ -71,6 +71,7 @@ public class CampaignsSubFragment extends Fragment {
         mProgressDialog = new ProgressDialog(getActivity());
 
         final RecyclerView rvCampaigns = (RecyclerView) rootView.findViewById(R.id.rvCampaigns);
+        final List<Campaign> campaigns = getFirebaseCampaigns();
         adapter = new CampaignsItemAdapter(getActivity(), true, campaigns);
         rvCampaigns.setAdapter(adapter);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2);
@@ -133,5 +134,14 @@ public class CampaignsSubFragment extends Fragment {
         }
     }
 
+    @Override
+    public List<Campaign> getFirebaseCampaigns() {
+        return FirebaseCampaignsHelper.getInstance().getCampaigns();
+    }
+
+    @Override
+    public int getFirebaseCampaignPosition(Campaign campaign) {
+        return FirebaseCampaignsHelper.getInstance().getCampaignPosition(campaign);
+    }
 }
 
