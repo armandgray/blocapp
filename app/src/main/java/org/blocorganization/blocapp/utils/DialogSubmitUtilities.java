@@ -35,9 +35,6 @@ public class DialogSubmitUtilities {
         ivCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (fragment.getArguments() == null) {
-                    fragment.getActivity().onBackPressed();
-                }
                 fragment.getActivity().onBackPressed();
             }
         });
