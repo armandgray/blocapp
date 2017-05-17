@@ -20,41 +20,37 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 import org.blocorganization.blocapp.campaigns.CampaignDetailActivity;
 import org.blocorganization.blocapp.models.Campaign;
 import org.blocorganization.blocapp.utils.CampaignsItemAdapter;
 import org.blocorganization.blocapp.utils.RecyclerItemClickListener;
 
 import java.util.ArrayList;
-import java.util.Map;
-
-import static org.blocorganization.blocapp.campaigns.CampaignsSubFragment.CAMPAIGNS_CHILD;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment
+        implements FirebaseCampaignsHelper.FirebaseCampaignsListener {
 
     private static final int SWIPE_MIN_DISTANCE = 120;
     private static final int SWIPE_THRESHOLD_VELOCITY = 200;
+    
+    private View rootView;
     private ViewFlipper mViewFlipper;
     private Context mContext;
     private GestureDetector detector;
-    private CampaignsItemAdapter adapter;
 
+    private CampaignsItemAdapter adapter;
     private final ArrayList<Campaign> campaigns = new ArrayList<>();
+    private RecyclerView rvCampaigns;
 
     @SuppressWarnings("deprecation")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_home, container, false);
+        rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
         setupMoreButtons(rootView);
 
@@ -72,7 +68,7 @@ public class HomeFragment extends Fragment {
         mViewFlipper.setFlipInterval(7000);
         mViewFlipper.startFlipping();
 
-        final RecyclerView rvCampaigns = (RecyclerView) rootView.findViewById(R.id.rvCampaigns);
+        rvCampaigns = (RecyclerView) rootView.findViewById(R.id.rvCampaigns);
 
         LinearLayout showMoreButton = (LinearLayout) rootView.findViewById(R.id.more_container);
         showMoreButton.setOnClickListener(new View.OnClickListener() {
@@ -81,12 +77,6 @@ public class HomeFragment extends Fragment {
                 rvCampaigns.scrollToPosition(rvCampaigns.getChildCount() - 1);
             }
         });
-
-        final RelativeLayout moreCampaignsContainer = (RelativeLayout) rootView.findViewById(R.id.moreCampaignsContainer);
-        moreCampaignsContainer.setVisibility(View.GONE);
-        moreCampaignsContainer.setVisibility(View.VISIBLE);
-        
-        setupRvCampaigns(rvCampaigns);
         
         return rootView;
     }
@@ -106,6 +96,16 @@ public class HomeFragment extends Fragment {
         tvMoreMission.setTextColor(Color.parseColor("#FF2A00"));
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        final RelativeLayout moreCampaignsContainer = (RelativeLayout) rootView.findViewById(R.id.moreCampaignsContainer);
+        moreCampaignsContainer.setVisibility(View.GONE);
+        moreCampaignsContainer.setVisibility(View.VISIBLE);
+
+        setupRvCampaigns(rvCampaigns);
+    }
+
     private void setupRvCampaigns(RecyclerView rvCampaigns) {
         adapter = new CampaignsItemAdapter(getActivity(), false, campaigns);
         rvCampaigns.setAdapter(adapter);
@@ -122,6 +122,16 @@ public class HomeFragment extends Fragment {
                     }
                 })
         );
+    }
+
+    @Override
+    public List<Campaign> getFirebaseCampaigns() {
+        return FirebaseCampaignsHelper.getInstance().getCampaigns();
+    }
+
+    @Override
+    public int getFirebaseCampaignPosition(Campaign campaign) {
+        return FirebaseCampaignsHelper.getInstance().getCampaignPosition(campaign);
     }
 
     private class SwipeGestureDetector extends GestureDetector.SimpleOnGestureListener {
