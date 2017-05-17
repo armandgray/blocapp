@@ -78,11 +78,10 @@ public class HomeFragment extends Fragment
         });
 
         moreCampaignsContainer = (RelativeLayout) rootView.findViewById(R.id.moreCampaignsContainer);
-        moreCampaignsContainer.setVisibility(View.GONE);
-
-        moreCampaignsContainer.setVisibility(View.VISIBLE);
+        int visibility = getFirebaseCampaigns().size() > 0 ? View.VISIBLE : View.GONE;
+        moreCampaignsContainer.setVisibility(visibility);
         setupRvCampaigns(rvCampaigns, getFirebaseCampaigns());
-        
+
         return rootView;
     }
 
@@ -141,7 +140,7 @@ public class HomeFragment extends Fragment
                     return true;
                 } else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
                     mViewFlipper.setInAnimation(AnimationUtils.loadAnimation(mContext, R.anim.right_in));
-                    mViewFlipper.setOutAnimation(AnimationUtils.loadAnimation(mContext,R.anim.right_out));
+                    mViewFlipper.setOutAnimation(AnimationUtils.loadAnimation(mContext, R.anim.right_out));
                     mViewFlipper.showPrevious();
                     mViewFlipper.stopFlipping();
                     return true;
