@@ -48,12 +48,15 @@ public class FirebaseCampaignsHelper {
                 campaign.setPlanOfExecution((String) campaignsSnapshot.get("planOfExecution"));
                 campaign.setItemizedBudget((String) campaignsSnapshot.get("itemizedBudget"));
                 campaign.setVenue((String) campaignsSnapshot.get("venue"));
-                campaign.setFromDate((ArrayList<Integer>) campaignsSnapshot.get("fromDate"));
                 campaign.setRecordType((String) campaignsSnapshot.get("recordType"));
                 campaign.setExtras((String) campaignsSnapshot.get("extras"));
-                campaign.setToDate((ArrayList<Integer>) campaignsSnapshot.get("toDate"));
                 campaign.setPhotoUrl((String) campaignsSnapshot.get("photoUrl"));
                 campaign.setThemeImageUrl((String) campaignsSnapshot.get("themeImageUrl"));
+                if (campaignsSnapshot.get("isPublic") == null) {
+                    campaign.setPublic(false);
+                } else {
+                    campaign.setPublic((Boolean) campaignsSnapshot.get("isPublic"));
+                }
 
                 ArrayList<Long> timestampAsListLong = (ArrayList<Long>) campaignsSnapshot.get("timestamp");
                 if (timestampAsListLong != null) {
@@ -67,7 +70,31 @@ public class FirebaseCampaignsHelper {
                     campaign.setTimestamp(null);
                 }
 
-                campaigns.add(campaign);
+                ArrayList<Long> fromDateAsListLong = (ArrayList<Long>) campaignsSnapshot.get("fromDate");
+                if (fromDateAsListLong != null) {
+                    ArrayList<Integer> fromDateList = new ArrayList<>();
+                    for (Long dateElement : fromDateAsListLong) {
+                        Integer elementAsInteger = dateElement != null ? dateElement.intValue() : null;
+                        fromDateList.add(elementAsInteger);
+                    }
+                    campaign.setFromDate(fromDateList);
+                } else {
+                    campaign.setFromDate(null);
+                }
+
+                ArrayList<Long> toDateAsListLong = (ArrayList<Long>) campaignsSnapshot.get("toDateList");
+                if (toDateAsListLong != null) {
+                    ArrayList<Integer> toDateList = new ArrayList<>();
+                    for (Long dateElement : toDateAsListLong) {
+                        Integer elementAsInteger = dateElement != null ? dateElement.intValue() : null;
+                        toDateList.add(elementAsInteger);
+                    }
+                    campaign.setToDate(toDateList);
+                } else {
+                    campaign.setToDate(null);
+                }
+
+                campaigns.add(0, campaign);
             }
 
             @Override
