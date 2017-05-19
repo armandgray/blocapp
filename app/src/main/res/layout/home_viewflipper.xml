@@ -16,6 +16,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="@dimen/home_vf_image_height"
+            android:padding="30dp"
             android:layout_gravity="center"
             android:adjustViewBounds="true"
             android:contentDescription="@string/view_flipper_image"
@@ -43,6 +44,8 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/home_vf_image_height"
             android:layout_gravity="center"
+            android:background="@android:color/white"
+            android:padding="20dp"
             android:adjustViewBounds="true"
             android:contentDescription="@string/view_flipper_image"
             android:scaleType="centerCrop" />
@@ -70,6 +73,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/home_vf_image_height"
             android:layout_gravity="center"
+            android:padding="95dp"
             android:adjustViewBounds="true"
             android:contentDescription="@string/view_flipper_image"
             android:scaleType="centerCrop" />
