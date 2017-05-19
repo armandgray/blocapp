@@ -2,7 +2,7 @@
 <ViewFlipper xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/view_flipper"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/viewflipper_border"
     android:paddingBottom="1dp"
@@ -10,19 +10,16 @@
     tools:showIn="@layout/fragment_home">
 
     <RelativeLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="@dimen/home_vf_image_height"
-            android:layout_centerHorizontal="true"
             android:layout_gravity="center"
             android:adjustViewBounds="true"
             android:contentDescription="@string/view_flipper_image"
-            android:padding="70dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/logo_negative" />
+            android:scaleType="centerCrop" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -30,7 +27,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/home_vf_image_height"
             android:layout_gravity="center"
             android:adjustViewBounds="true"
@@ -40,11 +37,11 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <ImageView
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/home_vf_image_height"
             android:layout_gravity="center"
             android:adjustViewBounds="true"
@@ -54,11 +51,11 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <ImageView
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/home_vf_image_height"
             android:layout_gravity="center"
             android:adjustViewBounds="true"
