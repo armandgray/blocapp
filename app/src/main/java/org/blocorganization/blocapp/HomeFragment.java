@@ -55,6 +55,15 @@ public class HomeFragment extends Fragment
 
         mContext = getActivity();
         detector = new GestureDetector(new SwipeGestureDetector());
+        setupViewFlipper();
+
+        setupRvCampaignVisibilityOptions();
+        setupRvCampaigns(rvCampaigns, getFirebaseCampaigns());
+
+        return rootView;
+    }
+
+    private void setupViewFlipper() {
         mViewFlipper = (ViewFlipper) rootView.findViewById(R.id.view_flipper);
         mViewFlipper.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -66,7 +75,9 @@ public class HomeFragment extends Fragment
         mViewFlipper.setAutoStart(true);
         mViewFlipper.setFlipInterval(7000);
         mViewFlipper.startFlipping();
+    }
 
+    private void setupRvCampaignVisibilityOptions() {
         rvCampaigns = (RecyclerView) rootView.findViewById(R.id.rvCampaigns);
 
         LinearLayout showMoreButton = (LinearLayout) rootView.findViewById(R.id.more_container);
@@ -80,9 +91,6 @@ public class HomeFragment extends Fragment
         moreCampaignsContainer = (RelativeLayout) rootView.findViewById(R.id.moreCampaignsContainer);
         int visibility = getFirebaseCampaigns().size() > 0 ? View.VISIBLE : View.GONE;
         moreCampaignsContainer.setVisibility(visibility);
-        setupRvCampaigns(rvCampaigns, getFirebaseCampaigns());
-
-        return rootView;
     }
 
     private void setupMoreButtons(View rootView) {
