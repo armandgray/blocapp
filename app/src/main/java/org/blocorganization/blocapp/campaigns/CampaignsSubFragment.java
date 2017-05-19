@@ -40,7 +40,6 @@ import static android.app.Activity.RESULT_OK;
 public class CampaignsSubFragment extends Fragment
         implements FirebaseCampaignsHelper.FirebaseCampaignsListener {
 
-    public static final String CAMPAIGNS_CHILD = "campaigns";
     private static final int GALLERY_INTENT = 2;
     private static final String UPLOAD_DONE = "UPLOAD_DONE";
     private static final String UPLOAD_FAILED = "UPLOAD_FAILED";
