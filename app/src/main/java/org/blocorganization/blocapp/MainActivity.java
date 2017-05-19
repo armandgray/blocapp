@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -17,7 +16,6 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.crash.FirebaseCrash;
 
 import org.blocorganization.blocapp.bloc.BlocFragment;
 import org.blocorganization.blocapp.campaigns.CampaignsFragment;
@@ -142,9 +140,6 @@ public class MainActivity extends AppCompatActivity
                 return true;
             case R.id.invite_menu:
                 sendInvitation();
-                return true;
-            case R.id.crash_menu:
-                causeCrash();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
