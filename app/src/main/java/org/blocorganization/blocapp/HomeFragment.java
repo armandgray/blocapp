@@ -1,7 +1,6 @@
 package org.blocorganization.blocapp;
 
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -20,6 +19,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
+import com.squareup.picasso.Picasso;
+
 import org.blocorganization.blocapp.campaigns.CampaignDetailActivity;
 import org.blocorganization.blocapp.models.Campaign;
 import org.blocorganization.blocapp.utils.CampaignsItemAdapter;
@@ -37,15 +38,11 @@ public class HomeFragment extends Fragment
     private static final int SWIPE_THRESHOLD_VELOCITY = 200;
 
     private View rootView;
-    private ViewFlipper mViewFlipper;
-    private Context mContext;
+    private ViewFlipper viewFlipper;
     private GestureDetector detector;
 
-    private CampaignsItemAdapter adapter;
     private RecyclerView rvCampaigns;
-    private RelativeLayout moreCampaignsContainer;
 
-    @SuppressWarnings("deprecation")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -53,8 +50,8 @@ public class HomeFragment extends Fragment
 
         setupMoreButtons(rootView);
 
-        mContext = getActivity();
-        detector = new GestureDetector(new SwipeGestureDetector());
+        viewFlipper = (ViewFlipper) rootView.findViewById(R.id.view_flipper);
+        setupViewFlipperImages();
         setupViewFlipper();
 
         setupRvCampaignVisibilityOptions();
@@ -63,18 +60,27 @@ public class HomeFragment extends Fragment
         return rootView;
     }
 
+    private void setupViewFlipperImages() {
+        ImageView image;
+        for (int i = 0; i < viewFlipper.getChildCount(); i++) {
+            image = (ImageView) ((RelativeLayout) viewFlipper.getChildAt(i)).getChildAt(0);
+            Picasso.with(getActivity()).load(R.drawable.logo_negative).into(image);
+        }
+    }
+
+    @SuppressWarnings("deprecation")
     private void setupViewFlipper() {
-        mViewFlipper = (ViewFlipper) rootView.findViewById(R.id.view_flipper);
-        mViewFlipper.setOnTouchListener(new View.OnTouchListener() {
+        detector = new GestureDetector(new SwipeGestureDetector());
+        viewFlipper.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(final View view, final MotionEvent event) {
                 detector.onTouchEvent(event);
                 return true;
             }
         });
-        mViewFlipper.setAutoStart(true);
-        mViewFlipper.setFlipInterval(7000);
-        mViewFlipper.startFlipping();
+        viewFlipper.setAutoStart(true);
+        viewFlipper.setFlipInterval(7000);
+        viewFlipper.startFlipping();
     }
 
     private void setupRvCampaignVisibilityOptions() {
@@ -88,7 +94,7 @@ public class HomeFragment extends Fragment
             }
         });
 
-        moreCampaignsContainer = (RelativeLayout) rootView.findViewById(R.id.moreCampaignsContainer);
+        RelativeLayout moreCampaignsContainer = (RelativeLayout) rootView.findViewById(R.id.moreCampaignsContainer);
         int visibility = getFirebaseCampaigns().size() > 0 ? View.VISIBLE : View.GONE;
         moreCampaignsContainer.setVisibility(visibility);
     }
@@ -109,7 +115,7 @@ public class HomeFragment extends Fragment
     }
 
     private void setupRvCampaigns(RecyclerView rvCampaigns, final List<Campaign> campaigns) {
-        adapter = new CampaignsItemAdapter(getActivity(), false, campaigns);
+        CampaignsItemAdapter adapter = new CampaignsItemAdapter(getActivity(), false, campaigns);
         rvCampaigns.setAdapter(adapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         rvCampaigns.setLayoutManager(layoutManager);
@@ -141,16 +147,16 @@ public class HomeFragment extends Fragment
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
             try {
                 if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                    mViewFlipper.setInAnimation(AnimationUtils.loadAnimation(mContext, R.anim.left_in));
-                    mViewFlipper.setOutAnimation(AnimationUtils.loadAnimation(mContext, R.anim.left_out));
-                    mViewFlipper.showNext();
-                    mViewFlipper.stopFlipping();
+                    viewFlipper.setInAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.left_in));
+                    viewFlipper.setOutAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.left_out));
+                    viewFlipper.showNext();
+                    viewFlipper.stopFlipping();
                     return true;
                 } else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                    mViewFlipper.setInAnimation(AnimationUtils.loadAnimation(mContext, R.anim.right_in));
-                    mViewFlipper.setOutAnimation(AnimationUtils.loadAnimation(mContext, R.anim.right_out));
-                    mViewFlipper.showPrevious();
-                    mViewFlipper.stopFlipping();
+                    viewFlipper.setInAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.right_in));
+                    viewFlipper.setOutAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.right_out));
+                    viewFlipper.showPrevious();
+                    viewFlipper.stopFlipping();
                     return true;
                 }
                 if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MIN_DISTANCE && Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {

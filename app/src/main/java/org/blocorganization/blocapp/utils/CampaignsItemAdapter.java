@@ -21,12 +21,12 @@ public class CampaignsItemAdapter extends
         RecyclerView.Adapter<CampaignsItemAdapter.ViewHolder> {
 
     private final List<Campaign> mCampaigns;
-    private final Activity mActivity;
+    private final Activity activity;
     private final Boolean fullItem;
 
     public CampaignsItemAdapter(Activity activity, Boolean bool, List<Campaign> campaigns) {
         mCampaigns = campaigns;
-        mActivity = activity;
+        this.activity = activity;
         fullItem = bool;
     }
 
@@ -43,14 +43,14 @@ public class CampaignsItemAdapter extends
     @Override
     public void onBindViewHolder(CampaignsItemAdapter.ViewHolder viewHolder, int position) {
         Campaign campaign = mCampaigns.get(position);
-        int containerDimens = GetDpMeasurement.getDPI(mActivity, 120);
+        int containerDimens = GetDpMeasurement.getDPI(activity, 120);
 
         LinearLayout campaignItemContainer = viewHolder.campaignItemContainer;
         ImageView ivCampaignImage = viewHolder.ivCampaignImage;
         TextView tvCampaignDetails = viewHolder.tvCampaignDetails;
         TextView tvCampaignTitle = viewHolder.tvCampaignTitle;
 
-        Picasso.with(mActivity).load(campaign.getPhotoUrl()).into(ivCampaignImage);
+        Picasso.with(activity).load(campaign.getPhotoUrl()).into(ivCampaignImage);
         tvCampaignDetails.setText("By " + campaign.getAdmin());
 
         if (fullItem) {
