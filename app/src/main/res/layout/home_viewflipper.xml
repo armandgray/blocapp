@@ -32,8 +32,7 @@
             android:layout_gravity="center"
             android:adjustViewBounds="true"
             android:contentDescription="@string/view_flipper_image"
-            android:scaleType="centerCrop"
-            android:src="@drawable/blocbbq2016_ianwbx" />
+            android:scaleType="centerCrop" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -46,8 +45,7 @@
             android:layout_gravity="center"
             android:adjustViewBounds="true"
             android:contentDescription="@string/view_flipper_image"
-            android:scaleType="centerCrop"
-            android:src="@drawable/theme_consent" />
+            android:scaleType="centerCrop" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -60,8 +58,7 @@
             android:layout_gravity="center"
             android:adjustViewBounds="true"
             android:contentDescription="@string/view_flipper_image"
-            android:scaleType="centerCrop"
-            android:src="@drawable/dinner_jmnuad" />
+            android:scaleType="centerCrop" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -70,13 +67,11 @@
         android:background="@android:color/white">
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/home_vf_image_height"
-            android:layout_centerHorizontal="true"
             android:layout_gravity="center"
             android:adjustViewBounds="true"
             android:contentDescription="@string/view_flipper_image"
-            android:scaleType="centerCrop"
-            android:src="@drawable/theme_donate" />
+            android:scaleType="centerCrop" />
     </RelativeLayout>
 </ViewFlipper>

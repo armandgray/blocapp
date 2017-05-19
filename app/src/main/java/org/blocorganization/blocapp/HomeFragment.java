@@ -62,9 +62,16 @@ public class HomeFragment extends Fragment
 
     private void setupViewFlipperImages() {
         ImageView image;
+        int[] imageIdArray = {
+                R.drawable.logo_negative,
+                R.drawable.blocbbq2016_ianwbx,
+                R.drawable.theme_consent,
+                R.drawable.dinner_jmnuad,
+                R.drawable.theme_donate
+        };
         for (int i = 0; i < viewFlipper.getChildCount(); i++) {
             image = (ImageView) ((RelativeLayout) viewFlipper.getChildAt(i)).getChildAt(0);
-            Picasso.with(getActivity()).load(R.drawable.logo_negative).into(image);
+            Picasso.with(getActivity()).load(imageIdArray[i]).into(image);
         }
     }
 
