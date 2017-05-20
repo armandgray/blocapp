@@ -43,13 +43,16 @@ public class ImageThemeAdapter extends
 
     @Override
     public void onBindViewHolder(ImageThemeAdapter.ViewHolder viewHolder, int position) {
-        viewHolders.add(viewHolder);
+        if (viewHolders.size() <= position || viewHolders.get(position) == null ) {
+            viewHolders.add(position, viewHolder);
+        }
         String theme = themes.get(position);
         int layoutParams = GetDpMeasurement.getDPI(mActivity, mLayoutParams);
 
         ImageView ivCampaignTheme = viewHolder.ivCampaignTheme;
         ivCampaignTheme.setLayoutParams(new LinearLayout.LayoutParams(layoutParams, layoutParams));
         Picasso.with(mActivity).load(theme).into(ivCampaignTheme);
+        if (position != lastThemePosition) { disableLayout(position); }
         if (position == lastThemePosition) { highlightView(position); }
     }
 
@@ -58,14 +61,20 @@ public class ImageThemeAdapter extends
         return themes.size();
     }
 
-    public void highlightView(int position) {
-        if (lastThemePosition > -1) {
-            LinearLayout lastItemView = (LinearLayout) viewHolders.get(lastThemePosition).itemView;
-            lastItemView.setBackgroundResource(R.drawable.background_square_shadow);
-            ImageView lastImg = (ImageView) lastItemView.getChildAt(0);
-            lastImg.setColorFilter(Color.parseColor("#59000000"));
-            lastImg.setBackgroundColor(Color.parseColor("#59000000"));
-        }
+    public void toggleHighlight(int position) {
+        if (lastThemePosition > -1) { disableLayout(lastThemePosition); }
+        highlightView(position);
+    }
+
+    private void disableLayout(int lastThemePosition) {
+        LinearLayout lastItemView = (LinearLayout) viewHolders.get(lastThemePosition).itemView;
+        lastItemView.setBackgroundResource(R.drawable.background_square_shadow);
+        ImageView lastImg = (ImageView) lastItemView.getChildAt(0);
+        lastImg.setColorFilter(Color.parseColor("#59000000"));
+        lastImg.setBackgroundColor(Color.parseColor("#59000000"));
+    }
+
+    private void highlightView(int position) {
         LinearLayout itemView = (LinearLayout) viewHolders.get(position).itemView;
         itemView.setBackgroundResource(R.drawable.background_square_selected_shadow);
         ImageView img = (ImageView) itemView.getChildAt(0);

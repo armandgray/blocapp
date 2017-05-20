@@ -179,7 +179,7 @@ public class CreateCampaignDialog extends DialogFragment
                     @Override
                     public void onItemClick(View view, int position) {
                         themePosition = position;
-                        themeUtilities.adapter.highlightView(position);
+                        themeUtilities.adapter.toggleHighlight(position);
                     }
                 }));
     }
