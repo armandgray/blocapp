@@ -7,7 +7,6 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.InputFilter;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +28,7 @@ import org.blocorganization.blocapp.utils.CreateUtilities;
 import org.blocorganization.blocapp.utils.DateTimePickerFragment;
 import org.blocorganization.blocapp.utils.DateTimePresenter;
 import org.blocorganization.blocapp.utils.DialogSubmitUtilities;
+import org.blocorganization.blocapp.utils.ImageThemeAdapter;
 import org.blocorganization.blocapp.utils.RecyclerItemClickListener;
 
 import java.util.ArrayList;
@@ -172,7 +172,7 @@ public class CreateCampaignDialog extends DialogFragment
             return;
         }
 
-        themeUtilities.getRvImageUrlListFrom(dbThemes, rvThemes);
+        final ImageThemeAdapter adapter = themeUtilities.getRvAdapterFromImageUrlList(dbThemes, rvThemes);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         rvThemes.setLayoutManager(layoutManager);
@@ -181,9 +181,24 @@ public class CreateCampaignDialog extends DialogFragment
 
                     @Override
                     public void onItemClick(View view, int position) {
-                        highlightView((LinearLayout) view, position);
+                        adapter.highlightView(position);
                     }
                 }));
+    }
+
+    private void highlightView(LinearLayout view, int position) {
+        if (previousSelectedTheme != null) {
+            previousSelectedTheme.setBackgroundResource(R.drawable.background_square_shadow);
+            ImageView lastImg = (ImageView) previousSelectedTheme.getChildAt(0);
+            lastImg.setColorFilter(Color.parseColor("#59000000"));
+            lastImg.setBackgroundColor(Color.parseColor("#59000000"));
+        }
+        view.setBackgroundResource(R.drawable.background_square_selected_shadow);
+        ImageView img = (ImageView) view.getChildAt(0);
+        img.setColorFilter(Color.parseColor("#00000000"));
+        img.setBackgroundColor(Color.parseColor("#00000000"));
+        themePosition = position;
+        previousSelectedTheme = view;
     }
 
     private void setupSpinnersFrom(DatabaseReference mDatabaseResources, View rootView) {
@@ -200,21 +215,6 @@ public class CreateCampaignDialog extends DialogFragment
     private void setupDateTimePresenter(View rootView) {
         dateTimePresenter = new DateTimePresenter(rootView, this);
         dateTimePresenter.loadDateFields(campaign);
-    }
-
-    private void highlightView(LinearLayout view, int position) {
-        if (previousSelectedTheme != null) {
-            previousSelectedTheme.setBackgroundResource(R.drawable.background_square_shadow);
-            ImageView lastImg = (ImageView) previousSelectedTheme.getChildAt(0);
-            lastImg.setColorFilter(Color.parseColor("#59000000"));
-            lastImg.setBackgroundColor(Color.parseColor("#59000000"));
-        }
-        view.setBackgroundResource(R.drawable.background_square_selected_shadow);
-        ImageView img = (ImageView) view.getChildAt(0);
-        img.setColorFilter(Color.parseColor("#00000000"));
-        img.setBackgroundColor(Color.parseColor("#00000000"));
-        themePosition = position;
-        previousSelectedTheme = view;
     }
 
     @Override

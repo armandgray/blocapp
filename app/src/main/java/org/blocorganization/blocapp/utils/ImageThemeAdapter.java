@@ -17,7 +17,7 @@ import org.blocorganization.blocapp.R;
 
 import java.util.List;
 
-class ImageThemeAdapter extends
+public class ImageThemeAdapter extends
         RecyclerView.Adapter<ImageThemeAdapter.ViewHolder> {
 
     private final List<String> mThemes;
@@ -62,6 +62,10 @@ class ImageThemeAdapter extends
     @Override
     public int getItemCount() {
         return mThemes.size();
+    }
+
+    public void highlightView(int position) {
+        
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
