@@ -36,7 +36,7 @@ public class CreateUtilities {
     private List<String> listItems;
     private final Campaign passedCampaign;
     private final Activity activity;
-    private ImageThemeAdapter adapter;
+    public ImageThemeAdapter adapter;
 
     public CreateUtilities(@NonNull Campaign campaign, Activity activity) {
         this.passedCampaign = campaign;
@@ -44,7 +44,7 @@ public class CreateUtilities {
         this.listItems = new ArrayList<>();
     }
 
-    public ImageThemeAdapter getRvAdapterFromImageUrlList(DatabaseReference databaseReference, final RecyclerView recyclerView) {
+    public void setRvAdapterFromImageUrlList(DatabaseReference databaseReference, final RecyclerView recyclerView) {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @SuppressWarnings("unchecked")
             @Override
@@ -67,8 +67,6 @@ public class CreateUtilities {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
-
-        return adapter;
     }
 
     public void getSpinnerListItemsFrom(DatabaseReference databaseReference, final Spinner spinner, final String methodCall) {

@@ -27,7 +27,6 @@ import org.blocorganization.blocapp.utils.CreateUtilities;
 import org.blocorganization.blocapp.utils.DateTimePickerFragment;
 import org.blocorganization.blocapp.utils.DateTimePresenter;
 import org.blocorganization.blocapp.utils.DialogSubmitUtilities;
-import org.blocorganization.blocapp.utils.ImageThemeAdapter;
 import org.blocorganization.blocapp.utils.RecyclerItemClickListener;
 
 import java.util.ArrayList;
@@ -170,7 +169,7 @@ public class CreateCampaignDialog extends DialogFragment
             return;
         }
 
-        final ImageThemeAdapter adapter = themeUtilities.getRvAdapterFromImageUrlList(dbThemes, rvThemes);
+        themeUtilities.setRvAdapterFromImageUrlList(dbThemes, rvThemes);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         rvThemes.setLayoutManager(layoutManager);
@@ -180,7 +179,7 @@ public class CreateCampaignDialog extends DialogFragment
                     @Override
                     public void onItemClick(View view, int position) {
                         themePosition = position;
-                        adapter.highlightView(position);
+                        themeUtilities.adapter.highlightView(position);
                     }
                 }));
     }
