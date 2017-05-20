@@ -177,7 +177,7 @@ public class CreateCampaignDialog extends DialogFragment
                 new RecyclerItemClickListener.OnItemClickListener() {
 
                     @Override
-                    public void onItemClick(View view, int position) {
+                    public void onItemClick(int position) {
                         themePosition = position;
                         themeUtilities.adapter.toggleHighlight(position);
                     }

@@ -53,6 +53,7 @@ public class CreateUtilities {
                     listItems = (List) dataSnapshot.getValue();
                 }
                 if (recyclerView.getAdapter() == null) {
+                    //noinspection ConstantConditions
                     if (passedCampaign != null) {
                         adapter = new ImageThemeAdapter(activity,
                                 listItems, passedCampaign.getThemeImageUrl());
@@ -95,6 +96,7 @@ public class CreateUtilities {
     }
 
     private void getSelectionFor(String methodCall, Spinner spinner) {
+        //noinspection ConstantConditions
         if (passedCampaign != null) {
             switch (methodCall) {
                 case TYPE:
@@ -112,6 +114,7 @@ public class CreateUtilities {
     }
 
     public void saveCampaignToDatabase() {
+        //noinspection ConstantConditions
         if (passedCampaign != null) {
             DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child(CAMPAIGNS);
             mDatabase.child(String.valueOf(
@@ -126,6 +129,7 @@ public class CreateUtilities {
         }
         activity.onBackPressed();
         Intent intent = new Intent(activity, CampaignDetailActivity.class);
+        //noinspection ConstantConditions
         if (passedCampaign != null) {
             intent.putExtras(passedCampaign.toBundle());
         }

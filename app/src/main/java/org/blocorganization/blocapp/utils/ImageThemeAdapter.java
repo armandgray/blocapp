@@ -24,7 +24,7 @@ public class ImageThemeAdapter extends
     private final List<String> themes;
     private final Activity mActivity;
     private final int mLayoutParams;
-    private ArrayList<ViewHolder> viewHolders;
+    private final ArrayList<ViewHolder> viewHolders;
     private int lastThemePosition = -1;
 
     ImageThemeAdapter(@NonNull Activity activity, @NonNull List<String> themes, @Nullable String theme) {
