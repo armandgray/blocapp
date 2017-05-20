@@ -1,6 +1,7 @@
 package org.blocorganization.blocapp;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +27,9 @@ public class MainActivity extends AppCompatActivity
         implements NavBarFragment.NavBarFragmentListener,
                 GoogleApiClient.OnConnectionFailedListener {
 
+    private static final String ARMANDGRAY_COM = "http://armandgray.com";
+    private static final String PLAY_STORE_ARMAND_GRAY = "https://play.google.com/store/search?q=armandgray&c=apps&hl=en";
+    private static final String PLAY_STORE_BLOC = "https://play.google.com/store/apps/details?id=org.blocorganization.blocapp&hl=en";
     private static final String ANONYMOUS = "anonymous";
     private static final String MESS_TAG = "MESS_TAG";
 
@@ -132,6 +136,15 @@ public class MainActivity extends AppCompatActivity
                 return true;
             case R.id.invite_menu:
                 sendInvitation();
+                return true;
+            case R.id.meet_developer:
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(ARMANDGRAY_COM)));
+                return true;
+            case R.id.see_more_apps:
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(PLAY_STORE_ARMAND_GRAY)));
+                return true;
+            case R.id.rate_this_app:
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(PLAY_STORE_BLOC)));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
