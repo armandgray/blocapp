@@ -15,21 +15,24 @@ import com.squareup.picasso.Picasso;
 
 import org.blocorganization.blocapp.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ImageThemeAdapter extends
         RecyclerView.Adapter<ImageThemeAdapter.ViewHolder> {
 
-    private final List<String> mThemes;
+    private final List<String> themes;
     private final Activity mActivity;
     private final int mLayoutParams;
-    private final String setTheme;
+    private ArrayList<ViewHolder> viewHolders;
+    private int lastThemePosition = -1;
 
     ImageThemeAdapter(@NonNull Activity activity, @NonNull List<String> themes, @Nullable String theme) {
-        mThemes = themes;
-        mActivity = activity;
-        mLayoutParams = org.blocorganization.blocapp.campaigns.CreateCampaignDialog.THEME_LAYOUT_PARAMS;
-        setTheme = theme;
+        this.themes = themes;
+        this.mActivity = activity;
+        this.mLayoutParams = org.blocorganization.blocapp.campaigns.CreateCampaignDialog.THEME_LAYOUT_PARAMS;
+        this.viewHolders = new ArrayList<>();
+        lastThemePosition = themes.indexOf(theme);
     }
 
     @Override
@@ -40,32 +43,34 @@ public class ImageThemeAdapter extends
 
     @Override
     public void onBindViewHolder(ImageThemeAdapter.ViewHolder viewHolder, int position) {
-        String theme = mThemes.get(position);
+        viewHolders.add(viewHolder);
+        String theme = themes.get(position);
         int layoutParams = GetDpMeasurement.getDPI(mActivity, mLayoutParams);
 
         ImageView ivCampaignTheme = viewHolder.ivCampaignTheme;
         ivCampaignTheme.setLayoutParams(new LinearLayout.LayoutParams(layoutParams, layoutParams));
         Picasso.with(mActivity).load(theme).into(ivCampaignTheme);
-
-        if (setTheme != null && !setTheme.equals("")) {
-            if (setTheme.equals(mThemes.get(position))) {
-                LinearLayout setLayout = (LinearLayout) viewHolder.itemView;
-                setLayout.setBackgroundResource(R.drawable.background_square_selected_shadow);
-                ImageView setImg = (ImageView) setLayout.getChildAt(0);
-                setImg.setColorFilter(Color.parseColor("#00000000"));
-                setImg.setBackgroundColor(Color.parseColor("#00000000"));
-            }
-        }
-
+        if (position == lastThemePosition) { highlightView(position); }
     }
 
     @Override
     public int getItemCount() {
-        return mThemes.size();
+        return themes.size();
     }
 
     public void highlightView(int position) {
-        
+        if (lastThemePosition > -1) {
+            lastThemePosition.setBackgroundResource(R.drawable.background_square_shadow);
+            ImageView lastImg = (ImageView) lastThemePosition.getChildAt(0);
+            lastImg.setColorFilter(Color.parseColor("#59000000"));
+            lastImg.setBackgroundColor(Color.parseColor("#59000000"));
+        }
+        view.setBackgroundResource(R.drawable.background_square_selected_shadow);
+        ImageView img = (ImageView)
+                ((LinearLayout) viewHolders.get(position).itemView).getChildAt(0);
+        img.setColorFilter(Color.parseColor("#00000000"));
+        img.setBackgroundColor(Color.parseColor("#00000000"));
+        lastThemePosition = view;
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {

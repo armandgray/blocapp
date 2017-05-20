@@ -1,7 +1,6 @@
 package org.blocorganization.blocapp.campaigns;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -83,7 +82,6 @@ public class CreateCampaignDialog extends DialogFragment
     private Spinner spVenue;
 
     private Integer themePosition;
-    private LinearLayout previousSelectedTheme;
     private CreateUtilities typeUtilities;
     private CreateUtilities venueUtilities;
 
@@ -181,24 +179,10 @@ public class CreateCampaignDialog extends DialogFragment
 
                     @Override
                     public void onItemClick(View view, int position) {
+                        themePosition = position;
                         adapter.highlightView(position);
                     }
                 }));
-    }
-
-    private void highlightView(LinearLayout view, int position) {
-        if (previousSelectedTheme != null) {
-            previousSelectedTheme.setBackgroundResource(R.drawable.background_square_shadow);
-            ImageView lastImg = (ImageView) previousSelectedTheme.getChildAt(0);
-            lastImg.setColorFilter(Color.parseColor("#59000000"));
-            lastImg.setBackgroundColor(Color.parseColor("#59000000"));
-        }
-        view.setBackgroundResource(R.drawable.background_square_selected_shadow);
-        ImageView img = (ImageView) view.getChildAt(0);
-        img.setColorFilter(Color.parseColor("#00000000"));
-        img.setBackgroundColor(Color.parseColor("#00000000"));
-        themePosition = position;
-        previousSelectedTheme = view;
     }
 
     private void setupSpinnersFrom(DatabaseReference mDatabaseResources, View rootView) {
