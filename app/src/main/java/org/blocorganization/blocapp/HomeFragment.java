@@ -31,8 +31,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends Fragment
-        implements FirebaseCampaignsHelper.FirebaseCampaignsListener {
+public class HomeFragment extends Fragment {
 
     private static final int SWIPE_MIN_DISTANCE = 120;
     private static final int SWIPE_THRESHOLD_VELOCITY = 200;
@@ -56,7 +55,7 @@ public class HomeFragment extends Fragment
         setupViewFlipper();
 
         setupRvCampaignVisibilityOptions();
-        setupRvCampaigns(rvCampaigns, getFirebaseCampaigns());
+        setupRvCampaigns(rvCampaigns, FirebaseCampaignsHelper.getInstance().getCampaigns());
 
         return rootView;
     }
@@ -103,7 +102,8 @@ public class HomeFragment extends Fragment
         });
 
         RelativeLayout moreCampaignsContainer = (RelativeLayout) rootView.findViewById(R.id.moreCampaignsContainer);
-        int visibility = getFirebaseCampaigns().size() > 0 ? View.VISIBLE : View.GONE;
+        int visibility = FirebaseCampaignsHelper.getInstance().getCampaigns()
+                .size() > 0 ? View.VISIBLE : View.GONE;
         moreCampaignsContainer.setVisibility(visibility);
     }
 
@@ -141,20 +141,10 @@ public class HomeFragment extends Fragment
     }
 
     @Override
-    public List<Campaign> getFirebaseCampaigns() {
-        return FirebaseCampaignsHelper.getInstance().getCampaigns();
-    }
-
-    @Override
-    public int getFirebaseCampaignPosition(Campaign campaign) {
-        return FirebaseCampaignsHelper.getInstance().getCampaignPosition(campaign);
-    }
-
-    @Override
     public void onResume() {
         super.onResume();
         if (getUserVisibleHint()) {
-            adapter.swapCampaignsData(getFirebaseCampaigns());
+            adapter.swapCampaignsData(FirebaseCampaignsHelper.getInstance().getCampaigns());
         }
     }
 

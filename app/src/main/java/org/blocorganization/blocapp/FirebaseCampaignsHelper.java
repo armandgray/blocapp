@@ -127,9 +127,4 @@ public class FirebaseCampaignsHelper {
         return campaigns.size();
     }
 
-    public interface FirebaseCampaignsListener {
-        List<Campaign> getFirebaseCampaigns();
-        int getFirebaseCampaignPosition(Campaign campaign);
-    }
-
 }

@@ -37,8 +37,7 @@ import static android.app.Activity.RESULT_OK;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CampaignsSubFragment extends Fragment
-        implements FirebaseCampaignsHelper.FirebaseCampaignsListener {
+public class CampaignsSubFragment extends Fragment {
 
     private static final int GALLERY_INTENT = 2;
     private static final String UPLOAD_DONE = "UPLOAD_DONE";
@@ -70,7 +69,7 @@ public class CampaignsSubFragment extends Fragment
         mProgressDialog = new ProgressDialog(getActivity());
 
         final RecyclerView rvCampaigns = (RecyclerView) rootView.findViewById(R.id.rvCampaigns);
-        final List<Campaign> campaigns = getFirebaseCampaigns();
+        final List<Campaign> campaigns = FirebaseCampaignsHelper.getInstance().getCampaigns();
         adapter = new CampaignsItemAdapter(getActivity(), true, campaigns);
         rvCampaigns.setAdapter(adapter);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2);
@@ -134,20 +133,10 @@ public class CampaignsSubFragment extends Fragment
     }
 
     @Override
-    public List<Campaign> getFirebaseCampaigns() {
-        return FirebaseCampaignsHelper.getInstance().getCampaigns();
-    }
-
-    @Override
-    public int getFirebaseCampaignPosition(Campaign campaign) {
-        return FirebaseCampaignsHelper.getInstance().getCampaignPosition(campaign);
-    }
-
-    @Override
     public void onResume() {
         super.onResume();
         if (getUserVisibleHint()) {
-            adapter.swapCampaignsData(getFirebaseCampaigns());
+            adapter.swapCampaignsData(FirebaseCampaignsHelper.getInstance().getCampaigns());
         }
     }
 }

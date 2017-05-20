@@ -26,9 +26,8 @@ public class MainActivity extends AppCompatActivity
         implements NavBarFragment.NavBarFragmentListener,
                 GoogleApiClient.OnConnectionFailedListener {
 
-    private static final String TAG = "MainActivity";
     private static final String ANONYMOUS = "anonymous";
-    public static final String MESS_TAG = "MESS_TAG";
+    private static final String MESS_TAG = "MESS_TAG";
 
     private static final int REQUEST_INVITE = 1;
 
@@ -97,9 +96,6 @@ public class MainActivity extends AppCompatActivity
                 payload.putString(FirebaseAnalytics.Param.VALUE, "sent");
                 firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SHARE,
                         payload);
-                // Check how many invitations were sent.
-                String[] ids = AppInviteInvitation
-                        .getInvitationIds(resultCode, data);
             } else {
                 Bundle payload = new Bundle();
                 payload.putString(FirebaseAnalytics.Param.VALUE, "not sent");
@@ -116,10 +112,6 @@ public class MainActivity extends AppCompatActivity
         // An unresolvable error has occurred and Google APIs (including Sign-In) will not
         // be available.
         Toast.makeText(this, "Google Play Services error.", Toast.LENGTH_SHORT).show();
-    }
-
-    private void causeCrash() {
-        throw new NullPointerException("Fake null pointer exception");
     }
 
     @Override
