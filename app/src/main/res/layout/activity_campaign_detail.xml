@@ -22,8 +22,7 @@
                 android:adjustViewBounds="false"
                 android:contentDescription="@string/campaigns_image_desc"
                 android:scaleType="centerCrop"
-                android:tint="#A6333333"
-                app:srcCompat="@drawable/ic_bloc_negative" />
+                android:tint="#A6333333" />
 
             <ImageView
                 android:id="@+id/ivCampaignEdit"

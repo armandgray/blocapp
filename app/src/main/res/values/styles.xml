@@ -15,7 +15,6 @@
         <!--To change the background of options menu-->
         <item name="android:itemBackground">@color/background</item>
         <item name="android:typeface">sans</item>
-        <item name="android:theme">@drawable/ic_bloc_negative</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
