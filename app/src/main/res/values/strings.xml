@@ -76,5 +76,8 @@
     <string name="update_campaign">Update Campaign</string>
     <string name="please_enter_message">Please Enter Message</string>
     <string name="upload">Upload</string>
+    <string name="meet_the_developer">Meet The Developer</string>
+    <string name="see_more_apps">See More Apps</string>
+    <string name="rate_this_app">Rate This App</string>
 
 </resources>
