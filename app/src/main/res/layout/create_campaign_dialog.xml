@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="@android:color/black"
     android:orientation="vertical"
-    tools:context="org.blocorganization.blocapp.campaigns.CreateCampaignDialog">
+    tools:context="org.blocorganization.blocapp.campaigns.CreateCampaignDialog"
+    tools:ignore="Overdraw">
 
     <include layout="@layout/dialog_submit_header" />
 

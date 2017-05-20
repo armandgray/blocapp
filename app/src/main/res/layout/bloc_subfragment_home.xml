@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="@android:color/black"
     android:orientation="vertical"
-    tools:context="org.blocorganization.blocapp.bloc.HomeSubFragment">
+    tools:context="org.blocorganization.blocapp.bloc.HomeSubFragment"
+    tools:ignore="Overdraw">
 
     <ScrollView
         android:id="@+id/bloc_scrollview"

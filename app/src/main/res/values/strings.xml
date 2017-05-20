@@ -14,7 +14,6 @@
     <string name="invitation_cta">Call to action</string>
     <string name="invitation_title">BLOC App Invite</string>
     <string name="sign_in">Sign In</string>
-    <string name="cause_crash">Cause Crash</string>
 
     <!-- app Headers -->
     <string name="campaigns">Campaigns</string>
