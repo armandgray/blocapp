@@ -114,19 +114,13 @@ public class CreateUtilities {
     }
 
     public void saveCampaignToDatabase() {
-        //noinspection ConstantConditions
-        if (passedCampaign != null) {
-            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child(CAMPAIGNS);
-            mDatabase.child(String.valueOf(
-                    FirebaseCampaignsHelper.getInstance().getCampaignPosition(passedCampaign)))
-                    .setValue(passedCampaign);
-        }
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child(CAMPAIGNS);
+        mDatabase.child(String.valueOf(
+                FirebaseCampaignsHelper.getInstance().getCampaignCount()))
+                .setValue(passedCampaign);
     }
 
     public void startDetailActivityWith(Activity activity, boolean isNewCampaign) {
-        if (isNewCampaign) {
-            activity.onBackPressed();
-        }
         activity.onBackPressed();
         Intent intent = new Intent(activity, CampaignDetailActivity.class);
         //noinspection ConstantConditions

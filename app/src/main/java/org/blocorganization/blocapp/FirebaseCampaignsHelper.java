@@ -127,4 +127,8 @@ public class FirebaseCampaignsHelper {
         return campaigns.size();
     }
 
+    public int getCampaignCount() {
+        return campaigns.size();
+    }
+
 }
