@@ -101,6 +101,10 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        updateMoreCampaignsVisibility();
+    }
+
+    private void updateMoreCampaignsVisibility() {
         RelativeLayout moreCampaignsContainer = (RelativeLayout) rootView.findViewById(R.id.moreCampaignsContainer);
         int visibility = FirebaseCampaignsHelper.getInstance().getCampaigns()
                 .size() > 0 ? View.VISIBLE : View.GONE;
@@ -145,6 +149,7 @@ public class HomeFragment extends Fragment {
         super.onResume();
         if (getUserVisibleHint()) {
             adapter.swapCampaignsData(FirebaseCampaignsHelper.getInstance().getCampaigns());
+            updateMoreCampaignsVisibility();
         }
     }
 
