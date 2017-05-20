@@ -265,7 +265,7 @@ public class CreateCampaignDialog extends DialogFragment
             themeUtilities.updateNetwork();
         }
         themeUtilities.saveCampaignToDatabase();
-        themeUtilities.startDetailActivityWith(getActivity(), isNewCampaign);
+        themeUtilities.startDetailActivityWith(getActivity());
     }
 
     @Override

@@ -120,7 +120,7 @@ public class CreateUtilities {
                 .setValue(passedCampaign);
     }
 
-    public void startDetailActivityWith(Activity activity, boolean isNewCampaign) {
+    public void startDetailActivityWith(Activity activity) {
         activity.onBackPressed();
         Intent intent = new Intent(activity, CampaignDetailActivity.class);
         //noinspection ConstantConditions

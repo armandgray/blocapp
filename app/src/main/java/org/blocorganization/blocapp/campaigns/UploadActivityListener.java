@@ -36,7 +36,7 @@ class UploadActivityListener {
 
     UploadActivityListener(Activity activity) {
         this.activity = activity;
-        this.progressDialog = new ProgressDialog(activity);
+        this.progressDialog = new ProgressDialog(activity, ProgressDialog.THEME_HOLO_DARK );
         this.imgDownloadUri = "";
     }
 
