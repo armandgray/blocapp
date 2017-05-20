@@ -20,12 +20,12 @@ import java.util.List;
 public class CampaignsItemAdapter extends
         RecyclerView.Adapter<CampaignsItemAdapter.ViewHolder> {
 
-    private final List<Campaign> mCampaigns;
+    private List<Campaign> campaigns;
     private final Activity activity;
     private final Boolean fullItem;
 
     public CampaignsItemAdapter(Activity activity, Boolean bool, List<Campaign> campaigns) {
-        mCampaigns = campaigns;
+        this.campaigns = campaigns;
         this.activity = activity;
         fullItem = bool;
     }
@@ -42,7 +42,7 @@ public class CampaignsItemAdapter extends
 
     @Override
     public void onBindViewHolder(CampaignsItemAdapter.ViewHolder viewHolder, int position) {
-        Campaign campaign = mCampaigns.get(position);
+        Campaign campaign = campaigns.get(position);
         int containerDimens = GetDpMeasurement.getDPI(activity, 120);
 
         LinearLayout campaignItemContainer = viewHolder.campaignItemContainer;
@@ -64,7 +64,12 @@ public class CampaignsItemAdapter extends
 
     @Override
     public int getItemCount() {
-        return mCampaigns.size();
+        return campaigns.size();
+    }
+
+    public void swapCampaignsData(List<Campaign> list) {
+        campaigns = list;
+        notifyDataSetChanged();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {

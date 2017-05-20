@@ -42,6 +42,7 @@ public class HomeFragment extends Fragment
     private GestureDetector detector;
 
     private RecyclerView rvCampaigns;
+    private CampaignsItemAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -122,7 +123,7 @@ public class HomeFragment extends Fragment
     }
 
     private void setupRvCampaigns(RecyclerView rvCampaigns, final List<Campaign> campaigns) {
-        CampaignsItemAdapter adapter = new CampaignsItemAdapter(getActivity(), false, campaigns);
+        adapter = new CampaignsItemAdapter(getActivity(), false, campaigns);
         rvCampaigns.setAdapter(adapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         rvCampaigns.setLayoutManager(layoutManager);
@@ -147,6 +148,14 @@ public class HomeFragment extends Fragment
     @Override
     public int getFirebaseCampaignPosition(Campaign campaign) {
         return FirebaseCampaignsHelper.getInstance().getCampaignPosition(campaign);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (getUserVisibleHint()) {
+            adapter.swapCampaignsData(getFirebaseCampaigns());
+        }
     }
 
     private class SwipeGestureDetector extends GestureDetector.SimpleOnGestureListener {

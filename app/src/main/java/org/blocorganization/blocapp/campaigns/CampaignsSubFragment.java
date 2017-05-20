@@ -142,5 +142,13 @@ public class CampaignsSubFragment extends Fragment
     public int getFirebaseCampaignPosition(Campaign campaign) {
         return FirebaseCampaignsHelper.getInstance().getCampaignPosition(campaign);
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (getUserVisibleHint()) {
+            adapter.swapCampaignsData(getFirebaseCampaigns());
+        }
+    }
 }
 
