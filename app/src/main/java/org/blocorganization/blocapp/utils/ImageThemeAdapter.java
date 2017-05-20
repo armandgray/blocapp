@@ -60,17 +60,18 @@ public class ImageThemeAdapter extends
 
     public void highlightView(int position) {
         if (lastThemePosition > -1) {
-            lastThemePosition.setBackgroundResource(R.drawable.background_square_shadow);
-            ImageView lastImg = (ImageView) lastThemePosition.getChildAt(0);
+            LinearLayout lastItemView = (LinearLayout) viewHolders.get(lastThemePosition).itemView;
+            lastItemView.setBackgroundResource(R.drawable.background_square_shadow);
+            ImageView lastImg = (ImageView) lastItemView.getChildAt(0);
             lastImg.setColorFilter(Color.parseColor("#59000000"));
             lastImg.setBackgroundColor(Color.parseColor("#59000000"));
         }
-        view.setBackgroundResource(R.drawable.background_square_selected_shadow);
-        ImageView img = (ImageView)
-                ((LinearLayout) viewHolders.get(position).itemView).getChildAt(0);
+        LinearLayout itemView = (LinearLayout) viewHolders.get(position).itemView;
+        itemView.setBackgroundResource(R.drawable.background_square_selected_shadow);
+        ImageView img = (ImageView) itemView.getChildAt(0);
         img.setColorFilter(Color.parseColor("#00000000"));
         img.setBackgroundColor(Color.parseColor("#00000000"));
-        lastThemePosition = view;
+        lastThemePosition = position;
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
